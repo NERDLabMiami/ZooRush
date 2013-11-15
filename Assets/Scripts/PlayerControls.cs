@@ -5,6 +5,7 @@ public class PlayerControls : MonoBehaviour
 {
 
 	private Vector2 currentSpeed;
+	public Vector2 speed;
 
 	private float xMovement;
 	private float yMovement;
@@ -12,7 +13,7 @@ public class PlayerControls : MonoBehaviour
 
 	private bool forward;
 
-	private float movementForce = 30f;
+	private float movementForce = 27f;
 
 	private Animator animate;
 	// Use this for initialization
@@ -21,11 +22,13 @@ public class PlayerControls : MonoBehaviour
 		animate = GetComponent<Animator> ();
 		forward = true;
 		currentSpeed = rigidbody2D.velocity;
+		speed = new Vector2 (7f, 0f);
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
+		//rigidbody2D.velocity = speed;
 		currentSpeed = rigidbody2D.velocity;
 		//Debug.Log (currentSpeed.x);
 		xMovement = Input.GetAxis ("Horizontal");
@@ -54,6 +57,7 @@ public class PlayerControls : MonoBehaviour
 
 		rigidbody2D.AddForce (Vector2.right * xMovement * movementForce);
 		rigidbody2D.AddForce (Vector2.up * yMovement * movementForce);
+		
 
 	}
 }
