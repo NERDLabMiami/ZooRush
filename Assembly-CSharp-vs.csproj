@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Animal.cs" />
      <Compile Include="Assets\Scripts\Building.cs" />
      <Compile Include="Assets\Scripts\NetLauncher.cs" />
+     <Compile Include="Assets\Scripts\Obstacle.cs" />
      <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <None Include="Assets\Resources\Sprites\Objects\Infections\Infections.txt" />
      <None Include="Assets\Resources\Sprites\Objects\Scene Essentials\Greenery.txt" />

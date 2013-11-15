@@ -9,6 +9,8 @@ public class Animal : MonoBehaviour
 	public string type	;
 	private bool caught = false;
 	
+	public GameObject net;
+	
 	// Use this for initialization
 	void Start ()
 	{
@@ -29,13 +31,15 @@ public class Animal : MonoBehaviour
 	void OnTriggerEnter2D (Collider2D other)
 	{
 		if (!caught) {
-			foreach (BoxCollider2D netCol in netColliders) {
-				netCol.isTrigger = false;
-			}
-			other.gameObject.GetComponent<Animator> ().SetTrigger ("Open");
-			if (other.rigidbody2D.velocity.x < 0.3f && !caught) {
-				animate.SetTrigger ("Idle");
-				caught = true;
+			if (other.gameObject.name == "net(Clone)") {
+				foreach (BoxCollider2D netCol in netColliders) {
+					netCol.isTrigger = false;
+				}
+				other.gameObject.GetComponent<Animator> ().SetTrigger ("Open");
+				if (other.rigidbody2D.velocity.x < 0.3f && !caught) {
+					animate.SetTrigger ("Idle");
+					caught = true;
+				}
 			}
 		}
 		
