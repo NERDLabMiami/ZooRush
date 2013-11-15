@@ -1,0 +1,36 @@
+{"frames": {
+
+"Bush.png":
+{
+	"frame": {"x":4,"y":4,"w":512,"h":262},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":262},
+	"sourceSize": {"w":512,"h":262}
+},
+"Grass.png":
+{
+	"frame": {"x":4,"y":270,"w":512,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":39},
+	"sourceSize": {"w":512,"h":39}
+},
+"Tree.png":
+{
+	"frame": {"x":4,"y":313,"w":408,"h":512},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":408,"h":512},
+	"sourceSize": {"w":408,"h":512}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "Greenery.png",
+	"format": "RGBA8888",
+	"size": {"w":520,"h":829},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:671f5ce2ab2d004c4a05896ae594b648:b47628fb83cd80a8f45f347281631931:45e150f20d274854ba7f10430c018d97$"
+}
+}

@@ -1,0 +1,68 @@
+{"frames": {
+
+"BalloonStand.png":
+{
+	"frame": {"x":2,"y":163,"w":512,"h":370},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":370},
+	"sourceSize": {"w":512,"h":370}
+},
+"Cage1.png":
+{
+	"frame": {"x":1544,"y":163,"w":379,"h":512},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":379,"h":512},
+	"sourceSize": {"w":379,"h":512}
+},
+"Cage2.png":
+{
+	"frame": {"x":1030,"y":2,"w":512,"h":159},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":159},
+	"sourceSize": {"w":512,"h":159}
+},
+"Cage3.png":
+{
+	"frame": {"x":516,"y":2,"w":512,"h":159},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":159},
+	"sourceSize": {"w":512,"h":159}
+},
+"Cage4.png":
+{
+	"frame": {"x":2,"y":2,"w":512,"h":155},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":155},
+	"sourceSize": {"w":512,"h":155}
+},
+"Cage5.png":
+{
+	"frame": {"x":1030,"y":163,"w":512,"h":483},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":483},
+	"sourceSize": {"w":512,"h":483}
+},
+"HotDogStand.png":
+{
+	"frame": {"x":516,"y":163,"w":512,"h":391},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":391},
+	"sourceSize": {"w":512,"h":391}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "Zoo-CagesStands.png",
+	"format": "RGBA8888",
+	"size": {"w":1925,"h":677},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ded80c4305e7d51e769ad01bc0bf1306:5a06536cbc872181e1a35ec5f97fde45:b4b86bb13e4089e7a276468dc1ceec5f$"
+}
+}

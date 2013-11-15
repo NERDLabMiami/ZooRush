@@ -1,0 +1,36 @@
+{"frames": {
+
+"Tortle Test 1.png":
+{
+	"frame": {"x":2,"y":2,"w":415,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":415,"h":198},
+	"sourceSize": {"w":415,"h":198}
+},
+"Tortle Test 2.png":
+{
+	"frame": {"x":419,"y":2,"w":415,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":415,"h":198},
+	"sourceSize": {"w":415,"h":198}
+},
+"Tortle Test 3.png":
+{
+	"frame": {"x":836,"y":2,"w":415,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":415,"h":198},
+	"sourceSize": {"w":415,"h":198}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "Tortoise.png",
+	"format": "RGBA8888",
+	"size": {"w":1253,"h":202},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ad2998a6e3385e91b6b0ea8e28d44b09:ef0903dff717df195a8f337ad72510a6:b59a6d37a85dde2123d0b8a10463a225$"
+}
+}

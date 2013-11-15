@@ -1,0 +1,99 @@
+fileFormatVersion: 2
+guid: 50d111f5b5d9f4c4da03458053a4c1d3
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 0
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Infections_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 476
+        width: 456
+        height: 513
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Infections_1
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 475
+        width: 429
+        height: 514
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Infections_2
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 475
+        width: 242
+        height: 514
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Infections_3
+      rect:
+        serializedVersion: 2
+        x: 1156
+        y: 475
+        width: 403
+        height: 514
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Infections_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 514
+        height: 464
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Infections_5
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 8
+        width: 513
+        height: 459
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 

@@ -1,0 +1,36 @@
+{"frames": {
+
+"net1.png":
+{
+	"frame": {"x":2,"y":2,"w":512,"h":360},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":360},
+	"sourceSize": {"w":512,"h":360}
+},
+"net2.png":
+{
+	"frame": {"x":516,"y":2,"w":512,"h":247},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":247},
+	"sourceSize": {"w":512,"h":247}
+},
+"net3.png":
+{
+	"frame": {"x":1030,"y":2,"w":512,"h":437},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":437},
+	"sourceSize": {"w":512,"h":437}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "Nets.png",
+	"format": "RGBA8888",
+	"size": {"w":1544,"h":441},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:684da6d2996d4fa00ece72d0b24b8c1e:5d4be8871e0d9ca066da1cef22e1adfb:81025ce9c61580bb954f0ee40f48db0a$"
+}
+}

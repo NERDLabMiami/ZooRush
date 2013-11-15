@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: ea944c796b523452d98aa68dc0885851
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 0
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: BoyZoo_0
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 699
+        width: 230
+        height: 689
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: BoyZoo_1
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 755
+        width: 235
+        height: 633
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: BoyZoo_2
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 724
+        width: 163
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: BoyZoo_3
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 722
+        width: 250
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: BoyZoo_4
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 79
+        width: 257
+        height: 615
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: BoyZoo_5
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 23
+        width: 308
+        height: 671
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: BoyZoo_6
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 6
+        width: 321
+        height: 688
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: BoyZoo_7
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 19
+        width: 340
+        height: 675
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: BoyZoo_8
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 30
+        width: 391
+        height: 664
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: BoyZoo_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 699
+        width: 230
+        height: 689
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 

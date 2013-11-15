@@ -1,0 +1,84 @@
+{"frames": {
+
+"Sign-Butterfly.png":
+{
+	"frame": {"x":369,"y":516,"w":365,"h":512},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":365,"h":512},
+	"sourceSize": {"w":365,"h":512}
+},
+"Sign-Crocodile.png":
+{
+	"frame": {"x":1446,"y":2,"w":359,"h":512},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":359,"h":512},
+	"sourceSize": {"w":359,"h":512}
+},
+"Sign-Flamingo.png":
+{
+	"frame": {"x":736,"y":516,"w":373,"h":512},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":373,"h":512},
+	"sourceSize": {"w":373,"h":512}
+},
+"Sign-Gorilla.png":
+{
+	"frame": {"x":724,"y":2,"w":359,"h":512},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":359,"h":512},
+	"sourceSize": {"w":359,"h":512}
+},
+"Sign-Lion.png":
+{
+	"frame": {"x":1085,"y":2,"w":359,"h":512},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":359,"h":512},
+	"sourceSize": {"w":359,"h":512}
+},
+"Sign-Rhino.png":
+{
+	"frame": {"x":2,"y":2,"w":359,"h":512},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":359,"h":512},
+	"sourceSize": {"w":359,"h":512}
+},
+"Sign-Tortoise.png":
+{
+	"frame": {"x":2,"y":516,"w":365,"h":512},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":365,"h":512},
+	"sourceSize": {"w":365,"h":512}
+},
+"Sign-Trail.png":
+{
+	"frame": {"x":363,"y":2,"w":359,"h":512},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":359,"h":512},
+	"sourceSize": {"w":359,"h":512}
+},
+"ZooEntrance.png":
+{
+	"frame": {"x":1111,"y":516,"w":512,"h":466},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":466},
+	"sourceSize": {"w":512,"h":466}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "Zoo-Backgrounds.png",
+	"format": "RGBA8888",
+	"size": {"w":1807,"h":1030},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:18165b9c86160dc79094f7663377b7ac:7551787dc258428527eb60d806625108:e659f76e17ac09b90e67c92235db1df6$"
+}
+}
