@@ -1,11 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Animal.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerControls.cs">
     <Files>
       <File FileName="Assets/Scripts/Animal.cs" Line="34" Column="48" />
-      <File FileName="Assets/Scripts/PlayerControls.cs" Line="15" Column="35" />
-      <File FileName="Assets/Scripts/NetLauncher.cs" Line="27" Column="18" />
-      <File FileName="Assets/Scripts/Building.cs" Line="19" Column="32" />
+      <File FileName="Assets/Scripts/PlayerControls.cs" Line="25" Column="31" />
+      <File FileName="Assets/Scripts/NetLauncher.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Building.cs" Line="22" Column="3" />
+      <File FileName="Assets/Scripts/Obstacle.cs" Line="24" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
