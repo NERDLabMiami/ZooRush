@@ -45,54 +45,108 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 476
+        y: 571
         width: 456
-        height: 513
+        height: 418
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: Infections_1
       rect:
         serializedVersion: 2
         x: 467
-        y: 475
+        y: 594
         width: 429
-        height: 514
+        height: 395
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: Infections_2
       rect:
         serializedVersion: 2
         x: 905
-        y: 475
+        y: 744
         width: 242
-        height: 514
+        height: 245
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: Infections_3
       rect:
         serializedVersion: 2
         x: 1156
-        y: 475
+        y: 574
         width: 403
-        height: 514
+        height: 415
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: Infections_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 514
-        height: 464
+        x: 2
+        y: 107
+        width: 512
+        height: 358
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: Infections_5
       rect:
         serializedVersion: 2
-        x: 523
-        y: 8
-        width: 513
-        height: 459
+        x: 524
+        y: 110
+        width: 512
+        height: 357
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Infections_6
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 476
+        width: 145
+        height: 34
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Infections_7
+      rect:
+        serializedVersion: 2
+        x: 1211
+        y: 476
+        width: 285
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Infections_8
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 476
+        width: 323
+        height: 74
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Infections_9
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 476
+        width: 301
+        height: 68
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Infections_10
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 2
+        width: 412
+        height: 82
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Infections_11
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 9
+        width: 421
+        height: 69
       alignment: 0
       pivot: {x: .5, y: .5}
   spritePackingTag: 

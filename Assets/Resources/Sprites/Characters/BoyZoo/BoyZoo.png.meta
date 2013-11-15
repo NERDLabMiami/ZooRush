@@ -67,7 +67,7 @@ TextureImporter:
         width: 163
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: BoyZoo_3
       rect:
         serializedVersion: 2
@@ -76,7 +76,7 @@ TextureImporter:
         width: 250
         height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: BoyZoo_4
       rect:
         serializedVersion: 2
@@ -129,6 +129,15 @@ TextureImporter:
         y: 699
         width: 230
         height: 689
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: BoyZoo_10
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 441
+        width: 228
+        height: 253
       alignment: 0
       pivot: {x: .5, y: .5}
   spritePackingTag: 
