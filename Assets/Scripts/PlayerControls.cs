@@ -6,6 +6,7 @@ public class PlayerControls : MonoBehaviour
 
 	private Vector2 currentSpeed;
 	public Vector2 speed;
+	public Vector2 maxSpeed;
 
 	private float xMovement;
 	private float yMovement;
@@ -13,7 +14,7 @@ public class PlayerControls : MonoBehaviour
 
 	private bool forward;
 
-	private float movementForce = 27f;
+	private float movementForce = 30f;
 
 	private Animator animate;
 	// Use this for initialization
@@ -23,6 +24,8 @@ public class PlayerControls : MonoBehaviour
 		forward = true;
 		currentSpeed = rigidbody2D.velocity;
 		speed = new Vector2 (7f, 0f);
+		maxSpeed.x = 5f;
+		maxSpeed.y = 3f;
 	}
 	
 	// Update is called once per frame
@@ -54,10 +57,17 @@ public class PlayerControls : MonoBehaviour
 				forward = true; 
 			}
 		}
-
-		rigidbody2D.AddForce (Vector2.right * xMovement * movementForce);
-		rigidbody2D.AddForce (Vector2.up * yMovement * movementForce);
+		if (Mathf.Abs (currentSpeed.x) < maxSpeed.x) {
+			rigidbody2D.AddForce (Vector2.right * xMovement * movementForce);
+		} else {
+			rigidbody2D.AddForce (Vector2.right * xMovement * 15f);
+		}
 		
+		if (Mathf.Abs (currentSpeed.y) < maxSpeed.y) {
+			rigidbody2D.AddForce (Vector2.up * yMovement * movementForce);
+		} else {
+			rigidbody2D.AddForce (Vector2.up * yMovement * 15f);
+		}
 
 	}
 }
