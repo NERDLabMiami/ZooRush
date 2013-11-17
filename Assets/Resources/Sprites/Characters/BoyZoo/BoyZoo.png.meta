@@ -134,9 +134,9 @@ TextureImporter:
     - name: BoyZoo_10
       rect:
         serializedVersion: 2
-        x: 623
-        y: 441
-        width: 228
+        x: 2
+        y: 1135
+        width: 229
         height: 253
       alignment: 0
       pivot: {x: .5, y: .5}

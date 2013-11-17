@@ -28,8 +28,6 @@ public class NetLauncher : MonoBehaviour
 			net = fire ().gameObject;
 		}
 		
-		
-		
 	}
 		
 	private Rigidbody2D fire ()
