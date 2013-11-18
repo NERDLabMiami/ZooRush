@@ -1,34 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* For elements that trigger a bouce back reaction.
+ *
+ *	@author Ebtissam Wahman
+ */
 public class CollisionDetect : MonoBehaviour
 {	
 	public bool isInfection;
-	private bool playerCollision;
 
-	// Use this for initialization
-	void Start ()
+	void OnTriggerEnter2D (Collider2D other)
 	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
 
-	void OnCollisionEnter2D (Collision2D coll)
-	{
-	
-		if (coll.gameObject.name == "BoyZoo") {
-			playerCollision = true;
+		if (other.gameObject.name == "BoyZoo") {
+			Debug.Log (gameObject.name);
+			other.rigidbody2D.AddForce (new Vector2 (-350f, -50f)); //TODO make variable based on current y-location (upwards if close to bottom, downwards if close to top
 			if (isInfection) {
-				collider2D.isTrigger = true; 
 				Obstacle parent = transform.parent.GetComponent<Obstacle> ();
 				parent.collisionDetected ();
 			}
-
+			other.GetComponent<PlayerControls> ().resetSpeed ();
 		}
 
 	}

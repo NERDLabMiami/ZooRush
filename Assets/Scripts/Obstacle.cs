@@ -17,7 +17,6 @@ public class Obstacle : MonoBehaviour
 		sprites = transform.GetComponentsInChildren<SpriteRenderer> ();
 	}
 
-
 	void Update ()
 	{
 		if (inFront) {
@@ -33,7 +32,6 @@ public class Obstacle : MonoBehaviour
 				}
 			}
 		}
-
 	}
 	
 	void OnTriggerEnter2D (Collider2D other)
@@ -49,7 +47,6 @@ public class Obstacle : MonoBehaviour
 	public void collisionDetected ()
 	{
 		GetComponent<Animator> ().SetTrigger ("Flash");
-		GameObject.Find ("BoyZoo").GetComponent<Animator> ().SetTrigger ("Flash");
 	}
 
 	private void destroyObstacle ()
