@@ -77,5 +77,14 @@ TextureImporter:
         height: 702
       alignment: 0
       pivot: {x: .5, y: .5}
+    - name: Bystanders_4
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 442
+        width: 239
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 

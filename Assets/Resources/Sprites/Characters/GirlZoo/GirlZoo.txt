@@ -1,0 +1,68 @@
+{"frames": {
+
+"GirlZoo.png":
+{
+	"frame": {"x":4,"y":4,"w":249,"h":775},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":249,"h":775},
+	"sourceSize": {"w":249,"h":775}
+},
+"GirlZooConcession.png":
+{
+	"frame": {"x":4,"y":783,"w":319,"h":775},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":319,"h":775},
+	"sourceSize": {"w":319,"h":775}
+},
+"GirlZooJump1.png":
+{
+	"frame": {"x":257,"y":4,"w":259,"h":766},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":259,"h":766},
+	"sourceSize": {"w":259,"h":766}
+},
+"GirlZooJump2.png":
+{
+	"frame": {"x":520,"y":4,"w":272,"h":769},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":272,"h":769},
+	"sourceSize": {"w":272,"h":769}
+},
+"GirlZooRun1.png":
+{
+	"frame": {"x":796,"y":4,"w":318,"h":733},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":318,"h":733},
+	"sourceSize": {"w":318,"h":733}
+},
+"GirlZooRun2.png":
+{
+	"frame": {"x":681,"y":783,"w":394,"h":731},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":394,"h":731},
+	"sourceSize": {"w":394,"h":731}
+},
+"GirlZooRun3.png":
+{
+	"frame": {"x":327,"y":783,"w":350,"h":737},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":350,"h":737},
+	"sourceSize": {"w":350,"h":737}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "GirlZoo.png",
+	"format": "RGBA8888",
+	"size": {"w":1118,"h":1562},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:00e74b2c35ac8293e2bc6fca91bae503:fcefed2f4b27ea20cafc0a1f424a79a8:542463bed4473d9e4b82da432c691679$"
+}
+}
