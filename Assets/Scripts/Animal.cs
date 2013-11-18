@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/** Data and functions specific to Animal objects.
+ * 
+ * @author Ebtissam Wahman
+ */ 
 public class Animal : MonoBehaviour
 {
 	private GameObject netBoundary;
 	private BoxCollider2D[] netColliders;
 	private Animator animate;
-	public string type	;
+	public string type;
 	private bool caught = false;
 	
 	public GameObject net;
 	
-	// Use this for initialization
 	void Start ()
 	{
 		animate = GetComponent<Animator> ();
@@ -22,7 +25,6 @@ public class Animal : MonoBehaviour
 		}
 	}
 	
-	// Update is called once per frame
 	void Update ()
 	{
 		
