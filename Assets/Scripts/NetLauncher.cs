@@ -17,7 +17,6 @@ public class NetLauncher : MonoBehaviour
 	
 	void Start ()
 	{
-	
 	}
 	
 	void FixedUpdate ()
