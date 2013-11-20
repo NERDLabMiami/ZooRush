@@ -2,12 +2,10 @@
 using System.Collections;
 
 /** Handles all character movements and triggers.
- * 
  * @author Ebtissam Wahman
  */ 
 public class PlayerControls : MonoBehaviour
 {
-
 	private Vector2 currentSpeed;
 	public Vector2 speed;
 	public Vector2 maxSpeed;
@@ -35,7 +33,6 @@ public class PlayerControls : MonoBehaviour
 		Debug.Log (currentSpeed.x);
 		yMovement = Input.GetAxis ("Vertical");
 		animate.SetTrigger ("Run");
-			
 		if (Mathf.Abs (currentSpeed.y) < maxSpeed.y) {
 			rigidbody2D.AddForce (Vector2.up * yMovement * movementForce);
 		} else {

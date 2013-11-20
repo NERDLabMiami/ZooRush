@@ -8,8 +8,15 @@ public class CharacterSelectMenu : MonoBehaviour
 	private GameObject selectedCharacter;
 	private string[] characterFileNames = {"BoyZoo_0", "GirlZoo_0", "GirlZooHispanic_0"};
 	
+	/** Character Selection Values:
+	 *	0 - BoyZoo
+	 *	1 - GirlZoo
+	 *	2 - GirlZooHispanic
+	 */
+	
 	void Start ()
 	{
+		selection = PlayerPrefs.GetInt ("Character Selection");
 		characterOptions = GameObject.FindGameObjectsWithTag ("option");
 		selectedCharacter = GameObject.Find ("Selected Character");
 		foreach (GameObject character in characterOptions) {
