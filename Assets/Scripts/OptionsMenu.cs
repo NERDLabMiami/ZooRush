@@ -3,83 +3,77 @@ using System.Collections;
 
 public class OptionsMenu : MonoBehaviour
 {
-	private GameObject[] Options;
-	private GameObject[] sound;
-	private GameObject[] music;
-	private GameObject selectedOption;
-
+	private GameObject[] optionsObjects;
+	private GameObject volume;
+	private GameObject music;
+	private GameObject sound;
+	private GameObject characterChange;
+	private GameObject back;
+	
+	private GameObject currentOption;
+	int currentOptionIndex;
+	
+	/** The Option Selection Algorithm:
+	 *	Step 1: Highlight all confirmed choices (ON/OFF, slider position)
+	 *			- Go through each optionObject
+	 *			- In each option, check PlayerPrefs for current value
+	 *			- Highlight the corresponding button based on current value
+	 *	Step 2: Highlight current menu option
+	 			Mouse/Touch Input:
+	 			- Check if the mouse is currently over a game option
+	 			
+	 			Keyboard Input:
+	 			- Check the currently selected game option's index 
+	 *	Step 3: 
+	 *
+	 */
+	
 	void Start ()
 	{
-		if (!PlayerPrefs.HasKey ("Music")) {
-			PlayerPrefs.SetString ("Music", "On");
+		if (!PlayerPrefs.HasKey ("Music")) { // set default values for music and sound
+			PlayerPrefs.SetString ("Music", "ON");
 		}
 		
 		if (!PlayerPrefs.HasKey ("Sound")) {
-			PlayerPrefs.SetString ("Sound", "On");
+			PlayerPrefs.SetString ("Sound", "ON");
+		}
+		if (!PlayerPrefs.HasKey ("Volume")) {
+			PlayerPrefs.SetFloat ("Volume", 1.0f);
 		}
 		
-		Options = GameObject.FindGameObjectsWithTag ("option");
-		selectedOption = GameObject.Find ("Text - Back");
-		foreach (GameObject option in Options) {
-			if (selectedOption.Equals (option)) {
-				option.GetComponent<TextMesh> ().color = Color.yellow;
-			}
+		if (!PlayerPrefs.HasKey ("Current Option")) {
+			PlayerPrefs.SetInt ("Current Option", 0);
 		}
+		
+		volume = GameObject.Find ("Volume");
+		music = GameObject.Find ("Music");
+		sound = GameObject.Find ("Sound");
+		characterChange = GameObject.Find ("Change Character");
+		back = GameObject.Find ("Back");
+		
+		optionsObjects = new GameObject[] {volume,music,sound,characterChange,back};
+		
+		currentOptionIndex = PlayerPrefs.GetInt ("Current Option");
 	}
-
+	
 	void Update ()
 	{
-		if (InputManager.touching) {
-			foreach (GameObject option in Options) {
-				if (InputManager.pointerTouch.collider.Equals (option.collider2D)) {
-					selectedOption = option;
+		foreach (GameObject option in optionsObjects) { // Displays the current values for Game optioons 
+			//TODO Put Volume slider code here
+			if (option.name.Equals ("Music") || option.name.Equals ("Sound")) {
+				TextMesh[] textMeshes = option.GetComponentsInChildren<TextMesh> ();
+				string value = PlayerPrefs.GetString (option.name); // Get the settings value for this option
+				Debug.Log (option.name + " " + PlayerPrefs.GetString (option.name));
+				foreach (TextMesh text in textMeshes) { // go through the text objects
+					if (text.text.Equals (value)) {
+						text.color = Color.yellow;
+					} else {
+						text.color = Color.white;
+					}
 				}
 			}
-			if (InputManager.enter) {
-				selectThisObject (InputManager.pointerTouch.collider.gameObject);
-			}
-		}
-		highlightSelection ();
-	}
-	
-	void highlightThisObject (GameObject thisObject)
-	{
-		thisObject.GetComponent<TextMesh> ().color = Color.yellow;
-	}
-	
-	void selectThisObject (GameObject thisObject)
-	{
-		highlightThisObject (thisObject);
-		if (thisObject.name.Contains ("Music On")) {
-			PlayerPrefs.SetString ("Music", "On");
-		}
-		if (thisObject.name.Contains ("Music Off")) {
-			PlayerPrefs.SetString ("Music", "Off");
-		}
-		if (thisObject.name.Contains ("Sound On")) {
-			PlayerPrefs.SetString ("Sound", "On");
-		}
-		if (thisObject.name.Contains ("Sound Off")) {
-			PlayerPrefs.SetString ("Sound", "Off");
-		}
-		if (thisObject.name.Contains ("Back")) {
-			if (PlayerPrefs.HasKey ("Last Scene") && !PlayerPrefs.GetString ("Last Scene").Equals (Application.loadedLevelName)) {
-				Application.LoadLevel (PlayerPrefs.GetString ("Last Scene"));
-			} else {
-				Application.LoadLevel ("Splash");
-			}
 		}
 	}
 	
 	
-	void highlightSelection ()
-	{
-		foreach (GameObject option in Options) {
-			if (!selectedOption.Equals (option)) {
-				option.GetComponent<TextMesh> ().color = Color.white;
-			} else {
-				highlightThisObject (option);
-			}
-		}
-	}
 }
