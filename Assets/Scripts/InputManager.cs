@@ -33,6 +33,7 @@ public class InputManager : MonoBehaviour
 	public static bool left;
 	public static bool right;
 	public static bool enter;
+	public static bool touching;
 
 	void Awake ()
 	{
@@ -53,6 +54,11 @@ public class InputManager : MonoBehaviour
 		}
 		
 		pointerTouch = Physics2D.Raycast (pointer.origin, pointer.direction);
+		if (pointerTouch.collider == null) {
+			touching = false;
+		} else {
+			touching = true;
+		}
 	}
 
 	void Start ()
@@ -74,6 +80,11 @@ public class InputManager : MonoBehaviour
 		}
 		
 		pointerTouch = Physics2D.Raycast (pointer.origin, pointer.direction);
+		if (pointerTouch.collider == null) {
+			touching = false;
+		} else {
+			touching = true;
+		}
 	}
 	
 	void Update ()
@@ -85,6 +96,11 @@ public class InputManager : MonoBehaviour
 		}
 
 		pointerTouch = Physics2D.Raycast (pointer.origin, pointer.direction);
+		if (pointerTouch.collider == null) {
+			touching = false;
+		} else {
+			touching = true;
+		}
 
 		xInput = Input.GetAxis ("Horizontal");
 		yInput = Input.GetAxis ("Vertical");
@@ -95,8 +111,6 @@ public class InputManager : MonoBehaviour
 		changeValue (ref prevUp, ref up, yInput > 0);
 		changeValue (ref prevDown, ref down, yInput < 0);
 		changeValue (ref prevEnter, ref enter, confirm > 0);
-
-		//checkValues ();
 	}
 
 	void changeValue (ref bool previous, ref bool current, bool pressed)
