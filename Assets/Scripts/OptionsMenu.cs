@@ -56,14 +56,15 @@ public class OptionsMenu : MonoBehaviour
 		currentOptionIndex = PlayerPrefs.GetInt ("Current Option");
 	}
 	
+
 	void Update ()
 	{
+		//STEP 1:
 		foreach (GameObject option in optionsObjects) { // Displays the current values for Game optioons 
 			//TODO Put Volume slider code here
 			if (option.name.Equals ("Music") || option.name.Equals ("Sound")) {
 				TextMesh[] textMeshes = option.GetComponentsInChildren<TextMesh> ();
 				string value = PlayerPrefs.GetString (option.name); // Get the settings value for this option
-				Debug.Log (option.name + " " + PlayerPrefs.GetString (option.name));
 				foreach (TextMesh text in textMeshes) { // go through the text objects
 					if (text.text.Equals (value)) {
 						text.color = Color.yellow;
@@ -72,6 +73,25 @@ public class OptionsMenu : MonoBehaviour
 					}
 				}
 			}
+		}
+
+		//STEP 2:
+		//MOUSE/TOUCH INPUT:
+		if (InputManager.touching) {
+			GameObject selectedObject = InputManager.pointerTouch.collider.gameObject;
+			if (currentOption != null) {
+				if (currentOption.GetComponent<SpriteRenderer> () != null) {
+					currentOption.GetComponent<SpriteRenderer> ().enabled = false;
+				}
+			}
+			currentOption = selectedObject;
+			if (currentOption.GetComponent<SpriteRenderer> () != null) {
+				currentOption.GetComponent<SpriteRenderer> ().enabled = true;
+			}
+		}
+		//KEYBOARD INPUT:
+		if (InputManager.up || InputManager.down) {
+
 		}
 	}
 	

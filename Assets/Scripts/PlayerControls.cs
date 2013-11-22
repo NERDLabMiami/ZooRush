@@ -30,7 +30,6 @@ public class PlayerControls : MonoBehaviour
 	void FixedUpdate ()
 	{
 		currentSpeed = rigidbody2D.velocity;
-		Debug.Log (currentSpeed.x);
 		yMovement = Input.GetAxis ("Vertical");
 		animate.SetTrigger ("Run");
 		if (Mathf.Abs (currentSpeed.y) < maxSpeed.y) {
