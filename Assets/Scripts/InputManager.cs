@@ -11,8 +11,8 @@ public class InputManager : MonoBehaviour
 	private float yInput;
 	private float confirm;
 
-	private Ray pointer;
-	public static RaycastHit2D pointerTouch;
+	private Ray origin;
+	public static RaycastHit pointerTouch;
 
 	/** The Input manager keeps track of the previous input in order to provide 
 	 * a trigger based input system.
@@ -48,17 +48,12 @@ public class InputManager : MonoBehaviour
 		right = false;
 		enter = false;
 		if (Input.touchCount > 0) {
-			pointer = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
+			origin = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
 		} else {
-			pointer = Camera.main.ScreenPointToRay (Input.mousePosition);
+			origin = Camera.main.ScreenPointToRay (Input.mousePosition);
 		}
 		
-		pointerTouch = Physics2D.Raycast (pointer.origin, pointer.direction);
-		if (pointerTouch.collider == null) {
-			touching = false;
-		} else {
-			touching = true;
-		}
+		touching = Physics.Raycast (origin, out pointerTouch);		
 	}
 
 	void Start ()
@@ -74,34 +69,24 @@ public class InputManager : MonoBehaviour
 		right = false;
 		enter = false;
 		if (Input.touchCount > 0) {
-			pointer = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
+			origin = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
 		} else {
-			pointer = Camera.main.ScreenPointToRay (Input.mousePosition);
+			origin = Camera.main.ScreenPointToRay (Input.mousePosition);
 		}
 		
-		pointerTouch = Physics2D.Raycast (pointer.origin, pointer.direction);
-		if (pointerTouch.collider == null) {
-			touching = false;
-		} else {
-			touching = true;
-		}
+		touching = Physics.Raycast (origin, out pointerTouch);		
 	}
 	
 	void Update ()
 	{
 		if (Input.touchCount > 0) {
-			pointer = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
+			origin = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
 		} else {
-			pointer = Camera.main.ScreenPointToRay (Input.mousePosition);
+			origin = Camera.main.ScreenPointToRay (Input.mousePosition);
 		}
-
-		pointerTouch = Physics2D.Raycast (pointer.origin, pointer.direction);
-		if (pointerTouch.collider == null) {
-			touching = false;
-		} else {
-			touching = true;
-		}
-
+		
+		touching = Physics.Raycast (origin, out pointerTouch);
+		
 		xInput = Input.GetAxis ("Horizontal");
 		yInput = Input.GetAxis ("Vertical");
 		confirm = Input.GetAxis ("Fire1");
@@ -131,7 +116,7 @@ public class InputManager : MonoBehaviour
 
 	void checkValues ()
 	{
-		Debug.Log (pointer);
+		Debug.Log (origin);
 		Debug.Log ("Up: " + up);
 		Debug.Log ("Down: " + down);
 		Debug.Log ("Left: " + left);

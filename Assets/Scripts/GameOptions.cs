@@ -9,13 +9,14 @@ public class GameOptions : MonoBehaviour
 	
 	private GameObject Music;
 	private GameObject Sound;
-	private GameObject Volume;
+	private GameObject VolumeSlider;
 	private GameObject Back;
 	
 	private SpriteRenderer charSelect;
 	private string[] characterNames = {"Main Boy", "Main Girl", "Hispanic Girl"};
 	public Sprite[] characters;
 	private int charIndex;
+	private int charMaxIndex = 0;
 	
 	private string musicValue;
 	private string soundValue;
@@ -25,9 +26,9 @@ public class GameOptions : MonoBehaviour
 	{
 		Music = GameObject.Find ("Text - Music");
 		Sound = GameObject.Find ("Text - Sound");
-		Volume = GameObject.Find ("Text - Volume");
+		VolumeSlider = GameObject.Find ("Sprite - Volume Slider");
 		Back = GameObject.Find ("Text - Back");
-		charSelect = GameObject.FindObjectOfType<SpriteRenderer> ();
+		charSelect = GameObject.Find ("Sprite - Character").GetComponent<SpriteRenderer> ();
 		
 		if (!PlayerPrefs.HasKey ("Music")) {
 			PlayerPrefs.SetString ("Music", "ON");
@@ -36,14 +37,30 @@ public class GameOptions : MonoBehaviour
 			PlayerPrefs.SetString ("Sound", "ON");
 		}
 		
-		if (!PlayerPrefs.HasKey ("Character Selected")) {
-			PlayerPrefs.SetString ("Character Selected", "Main Boy");
+		if (!PlayerPrefs.HasKey ("Character Selected")) { //Set up default character
+			PlayerPrefs.SetString ("Character Selected", characterNames [0]);
+		} 
+		
+		//Set the limit based on which characters are unlocked
+		for (int i = 0; i < characterNames.Length; i++) {
+			if (PlayerPrefs.HasKey (characterNames [i])) {
+				if (PlayerPrefs.GetString (characterNames [i]).Equals ("true")) {
+					charMaxIndex++;
+				}
+			} else {
+				if (i > 1) {
+					PlayerPrefs.SetString (characterNames [i], "false");
+				} else {
+					PlayerPrefs.SetString (characterNames [i], "true");
+					charMaxIndex++;
+				}
+			}
 		}
 		
 		musicValue = PlayerPrefs.GetString ("Music");
 		soundValue = PlayerPrefs.GetString ("Sound");
 		
-		options = new GameObject[] {Music, Sound, Volume, charSelect.gameObject, Back};
+		options = new GameObject[] {Music, Sound,/* VolumeSlider,*/ charSelect.gameObject, Back};
 	}
 	
 	void Update ()
@@ -54,7 +71,7 @@ public class GameOptions : MonoBehaviour
 		soundValue = PlayerPrefs.GetString ("Sound");
 		Sound.GetComponent<TextMesh> ().text = "Sound:   " + soundValue.Substring (0, 1) + soundValue.Substring (1).ToLower ();
 		
-		for (int i = 0; i < characterNames.Length; i++) {
+		for (int i = 0; i < charMaxIndex; i++) {
 			if (PlayerPrefs.GetString ("Character Selected").Equals (characterNames [i])) {
 				charSelect.sprite = characters [i];
 				charIndex = i;
@@ -63,7 +80,6 @@ public class GameOptions : MonoBehaviour
 		
 		foreach (GameObject option in options) {
 			if (InputManager.touching && InputManager.pointerTouch.collider.name.Equals (option.name)) {
-				Debug.Log (option.name);
 				if (InputManager.enter) {
 					changeValue (option);
 				}
@@ -89,15 +105,14 @@ public class GameOptions : MonoBehaviour
 				}
 			} else {
 				if (option.name.Contains ("Character")) {
-					if (charIndex == characterNames.Length - 1) {
+					if (charIndex == charMaxIndex - 1) {
 						PlayerPrefs.SetString ("Character Selected", characterNames [0]);
 					} else {
 						PlayerPrefs.SetString ("Character Selected", characterNames [charIndex + 1]);
 					}
 				} else {
-					if (option.name.Contains ("Back")) {
-						Application.LoadLevel ("Splash");
-					}
+//					if (option.name.Contains ("Slider")) {
+//					}
 				}
 			}
 		}

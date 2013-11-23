@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Option : MonoBehaviour
+public class TextOption : MonoBehaviour
 {
 	Color optionUnselected = Color.white;
 	Color optionSelected = Color.yellow;
@@ -9,7 +9,6 @@ public class Option : MonoBehaviour
 	void OnMouseEnter ()
 	{	
 		GetComponent<TextMesh> ().color = optionSelected;
-
 	}
 
 	void OnMouseExit ()
@@ -21,7 +20,7 @@ public class Option : MonoBehaviour
 	{
 		if (gameObject.name.Contains ("Options")) {
 			PlayerPrefs.SetString ("Last Scene", Application.loadedLevelName);
-			Application.LoadLevel ("Options");
+			Application.LoadLevel ("Game Options");
 
 		}
 
@@ -33,11 +32,6 @@ public class Option : MonoBehaviour
 			}
 		}
 
-		if (gameObject.name.Contains ("Change Character")) {
-			PlayerPrefs.SetString ("Last Scene", Application.loadedLevelName);
-			Application.LoadLevel ("Character Select");
-
-		}
 	}
 	
 }
