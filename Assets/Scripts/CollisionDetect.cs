@@ -13,7 +13,11 @@ public class CollisionDetect : MonoBehaviour
 	{
 
 		if (other.gameObject.name == "BoyZoo") {
-			other.rigidbody2D.AddForce (new Vector2 (-350f, -50f)); //TODO make variable based on current y-location (upwards if close to bottom, downwards if close to top
+			if (other.transform.position.y < -2.5f) {
+				other.rigidbody2D.AddForce (new Vector2 (-350f, 50f));
+			} else {
+				other.rigidbody2D.AddForce (new Vector2 (-350f, -50f));
+			}
 			if (isInfection) {
 				Obstacle parent = transform.parent.GetComponent<Obstacle> ();
 				parent.collisionDetected ();
