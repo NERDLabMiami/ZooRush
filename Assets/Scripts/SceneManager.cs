@@ -11,8 +11,9 @@ public class SceneManager : MonoBehaviour
 	private GameObject character;
 	private GameObject animal;
 	
-	public static bool levelStartWait;
+	public bool levelStartWait;
 	public bool isPlaying;
+	public bool tutEnabled;
 	
 	void Start ()
 	{
@@ -22,13 +23,18 @@ public class SceneManager : MonoBehaviour
 		//TODO Make object finding better and less name dependent
 		character = GameObject.Find ("BoyZoo");
 		animal = GameObject.Find ("Animal - Tortoise");
+		if (!PlayerPrefs.HasKey ("Tutorial")) {
+			PlayerPrefs.SetString ("Tutorial", "true");
+		}
+		tutEnabled = ((PlayerPrefs.GetString ("Tutorial").Equals ("true")) ? true : false);
 	}
 	
 	void Update ()
 	{
 		if (levelStartWait) {
 			StartCoroutine (wait (waitTime));
-		} else {
+		}
+		if (isPlaying) {
 			if (animalControl.caught) {
 				isPlaying = false;
 				Debug.Log ("CAUGHT!");
@@ -36,7 +42,6 @@ public class SceneManager : MonoBehaviour
 				character.GetComponent<Animator> ().SetTrigger ("Idle");
 				animalControl.transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 			} else {
-				isPlaying = true;
 				if (Mathf.Abs (animal.transform.position.x - character.transform.position.x) < 8f) {
 					playerControl.setSpeed (animalControl.speed);
 					NetLauncher.launchEnabled = true;
