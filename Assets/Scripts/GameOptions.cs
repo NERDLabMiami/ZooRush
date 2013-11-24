@@ -1,52 +1,120 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Globalization;
 
-[ExecuteInEditMode]
+
 public class GameOptions : MonoBehaviour
-{
-	public Rect MusicLabel;
-	public Rect MusicOn;
-	public Rect MusicOff;
-	public Rect SoundLabel;
-	public Rect SoundOn;
-	public Rect SoundOff;
-	public Rect VolumeLabel;
-	public Rect VolumeSlider;
-	public Rect CharacterSelect;
-	private float volume = 1f;
-
-	public GUIStyle LabelStyle = null;
-	public GUIStyle ButtonStyle = null;
-
-	void OnGUI ()
+{	
+	private GameObject[] options;
+	
+	private GameObject Music;
+	private GameObject Sound;
+	private GameObject VolumeSlider;
+	private GameObject Back;
+	
+	private SpriteRenderer charSelect;
+	private string[] characterNames = {"Main Boy", "Main Girl", "Hispanic Girl"};
+	public Sprite[] characters;
+	private int charIndex;
+	private int charMaxIndex = 0;
+	
+	private string musicValue;
+	private string soundValue;
+	
+	
+	void Start ()
 	{
-		Debug.Log ("Screen Width " + Screen.width);
-		Debug.Log ("Screen Height " + Screen.height);
-		GUI.Label (MusicLabel, "Music", LabelStyle);
-		{
-			if (GUI.Button (MusicOn, "ON", ButtonStyle)) {
+		Music = GameObject.Find ("Text - Music");
+		Sound = GameObject.Find ("Text - Sound");
+		VolumeSlider = GameObject.Find ("Sprite - Volume Slider");
+		Back = GameObject.Find ("Text - Back");
+		charSelect = GameObject.Find ("Sprite - Character").GetComponent<SpriteRenderer> ();
+		
+		if (!PlayerPrefs.HasKey ("Music")) {
+			PlayerPrefs.SetString ("Music", "ON");
+		}
+		if (!PlayerPrefs.HasKey ("Sound")) {
+			PlayerPrefs.SetString ("Sound", "ON");
+		}
+		
+		if (!PlayerPrefs.HasKey ("Character Selected")) { //Set up default character
+			PlayerPrefs.SetString ("Character Selected", characterNames [0]);
+		} 
+		
+		//Set the limit based on which characters are unlocked
+		for (int i = 0; i < characterNames.Length; i++) {
+			if (PlayerPrefs.HasKey (characterNames [i])) {
+				if (PlayerPrefs.GetString (characterNames [i]).Equals ("true")) {
+					charMaxIndex++;
+				}
+			} else {
+				if (i > 1) {
+					PlayerPrefs.SetString (characterNames [i], "false");
+				} else {
+					PlayerPrefs.SetString (characterNames [i], "true");
+					charMaxIndex++;
+				}
+			}
+		}
+		
+		musicValue = PlayerPrefs.GetString ("Music");
+		soundValue = PlayerPrefs.GetString ("Sound");
+		
+		options = new GameObject[] {Music, Sound,/* VolumeSlider,*/ charSelect.gameObject, Back};
+	}
+	
+	void Update ()
+	{
+		musicValue = PlayerPrefs.GetString ("Music");
+		Music.GetComponent<TextMesh> ().text = "Music:   " + musicValue.Substring (0, 1) + musicValue.Substring (1).ToLower ();
+		
+		soundValue = PlayerPrefs.GetString ("Sound");
+		Sound.GetComponent<TextMesh> ().text = "Sound:   " + soundValue.Substring (0, 1) + soundValue.Substring (1).ToLower ();
+		
+		for (int i = 0; i < charMaxIndex; i++) {
+			if (PlayerPrefs.GetString ("Character Selected").Equals (characterNames [i])) {
+				charSelect.sprite = characters [i];
+				charIndex = i;
+			}
+		}
+		
+		foreach (GameObject option in options) {
+			if (InputManager.touching && InputManager.pointerTouch.collider.name.Equals (option.name)) {
+				if (InputManager.enter) {
+					changeValue (option);
+				}
+			}
+		}
+		
+	}
+	
+	void changeValue (GameObject option)
+	{
+		if (option.name.Contains ("Music")) {
+			if (musicValue.Equals ("ON")) {
+				PlayerPrefs.SetString ("Music", "OFF");
+			} else {
 				PlayerPrefs.SetString ("Music", "ON");
 			}
-			if (GUI.Button (MusicOff, "OFF", ButtonStyle)) {
-				PlayerPrefs.SetString ("Music", "OFF");
+		} else {
+			if (option.name.Contains ("Sound")) {
+				if (soundValue.Equals ("ON")) {
+					PlayerPrefs.SetString ("Sound", "OFF");
+				} else {
+					PlayerPrefs.SetString ("Sound", "ON");
+				}
+			} else {
+				if (option.name.Contains ("Character")) {
+					if (charIndex == charMaxIndex - 1) {
+						PlayerPrefs.SetString ("Character Selected", characterNames [0]);
+					} else {
+						PlayerPrefs.SetString ("Character Selected", characterNames [charIndex + 1]);
+					}
+				} else {
+//					if (option.name.Contains ("Slider")) {
+//					}
+				}
 			}
 		}
-
-		GUI.Label (SoundLabel, "Sound", LabelStyle);
-		{
-			if (GUI.Button (SoundOn, "ON", ButtonStyle)) {
-				PlayerPrefs.SetString ("Sound", "ON");
-			}
-			if (GUI.Button (SoundOff, "OFF", ButtonStyle)) {
-				PlayerPrefs.SetString ("Sound", "OFF");
-			}
-		}
-
-		GUI.Label (VolumeLabel, "Volume", LabelStyle);
-		{
-			volume = GUI.HorizontalSlider (VolumeSlider, volume * 100f, 0f, 100f) / 100f;
-		}
-		GUI.Label (CharacterSelect, "Character Select", LabelStyle);
-
 	}
 }

@@ -9,19 +9,23 @@ using System.Collections;
 public class NetLauncher : MonoBehaviour
 {
 	public Rigidbody2D prefab;
-	public bool launchEnabled;
+	public static bool launchEnabled;
 	private GameObject net;
-	public float speed = 20f;	
+	public float speed;	
 	private float action;
-	private bool firing = false;
+	private bool firing;
 	
 	void Start ()
 	{
+		launchEnabled = false;
+		firing = false;
+		speed = 20f;
 	}
 	
 	void FixedUpdate ()
 	{
 		if (launchEnabled) {
+			Debug.Log ("ENABLED!");
 			action = Input.GetAxis ("Fire1");
 			if (action == 0) {
 				firing = false;

@@ -47,9 +47,9 @@ TextureImporter:
         x: 3
         y: 783
         width: 251
-        height: 776
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 775
+      alignment: 9
+      pivot: {x: .469999999, y: 0}
     - name: GirlZoo_1
       rect:
         serializedVersion: 2
@@ -57,8 +57,8 @@ TextureImporter:
         y: 850
         width: 259
         height: 709
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: GirlZoo_2
       rect:
         serializedVersion: 2
@@ -66,8 +66,8 @@ TextureImporter:
         y: 866
         width: 274
         height: 693
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: GirlZoo_3
       rect:
         serializedVersion: 2
@@ -75,8 +75,8 @@ TextureImporter:
         y: 824
         width: 319
         height: 735
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: GirlZoo_4
       rect:
         serializedVersion: 2
@@ -85,7 +85,7 @@ TextureImporter:
         width: 250
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: GirlZoo_5
       rect:
         serializedVersion: 2
@@ -94,7 +94,7 @@ TextureImporter:
         width: 166
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: GirlZoo_6
       rect:
         serializedVersion: 2
@@ -102,17 +102,17 @@ TextureImporter:
         y: 3
         width: 321
         height: 776
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: GirlZoo_7
       rect:
         serializedVersion: 2
-        x: 327
+        x: 321
         y: 41
-        width: 351
+        width: 356
         height: 738
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: GirlZoo_8
       rect:
         serializedVersion: 2
@@ -120,7 +120,7 @@ TextureImporter:
         y: 47
         width: 399
         height: 732
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
   spritePackingTag: 
   userData: 

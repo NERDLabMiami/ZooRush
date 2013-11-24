@@ -7,7 +7,7 @@ using System.Collections;
 public class PlayerControls : MonoBehaviour
 {
 	private Vector2 currentSpeed;
-	public Vector2 speed;
+	private Vector2 speed;
 	public Vector2 maxSpeed;
 
 	private float xMovement;
@@ -24,7 +24,7 @@ public class PlayerControls : MonoBehaviour
 		speed = new Vector2 (7f, 0f);
 		maxSpeed.x = 5f;
 		maxSpeed.y = 3f;
-		rigidbody2D.velocity = speed;
+//		rigidbody2D.velocity = speed;
 	}
 
 	void FixedUpdate ()
@@ -37,6 +37,16 @@ public class PlayerControls : MonoBehaviour
 		} else {
 			rigidbody2D.AddForce (Vector2.up * yMovement);
 		}
+	}
+	
+	public void setSpeed ()
+	{
+		rigidbody2D.velocity = speed;
+	}
+	
+	public void setSpeed (Vector2 thespeed)
+	{
+		rigidbody2D.velocity = thespeed;
 	}
 
 	public void resetSpeed ()

@@ -48,8 +48,8 @@ TextureImporter:
         y: 699
         width: 230
         height: 689
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .519999981, y: 0}
     - name: BoyZoo_1
       rect:
         serializedVersion: 2
@@ -57,8 +57,8 @@ TextureImporter:
         y: 755
         width: 235
         height: 633
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: BoyZoo_2
       rect:
         serializedVersion: 2
@@ -84,8 +84,8 @@ TextureImporter:
         y: 79
         width: 257
         height: 615
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: BoyZoo_5
       rect:
         serializedVersion: 2
@@ -93,8 +93,8 @@ TextureImporter:
         y: 23
         width: 308
         height: 671
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .469999999, y: 0}
     - name: BoyZoo_6
       rect:
         serializedVersion: 2
@@ -102,8 +102,8 @@ TextureImporter:
         y: 6
         width: 321
         height: 688
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .377999991, y: 0}
     - name: BoyZoo_7
       rect:
         serializedVersion: 2
@@ -111,8 +111,8 @@ TextureImporter:
         y: 19
         width: 340
         height: 675
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: BoyZoo_8
       rect:
         serializedVersion: 2
@@ -120,8 +120,8 @@ TextureImporter:
         y: 30
         width: 391
         height: 664
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: BoyZoo_9
       rect:
         serializedVersion: 2
@@ -129,8 +129,8 @@ TextureImporter:
         y: 699
         width: 230
         height: 689
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .519999981, y: 0}
     - name: BoyZoo_10
       rect:
         serializedVersion: 2
