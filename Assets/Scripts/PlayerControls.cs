@@ -16,10 +16,17 @@ public class PlayerControls : MonoBehaviour
 	private float movementForce = 30f;
 
 	private Animator animate;
+	private SceneManager sceneManager;
+
+	private bool pause;
+	private bool prevPause;
 
 	void Start ()
 	{
 		animate = GetComponent<Animator> ();
+		sceneManager = FindObjectOfType<SceneManager> ();
+		pause = !sceneManager.isPlaying;
+		prevPause = pause;
 		currentSpeed = rigidbody2D.velocity;
 		speed = new Vector2 (7f, 0f);
 		maxSpeed.x = 5f;
@@ -37,6 +44,29 @@ public class PlayerControls : MonoBehaviour
 		} else {
 			rigidbody2D.AddForce (Vector2.up * yMovement);
 		}
+	}
+
+	void Update ()
+	{
+		if (!sceneManager.isPlaying) {
+			if (!prevPause) { // if the input is being leaned on
+				prevPause = true;
+				pause = true;
+				rigidbody2D.velocity = new Vector2 (0f, 0f);
+			} else { // else keep track of the input but do not echo
+				prevPause = true;
+				pause = false;
+				StartCoroutine (waitToResume (0.1f));
+			}
+		} else {// otherwise keep track that the input is not active
+			prevPause = false;
+			pause = false;
+		}
+	}
+
+	public void flash ()
+	{
+		animate.SetTrigger ("Flash");
 	}
 	
 	public void setSpeed ()

@@ -9,7 +9,6 @@ public class GameOptions : MonoBehaviour
 	
 	private GameObject Music;
 	private GameObject Sound;
-	private GameObject VolumeSlider;
 	private GameObject Back;
 	
 	private SpriteRenderer charSelect;
@@ -26,7 +25,6 @@ public class GameOptions : MonoBehaviour
 	{
 		Music = GameObject.Find ("Text - Music");
 		Sound = GameObject.Find ("Text - Sound");
-		VolumeSlider = GameObject.Find ("Sprite - Volume Slider");
 		Back = GameObject.Find ("Text - Back");
 		charSelect = GameObject.Find ("Sprite - Character").GetComponent<SpriteRenderer> ();
 		

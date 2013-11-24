@@ -3,8 +3,6 @@ using System.Collections;
 
 public class TutorialMode : MonoBehaviour
 {
-	
-	
 	private bool tutorialEnabled;
 	
 	private bool dialogPresent;
@@ -12,7 +10,7 @@ public class TutorialMode : MonoBehaviour
 	private bool powerUpDialog;
 	private bool painBarDialog;
 	private bool introDialog;
-	
+	private int i = 0;
 	SceneManager sceneManager;
 	
 	void Start ()
@@ -36,27 +34,34 @@ public class TutorialMode : MonoBehaviour
 				
 				if (!introDialog) {
 					sceneManager.isPlaying = false;
-					StartCoroutine (introSequence ());
+					introSequence ();
 				}
 			}
 		}
 	}
 	
-	private string[] introDialogScript;
+	private string[] introDialogScript = {
+		"This is an infection,","touching one slows you down and causes pain","Try your best to avoid them!"
+	};
 	
-	private IEnumerator introSequence ()
+	private void introSequence ()
 	{	
-		int i = 0;
+//		dialogPresent = true;
+
 		
-		while(i < introDialogScript.Length){
-			
-			if(InputManager.enter){
-				i++;
-			}
+//		while (i < introDialogScript.Length) {
+		Debug.Log (introDialogScript [i]);
+		if (InputManager.enter) {
+			i++;
 		}
-		
-		yield return;
-		sceneManager.isPlaying = true;
+//		}
+		if (i >= introDialogScript.Length) {
+//			dialogPresent = false;
+			dialogPresent = true;
+			sceneManager.isPlaying = true;
+			introDialog = true;
+		}
+
 	}
 	  
 }
