@@ -12,6 +12,7 @@ public class SceneManager : MonoBehaviour
 	private GameObject animal;
 	
 	public static bool levelStartWait;
+	public bool isPlaying;
 	
 	void Start ()
 	{
@@ -29,11 +30,13 @@ public class SceneManager : MonoBehaviour
 			StartCoroutine (wait (waitTime));
 		} else {
 			if (animalControl.caught) {
+				isPlaying = false;
 				Debug.Log ("CAUGHT!");
 				playerControl.rigidbody2D.velocity = new Vector2 (0f, 0f);
 				character.GetComponent<Animator> ().SetTrigger ("Idle");
 				animalControl.transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 			} else {
+				isPlaying = true;
 				if (Mathf.Abs (animal.transform.position.x - character.transform.position.x) < 8f) {
 					playerControl.setSpeed (animalControl.speed);
 					NetLauncher.launchEnabled = true;
@@ -41,8 +44,6 @@ public class SceneManager : MonoBehaviour
 					NetLauncher.launchEnabled = false;
 				}
 			}
-			
-			
 		}
 	}
 	
