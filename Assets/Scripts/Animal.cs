@@ -39,7 +39,6 @@ public class Animal : MonoBehaviour
 	void Update ()
 	{
 		prevPlay = play;
-		Debug.Log (play);
 		if (sceneManager.isPlaying) {
 			play = true;
 		} else {// otherwise keep track that the input is not active
