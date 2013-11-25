@@ -8,8 +8,11 @@ public class PainBar : MonoBehaviour
 	public float maxPainBarSize;
 	public Sprite[] healthStates;
 	
+	private SceneManager sceneManager;
+	
 	void Start ()
 	{
+		sceneManager = FindObjectOfType<SceneManager> ();
 		transform.localScale = new Vector3 (0f, transform.localScale.y, transform.localScale.z);
 		painPoints = 0f;
 		maxPainBarSize = 3.25f;
@@ -20,7 +23,9 @@ public class PainBar : MonoBehaviour
 	
 	void FixedUpdate ()
 	{
-		painPoints += (Time.time * painRate);
+		if (sceneManager.isPlaying) {
+			painPoints += (Time.time * painRate);
+		}
 	}
 	
 	void Update ()

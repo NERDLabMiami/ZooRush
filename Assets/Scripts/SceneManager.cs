@@ -35,6 +35,7 @@ public class SceneManager : MonoBehaviour
 			StartCoroutine (wait (waitTime));
 		}
 		if (isPlaying) {
+//			Time.timeScale = 1f;
 			if (animalControl.caught) {
 				isPlaying = false;
 				Debug.Log ("CAUGHT!");
@@ -49,7 +50,9 @@ public class SceneManager : MonoBehaviour
 					NetLauncher.launchEnabled = false;
 				}
 			}
-		}
+		} //else {
+//			Time.timeScale = 0f;
+//		}
 	}
 	
 	private IEnumerator wait (float time)

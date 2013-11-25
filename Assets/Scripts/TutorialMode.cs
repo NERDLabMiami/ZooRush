@@ -13,6 +13,9 @@ public class TutorialMode : MonoBehaviour
 	private int i = 0;
 	SceneManager sceneManager;
 	
+	private GameObject tutText;
+	private GameObject objectScanner;
+	
 	void Start ()
 	{
 		sceneManager = GetComponent<SceneManager> ();
@@ -22,6 +25,8 @@ public class TutorialMode : MonoBehaviour
 		powerUpDialog = false;
 		painBarDialog = false;
 		introDialog = false;
+		tutText = GameObject.Find ("Tutorial Text");
+		objectScanner = GameObject.Find ("Tutorial - Object Scanner");
 	}
 	
 	void Update ()
@@ -41,7 +46,7 @@ public class TutorialMode : MonoBehaviour
 	}
 	
 	private string[] introDialogScript = {
-		"This is an infection,","touching one slows you down and causes pain","Try your best to avoid them!"
+		"This is an infection,","touching one slows\nyou down and causes pain","Try your best to avoid them!"
 	};
 	
 	private void introSequence ()
@@ -50,12 +55,13 @@ public class TutorialMode : MonoBehaviour
 
 		
 //		while (i < introDialogScript.Length) {
-		Debug.Log (introDialogScript [i]);
+		tutText.GetComponent<GUIText> ().text = introDialogScript [i];
 		if (InputManager.enter) {
 			i++;
 		}
 //		}
 		if (i >= introDialogScript.Length) {
+			tutText.GetComponent<GUIText> ().text = "";
 //			dialogPresent = false;
 			dialogPresent = true;
 			sceneManager.isPlaying = true;

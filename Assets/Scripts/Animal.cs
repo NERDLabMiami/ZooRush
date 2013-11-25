@@ -16,8 +16,15 @@ public class Animal : MonoBehaviour
 	
 	public Vector2 speed;
 	
+	private SceneManager sceneManager;
+	private bool play;
+	private bool prevPlay;
+	
 	void Start ()
 	{
+		sceneManager = FindObjectOfType<SceneManager> ();
+		play = sceneManager.isPlaying;
+		prevPlay = play;
 		speed = new Vector2 (6.5f, 0f);
 		caught = false;
 		animate = GetComponent<Animator> ();
@@ -29,9 +36,22 @@ public class Animal : MonoBehaviour
 		transform.parent.rigidbody2D.velocity = speed;
 	}
 	
-	void FixedUpdate ()
+	void Update ()
 	{
-		
+		prevPlay = play;
+		Debug.Log (play);
+		if (sceneManager.isPlaying) {
+			play = true;
+		} else {// otherwise keep track that the input is not active
+			play = false;
+		}
+		if (!prevPlay && play) { //our previous state is the paused state, we are now going into the play state
+			StartCoroutine (waitToResume (0.1f));
+		} else { // our previous state is the play state
+			if (!play) {//we need to move into the paused state
+				transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
+			}
+		}
 	}
 	
 	void OnTriggerEnter2D (Collider2D other)
@@ -50,5 +70,12 @@ public class Animal : MonoBehaviour
 			}
 		}
 		
+	}
+	
+	private IEnumerator waitToResume (float time)
+	{
+//		animate.SetTrigger ("Flash");
+		yield return new WaitForSeconds (time);
+		transform.parent.rigidbody2D.velocity = speed;
 	}
 }
