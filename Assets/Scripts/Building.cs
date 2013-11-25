@@ -6,7 +6,6 @@ public class Building : MonoBehaviour
 	Animator animate;
 	private string characterName;
 	
-	// Use this for initialization
 	void Start ()
 	{
 		animate = GetComponent<Animator> ();
