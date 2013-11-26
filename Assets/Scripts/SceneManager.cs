@@ -17,16 +17,17 @@ public class SceneManager : MonoBehaviour
 	
 	void Start ()
 	{
+		isPlaying = true;
 		levelStartWait = true;
 		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 		//TODO Make object finding better and less name dependent
 		character = GameObject.Find ("BoyZoo");
 		animal = GameObject.Find ("Animal - Tortoise");
-		if (!PlayerPrefs.HasKey ("Tutorial")) {
-			PlayerPrefs.SetString ("Tutorial", "true");
-		}
-		tutEnabled = ((PlayerPrefs.GetString ("Tutorial").Equals ("true")) ? true : false);
+//		if (!PlayerPrefs.HasKey ("Tutorial")) {
+//			PlayerPrefs.SetString ("Tutorial", "true");
+//		}
+//		tutEnabled = ((PlayerPrefs.GetString ("Tutorial").Equals ("true")) ? true : false);
 	}
 	
 	void Update ()
