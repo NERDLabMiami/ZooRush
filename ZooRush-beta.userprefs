@@ -2,7 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TutorialMode.cs">
     <Files>
-      <File FileName="Assets/Scripts/TutorialMode.cs" Line="35" Column="24" />
+      <File FileName="Assets/Scripts/PainBar.cs" Line="11" Column="36" />
+      <File FileName="Assets/Scripts/TutorialMode.cs" Line="43" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
