@@ -7,10 +7,8 @@ using System.Collections;
  */ 
 public class Obstacle : MonoBehaviour
 {
-	public bool isInfection; //If the obstacle is an infection
 	private bool inFront; // Is the character in front or behind the obstacle?
 	private SpriteRenderer[] sprites; //All sprites that are a child of the object
-	
 
 	void Start ()
 	{

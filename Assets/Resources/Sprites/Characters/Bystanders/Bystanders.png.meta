@@ -48,8 +48,8 @@ TextureImporter:
         y: 92
         width: 231
         height: 690
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .515837312, y: 0}
     - name: Bystanders_1
       rect:
         serializedVersion: 2
@@ -57,8 +57,8 @@ TextureImporter:
         y: 64
         width: 266
         height: 718
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .595000029, y: 0}
     - name: Bystanders_2
       rect:
         serializedVersion: 2
@@ -66,8 +66,8 @@ TextureImporter:
         y: 3
         width: 239
         height: 779
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .444400012, y: 0}
     - name: Bystanders_3
       rect:
         serializedVersion: 2
@@ -75,6 +75,15 @@ TextureImporter:
         y: 77
         width: 290
         height: 702
+      alignment: 9
+      pivot: {x: .485500008, y: 0}
+    - name: Bystanders_4
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 442
+        width: 239
+        height: 300
       alignment: 0
       pivot: {x: .5, y: .5}
   spritePackingTag: 

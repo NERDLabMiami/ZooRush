@@ -49,7 +49,7 @@ TextureImporter:
         width: 726
         height: 525
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: DoctorOffice_1
       rect:
         serializedVersion: 2
@@ -58,6 +58,15 @@ TextureImporter:
         width: 724
         height: 522
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
+    - name: DoctorOffice_2
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 337
+        width: 82
+        height: 79
+      alignment: 0
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 
