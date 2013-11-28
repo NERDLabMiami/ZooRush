@@ -11,6 +11,7 @@ public class SceneRepeater : MonoBehaviour
 		sceneObjects = GameObject.FindGameObjectsWithTag ("repeatable");
 		GameObject rightmostObject = sceneObjects [0];
 		GameObject leftmostObject = sceneObjects [0];
+		
 		foreach (GameObject element in sceneObjects) {
 			if (element.transform.position.x > rightmostObject.transform.position.x) {
 				rightmostObject = element;
