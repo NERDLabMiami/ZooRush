@@ -27,6 +27,8 @@ public class TutorialMode : MonoBehaviour
 		introDialog = false;
 		tutText = GameObject.Find ("Tutorial Text");
 		objectScanner = GameObject.Find ("Tutorial - Object Scanner");
+		tutText.GetComponent<GUIText> ().text = "";
+		tutText.GetComponentInChildren<GUITexture> ().enabled = false;
 	}
 	
 	void Update ()
@@ -47,7 +49,14 @@ public class TutorialMode : MonoBehaviour
 //				}
 				if (detected.collider != null) {
 					if (detected.collider.name.Contains ("Infection")) {
+						Vector3 objectScreenPoint = camera.WorldToScreenPoint (detected.transform.position);
+						Vector3 ratio = new Vector3 ((objectScreenPoint.x / Screen.width), (objectScreenPoint.y / Screen.height));
+						ratio.x -= 0.1f;
+						ratio.y += 0.15f;
+						ratio.z = tutText.transform.position.z;
 						if (!infectionDialog) {
+							tutText.transform.position = ratio;
+							tutText.GetComponentInChildren<GUITexture> ().enabled = true;
 							sceneManager.isPlaying = false;
 							infectionSequence ();
 						}
@@ -55,8 +64,16 @@ public class TutorialMode : MonoBehaviour
 				}
 
 				if (detected.collider != null) {
+					
 					if (detected.collider.name.Contains ("Power Up")) {
+						Vector3 objectScreenPoint = camera.WorldToScreenPoint (detected.transform.position);
+						Vector3 ratio = new Vector3 ((objectScreenPoint.x / Screen.width), (objectScreenPoint.y / Screen.height));
+						ratio.x -= 0.1f;
+						ratio.y += 0.15f;
+						ratio.z = tutText.transform.position.z;
 						if (!powerUpDialog) {
+							tutText.transform.position = ratio;
+							tutText.GetComponentInChildren<GUITexture> ().enabled = true;
 							sceneManager.isPlaying = false;
 							powerUpSequence ();
 						}
@@ -68,15 +85,15 @@ public class TutorialMode : MonoBehaviour
 	}
 
 	private string[] introDialogScript = {
-		"This is an infection,","touching one slows\nyou down and causes pain","Try your best to avoid them!"
+		"This is an infection,","touching one slows you down \nand causes pain","Try your best to avoid them!"
 	};
 
 	private string[] infectionDialogScript = {
-		"This is an infection,","touching one slows\nyou down and causes pain","Try your best to avoid them!"
+		"This is an infection,","touching one slows you down \nand causes pain","Try your best to avoid them!"
 	};
 
 	private string[] powerUpDialogScript = {
-		"This is a power up,","touching one reduces \nyour crisis meter and makes you healthier.","Try your best to collect them!"
+		"This is a power up,","touching one reduces your crisis \nmeter and makes you healthier.","Try your best to collect them!"
 	};
 	
 	private void introSequence ()
@@ -87,6 +104,7 @@ public class TutorialMode : MonoBehaviour
 		}
 		if (i >= introDialogScript.Length) {
 			tutText.GetComponent<GUIText> ().text = "";
+			tutText.GetComponentInChildren<GUITexture> ().enabled = false;
 			dialogPresent = true;
 			sceneManager.isPlaying = true;
 			introDialog = true;
@@ -104,6 +122,7 @@ public class TutorialMode : MonoBehaviour
 		}
 		if (i >= infectionDialogScript.Length) {
 			tutText.GetComponent<GUIText> ().text = "";
+			tutText.GetComponentInChildren<GUITexture> ().enabled = false;
 			dialogPresent = true;
 			sceneManager.isPlaying = true;
 			infectionDialog = true;
@@ -121,6 +140,7 @@ public class TutorialMode : MonoBehaviour
 		}
 		if (i >= powerUpDialogScript.Length) {
 			tutText.GetComponent<GUIText> ().text = "";
+			tutText.GetComponentInChildren<GUITexture> ().enabled = false;
 			dialogPresent = true;
 			sceneManager.isPlaying = true;
 			powerUpDialog = true;
