@@ -32,42 +32,102 @@ public class TutorialMode : MonoBehaviour
 	void Update ()
 	{
 		if (tutorialEnabled) {
+			RaycastHit2D detected = Physics2D.Raycast (objectScanner.transform.position, Vector2.up);
+			if (detected.collider != null) {
+				Debug.Log (detected.collider.name);
+			}
 			if (!dialogPresent) {
 				//First check for intro dialog
 				//Second check for pain dialog
 				//Then check for the presence of any other objects
 				
-				if (!introDialog) {
-					sceneManager.isPlaying = false;
-					introSequence ();
+//				if (!introDialog) {
+//					sceneManager.isPlaying = false;
+//					introSequence ();
+//				}
+				if (detected.collider != null) {
+					if (detected.collider.name.Contains ("Infection")) {
+						if (!infectionDialog) {
+							sceneManager.isPlaying = false;
+							infectionSequence ();
+						}
+					}
 				}
+
+				if (detected.collider != null) {
+					if (detected.collider.name.Contains ("Power Up")) {
+						if (!powerUpDialog) {
+							sceneManager.isPlaying = false;
+							powerUpSequence ();
+						}
+					}
+				}
+
 			}
 		}
 	}
-	
+
 	private string[] introDialogScript = {
 		"This is an infection,","touching one slows\nyou down and causes pain","Try your best to avoid them!"
+	};
+
+	private string[] infectionDialogScript = {
+		"This is an infection,","touching one slows\nyou down and causes pain","Try your best to avoid them!"
+	};
+
+	private string[] powerUpDialogScript = {
+		"This is a power up,","touching one reduces \nyour crisis meter and makes you healthier.","Try your best to collect them!"
 	};
 	
 	private void introSequence ()
 	{	
-//		dialogPresent = true;
-
-		
-//		while (i < introDialogScript.Length) {
 		tutText.GetComponent<GUIText> ().text = introDialogScript [i];
 		if (InputManager.enter) {
 			i++;
 		}
-//		}
 		if (i >= introDialogScript.Length) {
 			tutText.GetComponent<GUIText> ().text = "";
-//			dialogPresent = false;
 			dialogPresent = true;
 			sceneManager.isPlaying = true;
 			introDialog = true;
+			i = 0;
+			dialogPresent = false;
 		}
 
+	}
+
+	private void infectionSequence ()
+	{	
+		tutText.GetComponent<GUIText> ().text = infectionDialogScript [i];
+		if (InputManager.enter) {
+			i++;
+		}
+		if (i >= infectionDialogScript.Length) {
+			tutText.GetComponent<GUIText> ().text = "";
+			dialogPresent = true;
+			sceneManager.isPlaying = true;
+			infectionDialog = true;
+			i = 0;
+			dialogPresent = false;
+		}
+		
+	}
+
+	private void powerUpSequence ()
+	{	
+		tutText.GetComponent<GUIText> ().text = powerUpDialogScript [i];
+		if (InputManager.enter) {
+			i++;
+		}
+		if (i >= powerUpDialogScript.Length) {
+			tutText.GetComponent<GUIText> ().text = "";
+			dialogPresent = true;
+			sceneManager.isPlaying = true;
+			powerUpDialog = true;
+			i = 0;
+			dialogPresent = false;
+		}
+		
 	}
 	  
 }
