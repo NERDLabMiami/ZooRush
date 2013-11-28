@@ -15,7 +15,7 @@ public class PainBar : MonoBehaviour
 		sceneManager = FindObjectOfType<SceneManager> ();
 		transform.localScale = new Vector3 (0f, transform.localScale.y, transform.localScale.z);
 		painPoints = 0f;
-		maxPainBarSize = 3.25f;
+		maxPainBarSize = 0.32f;
 		if (painRate <= 0) {
 			painRate = 0.1f;
 		}
