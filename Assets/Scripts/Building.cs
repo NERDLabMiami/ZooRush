@@ -16,6 +16,9 @@ public class Building : MonoBehaviour
 	{
 		if (coll.gameObject.Equals (player.gameObject)) {
 			animate.SetTrigger ("Open");
+			if (gameObject.name.Contains ("Doctor")) {
+				GameObject.FindObjectOfType<AudioHandler> ().playSound ("DOCTOR");
+			}
 		}
 	}
 

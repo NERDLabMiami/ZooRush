@@ -13,6 +13,10 @@ public class StartMenu : MonoBehaviour
 	void Start ()
 	{
 		mathWait = false;
+		TextOption[] textOptions = GameObject.FindObjectsOfType<TextOption> ();
+		foreach (TextOption textOption in textOptions) {
+			textOption.optionEnabled = true;
+		}
 	}
 	
 	void FixedUpdate ()

@@ -40,11 +40,15 @@ public class PlayerControls : MonoBehaviour
 	{
 		currentSpeed = rigidbody2D.velocity;
 		yMovement = Input.GetAxis ("Vertical");
-		animate.SetTrigger ("Run");
-		if (Mathf.Abs (currentSpeed.y) < maxSpeed.y) {
-			rigidbody2D.AddForce (Vector2.up * yMovement * movementForce);
+		animate.SetFloat ("Speed", currentSpeed.x);
+		if (yMovement != 0) {
+			if (yMovement > 0) {
+				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, maxSpeed.y);
+			} else {
+				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, -maxSpeed.y);
+			}
 		} else {
-			rigidbody2D.AddForce (Vector2.up * yMovement);
+			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, 0);
 		}
 	}
 

@@ -6,7 +6,7 @@ using System.Collections;
  */ 
 public class ScoreKeeper : MonoBehaviour
 {
-
+	private float timeElapsed;
 	private int redInfectionCount;
 	private int yellowInfectionCount;
 	private int greenInfectionCount;
@@ -16,14 +16,27 @@ public class ScoreKeeper : MonoBehaviour
 	private int waterBottleCount;
 	private bool pillUsed;
 
+	private SceneManager sceneManager;
+	private GameObject timeDisplay;
+
 	void Start ()
 	{
+		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
+		timeDisplay = GameObject.Find ("GUI - Time");
 		redInfectionCount = 0;
 		yellowInfectionCount = 0;
 		greenInfectionCount = 0;
 		
 		waterBottleCount = 0;
 		pillUsed = false;
+	}
+
+	void Update ()
+	{
+		if (sceneManager.isPlaying) {
+			timeElapsed += Time.deltaTime;
+		}
+		displayTime ();
 	}
 
 	public void addToCount (GameObject obj)
@@ -62,8 +75,41 @@ public class ScoreKeeper : MonoBehaviour
 			yellowInfectionCount,
 			greenInfectionCount,
 			waterBottleCount,
-			(pillUsed) ? 1 : 0
+			(pillUsed) ? 1 : 0,
+			(int)timeElapsed
 		};
 		return score;
+	}
+
+	private void displayTime ()
+	{
+		string timeText = "00:00";
+		if (timeElapsed >= 1f) {
+			int minutes = ((int)(timeElapsed)) / 60;
+			int seconds = ((int)(timeElapsed)) % 60;
+
+			if (minutes % 100 <= 9 && minutes <= 99) {
+				timeText = "0" + minutes;
+			} else {
+				if (minutes <= 99) {
+					timeText = "" + minutes;
+				} else {
+					timeText = "99";
+				}
+			}
+
+			timeText += ":";
+
+			if (seconds % 100 <= 9 && timeElapsed <= 100f) {
+				timeText += "0" + seconds;
+			} else {
+				if (minutes <= 100f) {
+					timeText += "" + seconds;
+				} else {
+					timeText += "59+";
+				}
+			}
+		}
+		timeDisplay.GetComponent<GUIText> ().text = timeText;
 	}
 }

@@ -20,11 +20,14 @@ public class CollisionDetect : MonoBehaviour
 	void OnTriggerEnter2D (Collider2D other)
 	{
 
-		if (other.gameObject.name == "BoyZoo") {
+		if (other.gameObject.Equals (GameObject.FindGameObjectWithTag ("character"))) {
 			if (isPowerUp) {
 				if (!signalSent) {
 					signalSent = true;
 					GameObject.FindObjectOfType<PainBar> ().GetComponent<PainBar> ().objectInteraction (transform.parent.gameObject);
+					if (transform.parent.gameObject.name.Contains ("Pill")) {
+						GameObject.FindObjectOfType<AudioHandler> ().playSound ("PILL");
+					}
 				}
 				other.GetComponent<PlayerControls> ().flash ();
 				Obstacle parent = transform.parent.GetComponent<Obstacle> ();
@@ -39,6 +42,7 @@ public class CollisionDetect : MonoBehaviour
 					if (!signalSent) {
 						signalSent = true;
 						GameObject.FindObjectOfType<PainBar> ().GetComponent<PainBar> ().objectInteraction (transform.parent.gameObject);
+						GameObject.FindObjectOfType<AudioHandler> ().playSound ("INFECTION");
 					}
 					Obstacle parent = transform.parent.GetComponent<Obstacle> ();
 					parent.collisionDetected ();
