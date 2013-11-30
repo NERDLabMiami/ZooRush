@@ -1,34 +1,74 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/** Handles visuals for text in options.
+ * @author: Ebtissam Wahman
+ */ 
 public class TextOption : MonoBehaviour
 {
-	Color optionUnselected = Color.white;
-	Color optionSelected = Color.yellow;
-	
+	private Color optionUnselected = Color.white;
+	private Color optionSelected = Color.yellow;
+	public bool optionEnabled;
+	public bool isLevelOption;
+	public int levelNum;
+
+	void Start ()
+	{
+		enabled = false;
+	}
+
 	void OnMouseEnter ()
 	{	
-		GetComponent<TextMesh> ().color = optionSelected;
+		if (optionEnabled) {
+			GetComponent<TextMesh> ().color = optionSelected;
+		}
+
 	}
 
 	void OnMouseExit ()
 	{
-		GetComponent<TextMesh> ().color = optionUnselected;
+		if (optionEnabled) {
+			GetComponent<TextMesh> ().color = optionUnselected;
+		}
 	}
 
 	void OnMouseUp ()
 	{
-		if (gameObject.name.Contains ("Options")) {
-			PlayerPrefs.SetString ("Last Scene", Application.loadedLevelName);
-			Application.LoadLevel ("Game Options");
-
-		}
-
-		if (gameObject.name.Contains ("Back")) {
-			if (PlayerPrefs.HasKey ("Last Scene") && !PlayerPrefs.GetString ("Last Scene").Equals (Application.loadedLevelName)) {
-				Application.LoadLevel (PlayerPrefs.GetString ("Last Scene"));
+		if (optionEnabled) {
+			if (isLevelOption) {
+				switch (levelNum) {
+				case 1:
+					Application.LoadLevel ("LevelFrame");
+					break;
+				default:
+					break;
+				}
 			} else {
-				Application.LoadLevel ("Splash");
+				if (gameObject.name.Contains ("Play")) {
+					if (PlayerPrefs.HasKey ("Levels Unlocked")) {
+						if (PlayerPrefs.GetInt ("Levels Unlocked") > 1) {
+							Application.LoadLevel ("Level Select");
+						} else {
+							Application.LoadLevel ("LevelFrame"); //TODO Must change this to level 1
+						}
+					} else {
+						PlayerPrefs.SetInt ("Levels Unlocked", 1);
+						Application.LoadLevel ("LevelFrame"); //TODO Must change this to level 1
+					}
+				}
+
+				if (gameObject.name.Contains ("Options")) {
+					PlayerPrefs.SetString ("Last Scene", Application.loadedLevelName);
+					Application.LoadLevel ("Game Options");
+				}
+
+				if (gameObject.name.Contains ("Back")) {
+					if (PlayerPrefs.HasKey ("Last Scene") && !PlayerPrefs.GetString ("Last Scene").Equals (Application.loadedLevelName)) {
+						Application.LoadLevel (PlayerPrefs.GetString ("Last Scene"));
+					} else {
+						Application.LoadLevel ("Splash");
+					}
+				}
 			}
 		}
 

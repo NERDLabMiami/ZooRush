@@ -1,16 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TutorialMode.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerControls.cs">
     <Files>
-      <File FileName="Assets/Scripts/PainBar.cs" Line="11" Column="36" />
-      <File FileName="Assets/Scripts/TutorialMode.cs" Line="43" Column="40" />
+      <File FileName="Assets/Scripts/ScoreKeeper.cs" Line="106" Column="16" />
+      <File FileName="Assets/Scripts/SceneManager.cs" Line="57" Column="24" />
+      <File FileName="Assets/Scripts/PlayerControls.cs" Line="42" Column="42" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="TutorialMode.cs" selected="True" />
+              <Node name="PlayerControls.cs" selected="True" />
             </Node>
           </Node>
         </State>

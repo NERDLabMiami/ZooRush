@@ -3,21 +3,30 @@ using System.Collections;
 
 public class Building : MonoBehaviour
 {
-	Animator animate;
-	private string characterName;
+	private Animator animate;
+	private PlayerControls player;
 	
 	void Start ()
 	{
 		animate = GetComponent<Animator> ();
-		characterName = "BoyZoo";
+		player = GameObject.FindObjectOfType<PlayerControls> ();
 	}
 	
-	void OnCollisionEnter2D (Collision2D coll)
+	void OnTriggerEnter2D (Collider2D coll)
 	{
-		if (coll.gameObject.name == characterName) {
+		if (coll.gameObject.Equals (player.gameObject)) {
 			animate.SetTrigger ("Open");
+			if (gameObject.name.Contains ("Doctor")) {
+				GameObject.FindObjectOfType<AudioHandler> ().playSound ("DOCTOR");
+			}
 		}
-		
+	}
+
+	public void resetState ()
+	{
+		Debug.Log ("RESETTING");
+		animate.StopPlayback ();
+		animate.SetTrigger ("Idle");
 	}
 	
 }

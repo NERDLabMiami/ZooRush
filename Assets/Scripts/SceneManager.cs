@@ -1,13 +1,22 @@
 using UnityEngine;
 using System.Collections;
 
+
+/** Main controller for most level-based events.
+ * 
+ * @author: Ebtissam Wahman
+ */ 
 public class SceneManager : MonoBehaviour
 {
+	public float distanceDiffMin;
+	public float currentDistanceDiff;
 	public float waitTime;
 	public int levelNumber;
 	
 	private PlayerControls playerControl;
+	private ScoreKeeper scoreKeeper;
 	private Animal animalControl;
+
 	private GameObject character;
 	private GameObject animal;
 	
@@ -20,10 +29,13 @@ public class SceneManager : MonoBehaviour
 		isPlaying = true;
 		levelStartWait = true;
 		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
+		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 		//TODO Make object finding better and less name dependent
-		character = GameObject.Find ("BoyZoo");
-		animal = GameObject.Find ("Animal - Tortoise");
+		character = GameObject.FindGameObjectWithTag ("character");
+		animal = GameObject.FindGameObjectWithTag ("animal");
+		distanceDiffMin = 8f;
+		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 //		if (!PlayerPrefs.HasKey ("Tutorial")) {
 //			PlayerPrefs.SetString ("Tutorial", "true");
 //		}
@@ -32,28 +44,30 @@ public class SceneManager : MonoBehaviour
 	
 	void Update ()
 	{
+		currentDistanceDiff = Mathf.Abs (animal.transform.localPosition.x - character.transform.localPosition.x);
 		if (levelStartWait) {
 			StartCoroutine (wait (waitTime));
 		}
 		if (isPlaying) {
-//			Time.timeScale = 1f;
 			if (animalControl.caught) {
 				isPlaying = false;
 				Debug.Log ("CAUGHT!");
+				int[] scores = scoreKeeper.getScore ();
+				foreach (int score in scores) {
+					Debug.Log (score);
+				}
 				playerControl.rigidbody2D.velocity = new Vector2 (0f, 0f);
 				character.GetComponent<Animator> ().SetTrigger ("Idle");
 				animalControl.transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 			} else {
-				if (Mathf.Abs (animal.transform.position.x - character.transform.position.x) < 8f) {
+				if (currentDistanceDiff < distanceDiffMin) {
 					playerControl.setSpeed (animalControl.speed);
 					NetLauncher.launchEnabled = true;
 				} else {
 					NetLauncher.launchEnabled = false;
 				}
 			}
-		} //else {
-//			Time.timeScale = 0f;
-//		}
+		}
 	}
 	
 	private IEnumerator wait (float time)

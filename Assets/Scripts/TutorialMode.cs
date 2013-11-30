@@ -26,7 +26,7 @@ public class TutorialMode : MonoBehaviour
 		powerUpDialog = false;
 		painBarDialog = false;
 		i = 0;
-		tutText = GameObject.Find ("Tutorial Text");
+		tutText = GameObject.Find ("GUI - Tutorial Text");
 		objectScanner = GameObject.Find ("Tutorial - Object Scanner");
 		tutText.GetComponent<GUIText> ().text = "";
 		tutText.GetComponentInChildren<GUITexture> ().enabled = false;
