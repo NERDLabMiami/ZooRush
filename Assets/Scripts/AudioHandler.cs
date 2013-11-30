@@ -8,17 +8,25 @@ using System.Collections.Generic;
 
 public class AudioHandler : MonoBehaviour
 {
+	public float rate; //TODO make default 3f
 	private bool music;
 	private bool sound;
 
 	private AudioClip levelMusic;
 	private SceneManager sceneManager;
+	
+	private GameObject musicTrack;
+	private GameObject soundTrack;
 
 	public static Dictionary<string,AudioClip> audioClips;
 
 	void Start ()
 	{
 		sceneManager = GameSetup.FindObjectOfType<SceneManager> ();
+		
+		musicTrack = GameObject.Find ("Music Track");
+		soundTrack = GameObject.Find ("Sound Track");
+		
 		if (!PlayerPrefs.HasKey ("Music")) {
 			PlayerPrefs.SetString ("Music", "ON");
 		}
@@ -58,39 +66,67 @@ public class AudioHandler : MonoBehaviour
 	{
 		music = (PlayerPrefs.GetString ("Music").Equals ("ON")) ? true : false;
 		sound = (PlayerPrefs.GetString ("Sound").Equals ("ON")) ? true : false;
-
+		if (music) {
+			if (musicTrack.audio.clip == null) {
+				switch (sceneManager.levelNumber) {
+				case 1:
+					playMusic ("Zoo");
+					musicTrack.audio.volume = 0f;
+					musicTrack.audio.Play ();
+					break;
+				default:
+					break;
+				}
+			}
+			if (musicTrack.audio.volume != 1) {
+				musicFadeIn ();
+			}
+			
+		}
+		
+	
+		
 		if (!sceneManager.isPlaying) {//Scene Paused
-
+			if (music) {
+				if (!musicTrack.audio.isPlaying) {
+					musicTrack.audio.Play ();
+				}
+				
+			}
 		}
 	}
 
 	public void playSound (string soundEffect)
 	{
-
+		AudioClip clip;
+		audioClips.TryGetValue (soundEffect, out clip);
+		soundTrack.audio.clip = clip;
 	}
 
-	public void playMusic (string environment)
+	public void playMusic (string levelMusic)
 	{
-
+		AudioClip clip;
+		audioClips.TryGetValue (levelMusic, out clip);
+		musicTrack.audio.clip = clip;
 	}
 
 	private void soundFadeIn ()
 	{
-		
+		soundTrack.audio.volume = Mathf.Lerp (musicTrack.audio.volume, 1f, rate * Time.deltaTime);
 	}
 
 	private void soundFadeOut ()
 	{
-
+		soundTrack.audio.volume = Mathf.Lerp (musicTrack.audio.volume, 0f, rate * Time.deltaTime);
 	}
 
 	private void musicFadeIn ()
 	{
-		
+		musicTrack.audio.volume = Mathf.Lerp (musicTrack.audio.volume, 1f, rate * Time.deltaTime);
 	}
 
 	private void musicFadeOut ()
 	{
-		
+		musicTrack.audio.volume = Mathf.Lerp (musicTrack.audio.volume, 0f, rate * Time.deltaTime);
 	}
 }
