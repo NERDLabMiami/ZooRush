@@ -7,12 +7,14 @@ public class PainBar : MonoBehaviour
 	public float painPoints;
 	public float maxPainBarSize;
 	public Sprite[] healthStates;
-	
+
+	private ScoreKeeper scoreKeeper;
 	private SceneManager sceneManager;
 	
 	void Start ()
 	{
-		sceneManager = FindObjectOfType<SceneManager> ();
+		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
+		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 		transform.localScale = new Vector3 (0f, transform.localScale.y, transform.localScale.z);
 		painPoints = 0f;
 		maxPainBarSize = 0.32f;
@@ -58,6 +60,7 @@ public class PainBar : MonoBehaviour
 
 	public void objectInteraction (GameObject obj)
 	{
+		scoreKeeper.addToCount (obj);
 		if (obj.name.Contains ("Infection")) {
 			if (obj.name.Contains ("Red")) {
 				painPoints += 35f;
@@ -74,7 +77,12 @@ public class PainBar : MonoBehaviour
 				if (obj.name.Contains ("Water Bottle")) {
 					painPoints -= 25f;
 				} else {
-					painPoints -= 75f;
+					if (!scoreKeeper.pillBottleUsed ()) {
+						painPoints -= 75f;
+					} else {
+						Debug.Log ("ERROR - Only one Pill Bottle Per Level");
+					}
+
 				}
 			}
 		}

@@ -32,7 +32,9 @@ public class SceneRepeater : MonoBehaviour
 		foreach (GameObject element in sceneThings) {
 			if (element != null) {
 				if (element.transform.position.x < Camera.main.transform.position.x - 15f) {
-
+					if (element.GetComponent<Building> () != null) {
+						element.GetComponent<Building> ().resetState ();
+					}
 					element.transform.position = new Vector3 (
 														element.transform.position.x + sceneWidth,
 														element.transform.position.y,

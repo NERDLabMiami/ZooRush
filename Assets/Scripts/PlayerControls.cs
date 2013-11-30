@@ -21,6 +21,8 @@ public class PlayerControls : MonoBehaviour
 	private bool play;
 	private bool prevPlay;
 
+	public string characterName;
+
 	void Start ()
 	{
 		animate = GetComponent<Animator> ();
