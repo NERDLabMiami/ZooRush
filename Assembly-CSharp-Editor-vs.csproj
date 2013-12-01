@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\LevelEditor.cs" />
+     <Compile Include="Assets\Editor\SortingLayerEditor.cs" />
      <None Include="Assets\Resources\Sprites\Objects\Infections\Infections.txt" />
      <None Include="Assets\Resources\Sprites\Characters\GirlZoo\GirlZoo.txt" />
      <None Include="Assets\Resources\Sprites\Objects\Scene Essentials\Greenery.txt" />

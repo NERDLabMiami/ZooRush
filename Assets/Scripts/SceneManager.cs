@@ -52,10 +52,7 @@ public class SceneManager : MonoBehaviour
 			if (animalControl.caught) {
 				isPlaying = false;
 				Debug.Log ("CAUGHT!");
-				int[] scores = scoreKeeper.getScore ();
-				foreach (int score in scores) {
-					Debug.Log (score);
-				}
+				displayScore ();
 				playerControl.rigidbody2D.velocity = new Vector2 (0f, 0f);
 				character.GetComponent<Animator> ().SetTrigger ("Idle");
 				animalControl.transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
@@ -76,6 +73,18 @@ public class SceneManager : MonoBehaviour
 		yield return new WaitForSeconds (time);
 		playerControl.setSpeed ();
 	}
+
+	private void displayScore ()
+	{
+		int[] scores = scoreKeeper.getScore ();
+	}
+
+	private void unlockLevel ()
+	{
+		string levelName = "Level " + (levelNumber + 1);
+		PlayerPrefs.SetString (levelName, "true");
+	}
+
 }
 
 

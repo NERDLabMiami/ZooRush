@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PainBar : MonoBehaviour
 {
-	public float painRate; // using 0.1f atm
+	public float painRate; // using 3.5f atm
 	public float painPoints;
 	public float maxPainBarSize;
 	public Sprite[] healthStates;
@@ -19,14 +19,14 @@ public class PainBar : MonoBehaviour
 		painPoints = 0f;
 		maxPainBarSize = 0.32f;
 		if (painRate <= 0) {
-			painRate = 0.1f;
+			painRate = 3.5f;
 		}
 	}
 	
 	void FixedUpdate ()
 	{
 		if (sceneManager.isPlaying) {
-			painPoints += (Time.time * painRate);
+			painPoints += (Time.deltaTime * painRate);
 		}
 	}
 	
@@ -38,6 +38,8 @@ public class PainBar : MonoBehaviour
 		if (painPoints < 0) {
 			painPoints = 0;
 		}
+
+		GetComponent<Animator> ().SetFloat ("Pain", painPoints);
 		
 		if (painPoints <= 100f) { // Change health bar sized based on current pain points
 
@@ -53,7 +55,6 @@ public class PainBar : MonoBehaviour
 			GetComponent<SpriteRenderer> ().sprite = healthStates [1];
 		}
 		if (painPoints > 75f) { // Change health to Red
-			GetComponent<Animator> ().SetTrigger ("Crisis");
 			GetComponent<SpriteRenderer> ().sprite = healthStates [2];
 		}
 	}

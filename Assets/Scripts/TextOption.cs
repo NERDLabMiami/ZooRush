@@ -49,7 +49,14 @@ public class TextOption : MonoBehaviour
 						if (PlayerPrefs.GetInt ("Levels Unlocked") > 1) {
 							Application.LoadLevel ("Level Select");
 						} else {
-							Application.LoadLevel ("LevelFrame"); //TODO Must change this to level 1
+							if (!PlayerPrefs.HasKey ("Intro Scene")) {
+								PlayerPrefs.SetString ("Intro Scene", "false");
+							}
+							if (PlayerPrefs.GetString ("Intro Scene").Equals ("false")) {
+								Application.LoadLevel ("IntroScene");
+							} else {
+								Application.LoadLevel ("LevelFrame"); //TODO Must change this to level 1
+							}
 						}
 					} else {
 						PlayerPrefs.SetInt ("Levels Unlocked", 1);

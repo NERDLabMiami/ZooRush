@@ -100,7 +100,7 @@ public class ScoreKeeper : MonoBehaviour
 
 			timeText += ":";
 
-			if (seconds % 100 <= 9 && timeElapsed <= 100f) {
+			if (seconds % 100 <= 9 && minutes <= 100f) {
 				timeText += "0" + seconds;
 			} else {
 				if (minutes <= 100f) {
@@ -110,6 +110,6 @@ public class ScoreKeeper : MonoBehaviour
 				}
 			}
 		}
-		timeDisplay.GetComponent<GUIText> ().text = timeText;
+		timeDisplay.GetComponent<TextMesh> ().text = timeText;
 	}
 }

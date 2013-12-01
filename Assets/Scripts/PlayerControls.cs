@@ -12,9 +12,7 @@ public class PlayerControls : MonoBehaviour
 
 	private float xMovement;
 	private float yMovement;
-
-	private float movementForce = 30f;
-
+	
 	private Animator animate;
 	private SceneManager sceneManager;
 

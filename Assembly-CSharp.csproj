@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\GameOptions.cs" />
      <Compile Include="Assets\Scripts\GameSetup.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
+     <Compile Include="Assets\Scripts\IntroStoryScene.cs" />
      <Compile Include="Assets\Scripts\LevelMenu.cs" />
      <Compile Include="Assets\Scripts\NetLauncher.cs" />
      <Compile Include="Assets\Scripts\Obstacle.cs" />
@@ -63,6 +64,7 @@
      <Compile Include="Assets\Scripts\SceneManager.cs" />
      <Compile Include="Assets\Scripts\SceneRepeater.cs" />
      <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
+     <Compile Include="Assets\Scripts\SortingLayer.cs" />
      <Compile Include="Assets\Scripts\StartMenu.cs" />
      <Compile Include="Assets\Scripts\TextOption.cs" />
      <Compile Include="Assets\Scripts\TutorialMode.cs" />

@@ -24,7 +24,6 @@ public class Building : MonoBehaviour
 
 	public void resetState ()
 	{
-		Debug.Log ("RESETTING");
 		animate.StopPlayback ();
 		animate.SetTrigger ("Idle");
 	}
