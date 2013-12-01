@@ -76,7 +76,8 @@ public class ScoreKeeper : MonoBehaviour
 			greenInfectionCount,
 			waterBottleCount,
 			(pillUsed) ? 1 : 0,
-			(int)timeElapsed
+			(int)timeElapsed,
+			starsCalc ()
 		};
 		return score;
 	}
@@ -111,5 +112,17 @@ public class ScoreKeeper : MonoBehaviour
 			}
 		}
 		timeDisplay.GetComponent<TextMesh> ().text = timeText;
+	}
+	
+	private int starsCalc ()
+	{
+		float target = sceneManager.targetTime;
+		if (timeElapsed <= target) {
+			return 3;
+		}
+//		if(){
+//			
+//		}
+		return 0;
 	}
 }
