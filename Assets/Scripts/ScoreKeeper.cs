@@ -116,13 +116,23 @@ public class ScoreKeeper : MonoBehaviour
 	
 	private int starsCalc ()
 	{
-		float target = sceneManager.targetTime;
-		if (timeElapsed <= target) {
-			return 3;
+		int stars = 3;
+		if (timeElapsed - sceneManager.targetTimeVar > 0) {
+			stars--;
 		}
-//		if(){
-//			
-//		}
-		return 0;
+		if (timeElapsed - (sceneManager.multiplier1 * sceneManager.targetTimeVar) > 0) {
+			stars--;
+		}
+		if (timeElapsed - (sceneManager.multiplier2 * sceneManager.targetTimeVar) > 0) {
+			stars--;
+		}
+		if (stars > 0) {
+			int totalInfections = redInfectionCount + yellowInfectionCount + greenInfectionCount;
+			int totalPowerUps = waterBottleCount + (pillUsed ? 1 : 0);
+			if (totalInfections > totalPowerUps) {
+				stars--;
+			}
+		}
+		return stars;
 	}
 }

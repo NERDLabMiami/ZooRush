@@ -44,29 +44,47 @@ TextureImporter:
     - name: Greenery_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 563
-        width: 512
-        height: 262
+        x: 3
+        y: 977
+        width: 662
+        height: 339
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Greenery_1
       rect:
         serializedVersion: 2
-        x: 4
-        y: 520
-        width: 512
-        height: 39
+        x: 668
+        y: 1144
+        width: 287
+        height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Greenery_2
       rect:
         serializedVersion: 2
-        x: 4
-        y: 4
-        width: 408
-        height: 512
+        x: 3
+        y: 859
+        width: 1484
+        height: 115
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
+    - name: Greenery_3
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
+        width: 681
+        height: 853
+      alignment: 9
+      pivot: {x: .389999986, y: 0}
+    - name: Greenery_4
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 345
+        width: 790
+        height: 511
+      alignment: 0
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 

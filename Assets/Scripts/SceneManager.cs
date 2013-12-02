@@ -12,7 +12,9 @@ public class SceneManager : MonoBehaviour
 	public float currentDistanceDiff;
 	public float waitTime;
 	public int levelNumber;
-	public float targetTime;
+	public float targetTimeVar;
+	public float multiplier1;
+	public float multiplier2;
 	
 	public GameObject[] menus;
 	private GameObject screenDimmer;
@@ -23,6 +25,8 @@ public class SceneManager : MonoBehaviour
 
 	private GameObject character;
 	private GameObject animal;
+	private GameObject painBar;
+	private GameObject timeIndicator;
 	
 	public bool levelStartWait;
 	public bool isPlaying;
@@ -43,6 +47,8 @@ public class SceneManager : MonoBehaviour
 		
 		distanceDiffMin = 8f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
+		painBar = GameObject.Find ("Pain Bar");
+		timeIndicator = GameObject.Find ("GUI - Tutorial Text");
 //		if (!PlayerPrefs.HasKey ("Tutorial")) {
 //			PlayerPrefs.SetString ("Tutorial", "true");
 //		}
@@ -83,6 +89,7 @@ public class SceneManager : MonoBehaviour
 
 	private void displayScore ()
 	{
+		dimScreen ();
 		int[] scores = scoreKeeper.getScore ();
 		GameObject menu = GameObject.Find (menus [2].name);
 		if (menu == null) {
@@ -142,9 +149,46 @@ public class SceneManager : MonoBehaviour
 		} else {
 			pill.GetComponent<SpriteRenderer> ().color = Color.white;
 		}
-		
+
+		if (scores [6] > 0) {//# of stars > 0
+			Animator[] stars = GetComponentsInChildren<Animator> ();
+			foreach (Animator star in stars) {
+				if (star.name.Contains ("Star 1")) {
+					if (scores [6] >= 1) {
+						star.SetTrigger ("Activate");
+					}
+				}
+				if (star.name.Contains ("Star 2")) {
+					if (scores [6] >= 2) {
+						star.SetTrigger ("Activate");
+					}
+				}
+				if (star.name.Contains ("Star 3")) {
+					if (scores [6] >= 3) {
+						star.SetTrigger ("Activate");
+					}
+				}
+			}
+		}
+		unlockLevel ();
 	}
-	
+
+
+
+	private void dimScreen ()
+	{
+		timeIndicator.SetActive (false);
+		painBar.SetActive (false);
+		screenDimmer.GetComponent<SpriteRenderer> ().enabled = true;
+	}
+
+	private void lightScreen ()
+	{
+		timeIndicator.SetActive (true);
+		painBar.SetActive (true);
+		screenDimmer.GetComponent<SpriteRenderer> ().enabled = false;
+	}
+
 	private void unlockLevel ()
 	{
 		string levelName = "Level " + (levelNumber + 1);

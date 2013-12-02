@@ -6,8 +6,8 @@ using System.Collections;
  */ 
 public class PlayerControls : MonoBehaviour
 {
-	private Vector2 currentSpeed;
 	private Vector2 speed;
+	private float minSpeed;
 	public Vector2 maxSpeed;
 
 	private float xMovement;
@@ -27,27 +27,17 @@ public class PlayerControls : MonoBehaviour
 		sceneManager = FindObjectOfType<SceneManager> ();
 		play = sceneManager.isPlaying;
 		prevPlay = play;
-		currentSpeed = rigidbody2D.velocity;
 		speed = new Vector2 (7f, 0f);
 		maxSpeed.x = 5f;
 		maxSpeed.y = 3f;
-//		rigidbody2D.velocity = speed;
+		minSpeed = 1f;
 	}
 
 	void FixedUpdate ()
 	{
-		currentSpeed = rigidbody2D.velocity;
 		yMovement = Input.GetAxis ("Vertical");
-		animate.SetFloat ("Speed", currentSpeed.x);
-		if (yMovement != 0) {
-			if (yMovement > 0) {
-				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, maxSpeed.y);
-			} else {
-				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, -maxSpeed.y);
-			}
-		} else {
-			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, 0);
-		}
+		rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed.y);
+		Debug.Log (rigidbody2D.velocity.x);
 	}
 
 	void Update ()
@@ -88,7 +78,15 @@ public class PlayerControls : MonoBehaviour
 		rigidbody2D.velocity = new Vector2 (0f, 0f);
 		StartCoroutine (waitToResume (0.3f));
 	}
-
+	public void decrementSpeed (float value)
+	{
+		Debug.Log ("DECREMENTING SPEED");
+		if (rigidbody2D.velocity.x - value >= minSpeed) {
+			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x - value, rigidbody2D.velocity.y);
+		} else {
+			rigidbody2D.velocity = new Vector2 (minSpeed, rigidbody2D.velocity.y);
+		}
+	}
 	private IEnumerator waitToResume (float time)
 	{
 		animate.SetTrigger ("Flash");

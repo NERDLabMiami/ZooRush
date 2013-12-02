@@ -9,17 +9,20 @@ public class CollisionDetect : MonoBehaviour
 {	
 	public bool isInfection;
 	public bool isPowerUp;
+	public bool canMove;
 
+	private bool moved;
 	private bool signalSent; //if the pain bar has been notified of this collision
 
 	void Start ()
 	{
 		signalSent = false;
+		moved = false;
+
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-
 		if (other.gameObject.Equals (GameObject.FindGameObjectWithTag ("character"))) {
 			if (isPowerUp) {
 				if (!signalSent) {
@@ -43,14 +46,27 @@ public class CollisionDetect : MonoBehaviour
 						signalSent = true;
 						GameObject.FindObjectOfType<PainBar> ().GetComponent<PainBar> ().objectInteraction (transform.parent.gameObject);
 						GameObject.FindObjectOfType<AudioHandler> ().playSound ("INFECTION");
+
 					}
 					Obstacle parent = transform.parent.GetComponent<Obstacle> ();
 					parent.collisionDetected ();
+					other.GetComponent<PlayerControls> ().resetSpeed ();
+
+				} else {
+					other.GetComponent<PlayerControls> ().resetSpeed ();
+
 				}
-				other.GetComponent<PlayerControls> ().resetSpeed ();
 			}
 		}
 
 	}
 
+	void OnCollisionEnter2D (Collision2D coll)
+	{
+		if (canMove) {
+			transform.parent.rigidbody2D.AddForce (new Vector2 (200f, 0f));
+			gameObject.collider2D.isTrigger = true;
+			transform.parent.collider2D.enabled = false;
+		} 
+	}
 }

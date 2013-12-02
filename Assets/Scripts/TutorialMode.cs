@@ -56,7 +56,12 @@ public class TutorialMode : MonoBehaviour
 				if (!distanceBarDialog && !dialogPresent) {
 					tutText.transform.localPosition = new Vector3 (-3f, -2.2f, tutText.transform.localPosition.z);
 					tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
-					tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [0]; // speech bubble points bottom left
+					if (i > 0) {
+						tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [0]; // speech bubble points bottom left
+					} else {
+						tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [2]; // speech bubble without pointer
+					}
+
 					sceneManager.isPlaying = false;
 					dialogSequene (distanceBarDialogScript, ref distanceBarDialog);
 				} else {
@@ -112,7 +117,7 @@ public class TutorialMode : MonoBehaviour
 		"Welcome to Zoo Rush!","It's time to catch the animals."
 
 		#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
-		, "Press (↑) and (↓) to move."
+		, "Press ↑ and ↓ to move."
 		#endif
 
 #if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8
