@@ -16,9 +16,11 @@ public class Building : MonoBehaviour
 	{
 		if (coll.gameObject.Equals (player.gameObject)) {
 			animate.SetTrigger ("Open");
-			if (gameObject.name.Contains ("Doctor")) {
+			player.flash ();
+			if (gameObject.name.Contains ("Doctor") || gameObject.name.Contains ("First Aid")) {
 				GameObject.FindObjectOfType<AudioHandler> ().playSound ("DOCTOR");
 			}
+			GameObject.FindObjectOfType<PainBar> ().objectInteraction (gameObject);
 		}
 	}
 

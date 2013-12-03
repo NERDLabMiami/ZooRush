@@ -37,7 +37,7 @@ public class PlayerControls : MonoBehaviour
 	{
 		yMovement = Input.GetAxis ("Vertical");
 		rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed.y);
-		Debug.Log (rigidbody2D.velocity.x);
+//		Debug.Log (rigidbody2D.velocity.x);
 	}
 
 	void Update ()
@@ -80,7 +80,7 @@ public class PlayerControls : MonoBehaviour
 	}
 	public void decrementSpeed (float value)
 	{
-		Debug.Log ("DECREMENTING SPEED");
+//		Debug.Log ("DECREMENTING SPEED");
 		if (rigidbody2D.velocity.x - value >= minSpeed) {
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x - value, rigidbody2D.velocity.y);
 		} else {

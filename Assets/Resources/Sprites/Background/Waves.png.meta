@@ -24,13 +24,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -40,6 +40,42 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Waves_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 390
+        width: 514
+        height: 385
+      alignment: 2
+      pivot: {x: .5, y: 1}
+    - name: Waves_1
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 390
+        width: 514
+        height: 385
+      alignment: 2
+      pivot: {x: .5, y: 1}
+    - name: Waves_2
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
+        width: 514
+        height: 385
+      alignment: 2
+      pivot: {x: .5, y: 1}
+    - name: Waves_3
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 3
+        width: 514
+        height: 385
+      alignment: 2
+      pivot: {x: .5, y: 1}
   spritePackingTag: 
   userData: 

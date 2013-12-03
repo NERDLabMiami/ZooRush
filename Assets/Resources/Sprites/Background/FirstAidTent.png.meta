@@ -40,6 +40,24 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: FirstAidTent_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 621
+        width: 1026
+        height: 616
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FirstAidTent_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
+        width: 1026
+        height: 616
+      alignment: 0
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

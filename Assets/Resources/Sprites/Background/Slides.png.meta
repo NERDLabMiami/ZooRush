@@ -24,13 +24,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -40,6 +40,42 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Slides_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 519
+        width: 757
+        height: 515
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Slides_1
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 519
+        width: 755
+        height: 515
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Slides_2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 757
+        height: 515
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Slides_3
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 2
+        width: 755
+        height: 515
+      alignment: 0
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

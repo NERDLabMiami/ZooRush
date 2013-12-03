@@ -11,14 +11,11 @@ public class CollisionDetect : MonoBehaviour
 	public bool isPowerUp;
 	public bool canMove;
 
-	private bool moved;
 	private bool signalSent; //if the pain bar has been notified of this collision
 
 	void Start ()
 	{
 		signalSent = false;
-		moved = false;
-
 	}
 
 	void OnTriggerEnter2D (Collider2D other)

@@ -61,7 +61,12 @@ public class PainBar : MonoBehaviour
 
 	public void objectInteraction (GameObject obj)
 	{
-		scoreKeeper.addToCount (obj);
+		
+		
+		if (obj.name.Contains ("Doctor") || obj.name.Contains ("First Aid")) {
+			painPoints = 0f;
+		}
+		
 		if (obj.name.Contains ("Infection")) {
 			PlayerControls player = GameObject.FindObjectOfType<PlayerControls> ();
 			if (obj.name.Contains ("Red")) {
@@ -91,5 +96,6 @@ public class PainBar : MonoBehaviour
 				}
 			}
 		}
+		scoreKeeper.addToCount (obj);
 	}
 }
