@@ -20,6 +20,8 @@ public class Animal : MonoBehaviour
 	private bool play;
 	private bool prevPlay;
 	
+	private Vector3 netSize;
+	
 	void Start ()
 	{
 		sceneManager = FindObjectOfType<SceneManager> ();
@@ -34,6 +36,7 @@ public class Animal : MonoBehaviour
 			netCol.isTrigger = true;
 		}
 		transform.parent.rigidbody2D.velocity = speed;
+		netSize = new Vector3 (1f, 1f, 1f);
 	}
 	
 	void Update ()
@@ -63,6 +66,8 @@ public class Animal : MonoBehaviour
 					netCol.isTrigger = false;
 				}
 				other.gameObject.GetComponent<Animator> ().SetTrigger ("Open");
+				changeNetSize ();
+				other.transform.localScale = netSize;
 				if (/*other.rigidbody2D.velocity.x < 0.3f &&*/ !caught) {
 					animate.SetTrigger ("Idle");
 					caught = true;
@@ -70,6 +75,24 @@ public class Animal : MonoBehaviour
 			}
 		}
 		
+	}
+	
+	private void changeNetSize ()
+	{
+		switch (gameObject.name) {
+		case"Tortoise":
+			netSize = new Vector3 (1f, 1f, 1f);
+			break;
+		case "Crocodile":
+			netSize = new Vector3 (1.75f, 1.25f, 1f);
+			break;
+		case "Flamingo":
+			netSize = new Vector3 (1.75f, 1.25f, 1f);
+			break;
+		default:
+			netSize = new Vector3 (1f, 1f, 1f);
+			break;
+		}
 	}
 	
 	private IEnumerator waitToResume (float time)
