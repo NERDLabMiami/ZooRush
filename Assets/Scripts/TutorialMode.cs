@@ -9,13 +9,18 @@ public class TutorialMode : MonoBehaviour
 	private bool infectionDialog;
 	private bool powerUpDialog;
 	private bool painBarDialog;
+	private bool distanceBarDialog;
 	private bool introDialog;
+	private bool firstAidDialog;
 	private int i;
+
 	SceneManager sceneManager;
 	
 	private GameObject tutText;
 	private GameObject objectScanner;
 	
+	public Sprite[] speechBubbles;
+
 	void Start ()
 	{
 		sceneManager = GetComponent<SceneManager> ();
@@ -25,11 +30,13 @@ public class TutorialMode : MonoBehaviour
 		infectionDialog = false;
 		powerUpDialog = false;
 		painBarDialog = false;
+		distanceBarDialog = false;
+		firstAidDialog = false;
 		i = 0;
-		tutText = GameObject.Find ("Tutorial Text");
+		tutText = GameObject.Find ("GUI - Tutorial Text");
 		objectScanner = GameObject.Find ("Tutorial - Object Scanner");
-		tutText.GetComponent<GUIText> ().text = "";
-		tutText.GetComponentInChildren<GUITexture> ().enabled = false;
+		tutText.GetComponent<TextMesh> ().text = "";
+		tutText.GetComponentInChildren<SpriteRenderer> ().enabled = false;
 	}
 	
 	void Update ()
@@ -40,53 +47,63 @@ public class TutorialMode : MonoBehaviour
 			//Second check for pain dialog
 			//Then check for the presence of any other objects
 			if (!introDialog && !dialogPresent) {
-				Vector3 ratio = new Vector3 (0.5f, 0.5f);
-				ratio.x -= 0.2f;
-				ratio.y -= 0.07f;
-				ratio.z = tutText.transform.position.z;
-				tutText.transform.position = ratio;
-				tutText.GetComponentInChildren<GUITexture> ().enabled = true;
+				tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
+				tutText.transform.localPosition = new Vector3 (-3f, 0.5f, tutText.transform.localPosition.z);
+				tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [2]; // speech bubble without pointer
 				sceneManager.isPlaying = false;
-				introSequence ();
+				dialogSequene (introDialogScript, ref introDialog);
 			} else {
-				if (!painBarDialog && !dialogPresent) {
-					GameObject painBar = GameObject.Find ("Pain Icon");
-					Vector3 objectScreenPoint = camera.WorldToScreenPoint (painBar.transform.position);
-					Vector3 ratio = new Vector3 ((objectScreenPoint.x / Screen.width), (objectScreenPoint.y / Screen.height));
-					ratio.x -= 0.2f;
-					ratio.y -= 0.07f;
-					ratio.z = tutText.transform.position.z;
-					tutText.transform.position = ratio;
-					tutText.GetComponentInChildren<GUITexture> ().enabled = true;
+				if (!distanceBarDialog && !dialogPresent) {
+					tutText.transform.localPosition = new Vector3 (-3f, -2.2f, tutText.transform.localPosition.z);
+					tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
+					if (i > 0) {
+						tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [0]; // speech bubble points bottom left
+					} else {
+						tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [2]; // speech bubble without pointer
+					}
+
 					sceneManager.isPlaying = false;
-					painBarSequence ();
+					dialogSequene (distanceBarDialogScript, ref distanceBarDialog);
 				} else {
-					if (detected.collider != null && !dialogPresent) {
-						if (detected.collider.name.Contains ("Infection")) {
-							Vector3 objectScreenPoint = camera.WorldToScreenPoint (detected.transform.position);
-							Vector3 ratio = new Vector3 ((objectScreenPoint.x / Screen.width), (objectScreenPoint.y / Screen.height));
-							ratio.x -= 0.1f;
-							ratio.y += 0.15f;
-							ratio.z = tutText.transform.position.z;
-							if (!infectionDialog) {
-								tutText.transform.position = ratio;
-								tutText.GetComponentInChildren<GUITexture> ().enabled = true;
-								sceneManager.isPlaying = false;
-								infectionSequence ();
+					if (!painBarDialog && !dialogPresent) {
+						tutText.transform.localPosition = new Vector3 (-4.5f, 3.8f, tutText.transform.localPosition.z);
+						tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
+						tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [1]; // speech bubble points to top right
+						sceneManager.isPlaying = false;
+						dialogSequene (painBarDialogScript, ref painBarDialog);
+					} else {
+
+						if (detected.collider != null && !dialogPresent) {
+
+
+							if (detected.collider.name.Contains ("Doctor")) {
+								if (!firstAidDialog) {
+									tutText.transform.localPosition = new Vector3 (0.5f, 4f, tutText.transform.localPosition.z);
+									tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [0]; // speech bubble points bottom left
+									tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
+									sceneManager.isPlaying = false;
+									dialogSequene (fisrtAidDialogScript, ref firstAidDialog);
+								}
 							}
-						}
+
+							if (detected.collider.name.Contains ("Infection")) {
+								if (!infectionDialog) {
+									tutText.transform.position = new Vector3 (detected.transform.position.x + 1.5f, detected.transform.position.y + 2f, tutText.transform.position.z);
+									tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [0]; // speech bubble points bottom left
+									tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
+									sceneManager.isPlaying = false;
+									dialogSequene (infectionDialogScript, ref infectionDialog);
+								}
+							}
 					
-						if (detected.collider.name.Contains ("Power Up")) {
-							Vector3 objectScreenPoint = camera.WorldToScreenPoint (detected.transform.position);
-							Vector3 ratio = new Vector3 ((objectScreenPoint.x / Screen.width), (objectScreenPoint.y / Screen.height));
-							ratio.x -= 0.1f;
-							ratio.y += 0.15f;
-							ratio.z = tutText.transform.position.z;
-							if (!powerUpDialog) {
-								tutText.transform.position = ratio;
-								tutText.GetComponentInChildren<GUITexture> ().enabled = true;
-								sceneManager.isPlaying = false;
-								powerUpSequence ();
+							if (detected.collider.name.Contains ("Power Up")) {
+								if (!powerUpDialog) {
+									tutText.transform.position = new Vector3 (detected.transform.position.x + 1.5f, detected.transform.position.y + 2f, tutText.transform.position.z);
+									tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [0]; // speech bubble points bottom left
+									tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
+									sceneManager.isPlaying = false;
+									dialogSequene (powerUpDialogScript, ref powerUpDialog);
+								}
 							}
 						}
 					}
@@ -97,91 +114,53 @@ public class TutorialMode : MonoBehaviour
 	}
 
 	private string[] introDialogScript = {
-		"Welcome to Zoo Rush,","move your character by pressing the \n up and down keys"
+		"Welcome to Zoo Rush!","It's time to catch the animals."
+
+		#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
+		, "Press ↑ and ↓ to move."
+		#endif
+
+#if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8
+		"Tap the top half of the screen to move up.",
+		"Tap the bottom half of the screen to move down."
+#endif
+
+	};
+
+	private string[] distanceBarDialogScript = {
+		"As you run, you will pick up speed.","Check your distance to the animal\nhere."
 	};
 
 	private string[] painBarDialogScript = {
-		"This is your crisis meter,","as you keep running, you exert \nyourself and build up pain,","When the meter fills up you enter \ncrisis mode!"
+		"With sickle-cell anemia, you have to\nkeep a close eye on your health.","Don’t let the crisis meter fill up."
+	};
+
+	private string[] fisrtAidDialogScript = {
+		"Health centers can help you manage\nyour pain and reduce the crisis meter."
 	};
 
 	private string[] infectionDialogScript = {
-		"This is an infection,","touching one slows you down \nand causes pain","Try your best to avoid them!"
+		"Look out for infections!","They slow you down and bring you\ncloser to a crisis.","Some infections are more dangerous\nthan others…"
 	};
 
 	private string[] powerUpDialogScript = {
-		"This is a power up,","touching one reduces your crisis \nmeter and makes you healthier.","Try your best to collect them!"
+		"To avoid getiing too close to a crisis,","Try drinking water or visiting a\nhealth center to manage the pain!"
 	};
-	
-	private void introSequence ()
-	{	
-		tutText.GetComponent<GUIText> ().text = introDialogScript [i];
+
+	private void dialogSequene (string[] dialog, ref bool finished)
+	{
+		tutText.GetComponent<TextMesh> ().text = dialog [i];
 		if (InputManager.enter) {
 			i++;
 		}
-		if (i >= introDialogScript.Length) {
-			tutText.GetComponent<GUIText> ().text = "";
-			tutText.GetComponentInChildren<GUITexture> ().enabled = false;
+		if (i >= dialog.Length) {
+			tutText.GetComponent<TextMesh> ().text = "";
+			tutText.GetComponentInChildren<SpriteRenderer> ().enabled = false;
 			dialogPresent = true;
 			sceneManager.isPlaying = true;
-			introDialog = true;
+			finished = true;
 			i = 0;
 			dialogPresent = false;
 		}
-
 	}
-
-	private void painBarSequence ()
-	{	
-		tutText.GetComponent<GUIText> ().text = painBarDialogScript [i];
-		if (InputManager.enter) {
-			i++;
-		}
-		if (i >= painBarDialogScript.Length) {
-			tutText.GetComponent<GUIText> ().text = "";
-			tutText.GetComponentInChildren<GUITexture> ().enabled = false;
-			dialogPresent = true;
-			sceneManager.isPlaying = true;
-			painBarDialog = true;
-			i = 0;
-			dialogPresent = false;
-		}
-		
-	}
-
-	private void infectionSequence ()
-	{	
-		tutText.GetComponent<GUIText> ().text = infectionDialogScript [i];
-		if (InputManager.enter) {
-			i++;
-		}
-		if (i >= infectionDialogScript.Length) {
-			tutText.GetComponent<GUIText> ().text = "";
-			tutText.GetComponentInChildren<GUITexture> ().enabled = false;
-			dialogPresent = true;
-			sceneManager.isPlaying = true;
-			infectionDialog = true;
-			i = 0;
-			dialogPresent = false;
-		}
-		
-	}
-
-	private void powerUpSequence ()
-	{	
-		tutText.GetComponent<GUIText> ().text = powerUpDialogScript [i];
-		if (InputManager.enter) {
-			i++;
-		}
-		if (i >= powerUpDialogScript.Length) {
-			tutText.GetComponent<GUIText> ().text = "";
-			tutText.GetComponentInChildren<GUITexture> ().enabled = false;
-			dialogPresent = true;
-			sceneManager.isPlaying = true;
-			powerUpDialog = true;
-			i = 0;
-			dialogPresent = false;
-		}
-		
-	}
-	  
 }

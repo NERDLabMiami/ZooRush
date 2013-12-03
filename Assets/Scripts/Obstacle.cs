@@ -8,25 +8,35 @@ using System.Collections;
 public class Obstacle : MonoBehaviour
 {
 	private bool inFront; // Is the character in front or behind the obstacle?
-	private SpriteRenderer[] sprites; //All sprites that are a child of the object
+	public bool canMove; // Cane this object move on it's own or based on physics?
+	private Renderer[] sprites; //All sprites that are a child of the object
 
 	void Start ()
 	{
-		sprites = transform.GetComponentsInChildren<SpriteRenderer> ();
+		sprites = transform.GetComponentsInChildren<Renderer> ();
 	}
 
 	void Update ()
 	{
 		if (inFront) {
-			foreach (SpriteRenderer sprite in sprites) {
-				if (sprite.sortingLayerName != "Obstacles-Behind") {
+			foreach (Renderer sprite in sprites) {
+				if (!sprite.name.Contains ("Ground Shadow") && sprite.sortingLayerName != "Obstacles-Behind") {
 					sprite.sortingLayerName = "Obstacles-Behind";
 				}
 			}
 		} else {
-			foreach (SpriteRenderer sprite in sprites) {
-				if (sprite.sortingLayerName != "Obstacles-InFront") {
+			foreach (Renderer sprite in sprites) {
+				if (!sprite.name.Contains ("Ground Shadow") && sprite.sortingLayerName != "Obstacles-InFront") {
 					sprite.sortingLayerName = "Obstacles-InFront";
+				}
+			}
+		}
+		if (canMove) {
+			if (transform.position.x > GameObject.FindObjectOfType<PlayerControls> ().transform.position.x + 40f) {
+				destroyObstacle ();
+			} else {
+				if (transform.position.y < -10f || transform.position.y > 10f) {
+					destroyObstacle ();
 				}
 			}
 		}
