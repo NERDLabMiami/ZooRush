@@ -48,6 +48,7 @@ public class Animal : MonoBehaviour
 			StartCoroutine (waitToResume (0.1f));
 		} else { // our previous state is the play state
 			if (!play) {//we need to move into the paused state
+				animate.SetTrigger ("Idle");
 				transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 			}
 		}

@@ -35,7 +35,7 @@ public class Obstacle : MonoBehaviour
 			if (transform.position.x > GameObject.FindObjectOfType<PlayerControls> ().transform.position.x + 40f) {
 				destroyObstacle ();
 			} else {
-				if (transform.position.y < -10f || transform.position.y > 10f) {
+				if (Mathf.Abs (transform.position.y) > 10f) {
 					destroyObstacle ();
 				}
 			}

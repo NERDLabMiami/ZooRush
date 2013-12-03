@@ -31,11 +31,13 @@ public class SceneManager : MonoBehaviour
 	public bool levelStartWait;
 	public bool isPlaying;
 	public bool tutEnabled;
+	public bool fainted;
 	
 	void Start ()
 	{
 		isPlaying = true;
 		levelStartWait = true;
+		fainted = false;
 		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
@@ -48,7 +50,7 @@ public class SceneManager : MonoBehaviour
 		distanceDiffMin = 8f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 		painBar = GameObject.Find ("Pain Bar");
-		timeIndicator = GameObject.Find ("GUI - Tutorial Text");
+		timeIndicator = GameObject.Find ("GUI - Time");
 //		if (!PlayerPrefs.HasKey ("Tutorial")) {
 //			PlayerPrefs.SetString ("Tutorial", "true");
 //		}
@@ -66,16 +68,20 @@ public class SceneManager : MonoBehaviour
 				isPlaying = false;
 				Debug.Log ("CAUGHT!");
 				displayScore ();
-				playerControl.rigidbody2D.velocity = new Vector2 (0f, 0f);
-				character.GetComponent<Animator> ().SetTrigger ("Idle");
-				animalControl.transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 			} else {
-				if (currentDistanceDiff < distanceDiffMin) {
-					playerControl.setSpeed (animalControl.speed);
-					NetLauncher.launchEnabled = true;
+				if (fainted) {
+					isPlaying = false;
+					Debug.Log ("FAINTED!");
+					displayFainted ();
 				} else {
-					NetLauncher.launchEnabled = false;
+					if (currentDistanceDiff < distanceDiffMin) {
+						playerControl.setSpeed (animalControl.speed);
+						NetLauncher.launchEnabled = true;
+					} else {
+						NetLauncher.launchEnabled = false;
+					}
 				}
+				
 			}
 		}
 	}
@@ -85,6 +91,17 @@ public class SceneManager : MonoBehaviour
 		levelStartWait = false;
 		yield return new WaitForSeconds (time);
 		playerControl.setSpeed ();
+	}
+	
+	private void displayFainted ()
+	{
+		dimScreen ();
+		GameObject menu = GameObject.Find (menus [1].name);
+		if (menu == null) {
+			menu = Instantiate (menus [1]) as GameObject;
+			menu.transform.parent = Camera.main.transform;
+			menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
+		}
 	}
 
 	private void displayScore ()

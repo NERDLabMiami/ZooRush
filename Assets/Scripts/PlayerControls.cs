@@ -36,8 +36,11 @@ public class PlayerControls : MonoBehaviour
 	void FixedUpdate ()
 	{
 		yMovement = Input.GetAxis ("Vertical");
-		rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed.y);
-//		Debug.Log (rigidbody2D.velocity.x);
+		if (sceneManager.isPlaying) {
+			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed.y);
+		} else {
+			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, 0f);
+		}
 	}
 
 	void Update ()
