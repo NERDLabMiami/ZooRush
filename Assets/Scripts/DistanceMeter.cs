@@ -7,6 +7,8 @@ using System.Collections;
  */ 
 public class DistanceMeter : MonoBehaviour
 {
+	public Sprite[] chracterIcons;
+	public Sprite[] animalIcons;
 
 	private GameObject characterIcon;
 	private GameObject animalIcon;
@@ -22,6 +24,10 @@ public class DistanceMeter : MonoBehaviour
 	{	
 		characterIcon = GameObject.Find ("Character Icon");
 		animalIcon = GameObject.Find ("Animal Icon");
+		
+		//TODO change character icon based on which character is currently playing
+		//TODO change animal icon based on which animal is currently playing
+		
 		charIconStarting = characterIcon.transform.localPosition.x;
 		distanceDiffMin = GameObject.FindObjectOfType<SceneManager> ().distanceDiffMin;
 		maxLength = Mathf.Abs (animalIcon.transform.localPosition.x 

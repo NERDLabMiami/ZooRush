@@ -33,11 +33,14 @@ public class SceneManager : MonoBehaviour
 	public bool tutEnabled;
 	public bool fainted;
 	
+	private bool waitDisplay;
+	
 	void Start ()
 	{
 		isPlaying = true;
 		levelStartWait = true;
 		fainted = false;
+		waitDisplay = false;
 		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
@@ -67,12 +70,12 @@ public class SceneManager : MonoBehaviour
 			if (animalControl.caught) {
 				isPlaying = false;
 				Debug.Log ("CAUGHT!");
-				displayScore ();
+				StartCoroutine (displayScore ());
 			} else {
 				if (fainted) {
 					isPlaying = false;
 					Debug.Log ("FAINTED!");
-					displayFainted ();
+					StartCoroutine (displayFainted ());
 				} else {
 					if (currentDistanceDiff < distanceDiffMin) {
 						playerControl.setSpeed (animalControl.speed);
@@ -81,7 +84,6 @@ public class SceneManager : MonoBehaviour
 						NetLauncher.launchEnabled = false;
 					}
 				}
-				
 			}
 		}
 	}
@@ -93,20 +95,31 @@ public class SceneManager : MonoBehaviour
 		playerControl.setSpeed ();
 	}
 	
-	private void displayFainted ()
+	private IEnumerator waitToDisplay (float time)
 	{
+		waitDisplay = true;
+		yield return new WaitForSeconds (time);
+	}
+	
+	private IEnumerator displayFainted ()
+	{
+		yield return new WaitForSeconds (0.1f);
 		dimScreen ();
+		
 		GameObject menu = GameObject.Find (menus [1].name);
 		if (menu == null) {
 			menu = Instantiate (menus [1]) as GameObject;
 			menu.transform.parent = Camera.main.transform;
 			menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
 		}
+		
 	}
 
-	private void displayScore ()
+	private IEnumerator displayScore ()
 	{
+		yield return new WaitForSeconds (1f);
 		dimScreen ();
+		
 		int[] scores = scoreKeeper.getScore ();
 		GameObject menu = GameObject.Find (menus [2].name);
 		if (menu == null) {
@@ -154,9 +167,7 @@ public class SceneManager : MonoBehaviour
 						timeText += "59+";
 					}
 				}
-				
 				text.text = timeText;
-				
 			}
 		}
 		
@@ -188,9 +199,8 @@ public class SceneManager : MonoBehaviour
 			}
 		}
 		unlockLevel ();
+		
 	}
-
-
 
 	private void dimScreen ()
 	{
