@@ -32,8 +32,9 @@ public class PainBar : MonoBehaviour
 	
 	void Update ()
 	{
-		if (painPoints > 100f) {
+		if (painPoints >= 100f) {
 			painPoints = 100f;
+			sceneManager.fainted = true;
 		}
 		if (painPoints < 0) {
 			painPoints = 0;

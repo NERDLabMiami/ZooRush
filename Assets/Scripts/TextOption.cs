@@ -36,13 +36,23 @@ public class TextOption : MonoBehaviour
 	{
 		if (optionEnabled) {
 			if (isLevelOption) {
-				switch (levelNum) {
-				case 1:
-					Application.LoadLevel ("LevelFrame");
-					break;
-				default:
-					break;
+				if (gameObject.name.Contains ("Retry")) {
+					Application.LoadLevel (Application.loadedLevelName);
+				} else {
+					if (gameObject.name.Contains ("Quit")) {
+						Application.LoadLevel ("Splash");
+					} else {
+						switch (levelNum) {
+						case 1:
+							Application.LoadLevel ("LevelFrame");
+							break;
+						default:
+							Application.LoadLevel ("LevelFrame");
+							break;
+						}
+					}
 				}
+				
 			} else {
 				if (gameObject.name.Contains ("Play")) {
 					if (PlayerPrefs.HasKey ("Levels Unlocked")) {
