@@ -9,6 +9,7 @@ public class CollisionDetect : MonoBehaviour
 {	
 	public bool isInfection;
 	public bool isPowerUp;
+	public bool canMove;
 
 	private bool signalSent; //if the pain bar has been notified of this collision
 
@@ -19,12 +20,14 @@ public class CollisionDetect : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-
-		if (other.gameObject.name == "BoyZoo") {
+		if (other.gameObject.Equals (GameObject.FindGameObjectWithTag ("character"))) {
 			if (isPowerUp) {
 				if (!signalSent) {
 					signalSent = true;
 					GameObject.FindObjectOfType<PainBar> ().GetComponent<PainBar> ().objectInteraction (transform.parent.gameObject);
+					if (transform.parent.gameObject.name.Contains ("Pill")) {
+						GameObject.FindObjectOfType<AudioHandler> ().playSound ("PILL");
+					}
 				}
 				other.GetComponent<PlayerControls> ().flash ();
 				Obstacle parent = transform.parent.GetComponent<Obstacle> ();
@@ -39,14 +42,28 @@ public class CollisionDetect : MonoBehaviour
 					if (!signalSent) {
 						signalSent = true;
 						GameObject.FindObjectOfType<PainBar> ().GetComponent<PainBar> ().objectInteraction (transform.parent.gameObject);
+						GameObject.FindObjectOfType<AudioHandler> ().playSound ("INFECTION");
+
 					}
 					Obstacle parent = transform.parent.GetComponent<Obstacle> ();
 					parent.collisionDetected ();
+					other.GetComponent<PlayerControls> ().resetSpeed ();
+
+				} else {
+					other.GetComponent<PlayerControls> ().resetSpeed ();
+
 				}
-				other.GetComponent<PlayerControls> ().resetSpeed ();
 			}
 		}
 
 	}
 
+	void OnCollisionEnter2D (Collision2D coll)
+	{
+		if (canMove) {
+			transform.parent.rigidbody2D.AddForce (new Vector2 (200f, 0f));
+			gameObject.collider2D.isTrigger = true;
+			transform.parent.collider2D.enabled = false;
+		} 
+	}
 }
