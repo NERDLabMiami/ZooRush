@@ -42,13 +42,18 @@ public class TextOption : MonoBehaviour
 					if (gameObject.name.Contains ("Quit")) {
 						Application.LoadLevel ("Splash");
 					} else {
-						switch (levelNum) {
-						case 1:
-							Application.LoadLevel ("LevelFrame");
-							break;
-						default:
-							Application.LoadLevel ("LevelFrame");
-							break;
+						if (gameObject.name.Contains ("Next")) {
+							string levelName = "Level " + (GameObject.FindObjectOfType<SceneManager> ().levelNumber + 1);
+							Application.LoadLevel (levelName);
+						} else {
+							switch (levelNum) {
+							case 1:
+								Application.LoadLevel ("LevelFrame");
+								break;
+							default:
+								Application.LoadLevel ("LevelFrame");
+								break;
+							}
 						}
 					}
 				}
