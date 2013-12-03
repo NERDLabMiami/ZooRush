@@ -15,7 +15,6 @@ public class NetLauncher : MonoBehaviour
 	private float action;
 	private bool firing;
 	private bool animalCaught;
-
 	private int throwCount;
 	void Start ()
 	{

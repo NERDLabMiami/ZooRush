@@ -5,6 +5,7 @@ using System.Collections;
 [CustomEditor(typeof(SortingLayer))]
 public class SortingLayerEditor : Editor
 {
+	
 	private SortingLayer thisSort;
 	private int selection;
 	private string[] sortingLayers = {
@@ -23,6 +24,7 @@ public class SortingLayerEditor : Editor
 		"GUI Text Overlay"
 	};
 		
+	
 	public override void OnInspectorGUI ()
 	{
 		if (thisSort == null) {
@@ -50,5 +52,9 @@ public class SortingLayerEditor : Editor
 			thisSort.sortingOrder = thisSort.renderer.sortingOrder;
 		}
 		EditorGUILayout.EndHorizontal ();
+		Repaint ();
+		
+		Debug.Log ("Layer: " + thisSort.GetComponent<MeshRenderer> ().sortingLayerName + "\nOrder: " + thisSort.renderer.sortingOrder);
+		
 	}
 }
