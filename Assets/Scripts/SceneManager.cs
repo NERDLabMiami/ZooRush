@@ -68,12 +68,10 @@ public class SceneManager : MonoBehaviour
 		if (isPlaying) {
 			if (animalControl.caught) {
 				isPlaying = false;
-				Debug.Log ("CAUGHT!");
 				StartCoroutine (displayScore ());
 			} else {
 				if (fainted) {
 					isPlaying = false;
-					Debug.Log ("FAINTED!");
 					StartCoroutine (displayFainted ());
 				} else {
 					if (currentDistanceDiff < distanceDiffMin) {
