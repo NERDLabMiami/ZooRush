@@ -27,23 +27,22 @@ public class SceneManager : MonoBehaviour
 	private GameObject animal;
 	private GameObject painBar;
 	private GameObject timeIndicator;
+	private NetLauncher netLauncher;
 	
 	public bool levelStartWait;
 	public bool isPlaying;
 	public bool tutEnabled;
 	public bool fainted;
 	
-	private bool waitDisplay;
-	
 	void Start ()
 	{
 		isPlaying = true;
 		levelStartWait = true;
 		fainted = false;
-		waitDisplay = false;
 		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
+		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
 		//TODO Make object finding better and less name dependent
 		character = GameObject.FindGameObjectWithTag ("character");
 		animal = GameObject.FindGameObjectWithTag ("animal");
@@ -79,9 +78,9 @@ public class SceneManager : MonoBehaviour
 				} else {
 					if (currentDistanceDiff < distanceDiffMin) {
 						playerControl.setSpeed (animalControl.speed);
-						NetLauncher.launchEnabled = true;
+						netLauncher.launchEnabled = true;
 					} else {
-						NetLauncher.launchEnabled = false;
+						netLauncher.launchEnabled = false;
 					}
 				}
 			}
@@ -93,12 +92,6 @@ public class SceneManager : MonoBehaviour
 		levelStartWait = false;
 		yield return new WaitForSeconds (time);
 		playerControl.setSpeed ();
-	}
-	
-	private IEnumerator waitToDisplay (float time)
-	{
-		waitDisplay = true;
-		yield return new WaitForSeconds (time);
 	}
 	
 	private IEnumerator displayFainted ()

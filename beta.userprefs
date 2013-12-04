@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/SortingLayerEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraFollow.cs">
     <Files>
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="106" Column="39" />
-      <File FileName="Assets/Editor/SortingLayerEditor.cs" Line="7" Column="2" />
+      <File FileName="Assets/Scripts/CameraFollow.cs" Line="18" Column="84" />
+      <File FileName="Assets/Scripts/SceneManager.cs" Line="95" Column="3" />
+      <File FileName="Assets/Scripts/NetLauncher.cs" Line="12" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
