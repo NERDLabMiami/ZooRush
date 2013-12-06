@@ -9,7 +9,7 @@ using System.Collections;
 public class NetLauncher : MonoBehaviour
 {
 	public Rigidbody2D prefab;
-	public static bool launchEnabled;
+	public bool launchEnabled;
 	private GameObject net;
 	public float speed;	
 	private float action;

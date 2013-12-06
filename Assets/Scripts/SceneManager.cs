@@ -27,30 +27,28 @@ public class SceneManager : MonoBehaviour
 	private GameObject animal;
 	private GameObject painBar;
 	private GameObject timeIndicator;
+	private NetLauncher netLauncher;
 	
 	public bool levelStartWait;
 	public bool isPlaying;
 	public bool tutEnabled;
 	public bool fainted;
 	
-	private bool waitDisplay;
-	
 	void Start ()
 	{
 		isPlaying = true;
 		levelStartWait = true;
 		fainted = false;
-		waitDisplay = false;
 		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
-		//TODO Make object finding better and less name dependent
+		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
 		character = GameObject.FindGameObjectWithTag ("character");
 		animal = GameObject.FindGameObjectWithTag ("animal");
 		
 		screenDimmer = GameObject.Find ("GUI - Level Dimmer");
 		
-		distanceDiffMin = 8f;
+		distanceDiffMin = 6.5f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 		painBar = GameObject.Find ("Pain Bar");
 		timeIndicator = GameObject.Find ("GUI - Time");
@@ -64,41 +62,30 @@ public class SceneManager : MonoBehaviour
 	{
 		currentDistanceDiff = Mathf.Abs (animal.transform.localPosition.x - character.transform.localPosition.x);
 		if (levelStartWait) {
-			StartCoroutine (wait (waitTime));
-		}
-		if (isPlaying) {
-			if (animalControl.caught) {
-				isPlaying = false;
-				Debug.Log ("CAUGHT!");
-				StartCoroutine (displayScore ());
-			} else {
-				if (fainted) {
+			if (currentDistanceDiff > 18f) {
+				levelStartWait = false;
+			}
+			
+		} else {
+			if (isPlaying) {
+				if (animalControl.caught) {
 					isPlaying = false;
-					Debug.Log ("FAINTED!");
-					StartCoroutine (displayFainted ());
+					StartCoroutine (displayScore ());
 				} else {
-					if (currentDistanceDiff < distanceDiffMin) {
-						playerControl.setSpeed (animalControl.speed);
-						NetLauncher.launchEnabled = true;
+					if (fainted) {
+						isPlaying = false;
+						StartCoroutine (displayFainted ());
 					} else {
-						NetLauncher.launchEnabled = false;
+						if (currentDistanceDiff < distanceDiffMin) {
+							playerControl.setSpeed (animalControl.speed);
+							netLauncher.launchEnabled = true;
+						} else {
+							netLauncher.launchEnabled = false;
+						}
 					}
 				}
 			}
 		}
-	}
-	
-	private IEnumerator wait (float time)
-	{
-		levelStartWait = false;
-		yield return new WaitForSeconds (time);
-		playerControl.setSpeed ();
-	}
-	
-	private IEnumerator waitToDisplay (float time)
-	{
-		waitDisplay = true;
-		yield return new WaitForSeconds (time);
 	}
 	
 	private IEnumerator displayFainted ()

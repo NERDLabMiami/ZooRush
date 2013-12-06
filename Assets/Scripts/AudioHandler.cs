@@ -138,7 +138,7 @@ public class AudioHandler : MonoBehaviour
 	{
 		AudioClip clip;
 		audioClips.TryGetValue (soundEffect, out clip);
-		if (soundTrack.audio.isPlaying && soundTrack.audio.clip == clip) {
+		if (soundTrack.audio.isPlaying && soundTrack.audio.clip != clip) {
 			soundTrack.audio.Play ();
 		} else {
 			soundTrack.audio.clip = clip;
