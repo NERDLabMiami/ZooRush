@@ -10,11 +10,13 @@ public class PainBar : MonoBehaviour
 
 	private ScoreKeeper scoreKeeper;
 	private SceneManager sceneManager;
+	private AudioHandler audioHandler;
 	
 	void Start ()
 	{
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
+		audioHandler = GameObject.FindObjectOfType<AudioHandler> ();
 		transform.localScale = new Vector3 (0f, transform.localScale.y, transform.localScale.z);
 		painPoints = 0f;
 		maxPainBarSize = 0.32f;
@@ -25,7 +27,7 @@ public class PainBar : MonoBehaviour
 	
 	void FixedUpdate ()
 	{
-		if (sceneManager.isPlaying) {
+		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
 			painPoints += (Time.deltaTime * painRate);
 		}
 	}
@@ -57,13 +59,12 @@ public class PainBar : MonoBehaviour
 		}
 		if (painPoints > 75f) { // Change health to Red
 			GetComponent<SpriteRenderer> ().sprite = healthStates [2];
+			audioHandler.playSound ("HARDSICKLOOP");
 		}
 	}
 
 	public void objectInteraction (GameObject obj)
 	{
-		
-		
 		if (obj.name.Contains ("Doctor") || obj.name.Contains ("First Aid")) {
 			painPoints = 0f;
 		}

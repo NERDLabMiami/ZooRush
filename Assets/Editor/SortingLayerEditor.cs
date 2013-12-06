@@ -53,8 +53,5 @@ public class SortingLayerEditor : Editor
 		}
 		EditorGUILayout.EndHorizontal ();
 		Repaint ();
-		
-		Debug.Log ("Layer: " + thisSort.GetComponent<MeshRenderer> ().sortingLayerName + "\nOrder: " + thisSort.renderer.sortingOrder);
-		
 	}
 }
