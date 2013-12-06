@@ -41,6 +41,7 @@ public class Animal : MonoBehaviour
 	
 	void Update ()
 	{
+		animate.SetFloat ("Speed", transform.parent.rigidbody2D.velocity.x);
 		prevPlay = play;
 		if (sceneManager.isPlaying) {
 			play = true;
@@ -51,7 +52,6 @@ public class Animal : MonoBehaviour
 			StartCoroutine (waitToResume (0.1f));
 		} else { // our previous state is the play state
 			if (!play) {//we need to move into the paused state
-				animate.SetTrigger ("Idle");
 				transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 			}
 		}
@@ -69,7 +69,6 @@ public class Animal : MonoBehaviour
 				changeNetSize ();
 				other.transform.localScale = netSize;
 				if (/*other.rigidbody2D.velocity.x < 0.3f &&*/ !caught) {
-					animate.SetTrigger ("Idle");
 					caught = true;
 				}
 			}
