@@ -25,7 +25,7 @@ public class PainBar : MonoBehaviour
 	
 	void FixedUpdate ()
 	{
-		if (sceneManager.isPlaying) {
+		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
 			painPoints += (Time.deltaTime * painRate);
 		}
 	}

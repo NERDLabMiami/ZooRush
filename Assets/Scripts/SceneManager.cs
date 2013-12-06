@@ -49,7 +49,7 @@ public class SceneManager : MonoBehaviour
 		
 		screenDimmer = GameObject.Find ("GUI - Level Dimmer");
 		
-		distanceDiffMin = 8f;
+		distanceDiffMin = 6.5f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 		painBar = GameObject.Find ("Pain Bar");
 		timeIndicator = GameObject.Find ("GUI - Time");
@@ -63,33 +63,30 @@ public class SceneManager : MonoBehaviour
 	{
 		currentDistanceDiff = Mathf.Abs (animal.transform.localPosition.x - character.transform.localPosition.x);
 		if (levelStartWait) {
-			StartCoroutine (wait (waitTime));
-		}
-		if (isPlaying) {
-			if (animalControl.caught) {
-				isPlaying = false;
-				StartCoroutine (displayScore ());
-			} else {
-				if (fainted) {
+			if (currentDistanceDiff > 18f) {
+				levelStartWait = false;
+			}
+			
+		} else {
+			if (isPlaying) {
+				if (animalControl.caught) {
 					isPlaying = false;
-					StartCoroutine (displayFainted ());
+					StartCoroutine (displayScore ());
 				} else {
-					if (currentDistanceDiff < distanceDiffMin) {
-						playerControl.setSpeed (animalControl.speed);
-						netLauncher.launchEnabled = true;
+					if (fainted) {
+						isPlaying = false;
+						StartCoroutine (displayFainted ());
 					} else {
-						netLauncher.launchEnabled = false;
+						if (currentDistanceDiff < distanceDiffMin) {
+							playerControl.setSpeed (animalControl.speed);
+							netLauncher.launchEnabled = true;
+						} else {
+							netLauncher.launchEnabled = false;
+						}
 					}
 				}
 			}
 		}
-	}
-	
-	private IEnumerator wait (float time)
-	{
-		levelStartWait = false;
-		yield return new WaitForSeconds (time);
-		playerControl.setSpeed ();
 	}
 	
 	private IEnumerator displayFainted ()

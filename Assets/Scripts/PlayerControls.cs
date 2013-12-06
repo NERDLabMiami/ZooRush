@@ -47,7 +47,7 @@ public class PlayerControls : MonoBehaviour
 	{
 		//Tracking for the paused or played state
 		prevPlay = play;
-		if (sceneManager.isPlaying) {
+		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
 			play = true;
 		} else {// otherwise keep track that the input is not active
 			play = false;
