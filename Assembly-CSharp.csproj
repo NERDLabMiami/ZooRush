@@ -51,6 +51,8 @@
      <Compile Include="Assets\Scripts\Building.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\CollisionDetect.cs" />
+     <Compile Include="Assets\Scripts\DialogHandler.cs" />
+     <Compile Include="Assets\Scripts\DialogTrigger.cs" />
      <Compile Include="Assets\Scripts\DistanceMeter.cs" />
      <Compile Include="Assets\Scripts\GameOptions.cs" />
      <Compile Include="Assets\Scripts\GameSetup.cs" />
@@ -69,6 +71,7 @@
      <Compile Include="Assets\Scripts\StartMenu.cs" />
      <Compile Include="Assets\Scripts\TextOption.cs" />
      <Compile Include="Assets\Scripts\TutorialMode.cs" />
+     <None Include="Assets\Resources\Sprites\Characters\Boy-AfricanAmericanRun.txt" />
      <None Include="Assets\Resources\Sprites\Objects\Obstacles\Signs.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -43,7 +43,6 @@ public class SceneManager : MonoBehaviour
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
-		//TODO Make object finding better and less name dependent
 		character = GameObject.FindGameObjectWithTag ("character");
 		animal = GameObject.FindGameObjectWithTag ("animal");
 		
