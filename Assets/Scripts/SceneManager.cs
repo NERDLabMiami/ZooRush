@@ -33,7 +33,7 @@ public class SceneManager : MonoBehaviour
 	public bool isPlaying;
 	public bool tutEnabled;
 	public bool fainted;
-	
+		
 	void Start ()
 	{
 		isPlaying = true;

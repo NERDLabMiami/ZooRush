@@ -1,0 +1,36 @@
+{"frames": {
+
+"Lawnmower1.png":
+{
+	"frame": {"x":0,"y":0,"w":568,"h":393},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":568,"h":393},
+	"sourceSize": {"w":568,"h":393}
+},
+"Lawnmower2.png":
+{
+	"frame": {"x":568,"y":0,"w":568,"h":393},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":568,"h":393},
+	"sourceSize": {"w":568,"h":393}
+},
+"Lawnmower3.png":
+{
+	"frame": {"x":1136,"y":0,"w":568,"h":393},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":568,"h":393},
+	"sourceSize": {"w":568,"h":393}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "Lawnmower.png",
+	"format": "RGBA8888",
+	"size": {"w":1704,"h":393},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b22b3afab25e90f34eef912e2b59f90c:1ffdfb9301974a32958950ffe1ee62f5:aae853339aa326827eed74f65cd5c7cf$"
+}
+}

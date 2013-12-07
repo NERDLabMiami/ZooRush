@@ -9,15 +9,21 @@ public class Obstacle : MonoBehaviour
 {
 	private bool inFront; // Is the character in front or behind the obstacle?
 	public bool canMove; // Cane this object move on it's own or based on physics?
+	public Vector2 speed;
 	private Renderer[] sprites; //All sprites that are a child of the object
+	private PlayerControls player;
 
 	void Start ()
 	{
 		sprites = transform.GetComponentsInChildren<Renderer> ();
+		player = GameObject.FindObjectOfType<PlayerControls> ();
 	}
 
 	void Update ()
 	{
+		if (canMove) {
+			rigidbody2D.velocity = speed;
+		}
 		if (inFront) {
 			foreach (Renderer sprite in sprites) {
 				if (!sprite.name.Contains ("Ground Shadow") && sprite.sortingLayerName != "Obstacles-Behind") {
@@ -35,7 +41,7 @@ public class Obstacle : MonoBehaviour
 			if (transform.position.x > GameObject.FindObjectOfType<PlayerControls> ().transform.position.x + 40f) {
 				destroyObstacle ();
 			} else {
-				if (Mathf.Abs (transform.position.y) > 10f) {
+				if (40f < Mathf.Abs (transform.position.x - Camera.main.transform.position.x)) {
 					destroyObstacle ();
 				}
 			}
@@ -44,12 +50,16 @@ public class Obstacle : MonoBehaviour
 	
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		inFront = true;
+		if (other.gameObject == player.gameObject) {
+			inFront = true;
+		}
 	}
 
 	void OnTriggerExit2D (Collider2D other)
 	{
-		inFront = false;
+		if (other.gameObject == player.gameObject) {
+			inFront = false;
+		}
 	}
 
 	public void collisionDetected ()
@@ -62,4 +72,9 @@ public class Obstacle : MonoBehaviour
 		Destroy (gameObject);
 	}
 
+	public void stopMoving ()
+	{
+		canMove = false;
+		rigidbody2D.velocity = new Vector2 (0, 0);
+	}
 }

@@ -45,8 +45,6 @@ public class PainBar : MonoBehaviour
 		GetComponent<Animator> ().SetFloat ("Pain", painPoints);
 		
 		if (painPoints <= 100f) { // Change health bar sized based on current pain points
-
-
 			transform.localScale = new Vector3 ((painPoints / 100f) * maxPainBarSize, 
 			                                    transform.localScale.y, 
 			                                    transform.localScale.z);
@@ -67,34 +65,39 @@ public class PainBar : MonoBehaviour
 	{
 		if (obj.name.Contains ("Doctor") || obj.name.Contains ("First Aid")) {
 			painPoints = 0f;
-		}
+		} else {
 		
-		if (obj.name.Contains ("Infection")) {
-			PlayerControls player = GameObject.FindObjectOfType<PlayerControls> ();
-			if (obj.name.Contains ("Red")) {
-				painPoints += 35f;
+			if (obj.name.Contains ("Infection")) {
+				PlayerControls player = GameObject.FindObjectOfType<PlayerControls> ();
+				if (obj.name.Contains ("Red")) {
+					painPoints += 35f;
+
+				} else {
+					if (obj.name.Contains ("Yellow")) {
+						painPoints += 20f;
+						player.decrementSpeed (0.15f * player.maxSpeed.x); // Slows character down by 15% of normal speed
+					} else { // infection is green
+						painPoints += 5f;
+						player.decrementSpeed (0.05f * player.maxSpeed.x); // Slows character down by 5% of normal speed
+					}
+				}
 
 			} else {
-				if (obj.name.Contains ("Yellow")) {
-					painPoints += 20f;
-					player.decrementSpeed (0.15f * player.maxSpeed.x); // Slows character down by 15% of normal speed
-				} else { // infection is green
-					painPoints += 5f;
-					player.decrementSpeed (0.05f * player.maxSpeed.x); // Slows character down by 5% of normal speed
-				}
-			}
-
-		} else {
-			if (obj.name.Contains ("Power Up")) {
-				if (obj.name.Contains ("Water Bottle")) {
-					painPoints -= 25f;
-				} else {
-					if (!scoreKeeper.pillBottleUsed ()) {
-						painPoints -= 75f;
+				if (obj.name.Contains ("Power Up")) {
+					if (obj.name.Contains ("Water Bottle")) {
+						painPoints -= 25f;
 					} else {
-						Debug.Log ("ERROR - Only one Pill Bottle Per Level");
-					}
+						if (!scoreKeeper.pillBottleUsed ()) {
+							painPoints -= 75f;
+						} else {
+							Debug.Log ("ERROR - Only one Pill Bottle Per Level");
+						}
 
+					}
+				} else {
+					if (obj.name.Contains ("Lawnmower")) {
+						painPoints += 40f;
+					}
 				}
 			}
 		}
