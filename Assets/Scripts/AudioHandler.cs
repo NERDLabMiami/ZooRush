@@ -82,9 +82,6 @@ public class AudioHandler : MonoBehaviour
 	
 	void Update ()
 	{
-		if (musicTrack.audio.isPlaying) {
-			Debug.Log ("LOL");
-		}
 		music = (PlayerPrefs.GetString ("Music").Equals ("ON")) ? true : false;
 		sound = (PlayerPrefs.GetString ("Sound").Equals ("ON")) ? true : false;
 		if (music) {

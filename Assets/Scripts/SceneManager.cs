@@ -72,7 +72,6 @@ public class SceneManager : MonoBehaviour
 					isPlaying = false;
 					StartCoroutine (displayScore ());
 				} else {
-<<<<<<< HEAD
 					if (!tutEnabled) {
 						if (currentDistanceDiff < distanceDiffMin) {
 							playerControl.setSpeed (animalControl.speed);
@@ -80,20 +79,19 @@ public class SceneManager : MonoBehaviour
 						} else {
 							netLauncher.launchEnabled = false;
 						}
-=======
-					if (fainted) {
-						isPlaying = false;
-						StartCoroutine (displayFainted ());
->>>>>>> 9d6437fe53178dd6992de4d64e51c4dce65ab3e1
-					} else {
-						if (currentDistanceDiff < distanceDiffMin) {
-							playerControl.setSpeed (animalControl.speed);
-							netLauncher.launchEnabled = true;
+						if (fainted) {
+							isPlaying = false;
+							StartCoroutine (displayFainted ());
 						} else {
-							netLauncher.launchEnabled = false;
+							if (currentDistanceDiff < distanceDiffMin) {
+								playerControl.setSpeed (animalControl.speed);
+								netLauncher.launchEnabled = true;
+							} else {
+								netLauncher.launchEnabled = false;
+							}
 						}
-					}
 
+					}
 				}
 			}
 		}
