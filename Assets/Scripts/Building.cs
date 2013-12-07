@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+/** Script for character interactable buildings.
+ * @author: Ebtissam Wahman
+ * 
+ */ 
 public class Building : MonoBehaviour
 {
 	private Animator animate;

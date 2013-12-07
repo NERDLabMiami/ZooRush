@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
+/** Handles sortling Layer values for non sprite renderers.
+ * @author: Ebtissam Wahman
+ */ 
 public class SortingLayer : MonoBehaviour
 {
 	public string sortingLayerName;

@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/** Handles text and sequencing for the introduction story mode.
+ * @author: Ebtissam Wahman
+ */ 
+
 public class IntroStoryScene : MonoBehaviour
 {
 	private TextMesh dialogText;

@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Globalization;
 
+/** Handler for Game Options Menu.
+ * @author: Ebtissam Wahman
+ */ 
 
 public class GameOptions : MonoBehaviour
 {	
