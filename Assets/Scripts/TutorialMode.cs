@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+<<<<<<< HEAD
 /** Text and object position handler for tutorial mode.
  * @author: Ebtissam Wahman
  * 
  */ 
+=======
+using System.Threading;
+
+>>>>>>> 9d6437fe53178dd6992de4d64e51c4dce65ab3e1
 public class TutorialMode : MonoBehaviour
 {
 	private bool tutorialEnabled;
@@ -37,7 +42,7 @@ public class TutorialMode : MonoBehaviour
 		firstAidDialog = false;
 		i = 0;
 		tutText = GameObject.Find ("GUI - Tutorial Text");
-		objectScanner = GameObject.Find ("Tutorial - Object Scanner");
+		objectScanner = GameObject.Find ("Dialog Object Scanner");
 		tutText.GetComponent<TextMesh> ().text = "";
 		tutText.GetComponentInChildren<SpriteRenderer> ().enabled = false;
 	}
@@ -49,42 +54,40 @@ public class TutorialMode : MonoBehaviour
 			//First check for intro dialog
 			//Second check for pain dialog
 			//Then check for the presence of any other objects
-			if (!introDialog && !dialogPresent) {
-				tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
-				tutText.transform.localPosition = new Vector3 (-3f, 0.5f, tutText.transform.localPosition.z);
-				tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [2]; // speech bubble without pointer
-				sceneManager.isPlaying = false;
-				dialogSequene (introDialogScript, ref introDialog);
-			} else {
-				if (!distanceBarDialog && !dialogPresent) {
-					tutText.transform.localPosition = new Vector3 (-3f, -2.2f, tutText.transform.localPosition.z);
-					tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
-					if (i > 0) {
-						tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [0]; // speech bubble points bottom left
-					} else {
-						tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [2]; // speech bubble without pointer
-					}
-
-					sceneManager.isPlaying = false;
-					dialogSequene (distanceBarDialogScript, ref distanceBarDialog);
+			if (!introDialog) {
+				if (!dialogPresent) {
+					//Wait before displaying
+					StartCoroutine (wait (3f));
 				} else {
-					if (!painBarDialog && !dialogPresent) {
+					tutText.transform.localPosition = new Vector3 (-3f, 0.5f, tutText.transform.localPosition.z);
+					tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [2]; // speech bubble without pointer
+					dialogSequene (introDialogScript, ref introDialog);
+				}
+			} else {
+				if (!distanceBarDialog) {
+					if (!dialogPresent) {
+					
+					} else {
+						tutText.transform.localPosition = new Vector3 (-3f, -2.2f, tutText.transform.localPosition.z);
+						if (i > 0) {
+							tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [0]; // speech bubble points bottom left
+						} else {
+							tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [2]; // speech bubble without pointer
+						}
+						dialogSequene (distanceBarDialogScript, ref distanceBarDialog);
+					}
+					
+				} else {
+					if (!painBarDialog) {
 						tutText.transform.localPosition = new Vector3 (-4.5f, 3.8f, tutText.transform.localPosition.z);
-						tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
 						tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [1]; // speech bubble points to top right
-						sceneManager.isPlaying = false;
 						dialogSequene (painBarDialogScript, ref painBarDialog);
 					} else {
-
-						if (detected.collider != null && !dialogPresent) {
-
-
+						if (detected.collider != null) {
 							if (detected.collider.name.Contains ("Doctor")) {
 								if (!firstAidDialog) {
 									tutText.transform.localPosition = new Vector3 (0.5f, 4f, tutText.transform.localPosition.z);
 									tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [0]; // speech bubble points bottom left
-									tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
-									sceneManager.isPlaying = false;
 									dialogSequene (fisrtAidDialogScript, ref firstAidDialog);
 								}
 							}
@@ -93,8 +96,6 @@ public class TutorialMode : MonoBehaviour
 								if (!infectionDialog) {
 									tutText.transform.position = new Vector3 (detected.transform.position.x + 1.5f, detected.transform.position.y + 2f, tutText.transform.position.z);
 									tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [0]; // speech bubble points bottom left
-									tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
-									sceneManager.isPlaying = false;
 									dialogSequene (infectionDialogScript, ref infectionDialog);
 								}
 							}
@@ -103,8 +104,6 @@ public class TutorialMode : MonoBehaviour
 								if (!powerUpDialog) {
 									tutText.transform.position = new Vector3 (detected.transform.position.x + 1.5f, detected.transform.position.y + 2f, tutText.transform.position.z);
 									tutText.GetComponentInChildren<SpriteRenderer> ().sprite = speechBubbles [0]; // speech bubble points bottom left
-									tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
-									sceneManager.isPlaying = false;
 									dialogSequene (powerUpDialogScript, ref powerUpDialog);
 								}
 							}
@@ -114,6 +113,12 @@ public class TutorialMode : MonoBehaviour
 			}
 		}
 
+	}
+	
+	private IEnumerator wait (float time)
+	{
+		yield return new WaitForSeconds (time);
+		dialogPresent = true;
 	}
 
 	private string[] introDialogScript = {
@@ -152,6 +157,8 @@ public class TutorialMode : MonoBehaviour
 
 	private void dialogSequene (string[] dialog, ref bool finished)
 	{
+		sceneManager.isPlaying = false;
+		tutText.GetComponentInChildren<SpriteRenderer> ().enabled = true;
 		tutText.GetComponent<TextMesh> ().text = dialog [i];
 		if (InputManager.enter) {
 			i++;
@@ -159,7 +166,6 @@ public class TutorialMode : MonoBehaviour
 		if (i >= dialog.Length) {
 			tutText.GetComponent<TextMesh> ().text = "";
 			tutText.GetComponentInChildren<SpriteRenderer> ().enabled = false;
-			dialogPresent = true;
 			sceneManager.isPlaying = true;
 			finished = true;
 			i = 0;

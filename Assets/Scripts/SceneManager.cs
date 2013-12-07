@@ -43,13 +43,12 @@ public class SceneManager : MonoBehaviour
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
-		//TODO Make object finding better and less name dependent
 		character = GameObject.FindGameObjectWithTag ("character");
 		animal = GameObject.FindGameObjectWithTag ("animal");
 		
 		screenDimmer = GameObject.Find ("GUI - Level Dimmer");
 		
-		distanceDiffMin = 8f;
+		distanceDiffMin = 6.5f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 		painBar = GameObject.Find ("Pain Bar");
 		timeIndicator = GameObject.Find ("GUI - Time");
@@ -63,17 +62,17 @@ public class SceneManager : MonoBehaviour
 	{
 		currentDistanceDiff = Mathf.Abs (animal.transform.localPosition.x - character.transform.localPosition.x);
 		if (levelStartWait) {
-			StartCoroutine (wait (waitTime));
-		}
-		if (isPlaying) {
-			if (animalControl.caught) {
-				isPlaying = false;
-				StartCoroutine (displayScore ());
-			} else {
-				if (fainted) {
+			if (currentDistanceDiff > 18f) {
+				levelStartWait = false;
+			}
+			
+		} else {
+			if (isPlaying) {
+				if (animalControl.caught) {
 					isPlaying = false;
-					StartCoroutine (displayFainted ());
+					StartCoroutine (displayScore ());
 				} else {
+<<<<<<< HEAD
 					if (!tutEnabled) {
 						if (currentDistanceDiff < distanceDiffMin) {
 							playerControl.setSpeed (animalControl.speed);
@@ -81,20 +80,23 @@ public class SceneManager : MonoBehaviour
 						} else {
 							netLauncher.launchEnabled = false;
 						}
+=======
+					if (fainted) {
+						isPlaying = false;
+						StartCoroutine (displayFainted ());
+>>>>>>> 9d6437fe53178dd6992de4d64e51c4dce65ab3e1
 					} else {
-						netLauncher.launchEnabled = false;
+						if (currentDistanceDiff < distanceDiffMin) {
+							playerControl.setSpeed (animalControl.speed);
+							netLauncher.launchEnabled = true;
+						} else {
+							netLauncher.launchEnabled = false;
+						}
 					}
 
 				}
 			}
 		}
-	}
-	
-	private IEnumerator wait (float time)
-	{
-		levelStartWait = false;
-		yield return new WaitForSeconds (time);
-		playerControl.setSpeed ();
 	}
 	
 	private IEnumerator displayFainted ()
