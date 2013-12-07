@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-<<<<<<< HEAD
 /** Text and object position handler for tutorial mode.
  * @author: Ebtissam Wahman
  * 
  */ 
-=======
 using System.Threading;
 
->>>>>>> 9d6437fe53178dd6992de4d64e51c4dce65ab3e1
 public class TutorialMode : MonoBehaviour
 {
 	private bool tutorialEnabled;
