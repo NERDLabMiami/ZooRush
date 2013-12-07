@@ -35,7 +35,7 @@ public class TutorialMode : MonoBehaviour
 		firstAidDialog = false;
 		i = 0;
 		tutText = GameObject.Find ("GUI - Tutorial Text");
-		objectScanner = GameObject.Find ("Tutorial - Object Scanner");
+		objectScanner = GameObject.Find ("Dialog Object Scanner");
 		tutText.GetComponent<TextMesh> ().text = "";
 		tutText.GetComponentInChildren<SpriteRenderer> ().enabled = false;
 	}
@@ -111,7 +111,6 @@ public class TutorialMode : MonoBehaviour
 	private IEnumerator wait (float time)
 	{
 		yield return new WaitForSeconds (time);
-		Debug.Log ("Wait");
 		dialogPresent = true;
 	}
 

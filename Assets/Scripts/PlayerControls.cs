@@ -10,7 +10,6 @@ public class PlayerControls : MonoBehaviour
 	private float minSpeed;
 	public Vector2 maxSpeed;
 
-	private float xDelta;
 	private float yMovement;
 	
 	private Animator animate;
@@ -31,7 +30,6 @@ public class PlayerControls : MonoBehaviour
 		maxSpeed.x = 5f;
 		maxSpeed.y = 3f;
 		minSpeed = 1f;
-		xDelta = 0f;
 	}
 
 	void FixedUpdate ()
