@@ -45,9 +45,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 302
+        y: 334
         width: 514
-        height: 587
+        height: 555
       alignment: 9
       pivot: {x: .178339824, y: 0}
     - name: Beach_1
@@ -68,5 +68,14 @@ TextureImporter:
         height: 589
       alignment: 9
       pivot: {x: 1, y: .303810686}
+    - name: Beach_3
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 240
+        width: 165
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 
