@@ -43,27 +43,25 @@ public class CollisionDetect : MonoBehaviour
 						signalSent = true;
 						GameObject.FindObjectOfType<PainBar> ().GetComponent<PainBar> ().objectInteraction (transform.parent.gameObject);
 						GameObject.FindObjectOfType<AudioHandler> ().playSound ("INFECTION");
-
 					}
 					Obstacle parent = transform.parent.GetComponent<Obstacle> ();
 					parent.collisionDetected ();
 					other.GetComponent<PlayerControls> ().resetSpeed ();
-
 				} else {
+					if (canMove) {
+						transform.parent.GetComponent<Obstacle> ().stopMoving ();
+						if (transform.parent.name.Contains ("Car")) {
+							GameObject.FindObjectOfType<SceneManager> ().fainted = true;
+						}
+						if (transform.parent.name.Contains ("Lawnmower")) {
+							GameObject.FindObjectOfType<PainBar> ().objectInteraction (transform.parent.gameObject);
+						}
+					} 
 					other.GetComponent<PlayerControls> ().resetSpeed ();
 
 				}
 			}
 		}
 
-	}
-
-	void OnCollisionEnter2D (Collision2D coll)
-	{
-		if (canMove) {
-			transform.parent.rigidbody2D.AddForce (new Vector2 (200f, 0f));
-			gameObject.collider2D.isTrigger = true;
-			transform.parent.collider2D.enabled = false;
-		} 
 	}
 }

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/** Repeats scene objects in order to create a seamless loop.
+ * @author: Ebtissam Wahman
+ */ 
 public class SceneRepeater : MonoBehaviour
 {
 	private SpriteRenderer[] sceneObjects;
