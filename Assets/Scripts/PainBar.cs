@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+/** Controller for the character Pain Bar.
+ * @author: Ebtissam Wahman
+ */ 
 public class PainBar : MonoBehaviour
 {
 	public float painRate; // using 3.5f atm

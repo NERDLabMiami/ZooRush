@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/** Handles options for the level Menu.
+ * @author: Ebtissam Wahman
+ */ 
 public class LevelMenu : MonoBehaviour
 {
 

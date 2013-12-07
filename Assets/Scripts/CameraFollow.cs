@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/** Script to make the camera follow the character.
+ * @author: Ebtissam Wahman
+ * 
+ */ 
 public class CameraFollow : MonoBehaviour
 {
 	private GameObject character;
