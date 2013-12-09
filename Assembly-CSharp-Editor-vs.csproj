@@ -48,7 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Editor\LevelEditor.cs" />
      <Compile Include="Assets\Editor\SortingLayerEditor.cs" />
-     <None Include="Assets\Resources\Sprites\Objects\Obstacles\Lawnmower.txt" />
+     <None Include="Assets\Resources\Sprites\Objects\Obstacles\TrashCan.txt" />
  <Reference Include="\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>

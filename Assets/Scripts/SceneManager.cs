@@ -117,6 +117,7 @@ public class SceneManager : MonoBehaviour
 		dimScreen ();
 		
 		int[] scores = scoreKeeper.getScore ();
+		scoreStore (scores);
 		GameObject menu = GameObject.Find (menus [2].name);
 		if (menu == null) {
 			menu = Instantiate (menus [2]) as GameObject;
@@ -197,6 +198,30 @@ public class SceneManager : MonoBehaviour
 		unlockLevel ();
 		
 	}
+	
+	private void scoreStore (int[] score)
+	{
+		if (PlayerPrefs.HasKey (Application.loadedLevelName + "Stars")) {
+			int currentHigh = PlayerPrefs.GetInt (Application.loadedLevelName + "Stars");
+			if (currentHigh < score [6]) {
+				PlayerPrefs.SetInt (Application.loadedLevelName + "Stars", score [6]);
+				PlayerPrefs.SetInt (Application.loadedLevelName + "RedInfections", score [0]);
+				PlayerPrefs.SetInt (Application.loadedLevelName + "YellowInfections", score [1]);
+				PlayerPrefs.SetInt (Application.loadedLevelName + "GreenInfections", score [2]);
+				PlayerPrefs.SetInt (Application.loadedLevelName + "WaterBottles", score [3]);
+				PlayerPrefs.SetInt (Application.loadedLevelName + "PillBottle", score [4]);
+				PlayerPrefs.SetInt (Application.loadedLevelName + "Time", score [5]);
+			}
+		} else {
+			PlayerPrefs.SetInt (Application.loadedLevelName + "Stars", score [6]);
+			PlayerPrefs.SetInt (Application.loadedLevelName + "RedInfections", score [0]);
+			PlayerPrefs.SetInt (Application.loadedLevelName + "YellowInfections", score [1]);
+			PlayerPrefs.SetInt (Application.loadedLevelName + "GreenInfections", score [2]);
+			PlayerPrefs.SetInt (Application.loadedLevelName + "WaterBottles", score [3]);
+			PlayerPrefs.SetInt (Application.loadedLevelName + "PillBottle", score [4]);
+			PlayerPrefs.SetInt (Application.loadedLevelName + "Time", score [5]);
+		}
+	}
 
 	private void dimScreen ()
 	{
@@ -204,6 +229,8 @@ public class SceneManager : MonoBehaviour
 		painBar.SetActive (false);
 		screenDimmer.GetComponent<SpriteRenderer> ().enabled = true;
 	}
+	
+	
 
 	private void lightScreen ()
 	{
