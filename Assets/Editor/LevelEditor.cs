@@ -33,6 +33,13 @@ public class LevelEditor : EditorWindow
 			levelEditorEnable = EditorGUILayout.Toggle (levelEditorEnable);
 		}
 		EditorGUILayout.EndHorizontal ();
+		EditorGUILayout.BeginHorizontal ();
+		{
+			if (GUILayout.Button ("Reset Player Prefs")) {
+				PlayerPrefs.DeleteAll ();
+			}
+		}
+		EditorGUILayout.EndHorizontal ();
 	}
 	
 	

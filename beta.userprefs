@@ -1,12 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/SortingLayerEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelMenu.cs">
     <Files>
-      <File FileName="Assets/Scripts/DialogHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/TutorialMode.cs" Line="1" Column="1" />
-      <File FileName="Assets/Editor/SortingLayerEditor.cs" Line="21" Column="23" />
-      <File FileName="Assets/Scripts/SortingLayer.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/LevelMenu.cs" Line="61" Column="4" />
+      <File FileName="Assets/Scripts/LevelOption.cs" Line="32" Column="2" />
+      <File FileName="Assets/Scripts/CameraFollow.cs" Line="43" Column="67" />
+      <File FileName="Assets/Scripts/InputManager.cs" Line="106" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\IntroStoryScene.cs" />
      <Compile Include="Assets\Scripts\LevelMenu.cs" />
+     <Compile Include="Assets\Scripts\LevelOption.cs" />
      <Compile Include="Assets\Scripts\MovingObjectSpawner.cs" />
      <Compile Include="Assets\Scripts\NetLauncher.cs" />
      <Compile Include="Assets\Scripts\Obstacle.cs" />
@@ -72,7 +73,7 @@
      <Compile Include="Assets\Scripts\StartMenu.cs" />
      <Compile Include="Assets\Scripts\TextOption.cs" />
      <Compile Include="Assets\Scripts\TutorialMode.cs" />
-     <None Include="Assets\Resources\Sprites\Objects\Obstacles\Lawnmower.txt" />
+     <None Include="Assets\Resources\Sprites\Objects\Obstacles\TrashCan.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
