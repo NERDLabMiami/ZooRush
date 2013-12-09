@@ -1,0 +1,36 @@
+{"frames": {
+
+"TrashCan.png":
+{
+	"frame": {"x":4,"y":4,"w":426,"h":553},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":426,"h":553},
+	"sourceSize": {"w":426,"h":553}
+},
+"TrashCanShadow.png":
+{
+	"frame": {"x":434,"y":4,"w":711,"h":289},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":711,"h":289},
+	"sourceSize": {"w":711,"h":289}
+},
+"WithTrash.png":
+{
+	"frame": {"x":1149,"y":4,"w":426,"h":607},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":426,"h":607},
+	"sourceSize": {"w":426,"h":607}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "TrashCan.png",
+	"format": "RGBA8888",
+	"size": {"w":1579,"h":615},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:e9cd9a4d72dda8857de3a13a6e63a72a:98fe2faa6acd9a07eaffc4cc2592b026:c0bc9b1e3c38193c84b61080463af848$"
+}
+}

@@ -6,59 +6,63 @@ using System.Collections;
  */ 
 public class LevelMenu : MonoBehaviour
 {
-
-	private GameObject[] levels;
+	private LevelOption[] levels;
 	private GameObject back;
-	private string[] levelNames = {"Level 1", "Level 2", "Level 3"};
 	private bool[] levelEnabled;
 
 	private int levelsUnlocked;
-
+	private int currentFocused;
+	private int previousLevel;
+	
 	void Start ()
 	{
-		levels = GameObject.FindGameObjectsWithTag ("option");
+		levels = new LevelOption[] {
+			GameObject.Find ("Level - Tortoise").GetComponent<LevelOption> (),
+			GameObject.Find ("Level - Crocodile").GetComponent<LevelOption> (),
+			GameObject.Find ("Level - Flamingo").GetComponent<LevelOption> (),
+			GameObject.Find ("Level - Gorilla").GetComponent<LevelOption> ()
+		};
+		
 		levelsUnlocked = 0;
 		back = GameObject.Find ("Text - Back");
 		back.GetComponent<TextOption> ().optionEnabled = true;
-		levelEnabled = new bool[levelNames.Length];
-		if (!PlayerPrefs.HasKey ("Level 1")) {
-			PlayerPrefs.SetString ("Level 1", "true");
-			levelsUnlocked++;
-		}
-
-		for (int i = 0; i < levelNames.Length; i++) {
-			if (PlayerPrefs.HasKey (levelNames [i])) {
-				levelEnabled [i] = PlayerPrefs.GetString (levelNames [i]).Equals ("true");
-				if (levelEnabled [i]) {
+		levelEnabled = new bool[levels.Length];
+		
+		foreach (LevelOption level in levels) {
+			if (PlayerPrefs.HasKey (level.SceneName)) {
+				if (PlayerPrefs.GetInt (level.SceneName) > 0) {
 					levelsUnlocked++;
 				}
-			} else {
-				levelEnabled [i] = false;
 			}
-			foreach (GameObject level in levels) {
-				if (level.name.Contains (levelNames [i])) {
-					if (levelEnabled [i]) {
-						enableLevel (level);
-					} else {
-						disableLevel (level);
-					}
+		}
+		
+		if (PlayerPrefs.HasKey ("Previous Level Played")) {
+			previousLevel = PlayerPrefs.GetInt ("Previous Level Played");
+		} else {
+			previousLevel = 0;
+			PlayerPrefs.SetInt ("Previous Level Played", previousLevel);
+		}
+		
+		currentFocused = previousLevel;
+	}
+	
+	void Update ()
+	{	
+		if (InputManager.left) {
+			if (currentFocused > 0) {
+				currentFocused--;
+			}
+		} else { 
+			if (InputManager.right) {
+				if (currentFocused < levelsUnlocked) {
+					currentFocused++;
 				}
 			}
 		}
-		PlayerPrefs.SetInt ("Levels Unlocked", levelsUnlocked);
-	}
-
-	private void enableLevel (GameObject level)
-	{
-		level.GetComponent<SpriteRenderer> ().color = Color.white;
-		level.GetComponentInChildren<TextMesh> ().color = Color.white;
-		level.GetComponentInChildren<TextOption> ().optionEnabled = true;
-	}
-
-	private void disableLevel (GameObject level)
-	{
-		level.GetComponent<SpriteRenderer> ().color = Color.grey;
-		level.GetComponentInChildren<TextMesh> ().color = Color.grey;
-		level.GetComponentInChildren<TextOption> ().optionEnabled = false;
+		Camera.main.transform.position = Vector3.Lerp (Camera.main.transform.position,
+		                                        new Vector3 (levels [currentFocused].transform.localPosition.x, 
+		             										Camera.main.transform.position.y, 
+		             										Camera.main.transform.position.z),
+		                                        3f * Time.deltaTime);
 	}
 }
