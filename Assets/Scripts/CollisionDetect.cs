@@ -27,6 +27,10 @@ public class CollisionDetect : MonoBehaviour
 					GameObject.FindObjectOfType<PainBar> ().GetComponent<PainBar> ().objectInteraction (transform.parent.gameObject);
 					if (transform.parent.gameObject.name.Contains ("Pill")) {
 						GameObject.FindObjectOfType<AudioHandler> ().playSound ("PILL");
+					} else {
+						if (transform.parent.gameObject.name.Contains ("Water Bottle")) {
+							GameObject.FindObjectOfType<AudioHandler> ().playSound ("WATERDRINK");
+						}
 					}
 				}
 				other.GetComponent<PlayerControls> ().flash ();

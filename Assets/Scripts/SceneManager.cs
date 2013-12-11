@@ -72,25 +72,24 @@ public class SceneManager : MonoBehaviour
 					isPlaying = false;
 					StartCoroutine (displayScore ());
 				} else {
-					if (!tutEnabled) {
+					if (currentDistanceDiff < distanceDiffMin) {
+						playerControl.setSpeed (animalControl.speed);
+						netLauncher.launchEnabled = true;
+					} else {
+						netLauncher.launchEnabled = false;
+					}
+					if (fainted) {
+						isPlaying = false;
+						StartCoroutine (displayFainted ());
+					} else {
 						if (currentDistanceDiff < distanceDiffMin) {
 							playerControl.setSpeed (animalControl.speed);
 							netLauncher.launchEnabled = true;
 						} else {
 							netLauncher.launchEnabled = false;
 						}
-						if (fainted) {
-							isPlaying = false;
-							StartCoroutine (displayFainted ());
-						} else {
-							if (currentDistanceDiff < distanceDiffMin) {
-								playerControl.setSpeed (animalControl.speed);
-								netLauncher.launchEnabled = true;
-							} else {
-								netLauncher.launchEnabled = false;
-							}
-						}
 					}
+					
 				}
 			}
 		}

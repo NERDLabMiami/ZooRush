@@ -66,6 +66,7 @@ public class AudioHandler : MonoBehaviour
 		audioClips.Add ("INFECTION", Resources.Load ("Sounds/SOUND_FXS/INFECTION", typeof(AudioClip)) as AudioClip);
 		audioClips.Add ("JUMP", Resources.Load ("Sounds/SOUND_FXS/JUMP", typeof(AudioClip)) as AudioClip);
 		audioClips.Add ("PILL", Resources.Load ("Sounds/SOUND_FXS/PILL", typeof(AudioClip)) as AudioClip);
+		audioClips.Add ("WATERDRINK", Resources.Load ("Sounds/SOUND_FXS/WATERDRINK", typeof(AudioClip)) as AudioClip);
 		audioClips.Add ("SOFTSICKLOOP", Resources.Load ("Sounds/SOUND_FXS/SOFTSICKLOOP", typeof(AudioClip)) as AudioClip);
 
 		//MUSIC
