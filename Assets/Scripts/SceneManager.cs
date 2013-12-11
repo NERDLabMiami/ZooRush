@@ -8,6 +8,7 @@ using System.Collections;
  */ 
 public class SceneManager : MonoBehaviour
 {
+	public string NextSceneName;
 	public float distanceDiffMin;
 	public float currentDistanceDiff;
 	public float waitTime;
@@ -15,7 +16,6 @@ public class SceneManager : MonoBehaviour
 	public float targetTimeVar;
 	public float multiplier1;
 	public float multiplier2;
-	
 	public GameObject[] menus;
 	private GameObject screenDimmer;
 	
@@ -90,7 +90,6 @@ public class SceneManager : MonoBehaviour
 								netLauncher.launchEnabled = false;
 							}
 						}
-
 					}
 				}
 			}
@@ -230,8 +229,6 @@ public class SceneManager : MonoBehaviour
 		screenDimmer.GetComponent<SpriteRenderer> ().enabled = true;
 	}
 	
-	
-
 	private void lightScreen ()
 	{
 		timeIndicator.SetActive (true);
@@ -241,8 +238,7 @@ public class SceneManager : MonoBehaviour
 
 	private void unlockLevel ()
 	{
-		string levelName = "Level " + (levelNumber + 1);
-		PlayerPrefs.SetString (levelName, "true");
+		PlayerPrefs.SetString (NextSceneName, "true");
 	}
 
 }

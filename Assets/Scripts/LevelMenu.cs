@@ -30,8 +30,9 @@ public class LevelMenu : MonoBehaviour
 		
 		foreach (LevelOption level in levels) {
 			if (PlayerPrefs.HasKey (level.SceneName)) {
-				if (PlayerPrefs.GetInt (level.SceneName) > 0) {
+				if (PlayerPrefs.GetInt (level.SceneName) > 0) { // if the level is unlocked
 					levelsUnlocked++;
+					level.unlocked = true;
 				}
 			}
 		}
@@ -64,5 +65,8 @@ public class LevelMenu : MonoBehaviour
 		             										Camera.main.transform.position.y, 
 		             										Camera.main.transform.position.z),
 		                                        3f * Time.deltaTime);
+		if (InputManager.enter) {
+			levels [currentFocused].activated = true;
+		}
 	}
 }
