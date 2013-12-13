@@ -3,15 +3,16 @@ using System.Collections;
 
 public class DialogTrigger : MonoBehaviour
 {
+	public int size;
+	public string[] textDisplay;
 	public bool isTriggered;
 	public float waitTime;
-		
 	private bool dialogOver;
 	private GameObject dialogBox;
 	private TextMesh[] text;
 	
 	void Start ()
-	{
+	{	
 		dialogOver = false;
 		dialogBox = GetComponentInChildren<SpriteRenderer> ().gameObject;
 		dialogBox.renderer.enabled = false;

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 784aad15258d34709963140e92fcd50b
+guid: d5dacf87e272d4a50aaafd372a13ed89
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -38,43 +38,20 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: Beach_0
+    - name: darkerbridge_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 302
-        width: 514
-        height: 587
-      alignment: 9
-      pivot: {x: .178339824, y: 0}
-    - name: Beach_1
-      rect:
-        serializedVersion: 2
-        x: 519
-        y: 3
-        width: 829
-        height: 886
-      alignment: 9
-      pivot: {x: .519999981, y: 0}
-    - name: Beach_2
-      rect:
-        serializedVersion: 2
-        x: 1350
-        y: 300
-        width: 663
-        height: 589
-      alignment: 9
-      pivot: {x: 1, y: .303810686}
-    - name: Beach_3
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 240
-        width: 165
-        height: 42
+        x: 4
+        y: 0
+        width: 2123
+        height: 727
       alignment: 0
       pivot: {x: .5, y: .5}
   spritePackingTag: 
