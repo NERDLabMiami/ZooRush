@@ -7,7 +7,6 @@ public class DialogTrigger : MonoBehaviour
 	public string[] textDisplay;
 	public bool isTriggered;
 	public float waitTime;
-		
 	private bool dialogOver;
 	private GameObject dialogBox;
 	private TextMesh[] text;
