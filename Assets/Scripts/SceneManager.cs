@@ -33,12 +33,14 @@ public class SceneManager : MonoBehaviour
 	public bool isPlaying;
 	public bool tutEnabled;
 	public bool fainted;
+	public bool hitByVehicle;
 		
 	void Start ()
 	{
 		isPlaying = true;
 		levelStartWait = true;
 		fainted = false;
+		hitByVehicle = false;
 		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
@@ -82,11 +84,15 @@ public class SceneManager : MonoBehaviour
 						isPlaying = false;
 						StartCoroutine (displayFainted ());
 					} else {
-						if (currentDistanceDiff < distanceDiffMin) {
-							playerControl.setSpeed (animalControl.speed);
-							netLauncher.launchEnabled = true;
+						if (hitByVehicle) {
+							
 						} else {
-							netLauncher.launchEnabled = false;
+							if (currentDistanceDiff < distanceDiffMin) {
+								playerControl.setSpeed (animalControl.speed);
+								netLauncher.launchEnabled = true;
+							} else {
+								netLauncher.launchEnabled = false;
+							}
 						}
 					}
 					
@@ -95,16 +101,34 @@ public class SceneManager : MonoBehaviour
 		}
 	}
 	
+	private IEnumerator displayGotHit ()
+	{
+		yield return new WaitForSeconds (0.1f);
+		dimScreen ();
+		if (GameObject.Find ("GUI Menu - Fainted") != null) {
+			GameObject menu = GameObject.Find (menus [1].name);
+			if (menu == null) {
+				menu = Instantiate (menus [1]) as GameObject;
+				GameObject.Find ("Menu - Title Text").GetComponent<TextMesh> ().text = "You Got Hit!";
+				menu.transform.parent = Camera.main.transform;
+				menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
+			}
+		}
+	}
+	
 	private IEnumerator displayFainted ()
 	{
 		yield return new WaitForSeconds (0.1f);
 		dimScreen ();
+		if (GameObject.Find ("GUI Menu - Fainted") != null) {
 		
-		GameObject menu = GameObject.Find (menus [1].name);
-		if (menu == null) {
-			menu = Instantiate (menus [1]) as GameObject;
-			menu.transform.parent = Camera.main.transform;
-			menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
+		
+			GameObject menu = GameObject.Find (menus [1].name);
+			if (menu == null) {
+				menu = Instantiate (menus [1]) as GameObject;
+				menu.transform.parent = Camera.main.transform;
+				menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
+			}
 		}
 	}
 
@@ -222,7 +246,7 @@ public class SceneManager : MonoBehaviour
 
 	private void dimScreen ()
 	{
-		timeIndicator.SetActive (false);
+//		timeIndicator.SetActive (false);
 		painBar.SetActive (false);
 		screenDimmer.GetComponent<SpriteRenderer> ().enabled = true;
 	}
