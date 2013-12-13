@@ -36,7 +36,7 @@ public class ScoreKeeper : MonoBehaviour
 		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
 			timeElapsed += Time.deltaTime;
 		}
-		displayTime ();
+//		displayTime ();
 	}
 
 	public void addToCount (GameObject obj)

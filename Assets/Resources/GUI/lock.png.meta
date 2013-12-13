@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 669c67944faa747909ac8cf4f5ac5b19
+guid: 74c505a25bcc14f8a96fec58fcc7e8fb
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -24,13 +24,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -44,24 +44,6 @@ TextureImporter:
     textureFormat: -2
     compressionQuality: 50
   spriteSheet:
-    sprites:
-    - name: ballon2_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 447
-        height: 272
-      alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: ballon2_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 105
-        height: 154
-      alignment: 0
-      pivot: {x: .5, y: .5}
+    sprites: []
   spritePackingTag: 
   userData: 

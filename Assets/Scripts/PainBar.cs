@@ -79,10 +79,10 @@ public class PainBar : MonoBehaviour
 				} else {
 					if (obj.name.Contains ("Yellow")) {
 						painPoints += 20f;
-						player.decrementSpeed (0.15f * player.maxSpeed.x); // Slows character down by 15% of normal speed
+						//player.decrementSpeed (0.15f * player.maxSpeed.x); // Slows character down by 15% of normal speed
 					} else { // infection is green
 						painPoints += 5f;
-						player.decrementSpeed (0.05f * player.maxSpeed.x); // Slows character down by 5% of normal speed
+						//player.decrementSpeed (0.05f * player.maxSpeed.x); // Slows character down by 5% of normal speed
 					}
 				}
 

@@ -20,7 +20,6 @@ public class MovingObjectSpawner : MonoBehaviour
 		
 		RaycastHit2D detected = Physics2D.Raycast (transform.position, Vector2.up, 250f, layerMask);
 		if (detected.collider != null) {
-			Debug.Log ("BLAH!");
 			detected.collider.gameObject.GetComponent<ObstacleSpawner> ().receivedSignal = true;
 		}
 		

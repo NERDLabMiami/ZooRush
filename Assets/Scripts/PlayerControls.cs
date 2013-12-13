@@ -19,6 +19,7 @@ public class PlayerControls : MonoBehaviour
 	private bool prevPlay;
 
 	public string characterName;
+	private bool changingSpeed;
 
 	void Start ()
 	{
@@ -44,7 +45,9 @@ public class PlayerControls : MonoBehaviour
 
 	void Update ()
 	{
-		
+		if (rigidbody2D.velocity.x < 0.1f && !changingSpeed) {
+			setSpeed ();
+		}
 		//Tracking for the paused or played state
 		prevPlay = play;
 		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
@@ -78,6 +81,7 @@ public class PlayerControls : MonoBehaviour
 
 	public void resetSpeed ()
 	{
+		changingSpeed = true;
 		rigidbody2D.velocity = new Vector2 (0f, 0f);
 		StartCoroutine (waitToResume (0.3f));
 	}
@@ -95,5 +99,6 @@ public class PlayerControls : MonoBehaviour
 		animate.SetTrigger ("Flash");
 		yield return new WaitForSeconds (time);
 		rigidbody2D.velocity = speed;
+		changingSpeed = false;
 	}
 }

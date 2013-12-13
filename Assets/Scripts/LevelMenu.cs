@@ -23,7 +23,7 @@ public class LevelMenu : MonoBehaviour
 			GameObject.Find ("Level - Gorilla").GetComponent<LevelOption> ()
 		};
 		
-		levelsUnlocked = 0;
+		levelsUnlocked = 4;
 		back = GameObject.Find ("Text - Back");
 		back.GetComponent<TextOption> ().optionEnabled = true;
 		levelEnabled = new bool[levels.Length];
