@@ -106,7 +106,6 @@ public class SceneManager : MonoBehaviour
 			menu.transform.parent = Camera.main.transform;
 			menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
 		}
-		
 	}
 
 	private IEnumerator displayScore ()

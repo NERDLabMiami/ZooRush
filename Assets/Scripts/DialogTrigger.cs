@@ -3,6 +3,8 @@ using System.Collections;
 
 public class DialogTrigger : MonoBehaviour
 {
+	public int size;
+	public string[] textDisplay;
 	public bool isTriggered;
 	public float waitTime;
 		
@@ -11,7 +13,7 @@ public class DialogTrigger : MonoBehaviour
 	private TextMesh[] text;
 	
 	void Start ()
-	{
+	{	
 		dialogOver = false;
 		dialogBox = GetComponentInChildren<SpriteRenderer> ().gameObject;
 		dialogBox.renderer.enabled = false;
