@@ -1,16 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MovingObjectSpawner.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerControls.cs">
     <Files>
-      <File FileName="Assets/Scripts/ScoreKeeper.cs" Line="40" Column="3" />
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="242" Column="14" />
-      <File FileName="Assets/Scripts/LevelOption.cs" Line="75" Column="36" />
-      <File FileName="Assets/Scripts/LevelMenu.cs" Line="26" Column="21" />
-      <File FileName="Assets/Scripts/Obstacle.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CollisionDetect.cs" Line="58" Column="60" />
-      <File FileName="Assets/Scripts/PainBar.cs" Line="85" Column="9" />
-      <File FileName="Assets/Scripts/PlayerControls.cs" Line="51" Column="44" />
-      <File FileName="Assets/Scripts/MovingObjectSpawner.cs" Line="18" Column="16" />
+      <File FileName="Assets/Scripts/InputManager.cs" Line="83" Column="72" />
+      <File FileName="Assets/Scripts/PlayerControls.cs" Line="12" Column="1" />
+      <File FileName="Assets/Scripts/CollisionDetect.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AudioHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Building.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TextOption.cs" Line="9" Column="1" />
+      <File FileName="Assets/Scripts/PainBar.cs" Line="101" Column="7" />
+      <File FileName="Assets/Scripts/ScoreKeeper.cs" Line="61" Column="9" />
+      <File FileName="Assets/Scripts/Clickable.cs" Line="25" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

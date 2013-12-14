@@ -87,18 +87,18 @@ public class PainBar : MonoBehaviour
 				}
 
 			} else {
-				if (obj.name.Contains ("Power Up")) {
-					if (obj.name.Contains ("Water Bottle")) {
-						painPoints -= 25f;
-					} else {
-						if (!scoreKeeper.pillBottleUsed ()) {
-							painPoints -= 75f;
-						} else {
-							Debug.Log ("ERROR - Only one Pill Bottle Per Level");
-						}
-
-					}
+				if (obj.name.Contains ("Water Bottle")) {
+					painPoints -= 25f;
 				} else {
+					if (obj.name.Contains ("Pill") && !scoreKeeper.pillBottleUsed ()) {
+						audioHandler.playSound ("PILL");
+						obj.GetComponent<Animator> ().SetTrigger ("Open");
+						obj.GetComponent<SpriteRenderer> ().color = Color.gray;
+						scoreKeeper.addToCount (obj);
+						painPoints -= 75f;
+					} else {
+						Debug.Log ("ERROR - Only one Pill Bottle Per Level");
+					}
 					if (obj.name.Contains ("Lawnmower")) {
 						painPoints += 40f;
 					}

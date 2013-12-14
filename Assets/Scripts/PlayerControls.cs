@@ -45,7 +45,13 @@ public class PlayerControls : MonoBehaviour
 
 	void Update ()
 	{
-		if (rigidbody2D.velocity.x < 0.1f && !changingSpeed) {
+		if (sceneManager.isPlaying) {
+			animate.StopPlayback ();
+		} else {
+			animate.StartPlayback ();
+		}
+		
+		if (rigidbody2D.velocity.x < 0.1f && !changingSpeed && sceneManager.isPlaying) {
 			setSpeed ();
 		}
 		//Tracking for the paused or played state

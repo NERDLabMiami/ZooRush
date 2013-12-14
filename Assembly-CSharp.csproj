@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\AudioHandler.cs" />
      <Compile Include="Assets\Scripts\Building.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Clickable.cs" />
      <Compile Include="Assets\Scripts\CollisionDetect.cs" />
      <Compile Include="Assets\Scripts\DialogHandler.cs" />
      <Compile Include="Assets\Scripts\DialogTrigger.cs" />

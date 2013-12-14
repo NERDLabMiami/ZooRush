@@ -55,17 +55,26 @@ public class CollisionDetect : MonoBehaviour
 					if (canMove) {
 						transform.parent.GetComponent<Obstacle> ().stopMoving ();
 						if (transform.parent.name.Contains ("Car")) {
-							GameObject.FindObjectOfType<SceneManager> ().fainted = true;
+							GameObject.FindObjectOfType<SceneManager> ().hitByVehicle = true;
 						}
 						if (transform.parent.name.Contains ("Lawnmower")) {
 							GameObject.FindObjectOfType<PainBar> ().objectInteraction (transform.parent.gameObject);
 						}
+						if (transform.parent.name.Contains ("Ball")) {
+							GameObject.FindObjectOfType<AudioHandler> ().playSound ("BALL");
+						}
 					} 
 					other.GetComponent<PlayerControls> ().resetSpeed ();
-
 				}
 			}
 		}
-
 	}
+	
+	void OnCollisionEnter2D (Collision2D coll)
+	{
+		if (transform.parent.name.Contains ("Ball")) {
+			GameObject.FindObjectOfType<AudioHandler> ().playSound ("BALL");
+		}
+	}
+	
 }

@@ -85,7 +85,8 @@ public class SceneManager : MonoBehaviour
 						StartCoroutine (displayFainted ());
 					} else {
 						if (hitByVehicle) {
-							
+							isPlaying = false;
+							StartCoroutine (displayGotHit ());
 						} else {
 							if (currentDistanceDiff < distanceDiffMin) {
 								playerControl.setSpeed (animalControl.speed);
@@ -105,7 +106,7 @@ public class SceneManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds (0.1f);
 		dimScreen ();
-		if (GameObject.Find ("GUI Menu - Fainted") != null) {
+		if (GameObject.Find ("GUI Menu - Fainted(Clone)") == null) {
 			GameObject menu = GameObject.Find (menus [1].name);
 			if (menu == null) {
 				menu = Instantiate (menus [1]) as GameObject;
@@ -120,9 +121,7 @@ public class SceneManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds (0.1f);
 		dimScreen ();
-		if (GameObject.Find ("GUI Menu - Fainted") != null) {
-		
-		
+		if (GameObject.Find ("GUI Menu - Fainted(Clone)") == null) {
 			GameObject menu = GameObject.Find (menus [1].name);
 			if (menu == null) {
 				menu = Instantiate (menus [1]) as GameObject;

@@ -28,7 +28,7 @@ public class DialogHandler : MonoBehaviour
 		if (cameraFollower.cameraSettled) {
 			RaycastHit2D detected = Physics2D.Raycast (transform.position, Vector2.up, 250f, layerMask);
 			if (detected.collider != null) {
-				Debug.Log (detected.collider.name);
+//				Debug.Log (detected.collider.name);
 				if (detected.collider.gameObject.GetComponent<DialogTrigger> () != null) { // Dialog Box Found
 					found = true;
 					dialog [dialogIndex] = detected.collider.GetComponent<DialogTrigger> ();
