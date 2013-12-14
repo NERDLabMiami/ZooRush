@@ -126,7 +126,7 @@ public class TutorialMode : MonoBehaviour
 		#endif
 
 #if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8
-		"Tap the top half of the screen to move up.",
+		,"Tap the top half of the screen to move up.",
 		"Tap the bottom half of the screen to move down."
 #endif
 

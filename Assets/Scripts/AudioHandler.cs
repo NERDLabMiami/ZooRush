@@ -19,6 +19,7 @@ public class AudioHandler : MonoBehaviour
 	
 	private GameObject musicTrack;
 	private GameObject soundTrack;
+	private GameObject soundTrack2;
 
 	public static Dictionary<string,AudioClip> audioClips;
 
@@ -33,11 +34,19 @@ public class AudioHandler : MonoBehaviour
 		if (soundTrack == null) {
 			soundTrack = new GameObject ("Sound Track", typeof(AudioSource));
 		}
-
+		
+		if (soundTrack2 == null) {
+			soundTrack2 = new GameObject ("Sound Track 2", typeof(AudioSource));
+		}
+		
 		musicTrack.transform.parent = Camera.main.transform;
 		musicTrack.audio.loop = true;
 		musicTrack.audio.playOnAwake = false;
 
+		soundTrack.transform.parent = Camera.main.transform;
+		soundTrack.audio.loop = false;
+		soundTrack.audio.playOnAwake = false;
+		
 		soundTrack.transform.parent = Camera.main.transform;
 		soundTrack.audio.loop = false;
 		soundTrack.audio.playOnAwake = false;
@@ -68,6 +77,9 @@ public class AudioHandler : MonoBehaviour
 		audioClips.Add ("PILL", Resources.Load ("Sounds/SOUND_FXS/PILL", typeof(AudioClip)) as AudioClip);
 		audioClips.Add ("WATERDRINK", Resources.Load ("Sounds/SOUND_FXS/WATERDRINK", typeof(AudioClip)) as AudioClip);
 		audioClips.Add ("SOFTSICKLOOP", Resources.Load ("Sounds/SOUND_FXS/SOFTSICKLOOP", typeof(AudioClip)) as AudioClip);
+		audioClips.Add ("SIGH", Resources.Load ("Sounds/SOUND_FXS/SIGH", typeof(AudioClip)) as AudioClip); 
+		audioClips.Add ("BALL", Resources.Load ("Sounds/SOUND_FXS/BALL", typeof(AudioClip)) as AudioClip); 
+		
 
 		//MUSIC
 
@@ -106,12 +118,14 @@ public class AudioHandler : MonoBehaviour
 		}
 
 		if (sound) {
-			if (soundTrack.audio.volume != 1f) {
+			if (soundTrack.audio.volume != 1f || soundTrack2.audio.volume != 1f) {
 				soundFadeIn ();
 			}
 		} else {
 			soundTrack.audio.volume = 0f;
 			soundTrack.audio.Stop ();
+			soundTrack2.audio.volume = 0f;
+			soundTrack2.audio.Stop ();
 		}
 
 		if (!sceneManager.isPlaying) {//Scene Paused
@@ -139,18 +153,42 @@ public class AudioHandler : MonoBehaviour
 	{
 		AudioClip clip;
 		audioClips.TryGetValue (soundEffect, out clip);
-		if (soundTrack.audio.isPlaying && soundTrack.audio.clip != clip) {
-			soundTrack.audio.Play ();
+		if (soundTrack.audio.isPlaying) {
+			if (soundTrack.audio.clip != clip) {
+				soundTrack.audio.Pause ();
+				soundTrack.audio.clip = clip;
+				soundTrack.audio.Play ();
+			}
 		} else {
 			soundTrack.audio.clip = clip;
-		}
-		if (!soundTrack.audio.isPlaying) {
 			soundTrack.audio.Play ();
 		}
-
-
+		
 	}
-
+	
+	private IEnumerator waitToPlayTrack2 (AudioClip clip2, float time)
+	{
+		yield return new WaitForSeconds (time);
+		if (soundTrack2.audio.isPlaying) {
+			if (soundTrack2.audio.clip != clip2) {
+				soundTrack2.audio.Pause ();
+				soundTrack2.audio.clip = clip2;
+				soundTrack2.audio.Play ();
+			}
+		} else {
+			soundTrack2.audio.clip = clip2;
+			soundTrack2.audio.Play ();
+		}
+	}
+	
+	public void playSound (string soundEffect1, string soundEffect2, float delayTime)
+	{
+		playSound (soundEffect1);
+		AudioClip clip2;
+		audioClips.TryGetValue (soundEffect2, out clip2);
+		StartCoroutine (waitToPlayTrack2 (clip2, delayTime));
+	}
+	
 	public void playMusic (string levelMusic)
 	{
 		AudioClip clip;
@@ -161,6 +199,7 @@ public class AudioHandler : MonoBehaviour
 	private void soundFadeIn ()
 	{
 		soundTrack.audio.volume = Mathf.Lerp (soundTrack.audio.volume, 1f, rate * Time.deltaTime);
+		soundTrack2.audio.volume = Mathf.Lerp (soundTrack.audio.volume, 1f, rate * Time.deltaTime);
 	}
 
 	private void soundFadeOut ()

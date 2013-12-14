@@ -53,13 +53,14 @@ public class ScoreKeeper : MonoBehaviour
 			}
 			
 		} else {
-			if (obj.name.Contains ("Power Up")) {
-				if (obj.name.Contains ("Water Bottle")) {
-					waterBottleCount += 1;
-				} else {
-					pillUsed = true;
-				}
+		
+			if (obj.name.Contains ("Water Bottle")) {
+				waterBottleCount += 1;
 			}
+			if (obj.name.Contains ("Pill")) {
+				pillUsed = true;
+			}
+			
 		}
 	}
 
