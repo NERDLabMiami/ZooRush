@@ -6,7 +6,6 @@ public class DialogHandler : MonoBehaviour
 	private bool displaying;
 	private bool found;
 	private DialogTrigger dialog;
-	private int dialogIndex;
 	
 	public LayerMask layerMask ;
 	
@@ -19,7 +18,6 @@ public class DialogHandler : MonoBehaviour
 		found = false;
 		sceneManager = FindObjectOfType<SceneManager> ();
 		cameraFollower = FindObjectOfType<CameraFollow> ();
-		dialogIndex = 0;
 	}
 	
 	void Update ()

@@ -25,7 +25,7 @@ public class ObstacleSpawner : MonoBehaviour
 	
 	private void InstatiateObject ()
 	{
-		GameObject objectInstance = Instantiate (prefab, transform.position, Quaternion.Euler (new Vector3 (0, 0, 0))) as GameObject;
+		Instantiate (prefab, transform.position, Quaternion.Euler (new Vector3 (0, 0, 0)));
 		instatiated = true;
 	}
 }

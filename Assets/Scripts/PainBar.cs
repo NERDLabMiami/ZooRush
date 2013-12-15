@@ -72,7 +72,6 @@ public class PainBar : MonoBehaviour
 		} else {
 		
 			if (obj.name.Contains ("Infection")) {
-				PlayerControls player = GameObject.FindObjectOfType<PlayerControls> ();
 				if (obj.name.Contains ("Red")) {
 					painPoints += 35f;
 

@@ -26,7 +26,6 @@ public class SceneManager : MonoBehaviour
 	private GameObject character;
 	private GameObject animal;
 	private GameObject painBar;
-	private GameObject throwAlert;
 	private GameObject timeIndicator;
 	private NetLauncher netLauncher;
 	
@@ -47,7 +46,31 @@ public class SceneManager : MonoBehaviour
 	private int powerUps;
 	private int starCount;
 	private int stars;
-			
+	
+	public GameObject[] characters;
+	public Sprite[] characterIcons;
+	
+	void Awake ()
+	{
+		character = GameObject.FindGameObjectWithTag ("character");
+		//check if currently selected charater in player prefs matches the currently displayed character
+		if (PlayerPrefs.HasKey ("Character Selected")) {
+			string charName = PlayerPrefs.GetString ("Character Selected");
+			if (!character.GetComponent<PlayerControls> ().characterName.Equals (charName)) {//Name mismatch
+				for (int i = 0; i < characters.Length; i++) {
+					if (characters [i].GetComponent<PlayerControls> ().characterName.Equals (charName)) {
+						Vector3 charPosition = character.transform.position;
+						Destroy (character);
+						character = Instantiate (characters [i], charPosition, Quaternion.identity) as GameObject;
+						GameObject.Find ("Character Icon").GetComponent<SpriteRenderer> ().sprite = characterIcons [i];
+					}
+				}
+			}
+		} else {
+			PlayerPrefs.SetString ("Character Selected", character.GetComponent<PlayerControls> ().characterName);
+		}
+	}
+	
 	void Start ()
 	{
 		isPlaying = true;
@@ -63,9 +86,8 @@ public class SceneManager : MonoBehaviour
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
-		character = GameObject.FindGameObjectWithTag ("character");
+		
 		animal = GameObject.FindGameObjectWithTag ("animal");
-		throwAlert = GameObject.Find ("Throw Alert");
 		screenDimmer = GameObject.Find ("GUI - Level Dimmer");
 		
 		distanceDiffMin = 6.5f;
@@ -122,8 +144,6 @@ public class SceneManager : MonoBehaviour
 				netLauncher.launchEnabled = false;
 			}
 		}
-		
-		
 	}
 	
 	void FixedUpdate ()

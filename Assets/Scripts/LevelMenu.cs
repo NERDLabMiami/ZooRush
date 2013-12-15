@@ -8,7 +8,6 @@ public class LevelMenu : MonoBehaviour
 {
 	private LevelOption[] levels;
 	private GameObject back;
-	private bool[] levelEnabled;
 
 	private int levelsUnlocked;
 	private int currentFocused;
@@ -26,7 +25,6 @@ public class LevelMenu : MonoBehaviour
 		levelsUnlocked = 4;
 		back = GameObject.Find ("Text - Back");
 		back.GetComponent<TextOption> ().optionEnabled = true;
-		levelEnabled = new bool[levels.Length];
 		
 		foreach (LevelOption level in levels) {
 			if (PlayerPrefs.HasKey (level.SceneName)) {
