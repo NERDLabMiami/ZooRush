@@ -5,7 +5,7 @@ public class DialogHandler : MonoBehaviour
 {
 	private bool displaying;
 	private bool found;
-	private DialogTrigger[] dialog;
+	private DialogTrigger dialog;
 	private int dialogIndex;
 	
 	public LayerMask layerMask ;
@@ -20,7 +20,6 @@ public class DialogHandler : MonoBehaviour
 		sceneManager = FindObjectOfType<SceneManager> ();
 		cameraFollower = FindObjectOfType<CameraFollow> ();
 		dialogIndex = 0;
-		dialog = new DialogTrigger[4];
 	}
 	
 	void Update ()
@@ -31,30 +30,28 @@ public class DialogHandler : MonoBehaviour
 //				Debug.Log (detected.collider.name);
 				if (detected.collider.gameObject.GetComponent<DialogTrigger> () != null) { // Dialog Box Found
 					found = true;
-					dialog [dialogIndex] = detected.collider.GetComponent<DialogTrigger> ();
+					dialog = detected.collider.GetComponent<DialogTrigger> ();
 					sceneManager.isPlaying = false;
 				}
 			}
 			if (!displaying && found) {
-				if (!dialog [dialogIndex].isTriggered) {
-					StartCoroutine (waitToDisplay (dialog [dialogIndex].waitTime));
+				if (!dialog.isTriggered) {
+					StartCoroutine (waitToDisplay (dialog.waitTime));
 				} else {
 					displaying = true;
-					dialogIndex++;
 				}
 			
 			} else {
 				if (displaying && found) {
-					if (!dialog [dialogIndex].isDialogFinished ()) {
+					if (!dialog.isDialogFinished ()) {
 						displayDialog ();
 					} else {
 						closeDialog ();
 						sceneManager.isPlaying = true;
 						displaying = false;
-						dialogIndex--;
 					}
 					if (InputManager.enter) {
-						dialog [dialogIndex].isDialogFinished (true);
+						dialog.next ();
 					}
 				}
 			}
@@ -69,11 +66,11 @@ public class DialogHandler : MonoBehaviour
 	
 	private void displayDialog ()
 	{
-		dialog [dialogIndex].openDialog ();
+		dialog.openDialog ();
 	}
 	
 	private void closeDialog ()
 	{
-		dialog [dialogIndex].closeDialog ();
+		dialog.closeDialog ();
 	}
 }
