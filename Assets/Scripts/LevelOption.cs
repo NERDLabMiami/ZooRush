@@ -8,6 +8,8 @@ public class LevelOption : MonoBehaviour
 	
 	public string SceneName;
 	
+	public Sprite[] starImages;
+	
 	void Start ()
 	{
 //		activated = false;
@@ -30,6 +32,7 @@ public class LevelOption : MonoBehaviour
 	private void unlockLevel ()
 	{
 		SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer> ();
+		setStars ();
 		foreach (SpriteRenderer sprite in sprites) {
 			if (sprite.name.Equals ("Dimmer")) {
 				sprite.renderer.enabled = false;
@@ -61,23 +64,30 @@ public class LevelOption : MonoBehaviour
 	
 	private void setStars ()
 	{
-		int stars = (PlayerPrefs.HasKey (SceneName + "Stars")) ? PlayerPrefs.GetInt (SceneName + "Stars") : 0;
+		int stars = ((PlayerPrefs.HasKey (SceneName + "Stars")) ? PlayerPrefs.GetInt (SceneName + "Stars") : 0);
+		
 		if (stars > 0) {//# of stars > 0
-			Animator[] starShapes = GetComponentsInChildren<Animator> ();
-			foreach (Animator star in starShapes) {
+			SpriteRenderer[] starShapes = GetComponentsInChildren<SpriteRenderer> ();
+			foreach (SpriteRenderer star in starShapes) {
 				if (star.name.Contains ("Star 1")) {
 					if (stars >= 1) {
-						star.SetTrigger ("Activate");
+						star.sprite = starImages [1];
+					} else {
+						star.sprite = starImages [0];
 					}
 				}
 				if (star.name.Contains ("Star 2")) {
 					if (stars >= 2) {
-						star.SetTrigger ("Activate");
+						star.sprite = starImages [1];
+					} else {
+						star.sprite = starImages [0];
 					}
 				}
 				if (star.name.Contains ("Star 3")) {
 					if (stars >= 3) {
-						star.SetTrigger ("Activate");
+						star.sprite = starImages [1];
+					} else {
+						star.sprite = starImages [0];
 					}
 				}
 			}

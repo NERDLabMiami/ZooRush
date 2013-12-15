@@ -14,6 +14,7 @@ public class PlayerControls : MonoBehaviour
 	
 	private Animator animate;
 	private SceneManager sceneManager;
+	private InputManager inputManager;
 
 	private bool play;
 	private bool prevPlay;
@@ -25,6 +26,7 @@ public class PlayerControls : MonoBehaviour
 	{
 		animate = GetComponent<Animator> ();
 		sceneManager = FindObjectOfType<SceneManager> ();
+		inputManager = FindObjectOfType<InputManager> ();
 		play = sceneManager.isPlaying;
 		prevPlay = play;
 		speed = new Vector2 (7f, 0f);
@@ -35,7 +37,11 @@ public class PlayerControls : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		yMovement = Input.GetAxis ("Vertical");
+		if (Input.GetMouseButton (0)) {
+			yMovement = inputManager.yDelta;
+		} else {
+			yMovement = Input.GetAxis ("Vertical");
+		}
 		if (sceneManager.isPlaying) {
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed.y);
 		} else {

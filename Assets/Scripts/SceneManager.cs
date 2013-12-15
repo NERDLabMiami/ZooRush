@@ -34,13 +34,29 @@ public class SceneManager : MonoBehaviour
 	public bool tutEnabled;
 	public bool fainted;
 	public bool hitByVehicle;
-		
+	
+	private bool starDisplay1;
+	private bool starDisplay2;
+	
+	private bool scoreDisplayed;
+	private bool timeCountDown;
+	private int time;
+	private int infections;
+	private int powerUps;
+	private int starCount;
+	private int stars;
+			
 	void Start ()
 	{
 		isPlaying = true;
 		levelStartWait = true;
 		fainted = false;
 		hitByVehicle = false;
+		scoreDisplayed = false;
+		timeCountDown = true;
+		starDisplay1 = false;
+		starDisplay2 = false;
+		stars = 3;
 		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
@@ -72,7 +88,9 @@ public class SceneManager : MonoBehaviour
 			if (isPlaying) {
 				if (animalControl.caught) {
 					isPlaying = false;
-					StartCoroutine (displayScore ());
+					if (!scoreDisplayed) {
+						StartCoroutine (displayScore ());
+					}
 				} else {
 					if (currentDistanceDiff < distanceDiffMin) {
 						playerControl.setSpeed (animalControl.speed);
@@ -100,6 +118,124 @@ public class SceneManager : MonoBehaviour
 				}
 			}
 		}
+		
+		
+	}
+	
+	void FixedUpdate ()
+	{
+		if (timeCountDown) {
+			if (time > 0) {
+				StartCoroutine (starDisplay (stars));
+				StartCoroutine (timeCountDownMethod ());
+			} else {
+				timeCountDown = false;
+				if (!starDisplay1) {
+					if (time - targetTimeVar > 0) {
+						stars--;
+					}
+					if (time - (multiplier1 * targetTimeVar) > 0) {
+						stars--;
+					}
+					if (time - (multiplier2 * targetTimeVar) > 0) {
+						stars--;
+					}
+					StartCoroutine (starDisplay (stars));
+				} else {
+					if (infections > 0) {
+						StartCoroutine (infectionCountDown ());
+					} else {
+						if (!starDisplay2) {
+							if (stars > 0) {
+								if (infections > powerUps) {
+									stars--;
+								}
+							}
+							StartCoroutine (starDisplay (stars));
+						}
+					}
+				}
+			}
+			
+		}
+	}
+	
+	private IEnumerator infectionCountDown ()
+	{
+		infections -= 1;
+		yield return new WaitForSeconds (0.3f);
+		GameObject.Find ("Menu - Infect Count").GetComponent<TextMesh> ().text = "" + infections;
+	}
+	
+	private IEnumerator starDisplay (int starNumber)
+	{
+		if (time <= 0) {
+			if (starDisplay1 == false) {
+				starDisplay1 = true;
+			} else {
+				starDisplay2 = true;
+			}
+		}
+		yield return new WaitForSeconds (1f);
+		
+		if (starNumber > 0) {//# of stars > 0
+			Animator[] stars = GetComponentsInChildren<Animator> ();
+			foreach (Animator star in stars) {
+				if (star.name.Contains ("Star 1")) {
+					if (starCount >= 1) {
+						star.SetTrigger ("Activate");
+					} else {
+						star.SetTrigger ("Deactivate");
+					}
+				}
+				if (star.name.Contains ("Star 2")) {
+					if (starCount >= 2) {
+						star.SetTrigger ("Activate");
+					} else {
+						star.SetTrigger ("Deactivate");
+					}
+				}
+				if (star.name.Contains ("Star 3")) {
+					if (starCount >= 3) {
+						star.SetTrigger ("Activate");
+					} else {
+						star.SetTrigger ("Deactivate");
+					}
+				}
+			}
+		}
+	}
+	
+	private IEnumerator timeCountDownMethod ()
+	{
+		time -= 1;
+		yield return new WaitForSeconds (0.1f);
+		TextMesh timeTextMesh = GameObject.Find ("Menu - Time").GetComponent<TextMesh> ();
+		int minutes = time / 60;
+		int seconds = time % 60;
+		string timeText = "";
+		if (minutes % 100 <= 9 && minutes <= 99) {
+			timeText = "0" + minutes;
+		} else {
+			if (minutes <= 99) {
+				timeText = "" + minutes;
+			} else {
+				timeText = "99";
+			}
+		}
+		
+		timeText += ":";
+		
+		if (seconds % 100 <= 9 && minutes <= 100f) {
+			timeText += "0" + seconds;
+		} else {
+			if (minutes <= 100f) {
+				timeText += "" + seconds;
+			} else {
+				timeText += "59+";
+			}
+		}
+		timeTextMesh.text = timeText;
 	}
 	
 	private IEnumerator displayGotHit ()
@@ -133,11 +269,14 @@ public class SceneManager : MonoBehaviour
 
 	private IEnumerator displayScore ()
 	{
+		scoreDisplayed = true;
 		yield return new WaitForSeconds (1f);
 		dimScreen ();
 		
 		int[] scores = scoreKeeper.getScore ();
 		scoreStore (scores);
+		infections = scores [0] + scores [1] + scores [2];
+		powerUps = scores [3] + scores [4];
 		GameObject menu = GameObject.Find (menus [2].name);
 		if (menu == null) {
 			menu = Instantiate (menus [2]) as GameObject;
@@ -147,19 +286,16 @@ public class SceneManager : MonoBehaviour
 		
 		TextMesh[] menuText = menu.GetComponentsInChildren<TextMesh> ();
 		foreach (TextMesh text in menuText) {
-			if (text.name.Contains ("Red")) {
-				text.text = "" + scores [0];
+			if (text.name.Contains ("Next Level")) {
+				text.gameObject.GetComponent<TextOption> ().levelName = NextSceneName;
 			}
-			if (text.name.Contains ("Yellow")) {
-				text.text = "" + scores [1];
+			
+			if (text.name.Contains ("Infect Count")) {
+				text.text = "" + infections;
 			}
-			if (text.name.Contains ("Green")) {
-				text.text = "" + scores [2];
-			}
-			if (text.name.Contains ("Water")) {
-				text.text = "" + scores [3];
-			}
+			
 			if (text.name.Contains ("Time")) {
+				time = scores [5];
 				int minutes = scores [5] / 60;
 				int seconds = scores [5] % 60;
 				string timeText = "";
@@ -188,35 +324,23 @@ public class SceneManager : MonoBehaviour
 			}
 		}
 		
-		GameObject pill = GameObject.Find ("Menu - Pill Icon");
-		if (scores [4] == 1) {
-			pill.GetComponent<SpriteRenderer> ().color = Color.grey;
-		} else {
-			pill.GetComponent<SpriteRenderer> ().color = Color.white;
-		}
-
-		if (scores [6] > 0) {//# of stars > 0
-			Animator[] stars = GetComponentsInChildren<Animator> ();
-			foreach (Animator star in stars) {
-				if (star.name.Contains ("Star 1")) {
-					if (scores [6] >= 1) {
-						star.SetTrigger ("Activate");
-					}
-				}
-				if (star.name.Contains ("Star 2")) {
-					if (scores [6] >= 2) {
-						star.SetTrigger ("Activate");
-					}
-				}
-				if (star.name.Contains ("Star 3")) {
-					if (scores [6] >= 3) {
-						star.SetTrigger ("Activate");
-					}
-				}
+	
+		Animator[] stars = GetComponentsInChildren<Animator> ();
+		foreach (Animator star in stars) {
+			if (star.name.Contains ("Star 1")) {
+				star.SetTrigger ("Activate");
+			}
+			if (star.name.Contains ("Star 2")) {
+				star.SetTrigger ("Activate");
+			}
+			if (star.name.Contains ("Star 3")) {
+				star.SetTrigger ("Activate");
 			}
 		}
-		unlockLevel ();
 		
+		starCount = scores [6];
+		unlockLevel ();
+		timeCountDown = true;
 	}
 	
 	private void scoreStore (int[] score)
