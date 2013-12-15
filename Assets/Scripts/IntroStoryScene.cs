@@ -85,6 +85,7 @@ public class IntroStoryScene : MonoBehaviour
 	{
 		//TODO Make scene and level dependent
 		PlayerPrefs.SetString ("Intro Scene", "true");
-		Application.LoadLevel ("LevelFrame");
+		LoadLevel.levelToLoad = "LevelFrame";
+		Application.LoadLevel ("Loading");
 	}
 }

@@ -37,6 +37,7 @@ public class InputManager : MonoBehaviour
 	public static bool right;
 	public static bool enter;
 	public static bool touching;
+	
 
 	void Awake ()
 	{
@@ -105,8 +106,8 @@ public class InputManager : MonoBehaviour
 		changeValue (ref prevDown, ref down, yInput < 0);
 		changeValue (ref prevEnter, ref enter, confirm > 0);
 	}
-
-	void changeValue (ref bool previous, ref bool current, bool pressed)
+	
+	private void changeValue (ref bool previous, ref bool current, bool pressed)
 	{
 		if (pressed) {//input activated
 			if (!previous) { // if the input is being leaned on
@@ -122,7 +123,7 @@ public class InputManager : MonoBehaviour
 		}
 	}
 
-	void checkValues ()
+	private void checkValues ()
 	{
 		Debug.Log (origin);
 		Debug.Log ("Up: " + up);

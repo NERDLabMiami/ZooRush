@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Animal.cs" />
+     <Compile Include="Assets\Scripts\AnimalTouched.cs" />
      <Compile Include="Assets\Scripts\AudioHandler.cs" />
      <Compile Include="Assets\Scripts\Building.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Scripts\IntroStoryScene.cs" />
      <Compile Include="Assets\Scripts\LevelMenu.cs" />
      <Compile Include="Assets\Scripts\LevelOption.cs" />
+     <Compile Include="Assets\Scripts\LoadLevel.cs" />
      <Compile Include="Assets\Scripts\MovingObjectSpawner.cs" />
      <Compile Include="Assets\Scripts\NetLauncher.cs" />
      <Compile Include="Assets\Scripts\Obstacle.cs" />
@@ -74,7 +76,6 @@
      <Compile Include="Assets\Scripts\StartMenu.cs" />
      <Compile Include="Assets\Scripts\TextOption.cs" />
      <Compile Include="Assets\Scripts\TutorialMode.cs" />
-     <None Include="Assets\Resources\Sprites\Objects\Obstacles\TrashCan.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

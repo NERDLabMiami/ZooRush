@@ -26,8 +26,10 @@ public class SceneManager : MonoBehaviour
 	private GameObject character;
 	private GameObject animal;
 	private GameObject painBar;
+	private GameObject throwAlert;
 	private GameObject timeIndicator;
 	private NetLauncher netLauncher;
+	
 	
 	public bool levelStartWait;
 	public bool isPlaying;
@@ -63,7 +65,7 @@ public class SceneManager : MonoBehaviour
 		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
 		character = GameObject.FindGameObjectWithTag ("character");
 		animal = GameObject.FindGameObjectWithTag ("animal");
-		
+		throwAlert = GameObject.Find ("Throw Alert");
 		screenDimmer = GameObject.Find ("GUI - Level Dimmer");
 		
 		distanceDiffMin = 6.5f;
@@ -116,6 +118,8 @@ public class SceneManager : MonoBehaviour
 					}
 					
 				}
+			} else {
+				netLauncher.launchEnabled = false;
 			}
 		}
 		

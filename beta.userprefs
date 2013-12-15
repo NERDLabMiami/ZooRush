@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelOption.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NetLauncher.cs">
     <Files>
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="347" Column="3" />
-      <File FileName="Assets/Scripts/LevelOption.cs" Line="84" Column="7" />
-      <File FileName="Assets/Scripts/LevelMenu.cs" Line="70" Column="4" />
+      <File FileName="Assets/Scripts/CameraFollow.cs" Line="55" Column="144" />
+      <File FileName="Assets/Scripts/DistanceMeter.cs" Line="35" Column="52" />
+      <File FileName="Assets/Scripts/NetLauncher.cs" Line="26" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
