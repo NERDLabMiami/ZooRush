@@ -42,6 +42,9 @@ public class CollisionDetect : MonoBehaviour
 				} else {
 					other.rigidbody2D.AddForce (new Vector2 (-350f, -50f));
 				}
+				if (gameObject.transform.parent.name.Contains ("Trash")) {
+					gameObject.transform.parent.gameObject.GetComponent<Animator> ().SetTrigger ("Fall");
+				}
 				if (isInfection) {
 					if (!signalSent) {
 						signalSent = true;
