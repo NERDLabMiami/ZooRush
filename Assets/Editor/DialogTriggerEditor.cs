@@ -24,7 +24,9 @@ public class DialogTriggerEditor : Editor
 		TextMesh[] texts = thisDialog.gameObject.GetComponentsInChildren<TextMesh> ();
 		foreach (TextMesh text in texts) {
 			if (text.name.Contains ("Line 1")) {
-				text.text = thisDialog.textDisplay [0];
+				if (thisDialog.textDisplay.Length > 0) {
+					text.text = thisDialog.textDisplay [0];
+				}
 			}
 		}
 		

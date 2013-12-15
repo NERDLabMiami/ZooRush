@@ -26,12 +26,14 @@ public class CameraFollow : MonoBehaviour
 	
 	void Update ()
 	{
+		if (character == null) {
+			character = GameObject.FindGameObjectWithTag ("character");
+		}
 		if (!sceneManager.levelStartWait) {
 			if (netLauncher.launchEnabled && !adjustToLaunchPosition) {
 				transform.localPosition = Vector3.Lerp (transform.localPosition, 
 				new Vector3 (character.transform.localPosition.x + 3.5f, transform.localPosition.y, transform.localPosition.z), 
 				3f * Time.deltaTime);
-				Debug.Log ("ADJUSTING");
 				cameraSettled = false;
 				if (transform.localPosition.x <= character.transform.localPosition.x + 3.48f) {
 					adjustToLaunchPosition = true;

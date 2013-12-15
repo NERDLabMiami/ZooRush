@@ -55,4 +55,9 @@ public class DistanceMeter : MonoBehaviour
 		}
 
 	}
+	
+	public void changeIcon (int i)
+	{
+		GameObject.Find ("Character Icon").GetComponent<SpriteRenderer> ().sprite = chracterIcons [i];
+	}
 }
