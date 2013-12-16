@@ -49,28 +49,18 @@ public class TextOption : MonoBehaviour
 				
 			} else {
 				if (gameObject.name.Contains ("Play")) {
-//					if (PlayerPrefs.HasKey ("Levels Unlocked")) {
-//						if (PlayerPrefs.GetInt ("Levels Unlocked") > 1) {
-//							Application.LoadLevel ("Level Select");
-//						} else {
-//							if (!PlayerPrefs.HasKey ("Intro Scene")) {
-//								PlayerPrefs.SetString ("Intro Scene", "false");
-//							}
-//							if (PlayerPrefs.GetString ("Intro Scene").Equals ("false")) {
-//								Application.LoadLevel ("IntroScene");
-//							} else {
-//								Application.LoadLevel ("LevelFrame"); //TODO Must change this to level 1
-//							}
-//						}
-//					} else {
-//						PlayerPrefs.SetInt ("Levels Unlocked", 1);
-//						Application.LoadLevel ("LevelFrame"); //TODO Must change this to level 1
-//					}
-					Application.LoadLevel (levelName);
+					if (PlayerPrefs.HasKey ("Levels Unlocked")) {
+						if (PlayerPrefs.GetInt ("Levels Unlocked") > 1) {
+							Application.LoadLevel ("Level Select");
+						} else {
+							StoryModeHandler.NextSceneName = "LevelFrame";
+							Application.LoadLevel ("IntroScene");
+						}
+					} else {
+						StoryModeHandler.NextSceneName = "LevelFrame";
+						Application.LoadLevel ("IntroScene");
+					}
 				}
-				
-				
-				
 				if (gameObject.name.Contains ("Options")) {
 					PlayerPrefs.SetString ("Last Scene", Application.loadedLevelName);
 					Application.LoadLevel ("Game Options");
