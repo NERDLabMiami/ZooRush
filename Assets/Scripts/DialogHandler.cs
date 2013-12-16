@@ -27,9 +27,19 @@ public class DialogHandler : MonoBehaviour
 			if (detected.collider != null) {
 //				Debug.Log (detected.collider.name);
 				if (detected.collider.gameObject.GetComponent<DialogTrigger> () != null) { // Dialog Box Found
-					found = true;
+					
 					dialog = detected.collider.GetComponent<DialogTrigger> ();
-					sceneManager.isPlaying = false;
+					if (dialog.tutOnly) {
+						if (sceneManager.tutEnabled) {
+							found = true;
+							sceneManager.isPlaying = false;
+						} else {
+							found = false;
+						}
+					} else {
+						found = true;
+						sceneManager.isPlaying = false;
+					}
 				}
 			}
 			if (!displaying && found) {
