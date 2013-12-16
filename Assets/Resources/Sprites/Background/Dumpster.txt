@@ -1,0 +1,36 @@
+{"frames": {
+
+"PinkDumpster.png":
+{
+	"frame": {"x":4,"y":4,"w":512,"h":237},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":237},
+	"sourceSize": {"w":512,"h":237}
+},
+"PurpleDumpster.png":
+{
+	"frame": {"x":520,"y":4,"w":512,"h":237},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":237},
+	"sourceSize": {"w":512,"h":237}
+},
+"YellowDumpster.png":
+{
+	"frame": {"x":1036,"y":4,"w":512,"h":237},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":512,"h":237},
+	"sourceSize": {"w":512,"h":237}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "Dumpster.png",
+	"format": "RGBA8888",
+	"size": {"w":1552,"h":245},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:aadf02bb335d7b60b346ad960ee79b98:0c5aebb7ac211e6cbe605162a469c202:9d7760db0b6106166ac52aec596c17ba$"
+}
+}

@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DistanceMeter.cs">
     <Files>
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="65" Column="97" />
-      <File FileName="Assets/Scripts/DistanceMeter.cs" Line="61" Column="30" />
+      <File FileName="Assets/Scripts/DistanceMeter.cs" Line="55" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
