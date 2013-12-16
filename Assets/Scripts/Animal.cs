@@ -65,6 +65,9 @@ public class Animal : MonoBehaviour
 				foreach (BoxCollider2D netCol in netColliders) {
 					netCol.isTrigger = false;
 				}
+				if (gameObject.name.Equals ("Gorilla") || gameObject.name.Equals ("Rhino")) {
+					other.gameObject.GetComponent<Animator> ().SetBool ("Big", true);
+				}
 				other.gameObject.GetComponent<Animator> ().SetTrigger ("Open");
 				changeNetSize ();
 				other.transform.localScale = netSize;
@@ -79,14 +82,20 @@ public class Animal : MonoBehaviour
 	private void changeNetSize ()
 	{
 		switch (gameObject.name) {
-		case"Tortoise":
+		case"Tortoise": 
 			netSize = new Vector3 (1f, 1f, 1f);
 			break;
 		case "Crocodile":
 			netSize = new Vector3 (1.75f, 1.25f, 1f);
 			break;
 		case "Flamingo":
-			netSize = new Vector3 (1.75f, 1.25f, 1f);
+			netSize = new Vector3 (0.7f, 1.35f, 1f);
+			break;
+		case "Gorilla":
+			netSize = new Vector3 (1f, 1f, 1f);
+			break;
+		case "Rhino":
+			netSize = new Vector3 (1.6f, 1f, 1f);
 			break;
 		default:
 			netSize = new Vector3 (1f, 1f, 1f);

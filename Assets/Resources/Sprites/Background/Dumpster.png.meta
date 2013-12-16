@@ -49,28 +49,46 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 2
+        y: 244
         width: 514
-        height: 241
-      alignment: 7
-      pivot: {x: .5, y: 0}
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
     - name: Dumpster_1
       rect:
         serializedVersion: 2
         x: 521
-        y: 2
+        y: 244
         width: 512
-        height: 241
-      alignment: 7
-      pivot: {x: .5, y: 0}
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
     - name: Dumpster_2
       rect:
         serializedVersion: 2
         x: 1036
+        y: 244
+        width: 514
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Dumpster_3
+      rect:
+        serializedVersion: 2
+        x: 4
         y: 2
         width: 514
-        height: 241
-      alignment: 7
-      pivot: {x: .5, y: 0}
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Dumpster_4
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 2
+        width: 514
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

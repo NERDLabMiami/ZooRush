@@ -47,9 +47,9 @@ public class AudioHandler : MonoBehaviour
 		soundTrack.audio.loop = false;
 		soundTrack.audio.playOnAwake = false;
 		
-		soundTrack.transform.parent = Camera.main.transform;
-		soundTrack.audio.loop = false;
-		soundTrack.audio.playOnAwake = false;
+		soundTrack2.transform.parent = Camera.main.transform;
+		soundTrack2.audio.loop = false;
+		soundTrack2.audio.playOnAwake = false;
 
 
 		if (!PlayerPrefs.HasKey ("Music")) {
