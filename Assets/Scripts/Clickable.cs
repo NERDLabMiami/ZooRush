@@ -3,23 +3,16 @@ using System.Collections;
 
 public class Clickable : MonoBehaviour
 {
-
-	// Use this for initialization
-	void Start ()
-	{
-	
-	}
-	
-	// Update is called once per frame
 	void Update ()
 	{
-	
-	}
-	void OnMouseUp ()
-	{
-		if (gameObject.name.Contains ("Pill")) {
-			Debug.Log ("CLUCK CLUCK");
-			GameObject.FindObjectOfType<PainBar> ().objectInteraction (gameObject);
+		if (Input.GetMouseButton (0)) {
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hit;
+			if (Physics.Raycast (ray, out hit, 100)) {
+				if (hit.collider.gameObject == gameObject) {
+					GameObject.FindObjectOfType<PainBar> ().objectInteraction (gameObject);
+				}
+			}
 		}
 	}
 }
