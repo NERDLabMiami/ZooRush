@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DialogTrigger : MonoBehaviour
 {
-	public int size;
+	public bool tutOnly;
 	
 	public string[] textDisplay;
 	public int currentTextIndex;

@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelOption.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DialogHandler.cs">
     <Files>
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="416" Column="44" />
-      <File FileName="Assets/Scripts/StartMenu.cs" Line="38" Column="2" />
-      <File FileName="Assets/Scripts/TextOption.cs" Line="63" Column="6" />
-      <File FileName="Assets/Scripts/LevelOption.cs" Line="99" Column="1" />
+      <File FileName="Assets/Scripts/SceneManager.cs" Line="43" Column="29" />
+      <File FileName="Assets/Scripts/DialogHandler.cs" Line="37" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
