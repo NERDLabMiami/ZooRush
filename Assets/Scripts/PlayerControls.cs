@@ -31,7 +31,7 @@ public class PlayerControls : MonoBehaviour
 		prevPlay = play;
 		speed = new Vector2 (7f, 0f);
 		maxSpeed.x = 5f;
-		maxSpeed.y = 3f;
+		maxSpeed.y = 4f;
 		minSpeed = 1f;
 	}
 
@@ -57,7 +57,7 @@ public class PlayerControls : MonoBehaviour
 			animate.StartPlayback ();
 		}
 		
-		if (rigidbody2D.velocity.x < 0.1f && !changingSpeed && sceneManager.isPlaying) {
+		if (rigidbody2D.velocity.x < speed.x && !changingSpeed && sceneManager.isPlaying) {
 			setSpeed ();
 		}
 		//Tracking for the paused or played state
