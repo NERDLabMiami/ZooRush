@@ -12,11 +12,14 @@ public class Obstacle : MonoBehaviour
 	public Vector2 speed;
 	private Renderer[] sprites; //All sprites that are a child of the object
 	private PlayerControls player;
+	
+	private bool inFrontOverride;
 
 	void Start ()
 	{
 		sprites = transform.GetComponentsInChildren<Renderer> ();
 		player = GameObject.FindObjectOfType<PlayerControls> ();
+		inFrontOverride = false;
 	}
 
 	void Update ()
@@ -24,16 +27,24 @@ public class Obstacle : MonoBehaviour
 		if (canMove) {
 			rigidbody2D.velocity = speed;
 		}
-		if (inFront) {
-			foreach (Renderer sprite in sprites) {
-				if (!sprite.name.Contains ("Ground Shadow") && sprite.sortingLayerName != "Obstacles-Behind") {
-					sprite.sortingLayerName = "Obstacles-Behind";
+		if (!inFrontOverride) {
+			if (inFront) {
+				foreach (Renderer sprite in sprites) {
+					if (!sprite.name.Contains ("Ground Shadow") && sprite.sortingLayerName != "Obstacles-Behind") {
+						sprite.sortingLayerName = "Obstacles-Behind";
+					}
+				}
+			} else {
+				foreach (Renderer sprite in sprites) {
+					if (!sprite.name.Contains ("Ground Shadow") && sprite.sortingLayerName != "Obstacles-InFront") {
+						sprite.sortingLayerName = "Obstacles-InFront";
+					}
 				}
 			}
 		} else {
 			foreach (Renderer sprite in sprites) {
-				if (!sprite.name.Contains ("Ground Shadow") && sprite.sortingLayerName != "Obstacles-InFront") {
-					sprite.sortingLayerName = "Obstacles-InFront";
+				if (!sprite.name.Contains ("Ground Shadow") && sprite.sortingLayerName != "Obstacles-Behind") {
+					sprite.sortingLayerName = "Obstacles-Behind";
 				}
 			}
 		}
@@ -46,6 +57,11 @@ public class Obstacle : MonoBehaviour
 				}
 			}
 		}
+	}
+	
+	public void setBehind ()
+	{
+		inFrontOverride = true;
 	}
 	
 	void OnTriggerEnter2D (Collider2D other)
