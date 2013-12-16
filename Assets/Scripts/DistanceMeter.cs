@@ -7,9 +7,6 @@ using System.Collections;
  */ 
 public class DistanceMeter : MonoBehaviour
 {
-	public Sprite[] chracterIcons;
-	public Sprite[] animalIcons;
-
 	private GameObject characterIcon;
 	private GameObject animalIcon;
 
@@ -56,8 +53,4 @@ public class DistanceMeter : MonoBehaviour
 
 	}
 	
-	public void changeIcon (int i)
-	{
-		GameObject.Find ("Character Icon").GetComponent<SpriteRenderer> ().sprite = chracterIcons [i];
-	}
 }
