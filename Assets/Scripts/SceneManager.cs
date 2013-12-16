@@ -408,8 +408,15 @@ public class SceneManager : MonoBehaviour
 	private void unlockLevel ()
 	{
 		PlayerPrefs.SetString (NextSceneName, "true");
-	}
+		if (PlayerPrefs.HasKey ("Levels Unlocked")) {
+			int val = PlayerPrefs.GetInt ("Levels Unlocked");
+			val++;
+			PlayerPrefs.SetInt ("Levels Unlocked", val);	 
+		} else {
+			PlayerPrefs.SetInt ("Levels Unlocked", 2);	 
+		}
 
+	}
 }
 
 
