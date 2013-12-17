@@ -10,12 +10,15 @@ public class CollisionDetect : MonoBehaviour
 	public bool isInfection;
 	public bool isPowerUp;
 	public bool canMove;
+	public bool touchOnce;
 
+	private bool touched;
 	private bool signalSent; //if the pain bar has been notified of this collision
 
 	void Start ()
 	{
 		signalSent = false;
+		touched = false;
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
@@ -27,16 +30,37 @@ public class CollisionDetect : MonoBehaviour
 					GameObject.FindObjectOfType<PainBar> ().GetComponent<PainBar> ().objectInteraction (transform.parent.gameObject);
 					if (transform.parent.gameObject.name.Contains ("Pill")) {
 						GameObject.FindObjectOfType<AudioHandler> ().playSound ("PILL");
+					} else {
+						if (transform.parent.gameObject.name.Contains ("Water Bottle")) {
+							GameObject.FindObjectOfType<AudioHandler> ().playSound ("WATERDRINK");
+						}
 					}
 				}
 				other.GetComponent<PlayerControls> ().flash ();
 				Obstacle parent = transform.parent.GetComponent<Obstacle> ();
 				parent.collisionDetected ();
 			} else {
-				if (other.transform.position.y < -2.5f) {
-					other.rigidbody2D.AddForce (new Vector2 (-350f, 50f));
+				if (touchOnce) {
+					if (!touched) {
+						if (other.transform.position.y < -2.5f) {
+							other.rigidbody2D.AddForce (new Vector2 (-350f, 50f));
+						} else {
+							other.rigidbody2D.AddForce (new Vector2 (-350f, -50f));
+						}
+						Obstacle parent = transform.parent.GetComponent<Obstacle> ();
+						parent.setBehind ();
+						other.GetComponent<PlayerControls> ().resetSpeed ();
+						touched = true;
+					}
 				} else {
-					other.rigidbody2D.AddForce (new Vector2 (-350f, -50f));
+					if (other.transform.position.y < -2.5f) {
+						other.rigidbody2D.AddForce (new Vector2 (-350f, 50f));
+					} else {
+						other.rigidbody2D.AddForce (new Vector2 (-350f, -50f));
+					}
+				}
+				if (gameObject.transform.parent.name.Contains ("Trash")) {
+					gameObject.transform.parent.gameObject.GetComponent<Animator> ().SetTrigger ("Fall");
 				}
 				if (isInfection) {
 					if (!signalSent) {
@@ -50,18 +74,29 @@ public class CollisionDetect : MonoBehaviour
 				} else {
 					if (canMove) {
 						transform.parent.GetComponent<Obstacle> ().stopMoving ();
-						if (transform.parent.name.Contains ("Car")) {
-							GameObject.FindObjectOfType<SceneManager> ().fainted = true;
+						if (transform.parent.name.Contains ("Car") || transform.parent.name.Contains ("Truck") || transform.parent.name.Contains ("Van")) {
+							GameObject.FindObjectOfType<SceneManager> ().hitByVehicle = true;
 						}
 						if (transform.parent.name.Contains ("Lawnmower")) {
 							GameObject.FindObjectOfType<PainBar> ().objectInteraction (transform.parent.gameObject);
 						}
+						if (transform.parent.name.Contains ("Ball")) {
+							GameObject.FindObjectOfType<AudioHandler> ().playSound ("BALL");
+						}
 					} 
-					other.GetComponent<PlayerControls> ().resetSpeed ();
-
+					if (!touchOnce) {
+						other.GetComponent<PlayerControls> ().resetSpeed ();
+					}
 				}
 			}
 		}
-
 	}
+	
+	void OnCollisionEnter2D (Collision2D coll)
+	{
+		if (transform.parent.name.Contains ("Ball")) {
+			GameObject.FindObjectOfType<AudioHandler> ().playSound ("BALL");
+		}
+	}
+	
 }

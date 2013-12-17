@@ -36,7 +36,7 @@ public class ScoreKeeper : MonoBehaviour
 		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
 			timeElapsed += Time.deltaTime;
 		}
-		displayTime ();
+//		displayTime ();
 	}
 
 	public void addToCount (GameObject obj)
@@ -53,13 +53,14 @@ public class ScoreKeeper : MonoBehaviour
 			}
 			
 		} else {
-			if (obj.name.Contains ("Power Up")) {
-				if (obj.name.Contains ("Water Bottle")) {
-					waterBottleCount += 1;
-				} else {
-					pillUsed = true;
-				}
+		
+			if (obj.name.Contains ("Water Bottle")) {
+				waterBottleCount += 1;
 			}
+			if (obj.name.Contains ("Pill")) {
+				pillUsed = true;
+			}
+			
 		}
 	}
 

@@ -10,11 +10,10 @@ public class TextOption : MonoBehaviour
 	private Color optionSelected = Color.yellow;
 	public bool optionEnabled;
 	public bool isLevelOption;
+	public string levelName;
 	public int levelNum;
-
 	void Start ()
 	{
-		enabled = false;
 	}
 
 	void OnMouseEnter ()
@@ -43,18 +42,8 @@ public class TextOption : MonoBehaviour
 						Application.LoadLevel ("Splash");
 					} else {
 						if (gameObject.name.Contains ("Next")) {
-							string levelName = "Level " + (GameObject.FindObjectOfType<SceneManager> ().levelNumber + 1);
 							Application.LoadLevel (levelName);
-						} else {
-							switch (levelNum) {
-							case 1:
-								Application.LoadLevel ("LevelFrame");
-								break;
-							default:
-								Application.LoadLevel ("LevelFrame");
-								break;
-							}
-						}
+						} 
 					}
 				}
 				
@@ -64,21 +53,14 @@ public class TextOption : MonoBehaviour
 						if (PlayerPrefs.GetInt ("Levels Unlocked") > 1) {
 							Application.LoadLevel ("Level Select");
 						} else {
-							if (!PlayerPrefs.HasKey ("Intro Scene")) {
-								PlayerPrefs.SetString ("Intro Scene", "false");
-							}
-							if (PlayerPrefs.GetString ("Intro Scene").Equals ("false")) {
-								Application.LoadLevel ("IntroScene");
-							} else {
-								Application.LoadLevel ("LevelFrame"); //TODO Must change this to level 1
-							}
+							StoryModeHandler.NextSceneName = "LevelFrame";
+							Application.LoadLevel ("IntroScene");
 						}
 					} else {
-						PlayerPrefs.SetInt ("Levels Unlocked", 1);
-						Application.LoadLevel ("LevelFrame"); //TODO Must change this to level 1
+						StoryModeHandler.NextSceneName = "LevelFrame";
+						Application.LoadLevel ("IntroScene");
 					}
 				}
-
 				if (gameObject.name.Contains ("Options")) {
 					PlayerPrefs.SetString ("Last Scene", Application.loadedLevelName);
 					Application.LoadLevel ("Game Options");

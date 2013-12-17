@@ -15,7 +15,7 @@ public class GameOptions : MonoBehaviour
 	private GameObject Back;
 	
 	private SpriteRenderer charSelect;
-	private string[] characterNames = {"Main Boy", "Main Girl", "Hispanic Girl"};
+	private string[] characterNames = {"David", "Lisa", "Christina","Zane"};
 	public Sprite[] characters;
 	private int charIndex;
 	private int charMaxIndex = 0;

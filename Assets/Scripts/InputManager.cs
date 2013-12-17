@@ -28,12 +28,16 @@ public class InputManager : MonoBehaviour
 	private  bool prevRight;
 	private  bool prevEnter;
 	
+	public float xDelta;
+	public float yDelta;
+	
 	public static bool up;
 	public static bool down;
 	public static bool left;
 	public static bool right;
 	public static bool enter;
 	public static bool touching;
+	
 
 	void Awake ()
 	{
@@ -53,7 +57,8 @@ public class InputManager : MonoBehaviour
 			origin = Camera.main.ScreenPointToRay (Input.mousePosition);
 		}
 		
-		touching = Physics.Raycast (origin, out pointerTouch);		
+		touching = Physics.Raycast (origin, out pointerTouch);
+		Input.simulateMouseWithTouches = true;
 	}
 
 	void Start ()
@@ -74,7 +79,9 @@ public class InputManager : MonoBehaviour
 			origin = Camera.main.ScreenPointToRay (Input.mousePosition);
 		}
 		
-		touching = Physics.Raycast (origin, out pointerTouch);		
+		touching = Physics.Raycast (origin, out pointerTouch);
+		Input.simulateMouseWithTouches = true;
+		
 	}
 	
 	void Update ()
@@ -84,7 +91,9 @@ public class InputManager : MonoBehaviour
 		} else {
 			origin = Camera.main.ScreenPointToRay (Input.mousePosition);
 		}
-		
+		xDelta = (Input.GetAxis ("Mouse X") > 0) ? 1 : ((Input.GetAxis ("Mouse X") < 0) ? -1 : 0);
+		yDelta = (Input.GetAxis ("Mouse Y") > 0) ? 1 : ((Input.GetAxis ("Mouse Y") < 0) ? -1 : 0);
+//		Debug.Log ("X: " + xDelta + "\nY: " + yDelta);
 		touching = Physics.Raycast (origin, out pointerTouch);
 		
 		xInput = Input.GetAxis ("Horizontal");
@@ -97,8 +106,8 @@ public class InputManager : MonoBehaviour
 		changeValue (ref prevDown, ref down, yInput < 0);
 		changeValue (ref prevEnter, ref enter, confirm > 0);
 	}
-
-	void changeValue (ref bool previous, ref bool current, bool pressed)
+	
+	private void changeValue (ref bool previous, ref bool current, bool pressed)
 	{
 		if (pressed) {//input activated
 			if (!previous) { // if the input is being leaned on
@@ -114,7 +123,7 @@ public class InputManager : MonoBehaviour
 		}
 	}
 
-	void checkValues ()
+	private void checkValues ()
 	{
 		Debug.Log (origin);
 		Debug.Log ("Up: " + up);

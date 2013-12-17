@@ -72,33 +72,32 @@ public class PainBar : MonoBehaviour
 		} else {
 		
 			if (obj.name.Contains ("Infection")) {
-				PlayerControls player = GameObject.FindObjectOfType<PlayerControls> ();
 				if (obj.name.Contains ("Red")) {
 					painPoints += 35f;
 
 				} else {
 					if (obj.name.Contains ("Yellow")) {
 						painPoints += 20f;
-						player.decrementSpeed (0.15f * player.maxSpeed.x); // Slows character down by 15% of normal speed
+						//player.decrementSpeed (0.15f * player.maxSpeed.x); // Slows character down by 15% of normal speed
 					} else { // infection is green
 						painPoints += 5f;
-						player.decrementSpeed (0.05f * player.maxSpeed.x); // Slows character down by 5% of normal speed
+						//player.decrementSpeed (0.05f * player.maxSpeed.x); // Slows character down by 5% of normal speed
 					}
 				}
 
 			} else {
-				if (obj.name.Contains ("Power Up")) {
-					if (obj.name.Contains ("Water Bottle")) {
-						painPoints -= 25f;
-					} else {
-						if (!scoreKeeper.pillBottleUsed ()) {
-							painPoints -= 75f;
-						} else {
-							Debug.Log ("ERROR - Only one Pill Bottle Per Level");
-						}
-
-					}
+				if (obj.name.Contains ("Water Bottle")) {
+					painPoints -= 25f;
 				} else {
+					if (obj.name.Contains ("Pill") && !scoreKeeper.pillBottleUsed ()) {
+						audioHandler.playSound ("PILL");
+						obj.GetComponent<Animator> ().SetTrigger ("Open");
+						obj.GetComponent<SpriteRenderer> ().color = Color.gray;
+						scoreKeeper.addToCount (obj);
+						painPoints -= 75f;
+					} else {
+						Debug.Log ("ERROR - Only one Pill Bottle Per Level");
+					}
 					if (obj.name.Contains ("Lawnmower")) {
 						painPoints += 40f;
 					}

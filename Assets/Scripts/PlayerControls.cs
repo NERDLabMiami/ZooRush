@@ -14,27 +14,34 @@ public class PlayerControls : MonoBehaviour
 	
 	private Animator animate;
 	private SceneManager sceneManager;
+	private InputManager inputManager;
 
 	private bool play;
 	private bool prevPlay;
 
 	public string characterName;
+	private bool changingSpeed;
 
 	void Start ()
 	{
 		animate = GetComponent<Animator> ();
 		sceneManager = FindObjectOfType<SceneManager> ();
+		inputManager = FindObjectOfType<InputManager> ();
 		play = sceneManager.isPlaying;
 		prevPlay = play;
 		speed = new Vector2 (7f, 0f);
 		maxSpeed.x = 5f;
-		maxSpeed.y = 3f;
+		maxSpeed.y = 4f;
 		minSpeed = 1f;
 	}
 
 	void FixedUpdate ()
 	{
-		yMovement = Input.GetAxis ("Vertical");
+		if (Input.GetMouseButton (0)) {
+			yMovement = inputManager.yDelta;
+		} else {
+			yMovement = Input.GetAxis ("Vertical");
+		}
 		if (sceneManager.isPlaying) {
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed.y);
 		} else {
@@ -44,7 +51,15 @@ public class PlayerControls : MonoBehaviour
 
 	void Update ()
 	{
+		if (sceneManager.isPlaying) {
+			animate.StopPlayback ();
+		} else {
+			animate.StartPlayback ();
+		}
 		
+		if (rigidbody2D.velocity.x < speed.x && !changingSpeed && sceneManager.isPlaying) {
+			setSpeed ();
+		}
 		//Tracking for the paused or played state
 		prevPlay = play;
 		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
@@ -78,6 +93,7 @@ public class PlayerControls : MonoBehaviour
 
 	public void resetSpeed ()
 	{
+		changingSpeed = true;
 		rigidbody2D.velocity = new Vector2 (0f, 0f);
 		StartCoroutine (waitToResume (0.3f));
 	}
@@ -95,5 +111,6 @@ public class PlayerControls : MonoBehaviour
 		animate.SetTrigger ("Flash");
 		yield return new WaitForSeconds (time);
 		rigidbody2D.velocity = speed;
+		changingSpeed = false;
 	}
 }

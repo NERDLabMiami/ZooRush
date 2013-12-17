@@ -16,6 +16,9 @@ public class NetLauncher : MonoBehaviour
 	private bool firing;
 	private bool animalCaught;
 	private int throwCount;
+	
+	private Renderer[] throwAlert;
+	
 	void Start ()
 	{
 		launchEnabled = false;
@@ -23,6 +26,7 @@ public class NetLauncher : MonoBehaviour
 		speed = 20f;
 		animalCaught = false;
 		throwCount = 0;
+		throwAlert = GameObject.Find ("Throw Alert").GetComponentsInChildren<Renderer> ();
 	}
 	
 	void FixedUpdate ()
@@ -30,12 +34,20 @@ public class NetLauncher : MonoBehaviour
 		animalCaught = GameObject.FindObjectOfType<Animal> ().caught;
 		if (launchEnabled) {
 			Debug.Log ("ENABLED!");
+			foreach (Renderer renderer in throwAlert) {
+				renderer.renderer.enabled = true;
+			}
 			//TODO Add Enabled Indicator
 			if (throwCount >= 3) {
 				GameObject.FindObjectOfType<PlayerControls> ().resetSpeed ();
 				throwCount = 0;
 			} else {
-				action = Input.GetAxis ("Fire1");
+				if (GameObject.FindObjectOfType<AnimalTouched> ().touched /*|| Input.GetAxis ("Fire1") > 0*/) {
+					action = 1;
+				} else {
+					action = 0;
+				}
+				
 				if (action == 0) {
 					firing = false;
 				}
@@ -44,7 +56,10 @@ public class NetLauncher : MonoBehaviour
 					net = fire ().gameObject;
 				}
 			}
-
+		} else {
+			foreach (Renderer renderer in throwAlert) {
+				renderer.renderer.enabled = false;
+			}
 		}
 		if (net != null && !animalCaught && net.rigidbody2D.velocity.x < 1f) {
 			Destroy (net);

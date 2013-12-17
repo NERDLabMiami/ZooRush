@@ -7,8 +7,8 @@ using System.Collections;
 public class StartMenu : MonoBehaviour
 {
 	public static GameObject currentlySelectedOption;
-	int currentOption;
-	bool mathWait;
+	private int currentOption;
+	private bool mathWait;
 	
 	void Start ()
 	{

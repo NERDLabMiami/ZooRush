@@ -45,9 +45,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 334
+        y: 302
         width: 514
-        height: 555
+        height: 587
       alignment: 9
       pivot: {x: .178339824, y: 0}
     - name: Beach_1
