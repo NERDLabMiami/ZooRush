@@ -73,6 +73,7 @@ public class Animal : MonoBehaviour
 				other.transform.localScale = netSize;
 				if (/*other.rigidbody2D.velocity.x < 0.3f &&*/ !caught) {
 					caught = true;
+					GameObject.FindObjectOfType<ScoreKeeper> ().addToCount (gameObject);
 				}
 			}
 		}

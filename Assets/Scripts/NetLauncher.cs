@@ -12,7 +12,7 @@ public class NetLauncher : MonoBehaviour
 	public bool launchEnabled;
 	private GameObject net;
 	public float speed;	
-	private float action;
+	private int action;
 	private bool firing;
 	private bool animalCaught;
 	private int throwCount;
@@ -37,7 +37,6 @@ public class NetLauncher : MonoBehaviour
 			foreach (Renderer renderer in throwAlert) {
 				renderer.renderer.enabled = true;
 			}
-			//TODO Add Enabled Indicator
 			if (throwCount >= 3) {
 				GameObject.FindObjectOfType<PlayerControls> ().resetSpeed ();
 				throwCount = 0;
@@ -63,6 +62,18 @@ public class NetLauncher : MonoBehaviour
 		}
 		if (net != null && !animalCaught && net.rigidbody2D.velocity.x < 1f) {
 			Destroy (net);
+		}
+	}
+	
+	public void resetNetLauncher ()
+	{
+		Destroy (net);
+		launchEnabled = false;
+		firing = false;
+		animalCaught = false;
+		throwCount = 0;
+		foreach (Renderer renderer in throwAlert) {
+			renderer.renderer.enabled = false;
 		}
 	}
 		
