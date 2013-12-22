@@ -10,6 +10,7 @@ public class ScoreKeeper : MonoBehaviour
 	private int redInfectionCount;
 	private int yellowInfectionCount;
 	private int greenInfectionCount;
+	private int animalCount;
 
 	private int doctorVisits;
 
@@ -53,7 +54,9 @@ public class ScoreKeeper : MonoBehaviour
 			}
 			
 		} else {
-		
+			if (obj.GetComponent<Animal> () != null) {
+				animalCount += 1;
+			}
 			if (obj.name.Contains ("Water Bottle")) {
 				waterBottleCount += 1;
 			}
@@ -78,7 +81,8 @@ public class ScoreKeeper : MonoBehaviour
 			waterBottleCount,
 			(pillUsed) ? 1 : 0,
 			(int)timeElapsed,
-			starsCalc ()
+			starsCalc (),
+			animalCount
 		};
 		return score;
 	}
