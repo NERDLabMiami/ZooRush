@@ -17,7 +17,6 @@ public class SceneManager : MonoBehaviour
 	public float multiplier1;
 	public float multiplier2;
 	
-	
 	public GameObject[] menus;
 	private GameObject screenDimmer;
 	
@@ -130,7 +129,7 @@ public class SceneManager : MonoBehaviour
 					if (fainted) {
 						isPlaying = false;
 						if (isEndless) {
-							//TODO make special endless mode menu
+							StartCoroutine (displayEndlessScore ());
 						} else {
 							StartCoroutine (displayFainted ());
 						}

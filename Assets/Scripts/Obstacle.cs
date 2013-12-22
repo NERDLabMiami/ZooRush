@@ -82,10 +82,20 @@ public class Obstacle : MonoBehaviour
 	{
 		GetComponent<Animator> ().SetTrigger ("Flash");
 	}
+	
+	public void resetState ()
+	{
+		if (!gameObject.activeSelf) {
+			gameObject.SetActive (true);
+		}
+		SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer> ();
+		GetComponent<Animator> ().SetTrigger ("Reset");
+		GetComponentInChildren<CollisionDetect> ().resetTouch ();
+	}
 
 	private void destroyObstacle ()
 	{
-		Destroy (gameObject);
+		StartCoroutine (GameObject.FindObjectOfType<SceneRepeater> ().DestroyObstacle (gameObject));
 	}
 
 	public void stopMoving ()
