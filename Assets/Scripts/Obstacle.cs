@@ -88,7 +88,6 @@ public class Obstacle : MonoBehaviour
 		if (!gameObject.activeSelf) {
 			gameObject.SetActive (true);
 		}
-		SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer> ();
 		GetComponent<Animator> ().SetTrigger ("Reset");
 		GetComponentInChildren<CollisionDetect> ().resetTouch ();
 	}
