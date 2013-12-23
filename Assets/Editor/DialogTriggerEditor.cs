@@ -6,7 +6,7 @@ using System.Collections;
 public class DialogTriggerEditor : Editor
 {
 	private DialogTrigger thisDialog;
-	private int characterLimit = 12;
+	private int characterLimit = 17;
 	public string[] textDisplay;
 
 	public override void OnInspectorGUI ()

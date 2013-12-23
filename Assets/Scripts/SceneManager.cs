@@ -117,8 +117,7 @@ public class SceneManager : MonoBehaviour
 		if (levelStartWait) {
 			if (currentDistanceDiff > 18f) {
 				levelStartWait = false;
-			}
-			
+			}	
 		} else {
 			if (isPlaying) {
 				if (animalControl.caught) {
@@ -160,8 +159,7 @@ public class SceneManager : MonoBehaviour
 								netLauncher.launchEnabled = false;
 							}
 						}
-					}
-					
+					}	
 				}
 			} else {
 				netLauncher.launchEnabled = false;
@@ -203,7 +201,6 @@ public class SceneManager : MonoBehaviour
 					}
 				}
 			}
-			
 		}
 	}
 	
@@ -462,7 +459,8 @@ public class SceneManager : MonoBehaviour
 	
 	private void changeAnimal ()
 	{
-		Vector3 position = animal.transform.position;
+		Vector3 position = character.transform.position;
+		position.x -= 15f;
 		Destroy (animal);
 		animal = Instantiate (animals [nextAnimalIndex], position, Quaternion.identity) as GameObject;
 		nextAnimalIndex = (nextAnimalIndex + 1) % animals.Length;
@@ -475,7 +473,6 @@ public class SceneManager : MonoBehaviour
 		lightScreen ();
 		netLauncher.resetNetLauncher ();
 		changeAnimal ();
-		playerControl.resetSpeed ();
 		levelStartWait = true;
 		isPlaying = true;
 	}
