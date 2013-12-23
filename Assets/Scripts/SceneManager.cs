@@ -83,12 +83,23 @@ public class SceneManager : MonoBehaviour
 		starDisplay1 = false;
 		starDisplay2 = false;
 		stars = 3;
-		nextAnimalIndex = 1;
+		
+		animal = GameObject.FindGameObjectWithTag ("animal");
+		for (int i = 0; i < animals.Length; i++) {
+			if (animals [i].name.Contains (animal.name)) {
+				if (i == animals.Length - 1) {
+					nextAnimalIndex = 0;
+				} else {
+					nextAnimalIndex = i + 1;
+				}
+			}
+		}
+		
 		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
-		animal = GameObject.FindGameObjectWithTag ("animal");
+		
 		screenDimmer = GameObject.Find ("GUI - Level Dimmer");
 		
 		distanceDiffMin = 6.5f;
@@ -113,7 +124,7 @@ public class SceneManager : MonoBehaviour
 				if (animalControl.caught) {
 					isPlaying = false;
 					if (isEndless) {
-						resetSceneEndlessMode ();
+						StartCoroutine (resetSceneEndlessMode ());
 					} else {
 						if (!scoreDisplayed) {
 							StartCoroutine (displayScore ());
@@ -458,8 +469,9 @@ public class SceneManager : MonoBehaviour
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 	}
 	
-	private void resetSceneEndlessMode ()
+	private IEnumerator resetSceneEndlessMode ()
 	{
+		yield return new WaitForSeconds (1f);
 		lightScreen ();
 		netLauncher.resetNetLauncher ();
 		changeAnimal ();

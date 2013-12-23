@@ -1,11 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/LevelEditor.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneManager.cs">
     <Files>
-      <File FileName="Assets/Editor/SortingLayerEditor.cs" Line="30" Column="3" />
-      <File FileName="Assets/Editor/DialogTriggerEditor.cs" Line="14" Column="3" />
-      <File FileName="Assets/Editor/LevelEditor.cs" Line="68" Column="36" />
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="173" Column="28" />
+      <File FileName="Assets/Scripts/AudioHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Editor/SortingLayerEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets/Editor/DialogTriggerEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets/Editor/LevelEditor.cs" Line="46" Column="5" />
+      <File FileName="Assets/Scripts/SceneManager.cs" Line="117" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
