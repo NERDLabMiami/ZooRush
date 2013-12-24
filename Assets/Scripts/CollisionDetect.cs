@@ -92,6 +92,12 @@ public class CollisionDetect : MonoBehaviour
 		}
 	}
 	
+	public void resetTouch ()
+	{
+		signalSent = false;
+		touched = false;
+	}
+	
 	void OnCollisionEnter2D (Collision2D coll)
 	{
 		if (transform.parent.name.Contains ("Ball")) {

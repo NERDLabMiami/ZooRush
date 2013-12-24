@@ -22,7 +22,6 @@ public class DistanceMeter : MonoBehaviour
 		characterIcon = GameObject.Find ("Character Icon");
 		animalIcon = GameObject.Find ("Animal Icon");
 		
-		//TODO change character icon based on which character is currently playing
 		//TODO change animal icon based on which animal is currently playing
 		
 		charIconStarting = characterIcon.transform.localPosition.x;

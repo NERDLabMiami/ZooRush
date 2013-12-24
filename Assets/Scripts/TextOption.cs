@@ -38,7 +38,7 @@ public class TextOption : MonoBehaviour
 				if (gameObject.name.Contains ("Retry")) {
 					Application.LoadLevel (Application.loadedLevelName);
 				} else {
-					if (gameObject.name.Contains ("Quit")) {
+					if (gameObject.name.Contains ("Quit") || gameObject.name.Contains ("Main")) {
 						Application.LoadLevel ("Splash");
 					} else {
 						if (gameObject.name.Contains ("Next")) {

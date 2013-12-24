@@ -34,15 +34,30 @@ public class SceneRepeater : MonoBehaviour
 		foreach (GameObject element in sceneThings) {
 			if (element != null) {
 				if (element.transform.position.x < Camera.main.transform.position.x - 25f) {
+					if (!element.activeSelf) {
+						element.SetActive (true);
+					}
 					if (element.GetComponent<Building> () != null) {
 						element.GetComponent<Building> ().resetState ();
 					}
+					if (element.GetComponent<Obstacle> () != null) {
+						element.GetComponent<Obstacle> ().resetState ();
+					}
+					
 					element.transform.position = new Vector3 (
 						element.transform.position.x + sceneWidth,
 						element.transform.position.y,
 						element.transform.position.z);
 				}
 			}
+		}
+	}
+	
+	public IEnumerator DestroyObstacle (GameObject obj)
+	{
+		yield return new WaitForSeconds (0.2f);
+		if (obj.activeSelf) {
+			obj.SetActive (false);
 		}
 	}
 }
