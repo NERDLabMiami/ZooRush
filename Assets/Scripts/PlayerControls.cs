@@ -22,6 +22,8 @@ public class PlayerControls : MonoBehaviour
 	public string characterName;
 	private bool changingSpeed;
 
+	public Sprite[] faceIcons;
+
 	void Start ()
 	{
 		animate = GetComponent<Animator> ();

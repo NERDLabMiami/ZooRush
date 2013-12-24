@@ -1,0 +1,193 @@
+fileFormatVersion: 2
+guid: d04a10753dcf34c03830e1ba9aab0f91
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: CharacterFaceIcons_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 739
+        width: 230
+        height: 254
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_1
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 739
+        width: 232
+        height: 254
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_2
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 739
+        width: 231
+        height: 254
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_3
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 739
+        width: 231
+        height: 254
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_4
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 655
+        width: 239
+        height: 338
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: CharacterFaceIcons_5
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 655
+        width: 240
+        height: 338
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: CharacterFaceIcons_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 314
+        width: 240
+        height: 339
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_7
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 314
+        width: 241
+        height: 339
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_8
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 357
+        width: 250
+        height: 296
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: CharacterFaceIcons_9
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 357
+        width: 249
+        height: 296
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_10
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 357
+        width: 249
+        height: 296
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_11
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
+        width: 249
+        height: 297
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_12
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 15
+        width: 279
+        height: 285
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_13
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 15
+        width: 280
+        height: 285
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_14
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 15
+        width: 279
+        height: 285
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: CharacterFaceIcons_15
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 15
+        width: 280
+        height: 285
+      alignment: 7
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 
