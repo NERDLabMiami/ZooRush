@@ -7,12 +7,13 @@ using System.Collections;
  */ 
 public class Animal : MonoBehaviour
 {
-	private GameObject netBoundary;
-	private BoxCollider2D[] netColliders;
 	private Animator animate;
 	public bool caught;
 	
 	public GameObject net;
+	private GameObject netBoundary;
+	private BoxCollider2D[] netColliders;
+	private Vector3 netSize;
 	
 	public Vector2 speed;
 	
@@ -20,10 +21,14 @@ public class Animal : MonoBehaviour
 	private bool play;
 	private bool prevPlay;
 	
-	private Vector3 netSize;
+	private bool yVelocityChanged;
+	private float upperBounds;
+	private float lowerBounds;
+	
 	
 	void Start ()
 	{
+		yVelocityChanged = false;
 		sceneManager = FindObjectOfType<SceneManager> ();
 		play = sceneManager.isPlaying;
 		prevPlay = play;
@@ -37,6 +42,8 @@ public class Animal : MonoBehaviour
 		}
 		transform.parent.rigidbody2D.velocity = speed;
 		netSize = new Vector3 (1f, 1f, 1f);
+		upperBounds = GameObject.Find ("Upper Limit").transform.position.y;	
+		lowerBounds = GameObject.Find ("Lower Limit").transform.position.y;
 	}
 	
 	void Update ()
@@ -53,6 +60,16 @@ public class Animal : MonoBehaviour
 		} else { // our previous state is the play state
 			if (!play) {//we need to move into the paused state
 				transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
+			}
+		}
+		
+		if (play) {
+			if (yVelocityChanged) {
+				Debug.Log ("Velocity Change Registered");
+				StartCoroutine (waitToResume (1f));
+				yVelocityChanged = false;
+			} else {
+				changeY ();
 			}
 		}
 	}
@@ -104,9 +121,22 @@ public class Animal : MonoBehaviour
 		}
 	}
 	
+	private void changeY ()
+	{
+		int moveChance = Random.Range (1, 101);
+		if (moveChance % 50 == 0) {//2% chance
+			float newYVelocity = Random.Range (-4.5f, 4.5f);
+			Vector3 newSpeed = speed;
+			newSpeed.y = newYVelocity;
+			transform.parent.rigidbody2D.velocity = newSpeed;
+			yVelocityChanged = true;
+		} else {
+			yVelocityChanged = false;
+		}
+		
+	}
 	private IEnumerator waitToResume (float time)
 	{
-//		animate.SetTrigger ("Flash");
 		yield return new WaitForSeconds (time);
 		transform.parent.rigidbody2D.velocity = speed;
 	}

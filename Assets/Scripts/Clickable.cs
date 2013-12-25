@@ -10,7 +10,7 @@ public class Clickable : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit, 100)) {
 				if (hit.collider.gameObject == gameObject) {
-					GameObject.FindObjectOfType<PainBar> ().objectInteraction (gameObject);
+					GameObject.FindObjectOfType<PainIndicator> ().objectInteraction (gameObject);
 				}
 			}
 		}

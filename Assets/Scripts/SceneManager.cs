@@ -25,7 +25,6 @@ public class SceneManager : MonoBehaviour
 	private Animal animalControl;
 	private GameObject character;
 	private GameObject animal;
-	private GameObject painBar;
 	private NetLauncher netLauncher;
 	
 	public bool isEndless;
@@ -104,7 +103,6 @@ public class SceneManager : MonoBehaviour
 		
 		distanceDiffMin = 6.5f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
-		painBar = GameObject.Find ("Pain Bar");
 //		if (!PlayerPrefs.HasKey ("Tutorial")) {
 //			PlayerPrefs.SetString ("Tutorial", "true");
 //		}
@@ -147,16 +145,18 @@ public class SceneManager : MonoBehaviour
 						if (hitByVehicle) {
 							isPlaying = false;
 							if (isEndless) {
-							
+								StartCoroutine (displayEndlessScore ());
 							} else {
 								StartCoroutine (displayGotHit ());
 							}
 						} else {
 							if (currentDistanceDiff < distanceDiffMin) {
-								playerControl.setSpeed (animalControl.speed);
 								netLauncher.launchEnabled = true;
 							} else {
 								netLauncher.launchEnabled = false;
+							}
+							if (netLauncher.launchEnabled) {
+								playerControl.setSpeed (animalControl.speed);
 							}
 						}
 					}	
@@ -435,13 +435,11 @@ public class SceneManager : MonoBehaviour
 
 	private void dimScreen ()
 	{
-		painBar.SetActive (false);
 		screenDimmer.GetComponent<SpriteRenderer> ().enabled = true;
 	}
 	
 	private void lightScreen ()
 	{
-		painBar.SetActive (true);
 		screenDimmer.GetComponent<SpriteRenderer> ().enabled = false;
 	}
 

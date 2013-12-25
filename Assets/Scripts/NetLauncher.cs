@@ -33,7 +33,6 @@ public class NetLauncher : MonoBehaviour
 	{
 		animalCaught = GameObject.FindObjectOfType<Animal> ().caught;
 		if (launchEnabled) {
-			Debug.Log ("ENABLED!");
 			foreach (Renderer renderer in throwAlert) {
 				renderer.renderer.enabled = true;
 			}

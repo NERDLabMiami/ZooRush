@@ -8,19 +8,23 @@ public class PainIndicator : MonoBehaviour
 	public float painPoints;
 
 	private Sprite[] healthFaces;
+	private SpriteRenderer sprite;
 	private ScoreKeeper scoreKeeper;
 	private SceneManager sceneManager;
 	private AudioHandler audioHandler;
+	private Animator animator;
 	
 	void Start ()
 	{
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 		audioHandler = GameObject.FindObjectOfType<AudioHandler> ();
-		transform.localScale = new Vector3 (0f, transform.localScale.y, transform.localScale.z);
+		animator = GetComponent<Animator> ();
 		painPoints = 0f;
 		painRate = 3.5f;
 		healthFaces = GameOptions.FindObjectOfType<PlayerControls> ().faceIcons;
+		sprite = GetComponent<SpriteRenderer> ();
+		sprite.sprite = healthFaces [0];
 	}
 
 	void FixedUpdate ()
@@ -39,13 +43,21 @@ public class PainIndicator : MonoBehaviour
 		if (painPoints < 0) {
 			painPoints = 0;
 		}
-		if (painPoints <= 100f) {
-		}
+		animator.SetFloat ("PainPoints", painPoints);
 		if (painPoints < 33f) { // Change to normal face
+			if (!sprite.sprite.Equals (healthFaces [0])) {
+				sprite.sprite = healthFaces [0];
+			}
 		}
-		if (painPoints > 33f && painPoints < 75f) { // Change to concerned face
+		if (painPoints > 33f && painPoints < 75f) { // Change to discomfort face
+			if (!sprite.sprite.Equals (healthFaces [1])) {
+				sprite.sprite = healthFaces [1];		
+			}	
 		}
-		if (painPoints > 75f) { // Change to in pain face
+		if (painPoints > 75f) { // Change to pain face
+			if (!sprite.sprite.Equals (healthFaces [2])) {
+				sprite.sprite = healthFaces [2];
+			}
 			audioHandler.playSound ("HARDSICKLOOP");
 		}
 	}

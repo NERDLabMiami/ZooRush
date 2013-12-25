@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</ProjectGuid>
+	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -67,7 +67,6 @@
      <Compile Include="Assets\Scripts\NetLauncher.cs" />
      <Compile Include="Assets\Scripts\Obstacle.cs" />
      <Compile Include="Assets\Scripts\ObstacleSpawner.cs" />
-     <Compile Include="Assets\Scripts\PainBar.cs" />
      <Compile Include="Assets\Scripts\PainIndicator.cs" />
      <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\SceneManager.cs" />
@@ -78,7 +77,6 @@
      <Compile Include="Assets\Scripts\StoryModeHandler.cs" />
      <Compile Include="Assets\Scripts\StoryModeSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\TextOption.cs" />
-     <Compile Include="Assets\Scripts\TutorialMode.cs" />
      <None Include="Assets\Resources\Sprites\Animals\Penguin.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
