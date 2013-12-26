@@ -1,17 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PainIndicator.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Animal.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerControls.cs" Line="25" Column="28" />
       <File FileName="Assets/Scripts/PainIndicator.cs" Line="93" Column="3" />
-      <File FileName="Assets/Scripts/PainBar.cs" Line="68" Column="2" />
+      <File FileName="Assets/Scripts/Animal.cs" Line="63" Column="4" />
+      <File FileName="Assets/Scripts/NetLauncher.cs" Line="38" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="PainIndicator.cs" selected="True" />
+              <Node name="Animal.cs" selected="True" />
             </Node>
           </Node>
         </State>

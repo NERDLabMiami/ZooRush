@@ -18,6 +18,7 @@ public class NetLauncher : MonoBehaviour
 	private int throwCount;
 	
 	private Renderer[] throwAlert;
+	private Animal animal;
 	
 	void Start ()
 	{
@@ -27,12 +28,14 @@ public class NetLauncher : MonoBehaviour
 		animalCaught = false;
 		throwCount = 0;
 		throwAlert = GameObject.Find ("Throw Alert").GetComponentsInChildren<Renderer> ();
+		animal = GameObject.FindObjectOfType<Animal> ();
 	}
 	
 	void FixedUpdate ()
 	{
 		animalCaught = GameObject.FindObjectOfType<Animal> ().caught;
 		if (launchEnabled) {
+			animal.changeY ();
 			foreach (Renderer renderer in throwAlert) {
 				renderer.renderer.enabled = true;
 			}

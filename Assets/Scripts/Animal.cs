@@ -24,8 +24,7 @@ public class Animal : MonoBehaviour
 	private bool yVelocityChanged;
 	private float upperBounds;
 	private float lowerBounds;
-	
-	
+
 	void Start ()
 	{
 		yVelocityChanged = false;
@@ -62,16 +61,6 @@ public class Animal : MonoBehaviour
 				transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 			}
 		}
-		
-		if (play) {
-			if (yVelocityChanged) {
-				Debug.Log ("Velocity Change Registered");
-				StartCoroutine (waitToResume (1f));
-				yVelocityChanged = false;
-			} else {
-				changeY ();
-			}
-		}
 	}
 	
 	void OnTriggerEnter2D (Collider2D other)
@@ -94,7 +83,6 @@ public class Animal : MonoBehaviour
 				}
 			}
 		}
-		
 	}
 	
 	private void changeNetSize ()
@@ -121,10 +109,10 @@ public class Animal : MonoBehaviour
 		}
 	}
 	
-	private void changeY ()
+	public void changeY ()
 	{
 		int moveChance = Random.Range (1, 101);
-		if (moveChance % 50 == 0) {//2% chance
+		if (moveChance % 100 == 0) {//1% chance
 			float newYVelocity = Random.Range (-4.5f, 4.5f);
 			Vector3 newSpeed = speed;
 			newSpeed.y = newYVelocity;
@@ -133,7 +121,6 @@ public class Animal : MonoBehaviour
 		} else {
 			yVelocityChanged = false;
 		}
-		
 	}
 	private IEnumerator waitToResume (float time)
 	{
