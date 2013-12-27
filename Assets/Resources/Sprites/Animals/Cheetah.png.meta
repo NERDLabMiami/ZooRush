@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: be1d684556fa045f99461a9f7aa1cad3
+guid: 7326f37c63af34c4b88e186dd6e855e7
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -44,6 +44,51 @@ TextureImporter:
     textureFormat: -2
     compressionQuality: 50
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Cheetah_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 546
+        width: 465
+        height: 273
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Cheetah_1
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 546
+        width: 465
+        height: 273
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Cheetah_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 273
+        width: 465
+        height: 273
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Cheetah_3
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 273
+        width: 465
+        height: 273
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Cheetah_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 465
+        height: 273
+      alignment: 7
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 
