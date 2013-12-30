@@ -469,7 +469,6 @@ public class SceneManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds (1f);
 		lightScreen ();
-		netLauncher.resetNetLauncher ();
 		changeAnimal ();
 		levelStartWait = true;
 		isPlaying = true;

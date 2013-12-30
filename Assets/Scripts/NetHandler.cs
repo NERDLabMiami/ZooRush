@@ -1,36 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/** Handles net-animal interaction
+* @author Ebtissam Wahman
+*/
 public class NetHandler : MonoBehaviour
 {
-	
-	public Sprite[] sprites;
 
-	void Start ()
-	{
-	
-	}
-	
 	void Update ()
 	{
-		if (rigidbody2D.velocity.y < 0f) {
-			Debug.Log ("DOWN!!!");
-			GetComponent<SpriteRenderer> ().sprite = sprites [1];
+		if (transform.position.y < Camera.main.transform.position.y - 10f) { //if completely out of view of the camera
+			Destroy (gameObject); //destroy this net instance
 		}
 	}
 	
 	void OnTriggerEnter2D (Collider2D other)
-	{
-//		Debug.Log (other.gameObject.name);
-		
+	{//on interaction with another object with a trigger collider
+		if (other.gameObject.GetComponentInChildren<Animal> () != null) { //if that object is an animal
+			StartCoroutine (interact (other.gameObject));
+			other.gameObject.GetComponentInChildren<Animal> ().caught = true;
+		}
 	}
 	
-	void OnCollisionEnter2D (Collision2D collision)
+	private IEnumerator interact (GameObject obj)
 	{
-		Debug.Log (collision.gameObject.name);
-//		if (collision.gameObject.name.Contains ("Animal") != null) {
-//			Debug.Log ("AMINAL!");
-//		}
+		GetComponent<SpriteRenderer> ().enabled = false; //stop rendering net
+		SpriteRenderer[] animalSprites = obj.GetComponentsInChildren<SpriteRenderer> (); //all sprites under the animal object
+		yield return new WaitForSeconds (0.1f); //delay before rendering full net
+		foreach (SpriteRenderer sprite in animalSprites) {
+			if (sprite.name.Equals ("Net")) { //activate only the net sprite
+				sprite.enabled = true;
+			}
+		}
+		Destroy (gameObject); //destroy the net
 	}
-	
 }

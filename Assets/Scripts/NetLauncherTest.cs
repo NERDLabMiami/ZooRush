@@ -3,15 +3,19 @@ using System.Collections;
 
 public class NetLauncherTest : MonoBehaviour
 {
+	public bool launchEnabled;
+	
 	public Rigidbody2D prefab;
 	public float speed;	
 
-	private GameObject net;
 	private bool firing;
+	private int throwCount; //number of tries that have been made 
+	
 
 	void Start ()
 	{
 		firing = false;
+		throwCount = 0;
 	}
 
 	void FixedUpdate ()
@@ -19,26 +23,22 @@ public class NetLauncherTest : MonoBehaviour
 		if (!InputManager.enter) {
 			firing = false;
 		}
-		if (InputManager.enter && !firing) {
+		if (InputManager.enter && !firing && throwCount < 3) {
 			firing = true;
-			net = fire ().gameObject;
+			fire ();
+		} else {
+			if (throwCount >= 3) {
+				Debug.Log ("RESET");
+				throwCount = 0;
+			}
 		}
-//		if (net != null && net.rigidbody2D.velocity.x < 1f) {
-//			Destroy (net);
-//		}
 	}
 
-	public void resetNetLauncher ()
+	private void fire ()
 	{
-		Destroy (net);
-		firing = false;
+		Rigidbody2D netInstance = Instantiate (prefab, transform.position, prefab.transform.rotation) as Rigidbody2D;
+		netInstance.velocity = new Vector2 (speed, 0f);
+		throwCount += 1;
+		
 	}
-
-	private Rigidbody2D fire ()
-	{
-		Rigidbody2D netInstance = Instantiate (prefab, transform.position, Quaternion.Euler (new Vector3 (0, 0, 0))) as Rigidbody2D;
-		netInstance.velocity = new Vector2 (speed, 15f);
-		return netInstance;
-	}
-
 }
