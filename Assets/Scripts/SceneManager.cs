@@ -9,9 +9,9 @@ using System.Collections;
 public class SceneManager : MonoBehaviour
 {
 	public string NextSceneName; 		//Filename of the next scene 
-	public float distanceDiffMin; 		//
-	public float currentDistanceDiff;
-	public float waitTime;
+	public float distanceDiffMin; 		//Minimum distance needed between character and animal
+	public float currentDistanceDiff; 	//Current distance between character and animal
+	public float waitTime;				//Amount of time to wait before the level starts
 	public int levelNumber;
 	public float targetTimeVar;
 	public float multiplier1;
@@ -39,8 +39,11 @@ public class SceneManager : MonoBehaviour
 	
 	private bool scoreDisplayed;
 	private bool timeCountDown;
+	private bool timeWait;
 	private int time;
+	private int timeCounter;
 	private int infections;
+	private int infectionCounter;
 	private int powerUps;
 	private int starCount;
 	private int stars;
@@ -78,11 +81,13 @@ public class SceneManager : MonoBehaviour
 		fainted = false;
 		hitByVehicle = false;
 		scoreDisplayed = false;
-		timeCountDown = true;
+		timeCountDown = false;
+		timeWait = true;
 		starDisplay1 = false;
 		starDisplay2 = false;
 		stars = 3;
-		
+		timeCounter = 0;
+		infectionCounter = 0;
 		animal = GameObject.FindGameObjectWithTag ("animal");
 		for (int i = 0; i < animals.Length; i++) {
 			if (animals [i].name.Contains (animal.name)) {
@@ -170,33 +175,37 @@ public class SceneManager : MonoBehaviour
 	void FixedUpdate ()
 	{
 		if (timeCountDown) {
-			if (time > 0) {
-				StartCoroutine (starDisplay (stars));
-				StartCoroutine (timeCountDownMethod ());
+			if (timeWait) {
+				StartCoroutine (TimeWait ());
 			} else {
-				timeCountDown = false;
-				if (!starDisplay1) {
-					if (time - targetTimeVar > 0) {
-						stars--;
-					}
-					if (time - (multiplier1 * targetTimeVar) > 0) {
-						stars--;
-					}
-					if (time - (multiplier2 * targetTimeVar) > 0) {
-						stars--;
-					}
+				if (timeCounter < time) {
 					StartCoroutine (starDisplay (stars));
+					StartCoroutine (timeCountUpMethod ());
 				} else {
-					if (infections > 0) {
-						StartCoroutine (infectionCountDown ());
+					timeCountDown = false;
+					if (!starDisplay1) {
+						if (time - targetTimeVar > 0) {
+							stars--;
+						}
+						if (time - (multiplier1 * targetTimeVar) > 0) {
+							stars--;
+						}
+						if (time - (multiplier2 * targetTimeVar) > 0) {
+							stars--;
+						}
+						StartCoroutine (starDisplay (stars));
 					} else {
-						if (!starDisplay2) {
-							if (stars > 0) {
-								if (infections > powerUps) {
-									stars--;
+						if (infectionCounter < infections) {
+							StartCoroutine (infectionCountUp ());
+						} else {
+							if (!starDisplay2) {
+								if (stars > 0) {
+									if (infections > powerUps) {
+										stars--;
+									}
 								}
+								StartCoroutine (starDisplay (stars));
 							}
-							StartCoroutine (starDisplay (stars));
 						}
 					}
 				}
@@ -204,10 +213,9 @@ public class SceneManager : MonoBehaviour
 		}
 	}
 	
-	private IEnumerator infectionCountDown ()
+	private IEnumerator infectionCountUp ()
 	{
-	
-		infections -= 1;
+		infections += 1;
 		yield return new WaitForSeconds (0.3f);
 		GameObject.Find ("Menu - Infect Count").GetComponent<TextMesh> ().text = "" + infections;
 	}
@@ -251,36 +259,19 @@ public class SceneManager : MonoBehaviour
 		}
 	}
 	
-	private IEnumerator timeCountDownMethod ()
+	private IEnumerator TimeWait ()
 	{
-		time -= 1;
-		yield return new WaitForSeconds (0.1f);
+		Debug.Log ("Waiting");
+		yield return new WaitForSeconds (1.5f);
+		timeWait = false;
+	}
+	
+	private IEnumerator timeCountUpMethod ()
+	{
 		TextMesh timeTextMesh = GameObject.Find ("Menu - Time").GetComponent<TextMesh> ();
-		int minutes = time / 60;
-		int seconds = time % 60;
-		string timeText = "";
-		if (minutes % 100 <= 9 && minutes <= 99) {
-			timeText = "0" + minutes;
-		} else {
-			if (minutes <= 99) {
-				timeText = "" + minutes;
-			} else {
-				timeText = "99";
-			}
-		}
-		
-		timeText += ":";
-		
-		if (seconds % 100 <= 9 && minutes <= 100f) {
-			timeText += "0" + seconds;
-		} else {
-			if (minutes <= 100f) {
-				timeText += "" + seconds;
-			} else {
-				timeText += "59+";
-			}
-		}
-		timeTextMesh.text = timeText;
+		timeTextMesh.text = TimeText (timeCounter);
+		yield return new WaitForSeconds (0.1f);
+		timeCounter += 1;
 	}
 	
 	private IEnumerator displayEndlessScore ()
@@ -296,7 +287,7 @@ public class SceneManager : MonoBehaviour
 				menu = Instantiate (menus [3]) as GameObject;
 				menu.transform.parent = Camera.main.transform;
 				menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
-				GameObject.Find ("Menu - Time Value").GetComponent<TextMesh> ().text = TimeText ();
+				GameObject.Find ("Menu - Time Value").GetComponent<TextMesh> ().text = TimeText (time);
 				GameObject.Find ("Menu - Animals Value").GetComponent<TextMesh> ().text = "" + scores [7];
 			}
 			
@@ -403,10 +394,10 @@ public class SceneManager : MonoBehaviour
 		}
 	}
 	
-	private string TimeText ()
+	private string TimeText (int timeVal)
 	{
-		int minutes = time / 60;
-		int seconds = time % 60;
+		int minutes = timeVal / 60;
+		int seconds = timeVal % 60;
 		string timeText = "";
 		if (minutes % 100 <= 9 && minutes <= 99) {
 			timeText = "0" + minutes;

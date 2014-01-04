@@ -13,6 +13,8 @@ public class AudioHandler : MonoBehaviour
 	private bool sound;
 
 	private bool soundPaused;
+	private bool sound2Paused;
+	private bool musicPaused;
 
 	private AudioClip levelMusic;
 	private SceneManager sceneManager;
@@ -63,6 +65,8 @@ public class AudioHandler : MonoBehaviour
 		sound = (PlayerPrefs.GetString ("Sound").Equals ("ON")) ? true : false;
 
 		soundPaused = false;
+		sound2Paused = false;
+		musicPaused = false;
 
 		//Set up for audioclip dictionary
 		audioClips = new Dictionary<string,AudioClip> ();
@@ -118,9 +122,14 @@ public class AudioHandler : MonoBehaviour
 		}
 
 		if (sound) {
-			if (soundTrack.audio.volume != 1f || soundTrack2.audio.volume != 1f) {
+			if (soundTrack.audio.volume != 1f) {
+			
 				soundFadeIn ();
 			}
+			if (soundTrack2.audio.volume != 1f) {
+				sound2FadeIn ();
+			}
+			
 		} else {
 			soundTrack.audio.volume = 0f;
 			soundTrack.audio.Stop ();
@@ -133,6 +142,18 @@ public class AudioHandler : MonoBehaviour
 				if (soundTrack.audio.isPlaying) {
 					soundTrack.audio.Pause ();
 					soundPaused = true;
+					soundFadeOut ();
+				}
+				if (soundTrack2.audio.isPlaying) {
+					soundTrack2.audio.Pause ();
+					sound2Paused = true;
+					sound2FadeOut ();
+				}
+			}
+			if (music) {
+				if (musicTrack.audio.isPlaying) {
+					musicTrack.audio.Pause ();
+					musicPaused = true;
 				}
 			}
 
@@ -144,6 +165,22 @@ public class AudioHandler : MonoBehaviour
 				}
 				if (soundTrack.audio.volume != 1) {
 					soundFadeIn ();
+				}
+				if (!soundTrack2.audio.isPlaying && sound2Paused) {
+					soundTrack2.audio.Play ();
+					sound2Paused = false;
+				}
+				if (soundTrack2.audio.volume != 1) {
+					sound2FadeIn ();
+				}
+			}
+			if (music) {
+				if (!musicTrack.audio.isPlaying && musicPaused) {
+					musicTrack.audio.Play ();
+					musicPaused = false;
+				}
+				if (musicTrack.audio.volume != 1) {
+					musicFadeIn ();
 				}
 			}
 		}
@@ -199,12 +236,21 @@ public class AudioHandler : MonoBehaviour
 	private void soundFadeIn ()
 	{
 		soundTrack.audio.volume = Mathf.Lerp (soundTrack.audio.volume, 1f, rate * Time.deltaTime);
+	}
+	private void sound2FadeIn ()
+	{
 		soundTrack2.audio.volume = Mathf.Lerp (soundTrack.audio.volume, 1f, rate * Time.deltaTime);
 	}
 
 	private void soundFadeOut ()
 	{
 		soundTrack.audio.volume = Mathf.Lerp (soundTrack.audio.volume, 0f, rate * Time.deltaTime);
+		
+	}
+	private void sound2FadeOut ()
+	{
+		soundTrack2.audio.volume = Mathf.Lerp (soundTrack.audio.volume, 0f, rate * Time.deltaTime);
+		
 	}
 
 	private void musicFadeIn ()
