@@ -27,7 +27,7 @@ public class CollisionDetect : MonoBehaviour
 			if (isPowerUp) {
 				if (!signalSent) {
 					signalSent = true;
-					GameObject.FindObjectOfType<PainBar> ().GetComponent<PainBar> ().objectInteraction (transform.parent.gameObject);
+					GameObject.FindObjectOfType<PainIndicator> ().GetComponent<PainIndicator> ().objectInteraction (transform.parent.gameObject);
 					if (transform.parent.gameObject.name.Contains ("Pill")) {
 						GameObject.FindObjectOfType<AudioHandler> ().playSound ("PILL");
 					} else {
@@ -65,7 +65,7 @@ public class CollisionDetect : MonoBehaviour
 				if (isInfection) {
 					if (!signalSent) {
 						signalSent = true;
-						GameObject.FindObjectOfType<PainBar> ().GetComponent<PainBar> ().objectInteraction (transform.parent.gameObject);
+						GameObject.FindObjectOfType<PainIndicator> ().GetComponent<PainIndicator> ().objectInteraction (transform.parent.gameObject);
 						GameObject.FindObjectOfType<AudioHandler> ().playSound ("INFECTION");
 					}
 					Obstacle parent = transform.parent.GetComponent<Obstacle> ();
@@ -78,7 +78,7 @@ public class CollisionDetect : MonoBehaviour
 							GameObject.FindObjectOfType<SceneManager> ().hitByVehicle = true;
 						}
 						if (transform.parent.name.Contains ("Lawnmower")) {
-							GameObject.FindObjectOfType<PainBar> ().objectInteraction (transform.parent.gameObject);
+							GameObject.FindObjectOfType<PainIndicator> ().objectInteraction (transform.parent.gameObject);
 						}
 						if (transform.parent.name.Contains ("Ball")) {
 							GameObject.FindObjectOfType<AudioHandler> ().playSound ("BALL");

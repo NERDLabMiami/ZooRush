@@ -15,6 +15,7 @@ public class PlayerControls : MonoBehaviour
 	private Animator animate;
 	private SceneManager sceneManager;
 	private InputManager inputManager;
+	private NetLauncher netLauncher;
 
 	private bool play;
 	private bool prevPlay;
@@ -22,11 +23,14 @@ public class PlayerControls : MonoBehaviour
 	public string characterName;
 	private bool changingSpeed;
 
+	public Sprite[] faceIcons;
+
 	void Start ()
 	{
 		animate = GetComponent<Animator> ();
 		sceneManager = FindObjectOfType<SceneManager> ();
 		inputManager = FindObjectOfType<InputManager> ();
+		netLauncher = FindObjectOfType<NetLauncher> ();
 		play = sceneManager.isPlaying;
 		prevPlay = play;
 		speed = new Vector2 (7f, 0f);
@@ -57,7 +61,7 @@ public class PlayerControls : MonoBehaviour
 			animate.StartPlayback ();
 		}
 		
-		if (rigidbody2D.velocity.x < speed.x && !changingSpeed && sceneManager.isPlaying) {
+		if (rigidbody2D.velocity.x < speed.x && !changingSpeed && sceneManager.isPlaying && !netLauncher.launchEnabled) {
 			setSpeed ();
 		}
 		//Tracking for the paused or played state
