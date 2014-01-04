@@ -8,8 +8,8 @@ using System.Collections;
  */ 
 public class SceneManager : MonoBehaviour
 {
-	public string NextSceneName;
-	public float distanceDiffMin;
+	public string NextSceneName; 		//Filename of the next scene 
+	public float distanceDiffMin; 		//
 	public float currentDistanceDiff;
 	public float waitTime;
 	public int levelNumber;

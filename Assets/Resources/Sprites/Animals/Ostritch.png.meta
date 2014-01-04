@@ -50,34 +50,70 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 512
-        width: 436
+        width: 439
         height: 512
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Ostritch_1
       rect:
         serializedVersion: 2
-        x: 436
+        x: 439
         y: 512
-        width: 436
+        width: 439
         height: 512
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Ostritch_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 436
+        x: 878
+        y: 512
+        width: 439
         height: 512
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Ostritch_3
       rect:
         serializedVersion: 2
-        x: 436
+        x: 1317
+        y: 512
+        width: 439
+        height: 512
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Ostritch_4
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
-        width: 436
+        width: 439
+        height: 512
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Ostritch_5
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 0
+        width: 439
+        height: 512
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Ostritch_6
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 0
+        width: 439
+        height: 512
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Ostritch_7
+      rect:
+        serializedVersion: 2
+        x: 1317
+        y: 0
+        width: 439
         height: 512
       alignment: 7
       pivot: {x: 0, y: 0}
