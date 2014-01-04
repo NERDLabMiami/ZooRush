@@ -30,6 +30,7 @@ public class SceneManager : MonoBehaviour
 	public bool isEndless;
 	public bool levelStartWait;
 	public bool isPlaying;
+	public bool pauseAudio;
 	public bool tutEnabled;
 	public bool fainted;
 	public bool hitByVehicle;
@@ -77,6 +78,7 @@ public class SceneManager : MonoBehaviour
 	void Start ()
 	{
 		isPlaying = true;
+		pauseAudio = false;
 		levelStartWait = true;
 		fainted = false;
 		hitByVehicle = false;
@@ -125,6 +127,9 @@ public class SceneManager : MonoBehaviour
 			if (isPlaying) {
 				if (animalControl.caught) {
 					isPlaying = false;
+					if (!isEndless) {
+						pauseAudio = true;
+					}
 					if (isEndless) {
 						StartCoroutine (resetSceneEndlessMode ());
 					} else {
@@ -141,6 +146,7 @@ public class SceneManager : MonoBehaviour
 					}
 					if (fainted) {
 						isPlaying = false;
+						pauseAudio = true;
 						if (isEndless) {
 							StartCoroutine (displayEndlessScore ());
 						} else {
@@ -149,6 +155,7 @@ public class SceneManager : MonoBehaviour
 					} else {
 						if (hitByVehicle) {
 							isPlaying = false;
+							pauseAudio = true;
 							if (isEndless) {
 								StartCoroutine (displayEndlessScore ());
 							} else {

@@ -57,6 +57,7 @@ public class DialogHandler : MonoBehaviour
 						closeDialog ();
 						sceneManager.isPlaying = true;
 						displaying = false;
+						found = false;
 					}
 					if (InputManager.enter) {
 						dialog.next ();

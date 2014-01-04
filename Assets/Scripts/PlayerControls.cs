@@ -55,27 +55,24 @@ public class PlayerControls : MonoBehaviour
 
 	void Update ()
 	{
-		if (sceneManager.isPlaying) {
-			animate.StopPlayback ();
-		} else {
-			animate.StartPlayback ();
-		}
-		
-		if (rigidbody2D.velocity.x < speed.x && !changingSpeed && sceneManager.isPlaying && !netLauncher.launchEnabled) {
-			setSpeed ();
-		}
 		//Tracking for the paused or played state
 		prevPlay = play;
 		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
 			play = true;
+			if (rigidbody2D.velocity.x < speed.x && !changingSpeed && !netLauncher.launchEnabled) {
+				setSpeed ();
+			}
 		} else {// otherwise keep track that the input is not active
 			play = false;
 		}
 		if (!prevPlay && play) { //our previous state is the paused state, we are now going into the play state
 			StartCoroutine (waitToResume (0.1f));
+			animate.StopPlayback ();
 		} else { // our previous state is the play state
 			if (!play) {//we need to move into the paused state
 				rigidbody2D.velocity = new Vector2 (0f, 0f);
+				animate.StartPlayback ();
+				Debug.Log ("STOPPED");
 			}
 		}	
 	}

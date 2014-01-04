@@ -137,7 +137,7 @@ public class AudioHandler : MonoBehaviour
 			soundTrack2.audio.Stop ();
 		}
 
-		if (!sceneManager.isPlaying) {//Scene Paused
+		if (sceneManager.pauseAudio) {//Sound Paused
 			if (sound) {
 				if (soundTrack.audio.isPlaying) {
 					soundTrack.audio.Pause ();
@@ -157,7 +157,7 @@ public class AudioHandler : MonoBehaviour
 				}
 			}
 
-		} else {//Scene Playing
+		} else {//Continue Sound Playing
 			if (sound) {
 				if (!soundTrack.audio.isPlaying && soundPaused) {
 					soundTrack.audio.Play ();
