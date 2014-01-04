@@ -8,81 +8,61 @@ using System.Collections;
 
 public class NetLauncher : MonoBehaviour
 {
-	public Rigidbody2D prefab;
-	public bool launchEnabled;
-	private GameObject net;
-	public float speed;	
-	private int action;
-	private bool firing;
-	private bool animalCaught;
-	private int throwCount;
+	public bool launchEnabled; //Indicates if it is possible to launch a net 
+	public Rigidbody2D prefab; //The net prefab that will be instantiated
 	
-	private Renderer[] throwAlert;
+	private GameObject throwAlert; //Pointer the the throw alert dialog box
+	private Animal animal;	//Pointer to the animal class
+	private float speed;	//Speed at which the net will be launched on the x-axis
+	private bool firing;	//Indicates if the character is currently firing a net
+	private int throwCount; //number of tries that have been made 
 	
 	void Start ()
-	{
-		launchEnabled = false;
+	{	
+		speed = 30f;	
 		firing = false;
-		speed = 20f;
-		animalCaught = false;
 		throwCount = 0;
-		throwAlert = GameObject.Find ("Throw Alert").GetComponentsInChildren<Renderer> ();
+		animal = GameObject.FindObjectOfType<Animal> ();
+		throwAlert = GameObject.Find ("Throw Alert");
+	}
+	
+	void Update ()
+	{
+		if (launchEnabled) {
+			if (!throwAlert.activeSelf) { //enalbe the throw alert dialog box
+				throwAlert.SetActive (true);
+			}
+		} else {
+			if (throwAlert.activeSelf) { //disable the throw alert dialog box
+				throwAlert.SetActive (false);
+			}
+		}
 	}
 	
 	void FixedUpdate ()
 	{
-		animalCaught = GameObject.FindObjectOfType<Animal> ().caught;
-		if (launchEnabled) {
-			Debug.Log ("ENABLED!");
-			foreach (Renderer renderer in throwAlert) {
-				renderer.renderer.enabled = true;
-			}
-			if (throwCount >= 3) {
-				GameObject.FindObjectOfType<PlayerControls> ().resetSpeed ();
-				throwCount = 0;
-			} else {
-				if (GameObject.FindObjectOfType<AnimalTouched> ().touched /*|| Input.GetAxis ("Fire1") > 0*/) {
-					action = 1;
-				} else {
-					action = 0;
-				}
-				
-				if (action == 0) {
-					firing = false;
-				}
-				if (action != 0 && !firing && net == null) {
-					firing = true;
-					net = fire ().gameObject;
-				}
-			}
+		if (!InputManager.enter) {
+			firing = false;
 		} else {
-			foreach (Renderer renderer in throwAlert) {
-				renderer.renderer.enabled = false;
-			}
+			if (!firing && launchEnabled && throwCount < 3) {
+				firing = true;
+				fire ();
+			}	
 		}
-		if (net != null && !animalCaught && net.rigidbody2D.velocity.x < 1f) {
-			Destroy (net);
+		if (throwCount >= 3 && !animal.caught) { //Pauses character momentarily and resets the netthrow count
+			GameObject.FindObjectOfType<PlayerControls> ().resetSpeed ();
+			throwCount = 0;
 		}
 	}
 	
-	public void resetNetLauncher ()
+	/** 
+	*	Instatiates a new net object and applies a velocity in the +x-direction
+	*/
+	private void fire ()
 	{
-		Destroy (net);
-		launchEnabled = false;
-		firing = false;
-		animalCaught = false;
-		throwCount = 0;
-		foreach (Renderer renderer in throwAlert) {
-			renderer.renderer.enabled = false;
-		}
-	}
-		
-	private Rigidbody2D fire ()
-	{
-		Rigidbody2D netInstance = Instantiate (prefab, transform.position, Quaternion.Euler (new Vector3 (0, 0, 0))) as Rigidbody2D;
-		netInstance.velocity = new Vector2 (speed, 15f);
-		throwCount++;
-		return netInstance;
+		Rigidbody2D netInstance = Instantiate (prefab, transform.position, prefab.transform.rotation) as Rigidbody2D;
+		netInstance.velocity = new Vector2 (speed, 0f);
+		throwCount += 1;
 	}
 	
 }

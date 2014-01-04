@@ -1,34 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
-/** Controller for the character Pain Bar.
- * @author: Ebtissam Wahman
- */ 
-public class PainBar : MonoBehaviour
+public class PainIndicator : MonoBehaviour
 {
-	public float painRate; // using 3.5f atm
-	public float painPoints;
-	public float maxPainBarSize;
-	public Sprite[] healthStates;
 
+	public float painRate;
+	public float painPoints;
+
+	private Sprite[] healthFaces;
+	private SpriteRenderer sprite;
 	private ScoreKeeper scoreKeeper;
 	private SceneManager sceneManager;
 	private AudioHandler audioHandler;
+	private Animator animator;
 	
 	void Start ()
 	{
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 		audioHandler = GameObject.FindObjectOfType<AudioHandler> ();
-		transform.localScale = new Vector3 (0f, transform.localScale.y, transform.localScale.z);
+		animator = GetComponent<Animator> ();
 		painPoints = 0f;
-		maxPainBarSize = 0.32f;
-		if (painRate <= 0) {
-			painRate = 3.5f;
-		}
+		painRate = 3.5f;
+		healthFaces = GameOptions.FindObjectOfType<PlayerControls> ().faceIcons;
+		sprite = GetComponent<SpriteRenderer> ();
+		sprite.sprite = healthFaces [0];
 	}
-	
+
 	void FixedUpdate ()
 	{
 		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
@@ -45,22 +43,21 @@ public class PainBar : MonoBehaviour
 		if (painPoints < 0) {
 			painPoints = 0;
 		}
-
-		GetComponent<Animator> ().SetFloat ("Pain", painPoints);
-		
-		if (painPoints <= 100f) { // Change health bar sized based on current pain points
-			transform.localScale = new Vector3 ((painPoints / 100f) * maxPainBarSize, 
-			                                    transform.localScale.y, 
-			                                    transform.localScale.z);
+		animator.SetFloat ("PainPoints", painPoints);
+		if (painPoints < 33f) { // Change to normal face
+			if (!sprite.sprite.Equals (healthFaces [0])) {
+				sprite.sprite = healthFaces [0];
+			}
 		}
-		if (painPoints < 33f) { // Change health to Green
-			GetComponent<SpriteRenderer> ().sprite = healthStates [0];
+		if (painPoints > 33f && painPoints < 75f) { // Change to discomfort face
+			if (!sprite.sprite.Equals (healthFaces [1])) {
+				sprite.sprite = healthFaces [1];		
+			}	
 		}
-		if (painPoints > 33f && painPoints < 75f) { // Change health to Yellow
-			GetComponent<SpriteRenderer> ().sprite = healthStates [1];
-		}
-		if (painPoints > 75f) { // Change health to Red
-			GetComponent<SpriteRenderer> ().sprite = healthStates [2];
+		if (painPoints > 75f) { // Change to pain face
+			if (!sprite.sprite.Equals (healthFaces [2])) {
+				sprite.sprite = healthFaces [2];
+			}
 			audioHandler.playSound ("HARDSICKLOOP");
 		}
 	}
@@ -70,11 +67,11 @@ public class PainBar : MonoBehaviour
 		if (obj.name.Contains ("Doctor") || obj.name.Contains ("First Aid")) {
 			painPoints = 0f;
 		} else {
-		
+			
 			if (obj.name.Contains ("Infection")) {
 				if (obj.name.Contains ("Red")) {
 					painPoints += 35f;
-
+					
 				} else {
 					if (obj.name.Contains ("Yellow")) {
 						painPoints += 20f;
@@ -84,7 +81,7 @@ public class PainBar : MonoBehaviour
 						//player.decrementSpeed (0.05f * player.maxSpeed.x); // Slows character down by 5% of normal speed
 					}
 				}
-
+				
 			} else {
 				if (obj.name.Contains ("Water Bottle")) {
 					painPoints -= 25f;

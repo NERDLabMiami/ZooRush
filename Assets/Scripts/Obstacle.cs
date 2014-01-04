@@ -88,8 +88,12 @@ public class Obstacle : MonoBehaviour
 		if (!gameObject.activeSelf) {
 			gameObject.SetActive (true);
 		}
-		GetComponent<Animator> ().SetTrigger ("Reset");
-		GetComponentInChildren<CollisionDetect> ().resetTouch ();
+		if (GetComponent<Animator> () != null) {
+			GetComponent<Animator> ().SetTrigger ("Reset");
+		}
+		if (GetComponentInChildren<CollisionDetect> () != null) {
+			GetComponentInChildren<CollisionDetect> ().resetTouch ();
+		}
 	}
 
 	private void destroyObstacle ()

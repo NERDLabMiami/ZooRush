@@ -1,11 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerControls.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="476" Column="1" />
-      <File FileName="Assets/Scripts/TextOption.cs" Line="41" Column="78" />
-      <File FileName="Assets/Editor/DialogTriggerEditor.cs" Line="9" Column="23" />
-      <File FileName="Assets/Scripts/PlayerControls.cs" Line="56" Column="11" />
+      <File FileName="Assets/Scripts/SceneManager.cs" Line="12" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
