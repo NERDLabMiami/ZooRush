@@ -44,6 +44,7 @@ public class PainIndicator : MonoBehaviour
 			painPoints = 0;
 		}
 		animator.SetFloat ("PainPoints", painPoints);
+		animator.SetBool ("Playing", sceneManager.isPlaying);
 		if (painPoints < 33f) { // Change to normal face
 			if (!sprite.sprite.Equals (healthFaces [0])) {
 				sprite.sprite = healthFaces [0];
@@ -58,7 +59,9 @@ public class PainIndicator : MonoBehaviour
 			if (!sprite.sprite.Equals (healthFaces [2])) {
 				sprite.sprite = healthFaces [2];
 			}
-			audioHandler.playSound ("HARDSICKLOOP");
+			if (sceneManager.isPlaying) {
+				audioHandler.playSound ("HARDSICKLOOP");
+			}
 		}
 	}
 
