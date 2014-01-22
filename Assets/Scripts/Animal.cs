@@ -7,108 +7,50 @@ using System.Collections;
  */ 
 public class Animal : MonoBehaviour
 {
-	private Animator animate;
-	public bool caught;
+
+	public bool caught; //Indicator for whehter the Animal has been caught by the player
+	public GameObject net; //Pre-fabbed image of a net that is made visible when the animal is caught
+	public Vector2 speed; //Current speed of the animal object
 	
-	public GameObject net;
-	private GameObject netBoundary;
-	private BoxCollider2D[] netColliders;
-	private Vector3 netSize;
-	
-	public Vector2 speed;
-	
-	private SceneManager sceneManager;
-	private bool play;
-	private bool prevPlay;
-	
-//	private bool yVelocityChanged;
-//	private float upperBounds;
-//	private float lowerBounds;
+	private Animator animator; //Animator for the animal's running sprites
+	private SceneManager sceneManager; // Pointer to the scene manager
+	private bool play; //Current frame's state of whether the game is in play
+	private bool prevPlay; //Previous frame's state of whether the game is in play
 
 	void Start ()
 	{
-//		yVelocityChanged = false;
-		sceneManager = FindObjectOfType<SceneManager> ();
-		play = sceneManager.isPlaying;
-		prevPlay = play;
-		speed = new Vector2 (6.5f, 0f);
-		caught = false;
-		animate = GetComponent<Animator> ();
-//		netBoundary = transform.FindChild ("Net Boundary").gameObject;
-//		netColliders = netBoundary.GetComponents<BoxCollider2D> ();
-//		foreach (BoxCollider2D netCol in netColliders) {
-//			netCol.isTrigger = true;
-//		}
-		transform.parent.rigidbody2D.velocity = speed;
-//		netSize = new Vector3 (1f, 1f, 1f);
-//		upperBounds = GameObject.Find ("Upper Limit").transform.position.y;	
-//		lowerBounds = GameObject.Find ("Lower Limit").transform.position.y;
+		sceneManager = FindObjectOfType<SceneManager> (); //assigns the pointer to the scene manager
+		animator = GetComponent<Animator> (); //assigns the pointer to the animator component
+		speed = new Vector2 (6.5f, 0f); //default speed for the animal object
+		transform.parent.rigidbody2D.velocity = speed; //assigns the rigidbody component the desired velocity
+		
+		caught = false; //default value for whether the animal has been caught
+		
+		/** The "play" and "prevPlay" boolean values are used to create an 
+		* "in play" or "not in play" state machine so that we may be able to 
+		* properly manage the movement and functionality of the animal object.
+		*/
+		play = sceneManager.isPlaying; //the current value the game's play state
+		prevPlay = play; //at the beginninge the previous and current are equal
 	}
 	
 	void Update ()
 	{
-		animate.SetFloat ("Speed", transform.parent.rigidbody2D.velocity.x);
-		prevPlay = play;
-		if (sceneManager.isPlaying) {
-			play = true;
-		} else {// otherwise keep track that the input is not active
-			play = false;
-		}
-		if (!prevPlay && play) { //our previous state is the paused state, we are now going into the play state
+		animator.SetFloat ("Speed", transform.parent.rigidbody2D.velocity.x); //Tells the animator state machine what the current speed value is
+		prevPlay = play; //updates the previous frame's state
+		play = sceneManager.isPlaying; //updates the current frame's state
+		
+		if (!prevPlay && play) { //Our previous state is the paused state, we are now going into the play state
 			StartCoroutine (waitToResume (0.1f));
-		} else { // our previous state is the play state
+		} else { // our previous state was the play state
 			if (!play) {//we need to move into the paused state
 				transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 			}
 		}
 	}
-	
-//	void OnTriggerEnter2D (Collider2D other)
-//	{
-//		if (!caught) {
-//			if (other.gameObject.name == "net(Clone)") {
-//				transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
-//				foreach (BoxCollider2D netCol in netColliders) {
-//					netCol.isTrigger = false;
-//				}
-//				if (gameObject.name.Equals ("Gorilla") || gameObject.name.Equals ("Rhino")) {
-//					other.gameObject.GetComponent<Animator> ().SetBool ("Big", true);
-//				}
-//				other.gameObject.GetComponent<Animator> ().SetTrigger ("Open");
-//				changeNetSize ();
-//				other.transform.localScale = netSize;
-//				if (/*other.rigidbody2D.velocity.x < 0.3f &&*/ !caught) {
-//					caught = true;
-//					GameObject.FindObjectOfType<ScoreKeeper> ().addToCount (gameObject);
-//				}
-//			}
-//		}
-//	}
-	
-//	private void changeNetSize ()
-//	{
-//		switch (gameObject.name) {
-//		case"Tortoise": 
-//			netSize = new Vector3 (1f, 1f, 1f);
-//			break;
-//		case "Crocodile":
-//			netSize = new Vector3 (1.75f, 1.25f, 1f);
-//			break;
-//		case "Flamingo":
-//			netSize = new Vector3 (0.7f, 1.35f, 1f);
-//			break;
-//		case "Gorilla":
-//			netSize = new Vector3 (1f, 1f, 1f);
-//			break;
-//		case "Rhino":
-//			netSize = new Vector3 (1.6f, 1f, 1f);
-//			break;
-//		default:
-//			netSize = new Vector3 (1f, 1f, 1f);
-//			break;
-//		}
-//	}
-	
+
+	/** Randomly changes the y-axis value of the animal object.
+	*/
 	public void changeY ()
 	{
 		int moveChance = Random.Range (1, 101);
@@ -117,12 +59,14 @@ public class Animal : MonoBehaviour
 			Vector3 newSpeed = speed;
 			newSpeed.y = newYVelocity;
 			transform.parent.rigidbody2D.velocity = newSpeed;
-//			yVelocityChanged = true;
 		}
-//		 else {
-//			yVelocityChanged = false;
-//		}
+
 	}
+	
+	/** Resumes the default speed of the animal.
+	* @param time the wait time before resetting the speed of the animal
+	*/
+	
 	private IEnumerator waitToResume (float time)
 	{
 		yield return new WaitForSeconds (time);
