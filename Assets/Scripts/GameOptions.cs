@@ -10,8 +10,8 @@ public class GameOptions : MonoBehaviour
 {	
 	private GameObject[] options;
 	
-	private GameObject Music;
-	private GameObject Sound;
+	public GameObject MusicButton;
+	public GameObject SoundButton;
 	private GameObject Back;
 	
 	private SpriteRenderer charSelect;
@@ -26,8 +26,6 @@ public class GameOptions : MonoBehaviour
 	
 	void Start ()
 	{
-		Music = GameObject.Find ("Text - Music");
-		Sound = GameObject.Find ("Text - Sound");
 		Back = GameObject.Find ("Text - Back");
 		charSelect = GameObject.Find ("Sprite - Character").GetComponent<SpriteRenderer> ();
 
@@ -67,17 +65,25 @@ public class GameOptions : MonoBehaviour
 		musicValue = PlayerPrefs.GetString ("Music");
 		soundValue = PlayerPrefs.GetString ("Sound");
 		
-		options = new GameObject[] {Music, Sound,/* VolumeSlider,*/ charSelect.gameObject, Back};
+		options = new GameObject[] {MusicButton, SoundButton, charSelect.gameObject, Back};
 	}
 	
 	void Update ()
 	{
 		musicValue = PlayerPrefs.GetString ("Music");
-		Music.GetComponent<TextMesh> ().text = "Music:   " + musicValue.Substring (0, 1) + musicValue.Substring (1).ToLower ();
+		if (musicValue.Equals ("ON")) {
+			MusicButton.GetComponent<ToggleButton> ().Activate ();
+		} else {
+			MusicButton.GetComponent<ToggleButton> ().Deactivate ();
+		}
 		
 		soundValue = PlayerPrefs.GetString ("Sound");
-		Sound.GetComponent<TextMesh> ().text = "Sound:   " + soundValue.Substring (0, 1) + soundValue.Substring (1).ToLower ();
-		
+		if (soundValue.Equals ("ON")) {
+			SoundButton.GetComponent<ToggleButton> ().Activate ();
+		} else {
+			SoundButton.GetComponent<ToggleButton> ().Deactivate ();
+		}
+
 		for (int i = 0; i < charMaxIndex; i++) {
 			if (PlayerPrefs.GetString ("Character Selected").Equals (characterNames [i])) {
 				charSelect.sprite = characters [i];
@@ -117,9 +123,6 @@ public class GameOptions : MonoBehaviour
 					} else {
 						PlayerPrefs.SetString ("Character Selected", characterNames [charIndex + 1]);
 					}
-				} else {
-//					if (option.name.Contains ("Slider")) {
-//					}
 				}
 			}
 		}

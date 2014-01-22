@@ -6,18 +6,20 @@ using System.Collections;
  */ 
 public class TextOption : MonoBehaviour
 {
-	private Color optionUnselected = Color.white;
-	private Color optionSelected = Color.yellow;
-	public bool optionEnabled;
-	public bool isLevelOption;
-	public string levelName;
-	public int levelNum;
+	private Color optionUnselected; //Text color when not selected
+	private Color optionSelected = Color.yellow; //Text color when selected
+	public bool optionEnabled; //Indicator if the text is selectable
+	public bool isLevelOption; //Indicator if the option loads a level
+	public string levelName; //The name of the scene the option loads
+
 	void Start ()
 	{
+		optionUnselected = GetComponent<TextMesh> ().color; //sets initial color as default color
 	}
 
 	void OnMouseEnter ()
 	{	
+		Debug.Log ("MMM");
 		if (optionEnabled) {
 			GetComponent<TextMesh> ().color = optionSelected;
 		}
@@ -33,6 +35,7 @@ public class TextOption : MonoBehaviour
 
 	void OnMouseUp ()
 	{
+		Debug.Log ("CLICK");
 		if (optionEnabled) {
 			if (isLevelOption) {
 				if (gameObject.name.Contains ("Retry")) {
@@ -53,11 +56,11 @@ public class TextOption : MonoBehaviour
 						if (PlayerPrefs.GetInt ("Levels Unlocked") > 1) {
 							Application.LoadLevel ("Level Select");
 						} else {
-							StoryModeHandler.NextSceneName = "LevelFrame";
+							StoryModeHandler.NextSceneName = "Level 1 - Tutorial";
 							Application.LoadLevel ("IntroScene");
 						}
 					} else {
-						StoryModeHandler.NextSceneName = "LevelFrame";
+						StoryModeHandler.NextSceneName = "Level 1 - Tutorial";
 						Application.LoadLevel ("IntroScene");
 					}
 				}
