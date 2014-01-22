@@ -6,17 +6,18 @@ using System.Collections;
  */ 
 public class SceneRepeater : MonoBehaviour
 {
-	private SpriteRenderer[] sceneObjects;
-	private GameObject[] sceneThings;
-	float sceneWidth;
+	private SpriteRenderer[] sceneObjects; //All sprites in the scene
+	private GameObject[] sceneThings; //All repeatable objects in the scene
+	float sceneWidth; //distance from the leftmost to the rightmost sprite in the Scene
 
 	void Start ()
 	{
-		sceneObjects = FindObjectsOfType<SpriteRenderer> ();
+		sceneObjects = FindObjectsOfType<SpriteRenderer> (); 
 		sceneThings = GameObject.FindGameObjectsWithTag ("repeatable");
 		SpriteRenderer rightmostObject = sceneObjects [0];
 		SpriteRenderer leftmostObject = sceneObjects [0];
 		
+		//find the leftmost and rightmost sprites in the scene
 		foreach (SpriteRenderer element in sceneObjects) {
 			if (element.transform.position.x > rightmostObject.transform.position.x) {
 				rightmostObject = element;
