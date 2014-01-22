@@ -13,8 +13,6 @@ public class AnimatedText : MonoBehaviour
 
 	void Awake ()
 	{
-		Debug.Log ("INIT");
-
 		textMeshes = new TextMesh[3];
 		textMeshes [0] = GameObject.Find ("Dialog Text - Line 1").GetComponent<TextMesh> ();
 		textMeshes [1] = GameObject.Find ("Dialog Text - Line 2").GetComponent<TextMesh> ();
@@ -44,7 +42,6 @@ public class AnimatedText : MonoBehaviour
 						StartCoroutine (Animate (2));
 					} else {
 						if (textMeshes [0].text.Equals (fullText [0]) && textMeshes [1].text.Equals (fullText [1]) && textMeshes [2].text.Equals (fullText [2])) {
-							Debug.Log ("DONE");
 							complete = true;
 							start = false;
 						}
@@ -77,5 +74,21 @@ public class AnimatedText : MonoBehaviour
 		clear = true;
 
 	}
-
+	private string textStuff = "2\n" +
+		"Today is a big day.\n" +
+		"I get to start my dream job as a Zoo Keeper!\n" +
+		"3\n" +
+		"I may have struggled all my life with sickle-cell anemia,\n" +
+		"but by paying attention to my body,\n" +
+		"I have learned to live with it...\n" +
+		"1\n" +
+		"And I certainly won't let it slow me down today!\n" +
+		"1\n" +
+		"...\n" +
+		"3\n" +
+		"Help! Help! \n" +
+		"All the animals have escaped their pens. \n" +
+		"They’re getting away!\n" +
+		"1\n" +
+		"The first day of work is always the hardest.\n";
 }
