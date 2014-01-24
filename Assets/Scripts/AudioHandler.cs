@@ -188,6 +188,7 @@ public class AudioHandler : MonoBehaviour
 
 	public void playSound (string soundEffect)
 	{
+		Debug.Log ("PLAY SOUND EFFECT 1 CALLED");
 		AudioClip clip;
 		audioClips.TryGetValue (soundEffect, out clip);
 		if (soundTrack.audio.isPlaying) {
@@ -220,6 +221,7 @@ public class AudioHandler : MonoBehaviour
 	
 	public void playSound (string soundEffect1, string soundEffect2, float delayTime)
 	{
+		Debug.Log ("PLAY SOUND EFFECT 2 CALLED");
 		playSound (soundEffect1);
 		AudioClip clip2;
 		audioClips.TryGetValue (soundEffect2, out clip2);
