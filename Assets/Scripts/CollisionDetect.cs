@@ -80,9 +80,6 @@ public class CollisionDetect : MonoBehaviour
 						if (transform.parent.name.Contains ("Lawnmower")) {
 							GameObject.FindObjectOfType<PainIndicator> ().objectInteraction (transform.parent.gameObject);
 						}
-						if (transform.parent.name.Contains ("Ball")) {
-							GameObject.FindObjectOfType<AudioHandler> ().playSound ("BALL");
-						}
 					} 
 					if (!touchOnce) {
 						other.GetComponent<PlayerControls> ().resetSpeed ();
@@ -100,8 +97,10 @@ public class CollisionDetect : MonoBehaviour
 	
 	void OnCollisionEnter2D (Collision2D coll)
 	{
-		if (transform.parent.name.Contains ("Ball")) {
-			GameObject.FindObjectOfType<AudioHandler> ().playSound ("BALL");
+		if (coll.gameObject.name.Contains ("Character")) {
+			if (transform.parent.name.Contains ("Ball")) {
+				GameObject.FindObjectOfType<AudioHandler> ().playSound ("BALL");
+			}
 		}
 	}
 	

@@ -11,7 +11,7 @@ public class SceneManager : MonoBehaviour
 	public string NextSceneName; 		//Filename of the next scene 
 	public float distanceDiffMin; 		//Minimum distance needed between character and animal
 	public float currentDistanceDiff; 	//Current distance between character and animal
-	public int levelNumber;
+	public int levelNumber;				
 	public float targetTimeVar;
 	public float multiplier1;
 	public float multiplier2;

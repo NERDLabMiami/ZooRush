@@ -1,9 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AnimatedText.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CollisionDetect.cs">
     <Files>
-      <File FileName="Assets/Scripts/AnimatedText.cs" Line="18" Column="19" />
-      <File FileName="Assets/Scripts/StoryModeHandler.cs" Line="23" Column="20" />
+      <File FileName="Assets/Scripts/AudioHandler.cs" Line="189" Column="23" />
+      <File FileName="Assets/Scripts/DialogTrigger.cs" Line="5" Column="2" />
+      <File FileName="Assets/Scripts/DialogHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Editor/DialogTriggerEditor.cs" Line="17" Column="5" />
+      <File FileName="Assets/Scripts/CollisionDetect.cs" Line="82" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
