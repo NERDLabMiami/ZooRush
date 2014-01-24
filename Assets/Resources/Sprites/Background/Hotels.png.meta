@@ -49,46 +49,46 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 3
-        width: 402
-        height: 514
+        y: 992
+        width: 771
+        height: 987
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: Hotels_1
       rect:
         serializedVersion: 2
-        x: 405
-        y: 3
-        width: 402
-        height: 514
+        x: 774
+        y: 992
+        width: 772
+        height: 987
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: Hotels_2
       rect:
         serializedVersion: 2
-        x: 809
-        y: 3
-        width: 401
-        height: 514
+        x: 1546
+        y: 992
+        width: 771
+        height: 987
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: Hotels_3
       rect:
         serializedVersion: 2
-        x: 1212
+        x: 3
         y: 3
-        width: 402
-        height: 514
+        width: 771
+        height: 987
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: Hotels_4
       rect:
         serializedVersion: 2
-        x: 1614
+        x: 774
         y: 3
-        width: 402
-        height: 514
+        width: 772
+        height: 987
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

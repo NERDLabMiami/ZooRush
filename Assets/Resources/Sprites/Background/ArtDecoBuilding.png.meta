@@ -49,36 +49,36 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 3
-        width: 460
-        height: 514
+        y: 868
+        width: 770
+        height: 863
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: ArtDecoBuilding_1
       rect:
         serializedVersion: 2
-        x: 465
-        y: 3
-        width: 458
-        height: 514
+        x: 775
+        y: 868
+        width: 770
+        height: 863
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: ArtDecoBuilding_2
       rect:
         serializedVersion: 2
-        x: 925
+        x: 3
         y: 3
-        width: 460
-        height: 514
+        width: 770
+        height: 863
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: ArtDecoBuilding_3
       rect:
         serializedVersion: 2
-        x: 1385
+        x: 775
         y: 3
-        width: 460
-        height: 514
+        width: 770
+        height: 863
       alignment: 7
       pivot: {x: 0, y: 0}
   spritePackingTag: 
