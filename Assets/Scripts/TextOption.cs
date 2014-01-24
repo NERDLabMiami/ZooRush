@@ -56,11 +56,11 @@ public class TextOption : MonoBehaviour
 						if (PlayerPrefs.GetInt ("Levels Unlocked") > 1) {
 							Application.LoadLevel ("Level Select");
 						} else {
-							StoryModeHandler.NextSceneName = "Level 1 - Tutorial";
+							StoryModeHandler.NextSceneName = "Level1-Tutorial";
 							Application.LoadLevel ("IntroScene");
 						}
 					} else {
-						StoryModeHandler.NextSceneName = "Level 1 - Tutorial";
+						StoryModeHandler.NextSceneName = "Level1-Tutorial";
 						Application.LoadLevel ("IntroScene");
 					}
 				}

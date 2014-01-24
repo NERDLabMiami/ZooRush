@@ -11,7 +11,6 @@ public class SceneManager : MonoBehaviour
 	public string NextSceneName; 		//Filename of the next scene 
 	public float distanceDiffMin; 		//Minimum distance needed between character and animal
 	public float currentDistanceDiff; 	//Current distance between character and animal
-	public float waitTime;				//Amount of time to wait before the level starts
 	public int levelNumber;
 	public float targetTimeVar;
 	public float multiplier1;
@@ -120,7 +119,8 @@ public class SceneManager : MonoBehaviour
 	{
 		currentDistanceDiff = Mathf.Abs (animal.transform.localPosition.x - character.transform.localPosition.x);
 		if (levelStartWait) {
-			if (currentDistanceDiff > 18f) {
+			if (currentDistanceDiff > 25f) {
+				animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
 				levelStartWait = false;
 			}	
 		} else {
