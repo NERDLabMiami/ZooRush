@@ -49,36 +49,36 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 482
-        width: 501
-        height: 474
+        y: 681
+        width: 712
+        height: 675
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: DowntownBuilding_1
       rect:
         serializedVersion: 2
-        x: 520
-        y: 482
-        width: 501
-        height: 474
+        x: 735
+        y: 681
+        width: 714
+        height: 675
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: DowntownBuilding_2
       rect:
         serializedVersion: 2
         x: 4
         y: 4
-        width: 501
-        height: 474
+        width: 712
+        height: 675
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: DowntownBuilding_3
       rect:
         serializedVersion: 2
-        x: 520
+        x: 735
         y: 4
-        width: 501
-        height: 474
+        width: 714
+        height: 675
       alignment: 7
       pivot: {x: 0, y: 0}
   spritePackingTag: 

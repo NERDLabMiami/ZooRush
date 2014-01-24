@@ -19,7 +19,6 @@ public class TextOption : MonoBehaviour
 
 	void OnMouseEnter ()
 	{	
-		Debug.Log ("MMM");
 		if (optionEnabled) {
 			GetComponent<TextMesh> ().color = optionSelected;
 		}
