@@ -8,6 +8,8 @@ using System.Collections;
  */ 
 public class SceneManager : MonoBehaviour
 {
+	public string LevelLocation;
+
 	public string NextSceneName; 		//Filename of the next scene 
 	public float distanceDiffMin; 		//Minimum distance needed between character and animal
 	public float currentDistanceDiff; 	//Current distance between character and animal
