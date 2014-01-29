@@ -6,13 +6,13 @@ using System.Collections.Generic;
  * @author: Ebtissam Wahman 
  */ 
 
-public class AudioHandler : MonoBehaviour
+public class AudioModel : MonoBehaviour
 {
-	public float rate; //TODO make default 3f
+	private float rate; //number of seconds to take to fade in and out of audio
 	private bool music;
 	private bool sound;
 
-	private bool soundPaused;
+	private bool sound1Paused;
 	private bool sound2Paused;
 	private bool musicPaused;
 
@@ -20,39 +20,19 @@ public class AudioHandler : MonoBehaviour
 	private SceneManager sceneManager;
 	
 	private GameObject musicTrack;
-	private GameObject soundTrack;
+	private GameObject soundTrack1;
 	private GameObject soundTrack2;
 
 	public static Dictionary<string,AudioClip> audioClips;
 
 	void Start ()
 	{
+		rate = 3f;
 		sceneManager = GameSetup.FindObjectOfType<SceneManager> ();
-		
-		if (musicTrack == null) {
-			musicTrack = new GameObject ("Music Track", typeof(AudioSource));
-		}
 
-		if (soundTrack == null) {
-			soundTrack = new GameObject ("Sound Track", typeof(AudioSource));
-		}
-		
-		if (soundTrack2 == null) {
-			soundTrack2 = new GameObject ("Sound Track 2", typeof(AudioSource));
-		}
-		
-		musicTrack.transform.parent = Camera.main.transform;
-		musicTrack.audio.loop = true;
-		musicTrack.audio.playOnAwake = false;
-
-		soundTrack.transform.parent = Camera.main.transform;
-		soundTrack.audio.loop = false;
-		soundTrack.audio.playOnAwake = false;
-		
-		soundTrack2.transform.parent = Camera.main.transform;
-		soundTrack2.audio.loop = false;
-		soundTrack2.audio.playOnAwake = false;
-
+		musicTrack = GameObject.Find ("Music Track");
+		soundTrack1 = GameObject.Find ("Sound Track 1");
+		soundTrack2 = GameObject.Find ("Sound Track 2");
 
 		if (!PlayerPrefs.HasKey ("Music")) {
 			PlayerPrefs.SetString ("Music", "ON");
@@ -64,26 +44,7 @@ public class AudioHandler : MonoBehaviour
 		music = (PlayerPrefs.GetString ("Music").Equals ("ON")) ? true : false;
 		sound = (PlayerPrefs.GetString ("Sound").Equals ("ON")) ? true : false;
 
-		soundPaused = false;
-		sound2Paused = false;
-		musicPaused = false;
-
-		//Set up for audioclip dictionary
-		audioClips = new Dictionary<string,AudioClip> ();
-
-		//SOUND EFFECTS
-		audioClips.Add ("CAPTURED", Resources.Load ("Sounds/SOUND_FXS/CAPTURED", typeof(AudioClip)) as AudioClip);
-		audioClips.Add ("DOCTOR", Resources.Load ("Sounds/SOUND_FXS/DOCTOR", typeof(AudioClip)) as AudioClip);
-		audioClips.Add ("GAMEOVER", Resources.Load ("Sounds/SOUND_FXS/GAMEOVER", typeof(AudioClip)) as AudioClip);
-		audioClips.Add ("HARDSICKLOOP", Resources.Load ("Sounds/SOUND_FXS/HARDSICKLOOP", typeof(AudioClip)) as AudioClip);
-		audioClips.Add ("INFECTION", Resources.Load ("Sounds/SOUND_FXS/INFECTION", typeof(AudioClip)) as AudioClip);
-		audioClips.Add ("JUMP", Resources.Load ("Sounds/SOUND_FXS/JUMP", typeof(AudioClip)) as AudioClip);
-		audioClips.Add ("PILL", Resources.Load ("Sounds/SOUND_FXS/PILL", typeof(AudioClip)) as AudioClip);
-		audioClips.Add ("WATERDRINK", Resources.Load ("Sounds/SOUND_FXS/WATERDRINK", typeof(AudioClip)) as AudioClip);
-		audioClips.Add ("SOFTSICKLOOP", Resources.Load ("Sounds/SOUND_FXS/SOFTSICKLOOP", typeof(AudioClip)) as AudioClip);
-		audioClips.Add ("SIGH", Resources.Load ("Sounds/SOUND_FXS/SIGH", typeof(AudioClip)) as AudioClip); 
-		audioClips.Add ("BALL", Resources.Load ("Sounds/SOUND_FXS/BALL", typeof(AudioClip)) as AudioClip); 
-		
+		sound1Paused = sound2Paused = musicPaused = false;
 
 		//MUSIC
 
@@ -96,11 +57,15 @@ public class AudioHandler : MonoBehaviour
 		audioClips.Add ("Highway(SingleLoop)", Resources.Load ("Sounds/Highway/Highway(SingleLoop)", typeof(AudioClip)) as AudioClip);
 
 	}
-	
-	void Update ()
+
+	void FixedUpdate ()
 	{
 		music = (PlayerPrefs.GetString ("Music").Equals ("ON")) ? true : false;
 		sound = (PlayerPrefs.GetString ("Sound").Equals ("ON")) ? true : false;
+	}
+
+	void Update ()
+	{
 		if (music) {
 			if (musicTrack.audio.clip == null) {
 				switch (sceneManager.levelNumber) {
@@ -122,7 +87,7 @@ public class AudioHandler : MonoBehaviour
 		}
 
 		if (sound) {
-			if (soundTrack.audio.volume != 1f) {
+			if (soundTrack1.audio.volume != 1f) {
 			
 				soundFadeIn ();
 			}
@@ -131,17 +96,17 @@ public class AudioHandler : MonoBehaviour
 			}
 			
 		} else {
-			soundTrack.audio.volume = 0f;
-			soundTrack.audio.Stop ();
+			soundTrack1.audio.volume = 0f;
+			soundTrack1.audio.Stop ();
 			soundTrack2.audio.volume = 0f;
 			soundTrack2.audio.Stop ();
 		}
 
 		if (sceneManager.pauseAudio) {//Sound Paused
 			if (sound) {
-				if (soundTrack.audio.isPlaying) {
-					soundTrack.audio.Pause ();
-					soundPaused = true;
+				if (soundTrack1.audio.isPlaying) {
+					soundTrack1.audio.Pause ();
+					sound1Paused = true;
 					soundFadeOut ();
 				}
 				if (soundTrack2.audio.isPlaying) {
@@ -159,11 +124,11 @@ public class AudioHandler : MonoBehaviour
 
 		} else {//Continue Sound Playing
 			if (sound) {
-				if (!soundTrack.audio.isPlaying && soundPaused) {
-					soundTrack.audio.Play ();
-					soundPaused = false;
+				if (!soundTrack1.audio.isPlaying && sound1Paused) {
+					soundTrack1.audio.Play ();
+					sound1Paused = false;
 				}
-				if (soundTrack.audio.volume != 1) {
+				if (soundTrack1.audio.volume != 1) {
 					soundFadeIn ();
 				}
 				if (!soundTrack2.audio.isPlaying && sound2Paused) {
@@ -191,15 +156,15 @@ public class AudioHandler : MonoBehaviour
 		Debug.Log ("PLAY SOUND EFFECT 1 CALLED");
 		AudioClip clip;
 		audioClips.TryGetValue (soundEffect, out clip);
-		if (soundTrack.audio.isPlaying) {
-			if (soundTrack.audio.clip != clip) {
-				soundTrack.audio.Pause ();
-				soundTrack.audio.clip = clip;
-				soundTrack.audio.Play ();
+		if (soundTrack1.audio.isPlaying) {
+			if (soundTrack1.audio.clip != clip) {
+				soundTrack1.audio.Pause ();
+				soundTrack1.audio.clip = clip;
+				soundTrack1.audio.Play ();
 			}
 		} else {
-			soundTrack.audio.clip = clip;
-			soundTrack.audio.Play ();
+			soundTrack1.audio.clip = clip;
+			soundTrack1.audio.Play ();
 		}
 		
 	}
@@ -237,21 +202,21 @@ public class AudioHandler : MonoBehaviour
 
 	private void soundFadeIn ()
 	{
-		soundTrack.audio.volume = Mathf.Lerp (soundTrack.audio.volume, 1f, rate * Time.deltaTime);
+		soundTrack1.audio.volume = Mathf.Lerp (soundTrack1.audio.volume, 1f, rate * Time.deltaTime);
 	}
 	private void sound2FadeIn ()
 	{
-		soundTrack2.audio.volume = Mathf.Lerp (soundTrack.audio.volume, 1f, rate * Time.deltaTime);
+		soundTrack2.audio.volume = Mathf.Lerp (soundTrack2.audio.volume, 1f, rate * Time.deltaTime);
 	}
 
 	private void soundFadeOut ()
 	{
-		soundTrack.audio.volume = Mathf.Lerp (soundTrack.audio.volume, 0f, rate * Time.deltaTime);
+		soundTrack1.audio.volume = Mathf.Lerp (soundTrack1.audio.volume, 0f, rate * Time.deltaTime);
 		
 	}
 	private void sound2FadeOut ()
 	{
-		soundTrack2.audio.volume = Mathf.Lerp (soundTrack.audio.volume, 0f, rate * Time.deltaTime);
+		soundTrack2.audio.volume = Mathf.Lerp (soundTrack2.audio.volume, 0f, rate * Time.deltaTime);
 		
 	}
 

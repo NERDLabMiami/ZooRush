@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PainIndicator : MonoBehaviour
@@ -11,14 +11,14 @@ public class PainIndicator : MonoBehaviour
 	private SpriteRenderer sprite;
 	private ScoreKeeper scoreKeeper;
 	private SceneManager sceneManager;
-	private AudioHandler audioHandler;
+	private AudioModel audioHandler;
 	private Animator animator;
 	
 	void Start ()
 	{
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
-		audioHandler = GameObject.FindObjectOfType<AudioHandler> ();
+		audioHandler = GameObject.FindObjectOfType<AudioModel> ();
 		animator = GetComponent<Animator> ();
 		painPoints = 0f;
 		painRate = 3.5f;

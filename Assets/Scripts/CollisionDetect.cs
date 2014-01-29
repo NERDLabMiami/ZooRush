@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 /* For elements that trigger a bouce back reaction.
@@ -29,10 +29,10 @@ public class CollisionDetect : MonoBehaviour
 					signalSent = true;
 					GameObject.FindObjectOfType<PainIndicator> ().GetComponent<PainIndicator> ().objectInteraction (transform.parent.gameObject);
 					if (transform.parent.gameObject.name.Contains ("Pill")) {
-						GameObject.FindObjectOfType<AudioHandler> ().playSound ("PILL");
+						GameObject.FindObjectOfType<AudioModel> ().playSound ("PILL");
 					} else {
 						if (transform.parent.gameObject.name.Contains ("Water Bottle")) {
-							GameObject.FindObjectOfType<AudioHandler> ().playSound ("WATERDRINK");
+							GameObject.FindObjectOfType<AudioModel> ().playSound ("WATERDRINK");
 						}
 					}
 				}
@@ -66,7 +66,7 @@ public class CollisionDetect : MonoBehaviour
 					if (!signalSent) {
 						signalSent = true;
 						GameObject.FindObjectOfType<PainIndicator> ().GetComponent<PainIndicator> ().objectInteraction (transform.parent.gameObject);
-						GameObject.FindObjectOfType<AudioHandler> ().playSound ("INFECTION");
+						GameObject.FindObjectOfType<AudioModel> ().playSound ("INFECTION");
 					}
 					Obstacle parent = transform.parent.GetComponent<Obstacle> ();
 					parent.collisionDetected ();
@@ -99,7 +99,7 @@ public class CollisionDetect : MonoBehaviour
 	{
 		if (coll.gameObject.name.Contains ("Character")) {
 			if (transform.parent.name.Contains ("Ball")) {
-				GameObject.FindObjectOfType<AudioHandler> ().playSound ("BALL");
+				GameObject.FindObjectOfType<AudioModel> ().playSound ("BALL");
 			}
 		}
 	}

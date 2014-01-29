@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 
@@ -23,7 +23,7 @@ public class Building : MonoBehaviour
 			animate.SetTrigger ("Open");
 			player.flash ();
 			if (gameObject.name.Contains ("Doctor") || gameObject.name.Contains ("First Aid")) {
-				GameObject.FindObjectOfType<AudioHandler> ().playSound ("DOCTOR", "SIGH", 0.5f);
+				GameObject.FindObjectOfType<AudioModel> ().playSound ("DOCTOR", "SIGH", 0.5f);
 			}
 			GameObject.FindObjectOfType<PainIndicator> ().objectInteraction (gameObject);
 		}
