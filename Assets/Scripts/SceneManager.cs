@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-
 /** Main controller for most level-based events.
  * 
  * @author: Ebtissam Wahman

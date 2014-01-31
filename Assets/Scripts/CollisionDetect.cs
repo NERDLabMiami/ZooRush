@@ -29,15 +29,17 @@ public class CollisionDetect : MonoBehaviour
 					signalSent = true;
 					GameObject.FindObjectOfType<PainIndicator> ().GetComponent<PainIndicator> ().objectInteraction (transform.parent.gameObject);
 					if (transform.parent.gameObject.name.Contains ("Pill")) {
-						GameObject.FindObjectOfType<AudioModel> ().playSound ("PILL");
+						//TODO: Include Object Model class in Pill button
+						//GameObject.FindObjectOfType<AudioModel> ().playSound ("PILL");
 					} else {
 						if (transform.parent.gameObject.name.Contains ("Water Bottle")) {
-							GameObject.FindObjectOfType<AudioModel> ().playSound ("WATERDRINK");
+							//TODO: Invlude Object Model class in Water Bottle
+							//GameObject.FindObjectOfType<AudioModel> ().playSound ("WATERDRINK");
 						}
 					}
 				}
 				other.GetComponent<PlayerControls> ().flash ();
-				Obstacle parent = transform.parent.GetComponent<Obstacle> ();
+				ObjectModel parent = transform.parent.GetComponent<ObjectModel> ();
 				parent.collisionDetected ();
 			} else {
 				if (touchOnce) {
@@ -47,8 +49,7 @@ public class CollisionDetect : MonoBehaviour
 						} else {
 							other.rigidbody2D.AddForce (new Vector2 (-350f, -50f));
 						}
-						Obstacle parent = transform.parent.GetComponent<Obstacle> ();
-						parent.setBehind ();
+						ObjectModel parent = transform.parent.GetComponent<ObjectModel> ();
 						other.GetComponent<PlayerControls> ().resetSpeed ();
 						touched = true;
 					}
@@ -66,14 +67,15 @@ public class CollisionDetect : MonoBehaviour
 					if (!signalSent) {
 						signalSent = true;
 						GameObject.FindObjectOfType<PainIndicator> ().GetComponent<PainIndicator> ().objectInteraction (transform.parent.gameObject);
-						GameObject.FindObjectOfType<AudioModel> ().playSound ("INFECTION");
+						//TODO: Include Object Model Class in Infections
+						//GameObject.FindObjectOfType<AudioModel> ().playSound ("INFECTION");
 					}
-					Obstacle parent = transform.parent.GetComponent<Obstacle> ();
+					ObjectModel parent = transform.parent.GetComponent<ObjectModel> ();
 					parent.collisionDetected ();
 					other.GetComponent<PlayerControls> ().resetSpeed ();
 				} else {
 					if (canMove) {
-						transform.parent.GetComponent<Obstacle> ().stopMoving ();
+						transform.parent.GetComponent<ObjectModel> ().stopMoving ();
 						if (transform.parent.name.Contains ("Car") || transform.parent.name.Contains ("Truck") || transform.parent.name.Contains ("Van")) {
 							GameObject.FindObjectOfType<SceneManager> ().hitByVehicle = true;
 						}
@@ -99,7 +101,8 @@ public class CollisionDetect : MonoBehaviour
 	{
 		if (coll.gameObject.name.Contains ("Character")) {
 			if (transform.parent.name.Contains ("Ball")) {
-				GameObject.FindObjectOfType<AudioModel> ().playSound ("BALL");
+				//TODO: Include Object Model in Ball Objects
+				//GameObject.FindObjectOfType<AudioModel> ().playSound ("BALL");
 			}
 		}
 	}

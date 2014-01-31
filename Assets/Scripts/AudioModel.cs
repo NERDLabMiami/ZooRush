@@ -151,11 +151,17 @@ public class AudioModel : MonoBehaviour
 		}
 	}
 
-	public void playSound (string soundEffect)
+	public void playSound (AudioClip[] clips, float time = 0)
 	{
-		Debug.Log ("PLAY SOUND EFFECT 1 CALLED");
-		AudioClip clip;
-		audioClips.TryGetValue (soundEffect, out clip);
+		if (clips.Length > 1) {
+			playTwoSounds (clips [0], clips [1], time);
+		} else {
+			playOneSound (clips [0]);
+		}
+	}
+
+	private void playOneSound (AudioClip clip)
+	{
 		if (soundTrack1.audio.isPlaying) {
 			if (soundTrack1.audio.clip != clip) {
 				soundTrack1.audio.Pause ();
@@ -184,13 +190,11 @@ public class AudioModel : MonoBehaviour
 		}
 	}
 	
-	public void playSound (string soundEffect1, string soundEffect2, float delayTime)
+	private void playTwoSounds (AudioClip soundEffect1, AudioClip soundEffect2, float delayTime)
 	{
 		Debug.Log ("PLAY SOUND EFFECT 2 CALLED");
-		playSound (soundEffect1);
-		AudioClip clip2;
-		audioClips.TryGetValue (soundEffect2, out clip2);
-		StartCoroutine (waitToPlayTrack2 (clip2, delayTime));
+		playOneSound (soundEffect1);
+		StartCoroutine (waitToPlayTrack2 (soundEffect2, delayTime));
 	}
 	
 	public void playMusic (string levelMusic)

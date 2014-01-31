@@ -60,7 +60,8 @@ public class PainIndicator : MonoBehaviour
 				sprite.sprite = healthFaces [2];
 			}
 			if (sceneManager.isPlaying) {
-				audioHandler.playSound ("HARDSICKLOOP");
+				//TODO: Include AudioClip variable that stores th following sound
+				//audioHandler.playSound ("HARDSICKLOOP");
 			}
 		}
 	}
@@ -90,7 +91,8 @@ public class PainIndicator : MonoBehaviour
 					painPoints -= 25f;
 				} else {
 					if (obj.name.Contains ("Pill") && !scoreKeeper.pillBottleUsed ()) {
-						audioHandler.playSound ("PILL");
+						//TODO: Store the following audio clip in a variable
+						//audioHandler.playSound ("PILL");
 						obj.GetComponent<Animator> ().SetTrigger ("Open");
 						obj.GetComponent<SpriteRenderer> ().color = Color.gray;
 						scoreKeeper.addToCount (obj);

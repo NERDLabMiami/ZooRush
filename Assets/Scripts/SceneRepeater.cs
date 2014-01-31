@@ -41,8 +41,8 @@ public class SceneRepeater : MonoBehaviour
 					if (element.GetComponent<Building> () != null) {
 						element.GetComponent<Building> ().resetState ();
 					}
-					if (element.GetComponent<Obstacle> () != null) {
-						element.GetComponent<Obstacle> ().resetState ();
+					if (element.GetComponent<ObjectModel> () != null) {
+						element.GetComponent<ObjectModel> ().resetState ();
 					}
 					
 					element.transform.position = new Vector3 (

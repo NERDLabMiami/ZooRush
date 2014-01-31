@@ -22,9 +22,10 @@ public class Building : MonoBehaviour
 		if (coll.gameObject.Equals (player.gameObject)) {
 			animate.SetTrigger ("Open");
 			player.flash ();
-			if (gameObject.name.Contains ("Doctor") || gameObject.name.Contains ("First Aid")) {
-				GameObject.FindObjectOfType<AudioModel> ().playSound ("DOCTOR", "SIGH", 0.5f);
-			}
+			//TODO Include Object Model classes in building objects
+//			if (gameObject.name.Contains ("Doctor") || gameObject.name.Contains ("First Aid")) {
+//				GameObject.FindObjectOfType<AudioModel> ().playSound ("DOCTOR", "SIGH", 0.5f);
+//			}
 			GameObject.FindObjectOfType<PainIndicator> ().objectInteraction (gameObject);
 		}
 	}
