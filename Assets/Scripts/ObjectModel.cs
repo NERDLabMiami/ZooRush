@@ -5,69 +5,38 @@ using System.Collections;
  * data it may need in order to interact with other game elements.
  * @author Ebtissam Wahman
  */ 
-public class ObjectModel : MonoBehaviour
+public abstract class ObjectModel : MonoBehaviour
 {	
-	public string objectType;
-	public AudioClip[] soundClip;
-	public bool moves;
-	public Vector2 speed;
-	public bool reactiveAnimation;
 
-	void Start ()
-	{
-		
-	}
-	
 	void Update ()
 	{
-		if (moves) {
-			rigidbody2D.velocity = speed;
-			if (transform.position.x > GameObject.FindObjectOfType<PlayerControls> ().transform.position.x + 40f) {
-				destroyObstacle ();
-			} else {
-				if (40f < Mathf.Abs (transform.position.x - Camera.main.transform.position.x)) {
-					destroyObstacle ();
-				}
-			}
-		}
-		
+
 	}
 
-	public void collisionDetected ()
-	{
-		GetComponent<Animator> ().SetTrigger ("Flash");
-	}
+	public abstract void collisionDetected ();
 
-	public void stopMoving ()
-	{
-		moves = false;
-		rigidbody2D.velocity = new Vector2 (0, 0);
-	}
 
 	public void resetState ()
 	{
+		resetOtherValues ();
 		if (!gameObject.activeSelf) {
 			gameObject.SetActive (true);
 		}
-		if (GetComponent<Animator> () != null) {
-			GetComponent<Animator> ().SetTrigger ("Reset");
-		}
-		if (GetComponentInChildren<CollisionDetect> () != null) {
-			GetComponentInChildren<CollisionDetect> ().resetTouch ();
-		}
+//		if (GetComponent<Animator> () != null) {
+//			GetComponent<Animator> ().SetTrigger ("Reset");
+//		}
+//		if (GetComponentInChildren<CollisionDetect> () != null) {
+//			GetComponentInChildren<CollisionDetect> ().resetTouch ();
+//		}
 	}
 
-	private void destroyObstacle ()
+	protected abstract void resetOtherValues ();
+
+	protected void destroyObstacle ()
 	{
 		StartCoroutine (GameObject.FindObjectOfType<SceneRepeater> ().DestroyObstacle (gameObject));
 	}
 
-	public void interactWithCharacter ()
-	{
-		if (soundClip != null) {
+	public abstract void interactWithCharacter (Collider2D character);
 
-			GameObject.FindObjectOfType<AudioController> ().objectInteraction (soundClip);
-
-		}
-	}
 }

@@ -5,44 +5,40 @@ using System.Collections.Generic;
 
 public class AudioController : MonoBehaviour
 {
-
-	public string location; //The level's current location, can be the Zoo, Suburbs, City, etc.
+	public AudioClip levelMusic;
+	public bool audioPaused;
 	private AudioModel audioModel;
-	private static Dictionary<string,string> soundDirectories;
-
-	void Awake ()
-	{
-
-		soundDirectories = new Dictionary<string,string> ();
-		
-		//MUSIC
-		soundDirectories.Add ("Zoo", "Sounds/Zoo/Zoo");
-		soundDirectories.Add ("Highway(SingleLoop)", "Sounds/Highway/Highway(SingleLoop)");
-
-	}
 
 	void Start ()
 	{
 		audioModel = FindObjectOfType<AudioModel> ();
-
+		if (levelMusic != null) {
+			audioModel.playMusic (levelMusic);
+		}
 
 	}
-	
-	void Update ()
+
+	public void pauseAudio ()
 	{
-	
+		if (!audioPaused) {
+			audioModel.pauseAudio ();
+			audioPaused = true;
+		}
 	}
 
-	private AudioClip loadAudioClipToMemory (string soundName)
+	public void objectInteraction (AudioClip clip)
 	{
-		string directory;
-		soundDirectories.TryGetValue (soundName, out directory);
-		return Resources.Load (directory, typeof(AudioClip)) as AudioClip;
+		if (clip != null) {
+			audioModel.playSound (clip);
+		}
 	}
 
 	public void objectInteraction (AudioClip[] clips)
 	{
-		audioModel.playSound (clips);
+		if (clips != null && clips.Length > 1) {
+			audioModel.playSound (clips);
+		}
+
 	}
 
 }

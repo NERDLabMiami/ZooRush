@@ -7,7 +7,6 @@ using System.Collections;
  */ 
 public class SceneManager : MonoBehaviour
 {
-	public string LevelLocation;
 
 	public string NextSceneName; 		//Filename of the next scene 
 	public float distanceDiffMin; 		//Minimum distance needed between character and animal
@@ -21,6 +20,7 @@ public class SceneManager : MonoBehaviour
 	private GameObject screenDimmer;
 	
 	private PlayerControls playerControl;
+	private AudioController audioController;
 	private ScoreKeeper scoreKeeper;
 	private Animal animalControl;
 	private GameObject character;
@@ -102,6 +102,7 @@ public class SceneManager : MonoBehaviour
 		}
 		
 		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
+		audioController = GameObject.FindObjectOfType<AudioController> ();
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
@@ -128,12 +129,10 @@ public class SceneManager : MonoBehaviour
 			if (isPlaying) {
 				if (animalControl.caught) {
 					isPlaying = false;
-					if (!isEndless) {
-						pauseAudio = true;
-					}
 					if (isEndless) {
 						StartCoroutine (resetSceneEndlessMode ());
 					} else {
+						audioController.pauseAudio ();
 						if (!scoreDisplayed) {
 							StartCoroutine (displayScore ());
 						}

@@ -74,6 +74,7 @@ public class AnimatedText : MonoBehaviour
 		clear = true;
 
 	}
+
 	private string textStuff = "2\n" +
 		"Today is a big day.\n" +
 		"I get to start my dream job as a Zoo Keeper!\n" +

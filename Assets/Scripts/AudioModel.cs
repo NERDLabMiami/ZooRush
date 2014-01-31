@@ -9,57 +9,44 @@ using System.Collections.Generic;
 public class AudioModel : MonoBehaviour
 {
 	private float rate; //number of seconds to take to fade in and out of audio
-	private bool music;
-	private bool sound;
+	private bool music; //indicates if music is enabled
+	private bool sound; //indicates if sound is enabled
 
-	private bool sound1Paused;
-	private bool sound2Paused;
-	private bool musicPaused;
-
-	private AudioClip levelMusic;
-	private SceneManager sceneManager;
+	private bool sound1Paused; //indicateds if sound track 1 is paused
+	private bool sound2Paused; //indicateds if sound track 2 is paused
+	private bool musicPaused; //indicateds if the music track is paused
 	
-	private GameObject musicTrack;
-	private GameObject soundTrack1;
-	private GameObject soundTrack2;
-
-	public static Dictionary<string,AudioClip> audioClips;
-
+	public GameObject musicTrack; 	//pointer to the music track object
+	public GameObject soundTrack1;	//pointer to the sound track 1 object
+	public GameObject soundTrack2; 	//pointer to the sound track 2 object
+	
 	void Start ()
 	{
 		rate = 3f;
-		sceneManager = GameSetup.FindObjectOfType<SceneManager> ();
-
-		musicTrack = GameObject.Find ("Music Track");
-		soundTrack1 = GameObject.Find ("Sound Track 1");
-		soundTrack2 = GameObject.Find ("Sound Track 2");
 
 		if (!PlayerPrefs.HasKey ("Music")) {
-			PlayerPrefs.SetString ("Music", "ON");
+			PlayerPrefs.SetInt ("Music", 1);
 		}
 		if (!PlayerPrefs.HasKey ("Sound")) {
-			PlayerPrefs.SetString ("Sound", "ON");
+			PlayerPrefs.SetInt ("Sound", 1);
 		}
 
-		music = (PlayerPrefs.GetString ("Music").Equals ("ON")) ? true : false;
-		sound = (PlayerPrefs.GetString ("Sound").Equals ("ON")) ? true : false;
+		//Look at Player Prefs to determin if sound and music are enabled
+		music = (PlayerPrefs.GetInt ("Music") == 1); 
+		sound = (PlayerPrefs.GetInt ("Sound") == 1);
 
-		sound1Paused = sound2Paused = musicPaused = false;
-
-		//MUSIC
-
-		//Zoo 
-		audioClips.Add ("Zoo", Resources.Load ("Sounds/Zoo/Zoo", typeof(AudioClip)) as AudioClip);
-//		audioClips.Add ("Zoo(doubleloop)", Resources.Load ("Sounds/Zoo/Zoo(doubleloop)", typeof(AudioClip)) as AudioClip);
-//		audioClips.Add ("Zoo(singleloop)", Resources.Load ("Sounds/Zoo/Zoo(singleloop)", typeof(AudioClip)) as AudioClip);
-
-		//Highway
-		audioClips.Add ("Highway(SingleLoop)", Resources.Load ("Sounds/Highway/Highway(SingleLoop)", typeof(AudioClip)) as AudioClip);
-
+		if (!music) {
+			turnOffMusic ();
+		}
+		if (!sound) {
+			turnOffSound ();
+		}
+		resumeAudio ();
 	}
 
 	void FixedUpdate ()
 	{
+		//TODO: Consider removing due to  processing time
 		music = (PlayerPrefs.GetString ("Music").Equals ("ON")) ? true : false;
 		sound = (PlayerPrefs.GetString ("Sound").Equals ("ON")) ? true : false;
 	}
@@ -67,90 +54,124 @@ public class AudioModel : MonoBehaviour
 	void Update ()
 	{
 		if (music) {
-			if (musicTrack.audio.clip == null) {
-				switch (sceneManager.levelNumber) {
-				case 1:
-					playMusic ("Zoo");
-					musicTrack.audio.volume = 0f;
-					musicTrack.audio.Play ();
-					break;
-				default:
-					break;
-				}
-			}
-			if (musicTrack.audio.volume != 1) {
-				musicFadeIn ();
-			}
-		} else {
-			musicTrack.audio.volume = 0f;
-			musicTrack.audio.Stop ();
-		}
-
-		if (sound) {
-			if (soundTrack1.audio.volume != 1f) {
-			
-				soundFadeIn ();
-			}
-			if (soundTrack2.audio.volume != 1f) {
-				sound2FadeIn ();
-			}
-			
-		} else {
-			soundTrack1.audio.volume = 0f;
-			soundTrack1.audio.Stop ();
-			soundTrack2.audio.volume = 0f;
-			soundTrack2.audio.Stop ();
-		}
-
-		if (sceneManager.pauseAudio) {//Sound Paused
-			if (sound) {
-				if (soundTrack1.audio.isPlaying) {
-					soundTrack1.audio.Pause ();
-					sound1Paused = true;
-					soundFadeOut ();
-				}
-				if (soundTrack2.audio.isPlaying) {
-					soundTrack2.audio.Pause ();
-					sound2Paused = true;
-					sound2FadeOut ();
-				}
-			}
-			if (music) {
-				if (musicTrack.audio.isPlaying) {
-					musicTrack.audio.Pause ();
-					musicPaused = true;
-				}
-			}
-
-		} else {//Continue Sound Playing
-			if (sound) {
-				if (!soundTrack1.audio.isPlaying && sound1Paused) {
-					soundTrack1.audio.Play ();
-					sound1Paused = false;
-				}
-				if (soundTrack1.audio.volume != 1) {
-					soundFadeIn ();
-				}
-				if (!soundTrack2.audio.isPlaying && sound2Paused) {
-					soundTrack2.audio.Play ();
-					sound2Paused = false;
-				}
-				if (soundTrack2.audio.volume != 1) {
-					sound2FadeIn ();
-				}
-			}
-			if (music) {
-				if (!musicTrack.audio.isPlaying && musicPaused) {
-					musicTrack.audio.Play ();
-					musicPaused = false;
-				}
+			if (musicTrack.audio.clip != null) {
 				if (musicTrack.audio.volume != 1) {
 					musicFadeIn ();
 				}
 			}
+			if (!musicTrack.audio.isPlaying && !musicPaused) {
+				musicTrack.audio.Play ();
+				if (!musicPaused && musicTrack.audio.volume != 1) {
+					musicFadeIn ();
+				} else {
+					if (musicPaused) {
+						if (musicTrack.audio.volume != 0) {
+							sound1FadeOut ();
+						} else {
+							if (musicTrack.audio.isPlaying && musicTrack.audio.volume == 0) {
+								musicTrack.audio.Pause ();
+							}
+						}
+					}
+				}
+			}
+		}
+
+		if (sound) {
+
+			if (soundTrack1.audio.clip != null) {
+				if (!sound1Paused && soundTrack1.audio.volume != 1) {
+					sound1FadeIn ();
+				} else {
+					if (sound1Paused && soundTrack1.audio.volume != 0) {
+						sound1FadeOut ();
+					} else {
+						if (soundTrack1.audio.isPlaying && soundTrack1.audio.volume == 0) {
+							soundTrack1.audio.Pause ();
+						}
+					}
+				}
+			}
+			if (soundTrack2.audio.clip != null) {
+				if (!sound2Paused && soundTrack2.audio.volume != 1) {
+					sound2FadeIn ();
+				} else {
+					if (sound2Paused && soundTrack2.audio.volume != 0) {
+						sound2FadeOut ();
+					} else {
+						if (soundTrack2.audio.isPlaying && soundTrack2.audio.volume == 0) {
+							soundTrack2.audio.Pause ();
+						}
+					}
+				}
+			}
+
+			if (!soundTrack1.audio.isPlaying && !sound1Paused) {
+				soundTrack1.audio.Play ();
+			}
+			if (!soundTrack2.audio.isPlaying && !sound2Paused) {
+				soundTrack2.audio.Play ();
+			}
 		}
 	}
 
+	/** 
+	 * Stops the music track audio.
+	 */ 
+	public void turnOffMusic ()
+	{
+		musicTrack.audio.volume = 0f;
+		musicTrack.audio.Stop ();
+	}
+
+	/** 
+	 * Stops the audio track 1 and 2 audio.
+	 */ 
+	public void turnOffSound ()
+	{
+		soundTrack1.audio.volume = 0f;
+		soundTrack1.audio.Stop ();
+		soundTrack2.audio.volume = 0f;
+		soundTrack2.audio.Stop ();
+	}
+
+	/**
+	 * Pauses audio on all tracks.
+	 */ 
+	public void pauseAudio ()
+	{
+		sound1Paused = sound2Paused = musicPaused = true;
+	}
+
+	/**
+	 * Resumes audio on all tracks.
+	 */ 
+	public void resumeAudio ()
+	{
+		sound1Paused = sound2Paused = musicPaused = false;
+	}
+
+	/**
+	 * Plays a level soundtrack.
+	 * @param clip the level sound clip
+	 */
+	public void playMusic (AudioClip clip)
+	{
+		musicTrack.audio.clip = clip;
+		musicTrack.audio.Play ();
+	}
+
+	/**
+	 * Assigns and plays audio clip to sound track 1.
+	 */ 
+	public void playSound (AudioClip clip)
+	{
+		playOneSound (clip);
+	}
+
+	/**
+	 * Assigns and plays audio clips to the sound tracks.
+	 */ 
 	public void playSound (AudioClip[] clips, float time = 0)
 	{
 		if (clips.Length > 1) {
@@ -196,15 +217,8 @@ public class AudioModel : MonoBehaviour
 		playOneSound (soundEffect1);
 		StartCoroutine (waitToPlayTrack2 (soundEffect2, delayTime));
 	}
-	
-	public void playMusic (string levelMusic)
-	{
-		AudioClip clip;
-		audioClips.TryGetValue (levelMusic, out clip);
-		musicTrack.audio.clip = clip;
-	}
 
-	private void soundFadeIn ()
+	private void sound1FadeIn ()
 	{
 		soundTrack1.audio.volume = Mathf.Lerp (soundTrack1.audio.volume, 1f, rate * Time.deltaTime);
 	}
@@ -213,15 +227,13 @@ public class AudioModel : MonoBehaviour
 		soundTrack2.audio.volume = Mathf.Lerp (soundTrack2.audio.volume, 1f, rate * Time.deltaTime);
 	}
 
-	private void soundFadeOut ()
+	private void sound1FadeOut ()
 	{
 		soundTrack1.audio.volume = Mathf.Lerp (soundTrack1.audio.volume, 0f, rate * Time.deltaTime);
-		
 	}
 	private void sound2FadeOut ()
 	{
 		soundTrack2.audio.volume = Mathf.Lerp (soundTrack2.audio.volume, 0f, rate * Time.deltaTime);
-		
 	}
 
 	private void musicFadeIn ()
