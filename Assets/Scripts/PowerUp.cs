@@ -8,19 +8,38 @@ public class PowerUp : ObjectModel
 	public int painPoints; // pills = 75 , water bottles = 25
 	public bool isPill;
 
+	private bool interacted;
+	private int pillCount;
+
 	void Start ()
 	{
+		interacted = false;
 		painIndicator = GameObject.FindObjectOfType<PainIndicator> ();
+		if (GetComponentInChildren<CollisionDetect> () != null) {
+			GetComponentInChildren<CollisionDetect> ().objectModel = this;
+		}
+		audioController = GameObject.FindObjectOfType<AudioController> ();
 	}
-	
-	void Update ()
+
+	void OnMouseUp ()
 	{
-	
+		if (isPill) {
+			pillCount = PlayerPrefs.GetInt ("PILLS");
+			if (pillCount > 0) {
+				pillCount--;
+				PlayerPrefs.SetInt ("PILLS", pillCount);
+				Debug.Log (PlayerPrefs.GetInt ("PILLS"));
+				GameObject.FindObjectOfType<SceneManager> ().updatePillCount ();
+				painIndicator.subtractPoints (painPoints);
+			}
+		}
 	}
 
 	protected override void resetOtherValues ()
 	{
-		
+		interacted = false;
+		GetComponent<Animator> ().SetTrigger ("Reset");
+		GetComponentInChildren<CollisionDetect> ().resetTouch ();
 	}
 
 	public void addToScore ()
@@ -43,8 +62,11 @@ public class PowerUp : ObjectModel
 
 	public override void interactWithCharacter (Collider2D character)
 	{
-		addToScore ();
-		painIndicator.subtractPoints (painPoints);
-		GameObject.FindObjectOfType<AudioController> ().objectInteraction (clip);
+		if (!interacted) {
+			addToScore ();
+			painIndicator.subtractPoints (painPoints);
+			audioController.objectInteraction (clip);
+			interacted = true;
+		}
 	}
 }

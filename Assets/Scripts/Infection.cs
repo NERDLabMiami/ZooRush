@@ -12,6 +12,9 @@ public class Infection : ObjectModel
 	void Start ()
 	{
 		painIndicator = GameObject.FindObjectOfType<PainIndicator> ();
+		GetComponentInChildren<CollisionDetect> ().objectModel = this;
+		audioController = GameObject.FindObjectOfType<AudioController> ();
+
 	}
 	
 	void Update ()

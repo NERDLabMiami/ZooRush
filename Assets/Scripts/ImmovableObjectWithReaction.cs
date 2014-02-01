@@ -8,6 +8,7 @@ public class ImmovableObjectWithReaction : ObjectModel
 	void Start ()
 	{
 		touched = false;
+		GetComponentInChildren<CollisionDetect> ().objectModel = this;
 	}
 	
 	// Update is called once per frame

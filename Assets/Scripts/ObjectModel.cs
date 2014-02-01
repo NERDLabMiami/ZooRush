@@ -8,6 +8,8 @@ using System.Collections;
 public abstract class ObjectModel : MonoBehaviour
 {	
 
+	protected AudioController audioController;
+
 	void Update ()
 	{
 

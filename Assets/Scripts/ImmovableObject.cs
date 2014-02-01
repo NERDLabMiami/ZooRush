@@ -7,7 +7,7 @@ public class ImmovableObject : ObjectModel
 	// Use this for initialization
 	void Start ()
 	{
-	
+		GetComponentInChildren<CollisionDetect> ().objectModel = this;
 	}
 	
 	// Update is called once per frame

@@ -80,13 +80,13 @@ public class AudioModel : MonoBehaviour
 		if (sound) {
 
 			if (soundTrack1.audio.clip != null) {
-				if (!sound1Paused && soundTrack1.audio.volume != 1) {
+				if (!sound1Paused && !Mathf.Approximately (soundTrack1.audio.volume, 1)) {
 					sound1FadeIn ();
 				} else {
 					if (sound1Paused && soundTrack1.audio.volume != 0) {
 						sound1FadeOut ();
 					} else {
-						if (soundTrack1.audio.isPlaying && soundTrack1.audio.volume == 0) {
+						if (soundTrack1.audio.isPlaying && Mathf.Approximately (soundTrack1.audio.volume, 0)) {
 							soundTrack1.audio.Pause ();
 						}
 					}
@@ -106,12 +106,12 @@ public class AudioModel : MonoBehaviour
 				}
 			}
 
-			if (!soundTrack1.audio.isPlaying && !sound1Paused) {
-				soundTrack1.audio.Play ();
-			}
-			if (!soundTrack2.audio.isPlaying && !sound2Paused) {
-				soundTrack2.audio.Play ();
-			}
+//			if (!soundTrack1.audio.isPlaying && !sound1Paused) {
+//				soundTrack1.audio.Play ();
+//			}
+//			if (!soundTrack2.audio.isPlaying && !sound2Paused) {
+//				soundTrack2.audio.Play ();
+//			}
 		}
 	}
 
@@ -184,15 +184,10 @@ public class AudioModel : MonoBehaviour
 	private void playOneSound (AudioClip clip)
 	{
 		if (soundTrack1.audio.isPlaying) {
-			if (soundTrack1.audio.clip != clip) {
-				soundTrack1.audio.Pause ();
-				soundTrack1.audio.clip = clip;
-				soundTrack1.audio.Play ();
-			}
-		} else {
-			soundTrack1.audio.clip = clip;
-			soundTrack1.audio.Play ();
+			soundTrack1.audio.Pause ();
 		}
+		soundTrack1.audio.clip = clip;
+		soundTrack1.audio.Play ();
 		
 	}
 	
@@ -213,7 +208,6 @@ public class AudioModel : MonoBehaviour
 	
 	private void playTwoSounds (AudioClip soundEffect1, AudioClip soundEffect2, float delayTime)
 	{
-		Debug.Log ("PLAY SOUND EFFECT 2 CALLED");
 		playOneSound (soundEffect1);
 		StartCoroutine (waitToPlayTrack2 (soundEffect2, delayTime));
 	}

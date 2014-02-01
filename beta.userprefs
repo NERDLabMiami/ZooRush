@@ -1,21 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Bystander.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StartButton.cs">
     <Files>
-      <File FileName="Assets/Scripts/Vehicle.cs" Line="35" Column="3" />
-      <File FileName="Assets/Scripts/Ball.cs" Line="21" Column="6" />
-      <File FileName="Assets/Scripts/ObjectModel.cs" Line="24" Column="4" />
-      <File FileName="Assets/Scripts/CollisionDetect.cs" Line="48" Column="53" />
-      <File FileName="Assets/Scripts/Infection.cs" Line="38" Column="3" />
-      <File FileName="Assets/Scripts/AudioController.cs" Line="6" Column="7" />
-      <File FileName="Assets/Scripts/AudioModel.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Bystander.cs" Line="31" Column="77" />
-      <File FileName="Assets/Scripts/ImmovableObject.cs" Line="22" Column="3" />
-      <File FileName="Assets/Scripts/ImmovableObjectWithReaction.cs" Line="4" Column="14" />
-      <File FileName="Assets/Scripts/PainIndicator.cs" Line="61" Column="46" />
-      <File FileName="Assets/Scripts/ScoreKeeper.cs" Line="64" Column="11" />
-      <File FileName="Assets/Scripts/PowerUp.cs" Line="24" Column="3" />
-      <File FileName="Assets/Scripts/AnimatedText.cs" Line="80" Column="34" />
+      <File FileName="Assets/Scripts/SceneManager.cs" Line="10" Column="26" />
+      <File FileName="Assets/Scripts/StartButton.cs" Line="18" Column="1" />
+      <File FileName="Assets/Scripts/PlayerControls.cs" Line="57" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

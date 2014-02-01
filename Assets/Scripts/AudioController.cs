@@ -33,10 +33,10 @@ public class AudioController : MonoBehaviour
 		}
 	}
 
-	public void objectInteraction (AudioClip[] clips)
+	public void objectInteraction (AudioClip[] clips, float time = 0)
 	{
 		if (clips != null && clips.Length > 1) {
-			audioModel.playSound (clips);
+			audioModel.playSound (clips, time);
 		}
 
 	}

@@ -8,7 +8,9 @@ public class Vehicle : ObjectModel
  
 	void Start ()
 	{
-	
+		GetComponentInChildren<CollisionDetect> ().objectModel = this;
+		audioController = GameObject.FindObjectOfType<AudioController> ();
+
 	}
 	
 	void Update ()
@@ -33,7 +35,9 @@ public class Vehicle : ObjectModel
 	
 	public override void interactWithCharacter (Collider2D character)
 	{
-		GameObject.FindObjectOfType<AudioController> ().objectInteraction (clip);
+		if (clip != null) {
+			audioController.objectInteraction (clip);
+		}
 		character.GetComponent<PlayerControls> ().resetSpeed ();
 	}
 	

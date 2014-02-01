@@ -8,8 +8,11 @@ public class Ball : ObjectModel
 
 	void Start ()
 	{
+		GetComponentInChildren<CollisionDetect> ().objectModel = this;
+		audioController = GameObject.FindObjectOfType<AudioController> ();
+
 	}
-	
+
 	void Update ()
 	{
 		if (player != null) {
@@ -35,7 +38,7 @@ public class Ball : ObjectModel
 	public override void interactWithCharacter (Collider2D character)
 	{
 		player = character.gameObject;
-		GameObject.FindObjectOfType<AudioController> ().objectInteraction (clip);
+		audioController.objectInteraction (clip);
 	}
 
 	private void stopMoving ()

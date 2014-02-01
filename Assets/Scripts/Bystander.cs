@@ -10,6 +10,7 @@ public class Bystander : ObjectModel
 	void Start ()
 	{
 		touched = false;
+		GetComponentInChildren<CollisionDetect> ().objectModel = this;
 	}
 	
 	void Update ()
