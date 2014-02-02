@@ -10,6 +10,7 @@ public class StartButton : MonoBehaviour
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		if (Physics.Raycast (ray, out hit)) {
 			if (Input.GetMouseButtonUp (0)) {
+				GameObject.FindObjectOfType<Animal> ().setSpeed ();
 				GetComponent<Animator> ().SetTrigger ("Open");
 			}
 			Debug.Log (hit.transform.name);

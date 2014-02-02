@@ -1,23 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/SortingLayerEditor.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Animal.cs">
     <Files>
-      <File FileName="Assets/Scripts/SortingLayer.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AudioController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AudioModel.cs" Line="192" Column="2" />
-      <File FileName="Assets/Editor/SortingLayerEditor.cs" Line="11" Column="36" />
+      <File FileName="Assets/Scripts/Animal.cs" Line="27" Column="33" />
+      <File FileName="Assets/Scripts/LevelGUIController.cs" Line="25" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True" />
+            <Node name="Scripts" expanded="True">
+              <Node name="Animal.cs" selected="True" />
+            </Node>
           </Node>
           <Node name="Assembly-CSharp-Editor" expanded="True">
-            <Node name="Editor" expanded="True">
-              <Node name="SortingLayerEditor.cs" selected="True" />
-            </Node>
+            <Node name="Editor" expanded="True" />
           </Node>
         </State>
       </Pad>

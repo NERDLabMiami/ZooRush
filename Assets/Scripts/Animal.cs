@@ -22,8 +22,6 @@ public class Animal : MonoBehaviour
 		sceneManager = FindObjectOfType<SceneManager> (); //assigns the pointer to the scene manager
 		animator = GetComponent<Animator> (); //assigns the pointer to the animator component
 		speed = new Vector2 (6.5f, 0f); //default speed for the animal object
-		transform.parent.rigidbody2D.velocity = speed; //assigns the rigidbody component the desired velocity
-		
 		caught = false; //default value for whether the animal has been caught
 		
 		/** The "play" and "prevPlay" boolean values are used to create an 
@@ -47,6 +45,11 @@ public class Animal : MonoBehaviour
 				transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 			}
 		}
+	}
+
+	public void setSpeed ()
+	{
+		transform.parent.rigidbody2D.velocity = speed; //assigns the rigidbody component the desired velocity
 	}
 
 	/** Randomly changes the y-axis value of the animal object.

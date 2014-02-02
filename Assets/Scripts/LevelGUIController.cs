@@ -22,8 +22,8 @@ public class LevelGUIController : MonoBehaviour
 
 		//menuPrefabs[0] is the start screen by default
 		startMenu = GameObject.Instantiate (menuPrefabs [0]) as GameObject;
-//		stßartMenu.transform.parent = transform;
-//		startMenu.transform.localPosition = new Vector3 (0, 0, 10);
+		startMenu.transform.parent = transform;
+		startMenu.transform.localPosition = new Vector3 (0, 0, 10);
 	}
 	
 	void Update ()
@@ -43,6 +43,13 @@ public class LevelGUIController : MonoBehaviour
 			stopwatchController = stopwatch.GetComponent<StopwatchController> ();
 		}
 		stopwatchController.receiveInteraction (infectionType);
+	}
+
+	public void removeStopwatch ()
+	{
+		if (stopwatch != null) {
+			stopwatchController.stopStopwatch ();
+		}
 	}
 
 	/**
