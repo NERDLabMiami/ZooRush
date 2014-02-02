@@ -3,11 +3,23 @@ using System.Collections;
 
 public class StartButton : MonoBehaviour
 {
+	private RaycastHit hit; 
 
-	void OnMouseUp ()
+	void Update ()
 	{
-		GetComponent<Animator> ().SetTrigger ("Open");
+		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		if (Physics.Raycast (ray, out hit)) {
+			if (Input.GetMouseButtonUp (0)) {
+				GetComponent<Animator> ().SetTrigger ("Open");
+			}
+			Debug.Log (hit.transform.name);
+		}
+		
 	}
+//	void OnMouseUp ()
+//	{
+//		GetComponent<Animator> ().SetTrigger ("Open");
+//	}
 
 	public void closeStartScreen ()
 	{

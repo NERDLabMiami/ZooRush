@@ -11,7 +11,7 @@ public class Building : MonoBehaviour
 	private Animator animate;
 	private PlayerControls player;
 	public AudioClip[] clips;
-	
+
 	void Start ()
 	{
 		animate = GetComponent<Animator> ();
@@ -30,6 +30,7 @@ public class Building : MonoBehaviour
 					pillCount = pillCount + 1;
 					PlayerPrefs.SetInt ("PILLS", pillCount);
 					GameObject.FindObjectOfType<SceneManager> ().updatePillCount ();
+					GameObject.FindObjectOfType<StopwatchController> ().stopStopwatch ();
 				}
 				GameObject.FindObjectOfType<AudioController> ().objectInteraction (clips, 0.5f);
 			}

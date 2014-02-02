@@ -8,6 +8,8 @@ public class Infection : ObjectModel
 	public int painPoints;
 	public string infectionType;
 
+	private bool stopWatchActive;
+
 
 	void Start ()
 	{
@@ -47,6 +49,7 @@ public class Infection : ObjectModel
 			character.rigidbody2D.AddForce (new Vector2 (-350f, -50f));
 		}
 		character.GetComponent<PlayerControls> ().resetSpeed ();
+		GameObject.FindObjectOfType<LevelGUIController> ().displayStopwatch (infectionType);
 	}
 
 }
