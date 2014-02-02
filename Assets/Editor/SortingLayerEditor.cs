@@ -5,7 +5,6 @@ using System.Collections;
 [CustomEditor(typeof(SortingLayer))]
 public class SortingLayerEditor : Editor
 {
-	
 	private SortingLayer thisSort;
 	private int selection;
 	private string[] sortingLayers = {

@@ -20,8 +20,8 @@ public class GameOptions : MonoBehaviour
 	private int charIndex;
 	private int charMaxIndex = 0;
 	
-	private string musicValue;
-	private string soundValue;
+	private bool musicValue;
+	private bool soundValue;
 	
 	
 	void Start ()
@@ -36,10 +36,10 @@ public class GameOptions : MonoBehaviour
 		}
 
 		if (!PlayerPrefs.HasKey ("Music")) {
-			PlayerPrefs.SetString ("Music", "ON");
+			PlayerPrefs.SetInt ("Music", 1);
 		}
 		if (!PlayerPrefs.HasKey ("Sound")) {
-			PlayerPrefs.SetString ("Sound", "ON");
+			PlayerPrefs.SetInt ("Sound", 1);
 		}
 		
 		if (!PlayerPrefs.HasKey ("Character Selected")) { //Set up default character
@@ -62,28 +62,36 @@ public class GameOptions : MonoBehaviour
 			}
 		}
 		
-		musicValue = PlayerPrefs.GetString ("Music");
-		soundValue = PlayerPrefs.GetString ("Sound");
-		
-		options = new GameObject[] {MusicButton, SoundButton, charSelect.gameObject, Back};
-	}
-	
-	void Update ()
-	{
-		musicValue = PlayerPrefs.GetString ("Music");
-		if (musicValue.Equals ("ON")) {
+		musicValue = (PlayerPrefs.GetInt ("Music") == 1);
+		soundValue = (PlayerPrefs.GetInt ("Sound") == 1);
+
+		if (musicValue) {
 			MusicButton.GetComponent<ToggleButton> ().Activate ();
 		} else {
 			MusicButton.GetComponent<ToggleButton> ().Deactivate ();
 		}
 		
-		soundValue = PlayerPrefs.GetString ("Sound");
-		if (soundValue.Equals ("ON")) {
+		if (soundValue) {
 			SoundButton.GetComponent<ToggleButton> ().Activate ();
 		} else {
 			SoundButton.GetComponent<ToggleButton> ().Deactivate ();
 		}
+		
+		options = new GameObject[] {MusicButton, SoundButton, charSelect.gameObject, Back};
+	}
 
+	void FixedUpdate ()
+	{
+		musicValue = (PlayerPrefs.GetInt ("Music") == 1);
+		soundValue = (PlayerPrefs.GetInt ("Sound") == 1);
+
+		PlayerPrefs.SetInt ("Music", MusicButton.GetComponent<ToggleButton> ().activated ? 1 : 0);
+		PlayerPrefs.SetInt ("Sound", SoundButton.GetComponent<ToggleButton> ().activated ? 1 : 0);
+
+	}
+
+	void Update ()
+	{
 		for (int i = 0; i < charMaxIndex; i++) {
 			if (PlayerPrefs.GetString ("Character Selected").Equals (characterNames [i])) {
 				charSelect.sprite = characters [i];
@@ -103,28 +111,28 @@ public class GameOptions : MonoBehaviour
 	
 	void changeValue (GameObject option)
 	{
-		if (option.name.Contains ("Music")) {
-			if (musicValue.Equals ("ON")) {
-				PlayerPrefs.SetString ("Music", "OFF");
+//		if (option.name.Contains ("Music")) {
+//			if (musicValue.Equals ("ON")) {
+//				PlayerPrefs.SetString ("Music", "OFF");
+//			} else {
+//				PlayerPrefs.SetString ("Music", "ON");
+//			}
+//		} else {
+//			if (option.name.Contains ("Sound")) {
+//				if (soundValue.Equals ("ON")) {
+//					PlayerPrefs.SetString ("Sound", "OFF");
+//				} else {
+//					PlayerPrefs.SetString ("Sound", "ON");
+//				}
+//			} else {
+		if (option.name.Contains ("Character")) {
+			if (charIndex == charMaxIndex - 1) {
+				PlayerPrefs.SetString ("Character Selected", characterNames [0]);
 			} else {
-				PlayerPrefs.SetString ("Music", "ON");
-			}
-		} else {
-			if (option.name.Contains ("Sound")) {
-				if (soundValue.Equals ("ON")) {
-					PlayerPrefs.SetString ("Sound", "OFF");
-				} else {
-					PlayerPrefs.SetString ("Sound", "ON");
-				}
-			} else {
-				if (option.name.Contains ("Character")) {
-					if (charIndex == charMaxIndex - 1) {
-						PlayerPrefs.SetString ("Character Selected", characterNames [0]);
-					} else {
-						PlayerPrefs.SetString ("Character Selected", characterNames [charIndex + 1]);
-					}
-				}
+				PlayerPrefs.SetString ("Character Selected", characterNames [charIndex + 1]);
 			}
 		}
+//			}
+//		}
 	}
 }

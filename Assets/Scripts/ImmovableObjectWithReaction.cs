@@ -19,7 +19,9 @@ public class ImmovableObjectWithReaction : ObjectModel
 
 	protected override void resetOtherValues ()
 	{
-		
+		touched = false;
+		gameObject.GetComponent<Animator> ().SetTrigger ("Reset");
+
 	}
 
 	public override void collisionDetected ()

@@ -41,22 +41,25 @@ public class StoryModeHandler : MonoBehaviour
 
 	private void readSlideText ()
 	{
+		//Makes all dialog lines blank first
 		for (int i = 0; i < slideText.Length; i++) {
 			slideText [i] = "";
 		}
 		int numberOfLines;
-//		if (!fileInput.EndOfStream) {
 		numberOfLines = Int32.Parse (fileInput.ReadLine ());
 		for (int i = 0; i < numberOfLines; i++) {
 			slideText [i] = fileInput.ReadLine ();
 		}
-//		}
-		for (int i = 0; i < slideText.Length; i++) {
-			Debug.Log (slideText [i]);
-		}
 		textAnimator.DisplayText (slideText);
 	}
 
+	public void stopSpeechSprites ()
+	{
+		Animator[] animators = GameObject.FindObjectsOfType<Animator> ();
+		foreach (Animator animator in animators) {
+			animator.SetTrigger ("Stop");
+		}
+	}
 
 	private string textStuff = "2\n" +
 		"Today is a big day.\n" +

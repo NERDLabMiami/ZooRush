@@ -47,8 +47,8 @@ public class AudioModel : MonoBehaviour
 	void FixedUpdate ()
 	{
 		//TODO: Consider removing due to  processing time
-		music = (PlayerPrefs.GetString ("Music").Equals ("ON")) ? true : false;
-		sound = (PlayerPrefs.GetString ("Sound").Equals ("ON")) ? true : false;
+		music = (PlayerPrefs.GetInt ("Music") == 1); 
+		sound = (PlayerPrefs.GetInt ("Sound") == 1);
 	}
 
 	void Update ()

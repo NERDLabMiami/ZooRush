@@ -1,30 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StartButton : MonoBehaviour
+public class StartButton : Button
 {
-	private RaycastHit hit; 
-
-	void Update ()
+	protected override void action ()
 	{
-		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-		if (Physics.Raycast (ray, out hit)) {
-			if (Input.GetMouseButtonUp (0)) {
-				GameObject.FindObjectOfType<Animal> ().setSpeed ();
-				GetComponent<Animator> ().SetTrigger ("Open");
-			}
-			Debug.Log (hit.transform.name);
-		}
-		
+		GetComponent<Animator> ().SetTrigger ("Open");
 	}
-//	void OnMouseUp ()
-//	{
-//		GetComponent<Animator> ().SetTrigger ("Open");
-//	}
 
 	public void closeStartScreen ()
 	{
-		GameObject.FindObjectOfType<SceneManager> ().startPressed = true;
+		GameObject.FindObjectOfType<SceneManager> ().startLevel ();
 		Destroy (transform.parent.gameObject);
 	}
 }

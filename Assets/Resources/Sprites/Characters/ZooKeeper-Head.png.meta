@@ -48,37 +48,37 @@ TextureImporter:
     - name: ZooKeeper-Head_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 1532
-        width: 300
-        height: 509
+        x: 0
+        y: 0
+        width: 298
+        height: 506
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: ZooKeeper-Head_1
       rect:
         serializedVersion: 2
-        x: 277
-        y: 1277
-        width: 4
-        height: 5
+        x: 298
+        y: 0
+        width: 298
+        height: 506
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: ZooKeeper-Head_2
       rect:
         serializedVersion: 2
-        x: 3
-        y: 512
-        width: 300
-        height: 509
+        x: 596
+        y: 0
+        width: 298
+        height: 506
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: ZooKeeper-Head_3
       rect:
         serializedVersion: 2
-        x: 277
-        y: 257
-        width: 4
-        height: 5
+        x: 894
+        y: 0
+        width: 298
+        height: 506
       alignment: 7
       pivot: {x: 0, y: 0}
   spritePackingTag: 

@@ -150,7 +150,7 @@ public class SceneManager : MonoBehaviour
 							if (isEndless) {
 								StartCoroutine (displayEndlessScore ());
 							} else {
-								StartCoroutine (displayFainted ());
+								NextSceneHandler.fainted ();
 							}
 						} else {
 							if (hitByVehicle) {
@@ -159,7 +159,7 @@ public class SceneManager : MonoBehaviour
 								if (isEndless) {
 									StartCoroutine (displayEndlessScore ());
 								} else {
-									StartCoroutine (displayGotHit ());
+									NextSceneHandler.hitByCar ();
 								}
 							} else {
 								if (currentDistanceDiff < distanceDiffMin) {
@@ -276,6 +276,12 @@ public class SceneManager : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	public void startLevel ()
+	{
+		startPressed = true;
+		animalControl.setSpeed ();
 	}
 	
 	private IEnumerator TimeWait ()

@@ -1,38 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ToggleButton : MonoBehaviour
+public class ToggleButton : Button
 {
-
 	public GameObject toggle;
-	public string propertyChanged;
-
-	void Start ()
-	{
-	}
+	public bool activated;
 	
-	void Update ()
-	{
-	
-	}
-
-	void OnMouseUp ()
-	{
-		if (toggle.activeSelf) {
-			toggle.SetActive (false);
-		} else {
-			toggle.SetActive (true);
-		}
-	}
-
 	public void Deactivate ()
 	{
 		toggle.SetActive (false);
+		activated = false;
 	}
 
 	public void Activate ()
 	{
 		toggle.SetActive (true);
+		activated = true;
 	}
 
+	protected override void action ()
+	{
+		if (activated) {
+			Deactivate ();
+		} else {
+			Activate ();
+		}
+		clicked = false;
+	}
 }

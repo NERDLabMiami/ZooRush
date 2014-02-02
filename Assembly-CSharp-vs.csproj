@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</ProjectGuid>
+	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\AudioModel.cs" />
      <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\Building.cs" />
+     <Compile Include="Assets\Scripts\Button.cs" />
      <Compile Include="Assets\Scripts\Bystander.cs" />
      <Compile Include="Assets\Scripts\CameraAspect.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
@@ -82,6 +83,7 @@
      <Compile Include="Assets\Scripts\ObjectModel.cs" />
      <Compile Include="Assets\Scripts\ObstacleSpawner.cs" />
      <Compile Include="Assets\Scripts\PainIndicator.cs" />
+     <Compile Include="Assets\Scripts\PlayButton.cs" />
      <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\PowerUp.cs" />
      <Compile Include="Assets\Scripts\SceneManager.cs" />
