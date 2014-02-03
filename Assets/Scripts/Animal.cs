@@ -22,10 +22,8 @@ public class Animal : MonoBehaviour
 		sceneManager = FindObjectOfType<SceneManager> (); //assigns the pointer to the scene manager
 		animator = GetComponent<Animator> (); //assigns the pointer to the animator component
 		speed = new Vector2 (6.5f, 0f); //default speed for the animal object
-		transform.parent.rigidbody2D.velocity = speed; //assigns the rigidbody component the desired velocity
-		
 		caught = false; //default value for whether the animal has been caught
-		
+		transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 		/** The "play" and "prevPlay" boolean values are used to create an 
 		* "in play" or "not in play" state machine so that we may be able to 
 		* properly manage the movement and functionality of the animal object.
@@ -39,14 +37,20 @@ public class Animal : MonoBehaviour
 		animator.SetFloat ("Speed", transform.parent.rigidbody2D.velocity.x); //Tells the animator state machine what the current speed value is
 		prevPlay = play; //updates the previous frame's state
 		play = sceneManager.isPlaying; //updates the current frame's state
-		
-		if (!prevPlay && play) { //Our previous state is the paused state, we are now going into the play state
-			StartCoroutine (waitToResume (0.1f));
-		} else { // our previous state was the play state
-			if (!play) {//we need to move into the paused state
-				transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
+		if (sceneManager.startPressed) {
+			if (!prevPlay && play) { //Our previous state is the paused state, we are now going into the play state
+				StartCoroutine (waitToResume (0.1f));
+			} else { // our previous state was the play state
+				if (!play) {//we need to move into the paused state
+					transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
+				}
 			}
 		}
+	}
+
+	public void setSpeed ()
+	{
+		transform.parent.rigidbody2D.velocity = speed; //assigns the rigidbody component the desired velocity
 	}
 
 	/** Randomly changes the y-axis value of the animal object.

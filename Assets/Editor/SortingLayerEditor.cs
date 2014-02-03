@@ -5,7 +5,6 @@ using System.Collections;
 [CustomEditor(typeof(SortingLayer))]
 public class SortingLayerEditor : Editor
 {
-	
 	private SortingLayer thisSort;
 	private int selection;
 	private string[] sortingLayers = {
@@ -13,11 +12,7 @@ public class SortingLayerEditor : Editor
 		"Boundary",
 		"Background",
 		"Buildings",
-		"Obstacles-Behind",
-		"Character",
-		"Obstacles-InFront",
-		"Animal",
-		"Projectile",
+		"Play Area",
 		"DistanceIndicator",
 		"GUI Content",
 		"GUI Outline",

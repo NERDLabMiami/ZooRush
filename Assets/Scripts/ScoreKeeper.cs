@@ -15,7 +15,7 @@ public class ScoreKeeper : MonoBehaviour
 	private int doctorVisits;
 
 	private int waterBottleCount;
-	private bool pillUsed;
+	private int pillCount;
 
 	private SceneManager sceneManager;
 	private GameObject timeDisplay;
@@ -29,7 +29,7 @@ public class ScoreKeeper : MonoBehaviour
 		greenInfectionCount = 0;
 		
 		waterBottleCount = 0;
-		pillUsed = false;
+		pillCount = 0;
 	}
 
 	void Update ()
@@ -40,36 +40,30 @@ public class ScoreKeeper : MonoBehaviour
 //		displayTime ();
 	}
 
-	public void addToCount (GameObject obj)
+	public void addToCount (string obj)
 	{
-		if (obj.name.Contains ("Infection")) {
-			if (obj.name.Contains ("Red")) {
-				redInfectionCount += 1;
-			} else {
-				if (obj.name.Contains ("Yellow")) {
-					yellowInfectionCount += 1;
-				} else { // infection is green
-					greenInfectionCount += 1;
-				}
-			}
-			
-		} else {
-			if (obj.GetComponent<Animal> () != null) {
-				animalCount += 1;
-			}
-			if (obj.name.Contains ("Water Bottle")) {
-				waterBottleCount += 1;
-			}
-			if (obj.name.Contains ("Pill")) {
-				pillUsed = true;
-			}
-			
+		switch (obj) {
+		case "Red":
+			redInfectionCount += 1;
+			break;
+		case "Yellow":
+			yellowInfectionCount += 1;
+			break;
+		case "Green":
+			greenInfectionCount += 1;
+			break;
+		case "Water Bottle":
+			waterBottleCount += 1;
+			break;
+		case "Pill":
+			pillCount += 1;
+			break;
+		case "Animal":
+			animalCount += 1;
+			break;
+		default:
+			break;
 		}
-	}
-
-	public bool pillBottleUsed ()
-	{
-		return pillUsed;
 	}
 
 	public int[] getScore ()
@@ -79,7 +73,7 @@ public class ScoreKeeper : MonoBehaviour
 			yellowInfectionCount,
 			greenInfectionCount,
 			waterBottleCount,
-			(pillUsed) ? 1 : 0,
+			pillCount,
 			(int)timeElapsed,
 			starsCalc (),
 			animalCount
@@ -133,7 +127,7 @@ public class ScoreKeeper : MonoBehaviour
 		}
 		if (stars > 0) {
 			int totalInfections = redInfectionCount + yellowInfectionCount + greenInfectionCount;
-			int totalPowerUps = waterBottleCount + (pillUsed ? 1 : 0);
+			int totalPowerUps = waterBottleCount + pillCount;
 			if (totalInfections > totalPowerUps) {
 				stars--;
 			}

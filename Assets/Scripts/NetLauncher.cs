@@ -11,7 +11,8 @@ public class NetLauncher : MonoBehaviour
 	public bool launchEnabled; //Indicates if it is possible to launch a net 
 	public Rigidbody2D prefab; //The net prefab that will be instantiated
 	
-	private GameObject throwAlert; //Pointer the the throw alert dialog box
+	private LevelGUIController levelGUI; //Pointer the the throw alert dialog box
+	private bool throwAlertDisplayed;
 	private Animal animal;	//Pointer to the animal class
 	private float speed;	//Speed at which the net will be launched on the x-axis
 	private bool firing;	//Indicates if the character is currently firing a net
@@ -23,18 +24,18 @@ public class NetLauncher : MonoBehaviour
 		firing = false;
 		throwCount = 0;
 		animal = GameObject.FindObjectOfType<Animal> ();
-		throwAlert = GameObject.Find ("Throw Alert");
+		levelGUI = GameObject.FindObjectOfType<LevelGUIController> ();
 	}
 	
 	void Update ()
 	{
 		if (launchEnabled) {
-			if (!throwAlert.activeSelf) { //enalbe the throw alert dialog box
-				throwAlert.SetActive (true);
+			if (!throwAlertDisplayed) {
+				throwAlertDisplayed = levelGUI.displayThrowAlert ();
 			}
 		} else {
-			if (throwAlert.activeSelf) { //disable the throw alert dialog box
-				throwAlert.SetActive (false);
+			if (throwAlertDisplayed) {
+				throwAlertDisplayed = levelGUI.removeThrowAlert ();
 			}
 		}
 	}

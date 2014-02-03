@@ -20,12 +20,11 @@ public class GameSetup : MonoBehaviour
 		}
 		
 		//SOUND RELATED VALUES
-		if (!PlayerPrefs.HasKey ("Music")) { // set default values for music as ON
-			PlayerPrefs.SetString ("Music", "ON");
+		if (!PlayerPrefs.HasKey ("Music")) {
+			PlayerPrefs.SetInt ("Music", 1);
 		}
-		
-		if (!PlayerPrefs.HasKey ("Sound")) {// set default values for sound as ON
-			PlayerPrefs.SetString ("Sound", "ON");
+		if (!PlayerPrefs.HasKey ("Sound")) {
+			PlayerPrefs.SetInt ("Sound", 1);
 		}
 		
 		if (!PlayerPrefs.HasKey ("Volume")) {

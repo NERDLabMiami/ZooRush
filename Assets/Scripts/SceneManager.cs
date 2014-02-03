@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-
 /** Main controller for most level-based events.
  * 
  * @author: Ebtissam Wahman
  */ 
 public class SceneManager : MonoBehaviour
 {
+	public bool startPressed;
 	public string NextSceneName; 		//Filename of the next scene 
 	public float distanceDiffMin; 		//Minimum distance needed between character and animal
 	public float currentDistanceDiff; 	//Current distance between character and animal
@@ -20,6 +20,7 @@ public class SceneManager : MonoBehaviour
 	private GameObject screenDimmer;
 	
 	private PlayerControls playerControl;
+	private AudioController audioController;
 	private ScoreKeeper scoreKeeper;
 	private Animal animalControl;
 	private GameObject character;
@@ -55,6 +56,7 @@ public class SceneManager : MonoBehaviour
 	
 	void Awake ()
 	{
+		startPressed = false;
 		character = GameObject.FindGameObjectWithTag ("character");
 		//check if currently selected charater in player prefs matches the currently displayed character
 		if (PlayerPrefs.HasKey ("Character Selected")) {
@@ -76,6 +78,7 @@ public class SceneManager : MonoBehaviour
 	
 	void Start ()
 	{
+		startPressed = false;
 		isPlaying = true;
 		pauseAudio = false;
 		levelStartWait = true;
@@ -101,6 +104,7 @@ public class SceneManager : MonoBehaviour
 		}
 		
 		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
+		audioController = GameObject.FindObjectOfType<AudioController> ();
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
@@ -109,114 +113,122 @@ public class SceneManager : MonoBehaviour
 		
 		distanceDiffMin = 6.5f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
-//		if (!PlayerPrefs.HasKey ("Tutorial")) {
-//			PlayerPrefs.SetString ("Tutorial", "true");
-//		}
-//		tutEnabled = ((PlayerPrefs.GetString ("Tutorial").Equals ("true")) ? true : false);
+		updatePillCount ();
 	}
 	
 	void Update ()
 	{
-		currentDistanceDiff = Mathf.Abs (animal.transform.localPosition.x - character.transform.localPosition.x);
-		if (levelStartWait) {
-			if (currentDistanceDiff > 25f) {
-				animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
-				levelStartWait = false;
-			}	
-		} else {
-			if (isPlaying) {
-				if (animalControl.caught) {
-					isPlaying = false;
-					if (!isEndless) {
-						pauseAudio = true;
-					}
-					if (isEndless) {
-						StartCoroutine (resetSceneEndlessMode ());
-					} else {
-						if (!scoreDisplayed) {
-							StartCoroutine (displayScore ());
-						}
-					}
-				} else {
-					if (currentDistanceDiff < distanceDiffMin) {
-						playerControl.setSpeed (animalControl.speed);
-						netLauncher.launchEnabled = true;
-					} else {
-						netLauncher.launchEnabled = false;
-					}
-					if (fainted) {
+		if (startPressed) {
+			currentDistanceDiff = Mathf.Abs (animal.transform.localPosition.x - character.transform.localPosition.x);
+			if (levelStartWait) {
+				if (currentDistanceDiff > 25f) {
+					animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
+					levelStartWait = false;
+				}	
+			} else {
+				if (isPlaying) {
+					if (animalControl.caught) {
 						isPlaying = false;
-						pauseAudio = true;
 						if (isEndless) {
-							StartCoroutine (displayEndlessScore ());
+							StartCoroutine (resetSceneEndlessMode ());
 						} else {
-							StartCoroutine (displayFainted ());
+							audioController.pauseAudio ();
+							if (!scoreDisplayed) {
+								StartCoroutine (displayScore ());
+							}
 						}
 					} else {
-						if (hitByVehicle) {
+						if (currentDistanceDiff < distanceDiffMin) {
+							playerControl.setSpeed (animalControl.speed);
+							netLauncher.launchEnabled = true;
+						} else {
+							netLauncher.launchEnabled = false;
+						}
+						if (fainted) {
 							isPlaying = false;
 							pauseAudio = true;
 							if (isEndless) {
 								StartCoroutine (displayEndlessScore ());
 							} else {
-								StartCoroutine (displayGotHit ());
+								NextSceneHandler.fainted ();
 							}
 						} else {
-							if (currentDistanceDiff < distanceDiffMin) {
-								netLauncher.launchEnabled = true;
+							if (hitByVehicle) {
+								isPlaying = false;
+								pauseAudio = true;
+								if (isEndless) {
+									StartCoroutine (displayEndlessScore ());
+								} else {
+									NextSceneHandler.hitByCar ();
+								}
 							} else {
-								netLauncher.launchEnabled = false;
+								if (currentDistanceDiff < distanceDiffMin) {
+									netLauncher.launchEnabled = true;
+								} else {
+									netLauncher.launchEnabled = false;
+								}
+								if (netLauncher.launchEnabled) {
+									playerControl.setSpeed (animalControl.speed);
+								}
 							}
-							if (netLauncher.launchEnabled) {
-								playerControl.setSpeed (animalControl.speed);
-							}
-						}
-					}	
+						}	
+					}
+				} else {
+					netLauncher.launchEnabled = false;
 				}
-			} else {
-				netLauncher.launchEnabled = false;
 			}
 		}
 	}
 	
 	void FixedUpdate ()
 	{
-		if (timeCountDown) {
-			if (timeWait) {
-				StartCoroutine (TimeWait ());
-			} else {
-				if (timeCounter < time) {
-					StartCoroutine (starDisplay (stars));
-					StartCoroutine (timeCountUpMethod ());
+		if (startPressed) {
+			if (timeCountDown) {
+				if (timeWait) {
+					StartCoroutine (TimeWait ());
 				} else {
-					timeCountDown = false;
-					if (!starDisplay1) {
-						if (time - targetTimeVar > 0) {
-							stars--;
-						}
-						if (time - (multiplier1 * targetTimeVar) > 0) {
-							stars--;
-						}
-						if (time - (multiplier2 * targetTimeVar) > 0) {
-							stars--;
-						}
+					if (timeCounter < time) {
 						StartCoroutine (starDisplay (stars));
+						StartCoroutine (timeCountUpMethod ());
 					} else {
-						if (infectionCounter < infections) {
-							StartCoroutine (infectionCountUp ());
+						timeCountDown = false;
+						if (!starDisplay1) {
+							if (time - targetTimeVar > 0) {
+								stars--;
+							}
+							if (time - (multiplier1 * targetTimeVar) > 0) {
+								stars--;
+							}
+							if (time - (multiplier2 * targetTimeVar) > 0) {
+								stars--;
+							}
+							StartCoroutine (starDisplay (stars));
 						} else {
-							if (!starDisplay2) {
-								if (stars > 0) {
-									if (infections > powerUps) {
-										stars--;
+							if (infectionCounter < infections) {
+								StartCoroutine (infectionCountUp ());
+							} else {
+								if (!starDisplay2) {
+									if (stars > 0) {
+										if (infections > powerUps) {
+											stars--;
+										}
 									}
+									StartCoroutine (starDisplay (stars));
 								}
-								StartCoroutine (starDisplay (stars));
 							}
 						}
 					}
 				}
 			}
+		}
+	}
+
+	public void updatePillCount ()
+	{
+		string theCount = "x" + PlayerPrefs.GetInt ("PILLS");
+		TextMesh[] pillCount = GameObject.Find ("Pill Count").GetComponentsInChildren<TextMesh> ();
+		foreach (TextMesh texts in pillCount) {
+			texts.text = theCount;
 		}
 	}
 	
@@ -264,6 +276,12 @@ public class SceneManager : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	public void startLevel ()
+	{
+		startPressed = true;
+		animalControl.setSpeed ();
 	}
 	
 	private IEnumerator TimeWait ()
@@ -326,6 +344,7 @@ public class SceneManager : MonoBehaviour
 				menu = Instantiate (menus [1]) as GameObject;
 				menu.transform.parent = Camera.main.transform;
 				menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
+				GameObject.FindObjectOfType<LevelGUIController> ().removeStopwatch ();
 			}
 		}
 	}

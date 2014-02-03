@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DirectToScene : MonoBehaviour
+public class DirectToScene : Button
 {
 	public string sceneName;
 
-	void OnMouseUp ()
+	protected override void action ()
 	{
 		Application.LoadLevel (sceneName);
 	}
