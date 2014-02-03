@@ -319,35 +319,35 @@ public class SceneManager : MonoBehaviour
 		}
 	}
 	
-	private IEnumerator displayGotHit ()
-	{
-		yield return new WaitForSeconds (0.1f);
-		dimScreen ();
-		if (GameObject.Find ("GUI Menu - Fainted(Clone)") == null) {
-			GameObject menu = GameObject.Find (menus [1].name);
-			if (menu == null) {
-				menu = Instantiate (menus [1]) as GameObject;
-				GameObject.Find ("Menu - Title Text").GetComponent<TextMesh> ().text = "You Got Hit!";
-				menu.transform.parent = Camera.main.transform;
-				menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
-			}
-		}
-	}
+//	private IEnumerator displayGotHit ()
+//	{
+//		yield return new WaitForSeconds (0.1f);
+//		dimScreen ();
+//		if (GameObject.Find ("GUI Menu - Fainted(Clone)") == null) {
+//			GameObject menu = GameObject.Find (menus [1].name);
+//			if (menu == null) {
+//				menu = Instantiate (menus [1]) as GameObject;
+//				GameObject.Find ("Menu - Title Text").GetComponent<TextMesh> ().text = "You Got Hit!";
+//				menu.transform.parent = Camera.main.transform;
+//				menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
+//			}
+//		}
+//	}
 	
-	private IEnumerator displayFainted ()
-	{
-		yield return new WaitForSeconds (0.1f);
-		dimScreen ();
-		if (GameObject.Find ("GUI Menu - Fainted(Clone)") == null) {
-			GameObject menu = GameObject.Find (menus [1].name);
-			if (menu == null) {
-				menu = Instantiate (menus [1]) as GameObject;
-				menu.transform.parent = Camera.main.transform;
-				menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
-				GameObject.FindObjectOfType<LevelGUIController> ().removeStopwatch ();
-			}
-		}
-	}
+//	private IEnumerator displayFainted ()
+//	{
+//		yield return new WaitForSeconds (0.1f);
+//		dimScreen ();
+//		if (GameObject.Find ("GUI Menu - Fainted(Clone)") == null) {
+//			GameObject menu = GameObject.Find (menus [1].name);
+//			if (menu == null) {
+//				menu = Instantiate (menus [1]) as GameObject;
+//				menu.transform.parent = Camera.main.transform;
+//				menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
+//				GameObject.FindObjectOfType<LevelGUIController> ().removeStopwatch ();
+//			}
+//		}
+//	}
 
 	private IEnumerator displayScore ()
 	{

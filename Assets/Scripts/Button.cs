@@ -22,20 +22,30 @@ public abstract class Button : MonoBehaviour
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hit)) {
 				if (hit.transform.gameObject == gameObject) {
-					if (GetComponent<TextMesh> () != null) {
-						GetComponent<TextMesh> ().color = Color.yellow;
-					}
+					selectText ();
 					if (Input.GetMouseButtonUp (0)) {
 						previousScene = Application.loadedLevelName;
 						clicked = true;
 						action ();
 					}
 				} else {
-					if (GetComponent<TextMesh> () != null) {
-						GetComponent<TextMesh> ().color = originalColor;
-					}
+					deselectText ();
 				}
 			}
+		}
+	}
+
+	public void selectText ()
+	{
+		if (GetComponent<TextMesh> () != null) {
+			GetComponent<TextMesh> ().color = Color.yellow;
+		}
+	}
+
+	public void deselectText ()
+	{
+		if (GetComponent<TextMesh> () != null) {
+			GetComponent<TextMesh> ().color = originalColor;
 		}
 	}
 
