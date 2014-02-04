@@ -44,29 +44,83 @@ TextureImporter:
     - name: Flamingo_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 1142
-        width: 390
-        height: 639
-      alignment: 0
+        x: 0
+        y: 322
+        width: 162
+        height: 161
+      alignment: 7
       pivot: {x: 0, y: 0}
     - name: Flamingo_1
       rect:
         serializedVersion: 2
-        x: 4
-        y: 569
-        width: 472
-        height: 573
-      alignment: 0
+        x: 162
+        y: 322
+        width: 162
+        height: 161
+      alignment: 7
       pivot: {x: 0, y: 0}
     - name: Flamingo_2
       rect:
         serializedVersion: 2
-        x: 4
-        y: 3
-        width: 472
-        height: 566
-      alignment: 0
+        x: 324
+        y: 322
+        width: 162
+        height: 161
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Flamingo_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 161
+        width: 162
+        height: 161
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Flamingo_4
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 161
+        width: 162
+        height: 161
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Flamingo_5
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 161
+        width: 162
+        height: 161
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Flamingo_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 162
+        height: 161
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Flamingo_7
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 0
+        width: 162
+        height: 161
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Flamingo_8
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 0
+        width: 162
+        height: 161
+      alignment: 7
       pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

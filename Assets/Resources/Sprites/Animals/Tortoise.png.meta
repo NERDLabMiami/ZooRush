@@ -38,35 +38,48 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
   spriteSheet:
     sprites:
     - name: Tortoise_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 2
-        width: 417
-        height: 198
-      alignment: 0
+        x: 0
+        y: 200
+        width: 415
+        height: 200
+      alignment: 7
       pivot: {x: 0, y: 0}
     - name: Tortoise_1
       rect:
         serializedVersion: 2
-        x: 418
-        y: 1
-        width: 417
-        height: 199
-      alignment: 0
+        x: 415
+        y: 200
+        width: 415
+        height: 200
+      alignment: 7
       pivot: {x: 0, y: 0}
     - name: Tortoise_2
       rect:
         serializedVersion: 2
-        x: 836
-        y: 1
-        width: 416
+        x: 0
+        y: 0
+        width: 415
         height: 200
-      alignment: 0
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Tortoise_3
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 0
+        width: 415
+        height: 200
+      alignment: 7
       pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

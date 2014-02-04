@@ -49,36 +49,36 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 439
-        height: 512
+        y: 277
+        width: 225
+        height: 277
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Ostritch_1
       rect:
         serializedVersion: 2
-        x: 439
-        y: 512
-        width: 439
-        height: 512
+        x: 225
+        y: 277
+        width: 225
+        height: 277
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Ostritch_2
       rect:
         serializedVersion: 2
-        x: 878
-        y: 512
-        width: 439
-        height: 512
+        x: 450
+        y: 277
+        width: 225
+        height: 277
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Ostritch_3
       rect:
         serializedVersion: 2
-        x: 1317
-        y: 512
-        width: 439
-        height: 512
+        x: 675
+        y: 277
+        width: 225
+        height: 277
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Ostritch_4
@@ -86,35 +86,35 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 439
-        height: 512
+        width: 225
+        height: 277
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Ostritch_5
       rect:
         serializedVersion: 2
-        x: 439
+        x: 225
         y: 0
-        width: 439
-        height: 512
+        width: 225
+        height: 277
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Ostritch_6
       rect:
         serializedVersion: 2
-        x: 878
+        x: 450
         y: 0
-        width: 439
-        height: 512
+        width: 225
+        height: 277
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Ostritch_7
       rect:
         serializedVersion: 2
-        x: 1317
+        x: 675
         y: 0
-        width: 439
-        height: 512
+        width: 225
+        height: 277
       alignment: 7
       pivot: {x: 0, y: 0}
   spritePackingTag: 

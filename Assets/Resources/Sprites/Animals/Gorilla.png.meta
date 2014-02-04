@@ -44,29 +44,38 @@ TextureImporter:
     - name: Gorilla_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 1041
-        width: 809
-        height: 981
-      alignment: 0
+        x: 0
+        y: 388
+        width: 492
+        height: 388
+      alignment: 7
       pivot: {x: 0, y: 0}
     - name: Gorilla_1
       rect:
         serializedVersion: 2
-        x: 814
-        y: 1035
-        width: 1084
-        height: 987
-      alignment: 0
+        x: 492
+        y: 388
+        width: 492
+        height: 388
+      alignment: 7
       pivot: {x: 0, y: 0}
     - name: Gorilla_2
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 1217
-        height: 1030
-      alignment: 0
+        x: 0
+        y: 0
+        width: 492
+        height: 388
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Gorilla_3
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 0
+        width: 492
+        height: 388
+      alignment: 7
       pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

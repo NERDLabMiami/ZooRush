@@ -49,36 +49,36 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 337
-        width: 512
-        height: 337
+        y: 544
+        width: 409
+        height: 272
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Elephant_1
       rect:
         serializedVersion: 2
-        x: 512
-        y: 337
-        width: 512
-        height: 337
+        x: 409
+        y: 544
+        width: 409
+        height: 272
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Elephant_2
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 337
-        width: 512
-        height: 337
+        x: 0
+        y: 272
+        width: 409
+        height: 272
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Elephant_3
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 337
-        width: 512
-        height: 337
+        x: 409
+        y: 272
+        width: 409
+        height: 272
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Elephant_4
@@ -86,35 +86,17 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 337
+        width: 409
+        height: 272
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Elephant_5
       rect:
         serializedVersion: 2
-        x: 512
+        x: 409
         y: 0
-        width: 512
-        height: 337
-      alignment: 7
-      pivot: {x: 0, y: 0}
-    - name: Elephant_6
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 512
-        height: 337
-      alignment: 7
-      pivot: {x: 0, y: 0}
-    - name: Elephant_7
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 0
-        width: 512
-        height: 337
+        width: 409
+        height: 272
       alignment: 7
       pivot: {x: 0, y: 0}
   spritePackingTag: 

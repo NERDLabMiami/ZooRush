@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Bystander.cs" />
      <Compile Include="Assets\Scripts\CameraAspect.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\CollisionDetect.cs" />
      <Compile Include="Assets\Scripts\DialogHandler.cs" />
      <Compile Include="Assets\Scripts\DialogTrigger.cs" />
