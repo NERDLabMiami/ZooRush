@@ -103,6 +103,8 @@
      <Compile Include="Assets\Scripts\TutorialConditionalDialogController.cs" />
      <Compile Include="Assets\Scripts\Vehicle.cs" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
+     <None Include="Assets\Resources\Sprites\Background\SunAnimation.txt" />
+     <None Include="Assets\Resources\Sprites\Characters\CharactersDetermined.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

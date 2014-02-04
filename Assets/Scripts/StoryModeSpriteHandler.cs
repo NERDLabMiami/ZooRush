@@ -12,14 +12,10 @@ public class StoryModeSpriteHandler : MonoBehaviour
 	void Awake ()
 	{
 		if (PlayerPrefs.HasKey ("Character Selected")) {
-			string character = PlayerPrefs.GetString ("Character Selected");
-			for (int i = 0; i < characters.Length; i++) {
-				if (characters [i].Equals (character)) {
-					currentCharacter = i;
-				}
-			}
+			currentCharacter = PlayerPrefs.GetInt ("Character Selected");
 		} else {
 			currentCharacter = 0;
+			PlayerPrefs.SetInt ("Character Selected", currentCharacter);
 		}
 		if (!isOtherCharacter) {
 			gameObject.GetComponent<SpriteRenderer> ().sprite = sprites [currentCharacter];

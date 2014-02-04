@@ -54,28 +54,6 @@ public class SceneManager : MonoBehaviour
 	public Sprite[] characterIcons;
 	public GameObject[] animals;
 	
-	void Awake ()
-	{
-		startPressed = false;
-		character = GameObject.FindGameObjectWithTag ("character");
-		//check if currently selected charater in player prefs matches the currently displayed character
-		if (PlayerPrefs.HasKey ("Character Selected")) {
-			string charName = PlayerPrefs.GetString ("Character Selected");
-			if (!character.GetComponent<PlayerControls> ().characterName.Equals (charName)) {//Name mismatch
-				for (int i = 0; i < characters.Length; i++) {
-					if (characters [i].GetComponent<PlayerControls> ().characterName.Equals (charName)) {
-						Vector3 charPosition = character.transform.position;
-						Destroy (character);
-						character = Instantiate (characters [i], charPosition, Quaternion.identity) as GameObject;
-						GameObject.Find ("Character Icon").GetComponent<SpriteRenderer> ().sprite = characterIcons [i];
-					}
-				}
-			}
-		} else {
-			PlayerPrefs.SetString ("Character Selected", character.GetComponent<PlayerControls> ().characterName);
-		}
-	}
-	
 	void Start ()
 	{
 		startPressed = false;
@@ -92,6 +70,7 @@ public class SceneManager : MonoBehaviour
 		stars = 3;
 		timeCounter = 0;
 		infectionCounter = 0;
+		character = GameObject.FindGameObjectWithTag ("character");
 		animal = GameObject.FindGameObjectWithTag ("animal");
 		for (int i = 0; i < animals.Length; i++) {
 			if (animals [i].name.Contains (animal.name)) {

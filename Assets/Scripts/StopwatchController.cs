@@ -50,10 +50,8 @@ public class StopwatchController : MonoBehaviour
 
 	public void stopStopwatch ()
 	{
-		if (start) {
-			gameObject.GetComponent<Animator> ().SetTrigger ("Reset");
-			Destroy (gameObject);
-		}
+		gameObject.GetComponent<Animator> ().SetTrigger ("Reset");
+		Destroy (gameObject);
 	}
 
 	public void timeEnded ()

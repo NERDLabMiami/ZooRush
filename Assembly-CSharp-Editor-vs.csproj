@@ -50,6 +50,8 @@
      <Compile Include="Assets\Editor\LevelEditor.cs" />
      <Compile Include="Assets\Editor\SortingLayerEditor.cs" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
+     <None Include="Assets\Resources\Sprites\Background\SunAnimation.txt" />
+     <None Include="Assets\Resources\Sprites\Characters\CharactersDetermined.txt" />
  <Reference Include="\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
