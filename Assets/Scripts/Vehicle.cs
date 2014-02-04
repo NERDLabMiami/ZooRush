@@ -10,6 +10,11 @@ public class Vehicle : ObjectModel
 	{
 		GetComponentInChildren<CollisionDetect> ().objectModel = this;
 		audioController = GameObject.FindObjectOfType<AudioController> ();
+		if (transform.localScale.x > 0) { //if poisitive
+			rigidbody2D.velocity = new Vector2 (8f, 0);
+		} else {
+			rigidbody2D.velocity = new Vector2 (-9.5f, 0);
+		}
 
 	}
 	
