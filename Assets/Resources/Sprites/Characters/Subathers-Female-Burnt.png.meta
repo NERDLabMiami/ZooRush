@@ -52,8 +52,8 @@ TextureImporter:
         y: 739
         width: 643
         height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Female-Burnt_1
       rect:
         serializedVersion: 2
@@ -61,8 +61,8 @@ TextureImporter:
         y: 739
         width: 643
         height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Female-Burnt_2
       rect:
         serializedVersion: 2
@@ -70,8 +70,8 @@ TextureImporter:
         y: 739
         width: 643
         height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Female-Burnt_3
       rect:
         serializedVersion: 2
@@ -79,8 +79,8 @@ TextureImporter:
         y: 0
         width: 643
         height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Female-Burnt_4
       rect:
         serializedVersion: 2
@@ -88,8 +88,8 @@ TextureImporter:
         y: 0
         width: 643
         height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Female-Burnt_5
       rect:
         serializedVersion: 2
@@ -97,7 +97,7 @@ TextureImporter:
         y: 0
         width: 643
         height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
   spritePackingTag: 
   userData: 

@@ -52,8 +52,8 @@ TextureImporter:
         y: 740
         width: 643
         height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Male-Burnt_1
       rect:
         serializedVersion: 2
@@ -61,8 +61,8 @@ TextureImporter:
         y: 740
         width: 643
         height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Male-Burnt_2
       rect:
         serializedVersion: 2
@@ -70,8 +70,8 @@ TextureImporter:
         y: 2
         width: 643
         height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Male-Burnt_3
       rect:
         serializedVersion: 2
@@ -79,7 +79,7 @@ TextureImporter:
         y: 2
         width: 643
         height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
   spritePackingTag: 
   userData: 
