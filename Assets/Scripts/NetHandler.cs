@@ -6,7 +6,6 @@ using System.Collections;
 */
 public class NetHandler : MonoBehaviour
 {
-
 	void Update ()
 	{
 		if (transform.position.y < Camera.main.transform.position.y - 10f) { //if completely out of view of the camera
