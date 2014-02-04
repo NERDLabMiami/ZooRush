@@ -52,8 +52,8 @@ TextureImporter:
         y: 738
         width: 643
         height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Male_1
       rect:
         serializedVersion: 2
@@ -61,8 +61,8 @@ TextureImporter:
         y: 738
         width: 643
         height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Male_2
       rect:
         serializedVersion: 2
@@ -70,8 +70,8 @@ TextureImporter:
         y: 0
         width: 643
         height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Male_3
       rect:
         serializedVersion: 2
@@ -79,8 +79,8 @@ TextureImporter:
         y: 0
         width: 643
         height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Male_4
       rect:
         serializedVersion: 2
@@ -88,8 +88,8 @@ TextureImporter:
         y: 738
         width: 642
         height: 738
-      alignment: 7
-      pivot: {x: .5, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Male_5
       rect:
         serializedVersion: 2
@@ -97,7 +97,7 @@ TextureImporter:
         y: 0
         width: 642
         height: 738
-      alignment: 7
-      pivot: {x: .5, y: 0}
+      alignment: 2
+      pivot: {x: .5, y: 1}
   spritePackingTag: 
   userData: 

@@ -9,7 +9,6 @@ public class Animal : MonoBehaviour
 {
 
 	public bool caught; //Indicator for whehter the Animal has been caught by the player
-	public GameObject net; //Pre-fabbed image of a net that is made visible when the animal is caught
 	public Vector2 speed; //Current speed of the animal object
 	
 	private Animator animator; //Animator for the animal's running sprites
@@ -21,7 +20,6 @@ public class Animal : MonoBehaviour
 	{
 		sceneManager = FindObjectOfType<SceneManager> (); //assigns the pointer to the scene manager
 		animator = GetComponent<Animator> (); //assigns the pointer to the animator component
-		speed = new Vector2 (6.5f, 0f); //default speed for the animal object
 		caught = false; //default value for whether the animal has been caught
 		transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 		/** The "play" and "prevPlay" boolean values are used to create an 
