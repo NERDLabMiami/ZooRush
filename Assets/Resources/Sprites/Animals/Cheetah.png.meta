@@ -49,45 +49,54 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 546
-        width: 465
-        height: 273
+        y: 204
+        width: 334
+        height: 204
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Cheetah_1
       rect:
         serializedVersion: 2
-        x: 465
-        y: 546
-        width: 465
-        height: 273
+        x: 334
+        y: 204
+        width: 334
+        height: 204
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Cheetah_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 273
-        width: 465
-        height: 273
+        x: 668
+        y: 204
+        width: 334
+        height: 204
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Cheetah_3
       rect:
         serializedVersion: 2
-        x: 465
-        y: 273
-        width: 465
-        height: 273
+        x: 0
+        y: 0
+        width: 334
+        height: 204
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Cheetah_4
       rect:
         serializedVersion: 2
-        x: 0
+        x: 334
         y: 0
-        width: 465
-        height: 273
+        width: 334
+        height: 204
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Cheetah_5
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 0
+        width: 334
+        height: 204
       alignment: 7
       pivot: {x: 0, y: 0}
   spritePackingTag: 

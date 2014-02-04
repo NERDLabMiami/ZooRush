@@ -43,7 +43,7 @@ public class GameOptions : MonoBehaviour
 		}
 		
 		if (!PlayerPrefs.HasKey ("Character Selected")) { //Set up default character
-			PlayerPrefs.SetString ("Character Selected", characterNames [0]);
+			PlayerPrefs.SetInt ("Character Selected", 0);
 		} 
 		
 		//Set the limit based on which characters are unlocked
@@ -93,7 +93,7 @@ public class GameOptions : MonoBehaviour
 	void Update ()
 	{
 		for (int i = 0; i < charMaxIndex; i++) {
-			if (PlayerPrefs.GetString ("Character Selected").Equals (characterNames [i])) {
+			if (PlayerPrefs.GetInt ("Character Selected") == i) {
 				charSelect.sprite = characters [i];
 				charIndex = i;
 			}
@@ -127,9 +127,9 @@ public class GameOptions : MonoBehaviour
 //			} else {
 		if (option.name.Contains ("Character")) {
 			if (charIndex == charMaxIndex - 1) {
-				PlayerPrefs.SetString ("Character Selected", characterNames [0]);
+				PlayerPrefs.SetInt ("Character Selected", 0);
 			} else {
-				PlayerPrefs.SetString ("Character Selected", characterNames [charIndex + 1]);
+				PlayerPrefs.SetInt ("Character Selected", charIndex + 1);
 			}
 		}
 //			}

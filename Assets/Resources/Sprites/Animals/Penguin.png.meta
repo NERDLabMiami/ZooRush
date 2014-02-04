@@ -49,72 +49,72 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 821
-        width: 476
-        height: 821
+        y: 0
+        width: 127
+        height: 198
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Penguin_1
       rect:
         serializedVersion: 2
-        x: 476
-        y: 821
-        width: 476
-        height: 821
+        x: 127
+        y: 0
+        width: 127
+        height: 198
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Penguin_2
       rect:
         serializedVersion: 2
-        x: 952
-        y: 821
-        width: 476
-        height: 821
+        x: 254
+        y: 0
+        width: 127
+        height: 198
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Penguin_3
       rect:
         serializedVersion: 2
-        x: 1428
-        y: 821
-        width: 476
-        height: 821
+        x: 381
+        y: 0
+        width: 127
+        height: 198
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Penguin_4
       rect:
         serializedVersion: 2
-        x: 0
+        x: 508
         y: 0
-        width: 476
-        height: 821
+        width: 127
+        height: 198
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Penguin_5
       rect:
         serializedVersion: 2
-        x: 476
+        x: 635
         y: 0
-        width: 476
-        height: 821
+        width: 127
+        height: 198
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Penguin_6
       rect:
         serializedVersion: 2
-        x: 952
+        x: 762
         y: 0
-        width: 476
-        height: 821
+        width: 127
+        height: 198
       alignment: 7
       pivot: {x: 0, y: 0}
     - name: Penguin_7
       rect:
         serializedVersion: 2
-        x: 1428
+        x: 889
         y: 0
-        width: 476
-        height: 821
+        width: 127
+        height: 198
       alignment: 7
       pivot: {x: 0, y: 0}
   spritePackingTag: 

@@ -44,29 +44,38 @@ TextureImporter:
     - name: Crocodile_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 452
-        width: 1026
-        height: 220
-      alignment: 0
+        x: 0
+        y: 106
+        width: 472
+        height: 106
+      alignment: 7
       pivot: {x: 0, y: 0}
     - name: Crocodile_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 231
-        width: 1026
-        height: 219
-      alignment: 0
+        x: 472
+        y: 106
+        width: 472
+        height: 106
+      alignment: 7
       pivot: {x: 0, y: 0}
     - name: Crocodile_2
       rect:
         serializedVersion: 2
-        x: 3
-        y: 4
-        width: 1026
-        height: 225
-      alignment: 0
+        x: 0
+        y: 0
+        width: 472
+        height: 106
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Crocodile_3
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 0
+        width: 472
+        height: 106
+      alignment: 7
       pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 
