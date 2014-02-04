@@ -3,8 +3,8 @@ using System.Collections;
 
 public class DialogHandler : MonoBehaviour
 {
-	private bool displaying;
-	private bool found;
+	public bool displaying;
+	public bool found;
 	private DialogTrigger dialog;
 	
 	public LayerMask layerMask ;
@@ -20,14 +20,12 @@ public class DialogHandler : MonoBehaviour
 		cameraFollower = FindObjectOfType<CameraFollow> ();
 	}
 	
-	void Update ()
+	void FixedUpdate ()
 	{	
 		if (cameraFollower.cameraSettled) {
 			RaycastHit2D detected = Physics2D.Raycast (transform.position, Vector2.up, 250f, layerMask);
 			if (detected.collider != null) {
-//				Debug.Log (detected.collider.name);
-				if (detected.collider.gameObject.GetComponent<DialogTrigger> () != null) { // Dialog Box Found
-					
+				if (detected.collider.gameObject.GetComponent<DialogTrigger> () != null && detected.collider.gameObject.GetComponent<DialogTrigger> () != dialog) { // Dialog Box Found
 					dialog = detected.collider.GetComponent<DialogTrigger> ();
 					if (dialog.tutOnly) {
 						if (sceneManager.tutEnabled) {
@@ -43,21 +41,11 @@ public class DialogHandler : MonoBehaviour
 				}
 			}
 			if (!displaying && found) {
-				if (!dialog.isTriggered) {
-					StartCoroutine (waitToDisplay (dialog.waitTime));
-				} else {
-					displaying = true;
-				}
-			
+				displaying = true;
 			} else {
-				if (displaying && found) {
-					if (!dialog.isDialogFinished ()) {
-						displayDialog ();
-					} else {
-						closeDialog ();
-						sceneManager.isPlaying = true;
-						displaying = false;
-						found = false;
+				if (displaying && found && !dialog.dialogOver) {
+					if (!dialog.opened) {
+						dialog.openDialog ();
 					}
 					if (InputManager.enter) {
 						dialog.next ();
@@ -65,21 +53,5 @@ public class DialogHandler : MonoBehaviour
 				}
 			}
 		}
-	}
-	
-	private IEnumerator waitToDisplay (float time)
-	{
-		yield return new WaitForSeconds (time);
-		displaying = true;
-	}
-	
-	private void displayDialog ()
-	{
-		dialog.openDialog ();
-	}
-	
-	private void closeDialog ()
-	{
-		dialog.closeDialog ();
 	}
 }

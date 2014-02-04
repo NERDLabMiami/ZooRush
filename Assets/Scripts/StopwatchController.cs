@@ -5,13 +5,11 @@ public class StopwatchController : MonoBehaviour
 {
 	private bool start;
 	private float currentSpeed;
-	private Animator animator;
 
 	void Start ()
 	{
 		start = false;
 		currentSpeed = 1.0f;
-		animator = GetComponent<Animator> ();
 	}
 
 	public void receiveInteraction (string infectionType)
