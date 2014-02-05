@@ -10,7 +10,7 @@ public class Animal : MonoBehaviour
 
 	public bool caught; //Indicator for whehter the Animal has been caught by the player
 	public Vector2 speed; //Current speed of the animal object
-	
+	public Sprite animalIcon; //Icon used in the distance meter
 	private Animator animator; //Animator for the animal's running sprites
 	private SceneManager sceneManager; // Pointer to the scene manager
 	private bool play; //Current frame's state of whether the game is in play
@@ -18,7 +18,7 @@ public class Animal : MonoBehaviour
 
 	void Start ()
 	{
-		sceneManager = FindObjectOfType<SceneManager> (); //assigns the pointer to the scene manager
+		sceneManager = GameObject.FindObjectOfType<SceneManager> (); //assigns the pointer to the scene manager
 		animator = GetComponent<Animator> (); //assigns the pointer to the animator component
 		caught = false; //default value for whether the animal has been caught
 		transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
@@ -28,6 +28,7 @@ public class Animal : MonoBehaviour
 		*/
 		play = sceneManager.isPlaying; //the current value the game's play state
 		prevPlay = play; //at the beginninge the previous and current are equal
+		GameObject.Find ("Animal Icon").GetComponent<SpriteRenderer> ().sprite = animalIcon; //Changes the icon in the distance meter
 	}
 	
 	void Update ()
