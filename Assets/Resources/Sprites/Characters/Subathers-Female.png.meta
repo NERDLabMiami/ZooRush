@@ -51,53 +51,53 @@ TextureImporter:
         x: 0
         y: 739
         width: 643
-        height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+        height: 738
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Female_1
       rect:
         serializedVersion: 2
         x: 643
         y: 739
         width: 643
-        height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+        height: 738
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Female_2
       rect:
         serializedVersion: 2
         x: 1286
         y: 739
         width: 643
-        height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+        height: 738
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Female_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 643
-        height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+        height: 738
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Female_4
       rect:
         serializedVersion: 2
         x: 643
         y: 0
         width: 643
-        height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+        height: 738
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Female_5
       rect:
         serializedVersion: 2
         x: 1286
         y: 0
         width: 643
-        height: 739
-      alignment: 7
-      pivot: {x: 0, y: 0}
+        height: 738
+      alignment: 2
+      pivot: {x: .5, y: 1}
   spritePackingTag: 
   userData: 

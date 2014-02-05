@@ -51,35 +51,35 @@ TextureImporter:
         x: 0
         y: 740
         width: 643
-        height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+        height: 737
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Male-Burnt_1
       rect:
         serializedVersion: 2
         x: 643
         y: 740
         width: 643
-        height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+        height: 737
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Male-Burnt_2
       rect:
         serializedVersion: 2
         x: 0
         y: 2
         width: 643
-        height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+        height: 737
+      alignment: 2
+      pivot: {x: .5, y: 1}
     - name: Subathers-Male-Burnt_3
       rect:
         serializedVersion: 2
         x: 643
         y: 2
         width: 643
-        height: 738
-      alignment: 7
-      pivot: {x: 0, y: 0}
+        height: 737
+      alignment: 2
+      pivot: {x: .5, y: 1}
   spritePackingTag: 
   userData: 
