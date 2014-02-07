@@ -50,8 +50,6 @@ public class SceneManager : MonoBehaviour
 	private int stars;
 	private int nextAnimalIndex;
 	
-	public GameObject[] characters;
-	public Sprite[] characterIcons;
 	public GameObject[] animals;
 	
 	void Start ()
