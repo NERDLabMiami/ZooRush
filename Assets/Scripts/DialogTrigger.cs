@@ -84,6 +84,9 @@ public class DialogTrigger : MonoBehaviour
 				tex.renderer.enabled = true;
 			}
 			opened = true;
+			if (GameObject.FindObjectOfType<StopwatchController> () != null) {
+				GameObject.FindObjectOfType<StopwatchController> ().pauseStopwatch ();
+			}
 		}
 
 	}
@@ -97,6 +100,9 @@ public class DialogTrigger : MonoBehaviour
 		sceneManager.isPlaying = true;
 		dialogHandler.displaying = false;
 		dialogHandler.found = false;
+		if (GameObject.FindObjectOfType<StopwatchController> () != null) {
+			GameObject.FindObjectOfType<StopwatchController> ().resumeStopwatch ();
+		}
 	}
 	
 	public bool isDialogFinished ()

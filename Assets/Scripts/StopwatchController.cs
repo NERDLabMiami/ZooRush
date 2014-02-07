@@ -5,11 +5,23 @@ public class StopwatchController : MonoBehaviour
 {
 	private bool start;
 	private float currentSpeed;
+	private static bool tutDialogDisplayed;
+
+	void Awake ()
+	{
+		tutDialogDisplayed = false;
+	}
 
 	void Start ()
 	{
 		start = false;
 		currentSpeed = 1.0f;
+		if (!tutDialogDisplayed) {
+			if (GameObject.FindObjectOfType<SceneManager> ().tutEnabled) {
+				GameObject.FindObjectOfType<DialogHandler> ().forceDialog (GetComponentInChildren<DialogTrigger> ());
+			}
+			tutDialogDisplayed = true;
+		}
 	}
 
 	public void receiveInteraction (string infectionType)
@@ -35,21 +47,31 @@ public class StopwatchController : MonoBehaviour
 		if (!start) {
 			startStopwatch ();
 		}
-		gameObject.GetComponent<Animator> ().speed = currentSpeed;
+		GetComponent<Animator> ().speed = currentSpeed;
 	}
 
 	private void startStopwatch ()
 	{
 		if (!start) {
 			start = true;
-			gameObject.GetComponent<Animator> ().SetTrigger ("Start");
+			GetComponent<Animator> ().SetTrigger ("Start");
 		}
 	}
 
 	public void stopStopwatch ()
 	{
-		gameObject.GetComponent<Animator> ().SetTrigger ("Reset");
+		GetComponent<Animator> ().SetTrigger ("Reset");
 		Destroy (gameObject);
+	}
+
+	public void pauseStopwatch ()
+	{
+		GetComponent<Animator> ().speed = 0;
+	}
+
+	public void resumeStopwatch ()
+	{
+		GetComponent<Animator> ().speed = currentSpeed;
 	}
 
 	public void timeEnded ()

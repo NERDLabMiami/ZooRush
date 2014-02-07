@@ -49,10 +49,5 @@ public class CameraAspect : MonoBehaviour
 			camera.rect = rect;
 		}
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
+
 }
