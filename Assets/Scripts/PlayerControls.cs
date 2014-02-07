@@ -72,7 +72,7 @@ public class PlayerControls : MonoBehaviour
 			if (!play) {//we need to move into the paused state
 				rigidbody2D.velocity = new Vector2 (0f, 0f);
 				animate.StartPlayback ();
-				Debug.Log ("STOPPED");
+//				Debug.Log ("STOPPED");
 			}
 		}	
 	}

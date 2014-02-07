@@ -7,7 +7,7 @@ using System.Collections;
  */
 public class CollisionDetect : MonoBehaviour
 {	
-	private bool signalSent; //if the pain bar has been notified of this collision
+	public bool signalSent; //if the pain bar has been notified of this collision
 
 	public ObjectModel objectModel;
 

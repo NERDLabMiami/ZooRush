@@ -49,81 +49,99 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 7
-        y: 1022
-        width: 503
-        height: 503
+        y: 1023
+        width: 502
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: AnimalIcons_1
       rect:
         serializedVersion: 2
-        x: 514
-        y: 1022
-        width: 503
-        height: 503
+        x: 515
+        y: 1023
+        width: 502
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: AnimalIcons_2
       rect:
         serializedVersion: 2
         x: 1023
-        y: 1022
+        y: 1023
         width: 502
-        height: 503
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: AnimalIcons_3
       rect:
         serializedVersion: 2
-        x: 7
-        y: 514
-        width: 503
-        height: 504
+        x: 1531
+        y: 1023
+        width: 502
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: AnimalIcons_4
       rect:
         serializedVersion: 2
-        x: 514
-        y: 514
-        width: 503
-        height: 504
+        x: 7
+        y: 515
+        width: 502
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: AnimalIcons_5
       rect:
         serializedVersion: 2
-        x: 1023
-        y: 514
+        x: 515
+        y: 515
         width: 502
-        height: 504
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: AnimalIcons_6
       rect:
         serializedVersion: 2
-        x: 7
-        y: 7
-        width: 503
-        height: 503
+        x: 1023
+        y: 515
+        width: 502
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: AnimalIcons_7
       rect:
         serializedVersion: 2
-        x: 514
-        y: 7
-        width: 503
-        height: 503
+        x: 1531
+        y: 515
+        width: 502
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: AnimalIcons_8
       rect:
         serializedVersion: 2
+        x: 7
+        y: 7
+        width: 502
+        height: 502
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: AnimalIcons_9
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 7
+        width: 502
+        height: 502
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: AnimalIcons_10
+      rect:
+        serializedVersion: 2
         x: 1023
         y: 7
         width: 502
-        height: 503
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
   spritePackingTag: 

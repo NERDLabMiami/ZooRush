@@ -35,6 +35,7 @@ public class AudioModel : MonoBehaviour
 		music = (PlayerPrefs.GetInt ("Music") == 1); 
 		sound = (PlayerPrefs.GetInt ("Sound") == 1);
 
+		musicTrack.audio.ignoreListenerPause = true;
 		if (!music) {
 			turnOffMusic ();
 		}
@@ -42,6 +43,7 @@ public class AudioModel : MonoBehaviour
 			turnOffSound ();
 		}
 		resumeAudio ();
+
 	}
 
 	void FixedUpdate ()
@@ -133,6 +135,7 @@ public class AudioModel : MonoBehaviour
 		soundTrack1.audio.Stop ();
 		soundTrack2.audio.volume = 0f;
 		soundTrack2.audio.Stop ();
+		AudioListener.pause = true;
 	}
 
 	/**

@@ -50,8 +50,6 @@ public class SceneManager : MonoBehaviour
 	private int stars;
 	private int nextAnimalIndex;
 	
-	public GameObject[] characters;
-	public Sprite[] characterIcons;
 	public GameObject[] animals;
 	
 	void Start ()
@@ -117,9 +115,13 @@ public class SceneManager : MonoBehaviour
 							}
 						}
 					} else {
-						if (currentDistanceDiff < distanceDiffMin) {
-							playerControl.setSpeed (animalControl.speed);
-							netLauncher.launchEnabled = true;
+						if (GameObject.FindObjectOfType<StopwatchController> () == null) {
+							if (currentDistanceDiff < distanceDiffMin) {
+								playerControl.setSpeed (animalControl.speed);
+								netLauncher.launchEnabled = true;
+							} else {
+								netLauncher.launchEnabled = false;
+							}
 						} else {
 							netLauncher.launchEnabled = false;
 						}
@@ -141,8 +143,13 @@ public class SceneManager : MonoBehaviour
 									NextSceneHandler.hitByCar ();
 								}
 							} else {
-								if (currentDistanceDiff < distanceDiffMin) {
-									netLauncher.launchEnabled = true;
+								if (GameObject.FindObjectOfType<StopwatchController> () == null) {
+									if (currentDistanceDiff < distanceDiffMin) {
+										playerControl.setSpeed (animalControl.speed);
+										netLauncher.launchEnabled = true;
+									} else {
+										netLauncher.launchEnabled = false;
+									}
 								} else {
 									netLauncher.launchEnabled = false;
 								}
@@ -265,7 +272,7 @@ public class SceneManager : MonoBehaviour
 	
 	private IEnumerator TimeWait ()
 	{
-		Debug.Log ("Waiting");
+//		Debug.Log ("Waiting");
 		yield return new WaitForSeconds (1.5f);
 		timeWait = false;
 	}

@@ -30,11 +30,11 @@ public class GameSetup : MonoBehaviour
 		if (!PlayerPrefs.HasKey ("Volume")) {
 			PlayerPrefs.SetFloat ("Volume", 1.0f);
 		}
+
+		if (!PlayerPrefs.HasKey ("Levels Unlocked")) {
+			PlayerPrefs.SetInt ("Levels Unlocked", 1);
+		}
 		
 	}
-	
-	void Update ()
-	{
-	
-	}
+
 }
