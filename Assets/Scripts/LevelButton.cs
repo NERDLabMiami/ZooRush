@@ -11,7 +11,7 @@ public class LevelButton : MonoBehaviour
 	{
 		if (storyMode) {
 			StoryModeHandler.NextSceneName = SceneName;
-			Application.LoadLevel ("IntroScene");
+			Application.LoadLevel ("Story");
 		} else {
 			LoadLevel.levelToLoad = SceneName;
 			Application.LoadLevel ("Loading");

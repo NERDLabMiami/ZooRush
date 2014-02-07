@@ -3,11 +3,12 @@ using System.Collections;
 
 public class ImmovableObject : ObjectModel
 {
-
+	private CollisionDetect collisionDetect;
 	// Use this for initialization
 	void Start ()
 	{
-		GetComponentInChildren<CollisionDetect> ().objectModel = this;
+		collisionDetect = GetComponentInChildren<CollisionDetect> ();
+		collisionDetect.objectModel = this;
 	}
 	
 	// Update is called once per frame
@@ -27,10 +28,13 @@ public class ImmovableObject : ObjectModel
 	
 	public override void interactWithCharacter (Collider2D character)
 	{
-		if (character.transform.position.y < -2.5f) {
+		Debug.Log ("I Feel ya!");
+		if (character.transform.localPosition.y < -3f) {
 			character.rigidbody2D.AddForce (new Vector2 (-350f, 50f));
 		} else {
 			character.rigidbody2D.AddForce (new Vector2 (-350f, -50f));
 		}
+		character.GetComponent<PlayerControls> ().resetSpeed ();
+		collisionDetect.signalSent = false;
 	}
 }

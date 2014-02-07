@@ -38,7 +38,7 @@ public class StoryModeHandler : MonoBehaviour
 			level8Slides,
 			level9Slides
 		};
-		string[] sceneTexts = {introScene,level2};
+		string[] sceneTexts = {introScene,level2,level3,level4};
 		nextLevel = 1;
 		
 		switch (NextSceneName) {
@@ -70,7 +70,7 @@ public class StoryModeHandler : MonoBehaviour
 			nextLevel = 9;
 			break;
 		default:
-			nextLevel = 2;
+			nextLevel = 4;
 			break;
 		}
 
@@ -140,11 +140,26 @@ public class StoryModeHandler : MonoBehaviour
 		"The first day of work is always the hardest.\n";
 
 	private string level2 = "1\n" +
-		"Good job with the tortoise, but there’s not time to rest.\n" +
+		"Good job with the tortoise, but there’s no time to rest.\n" +
 		"2\n" +
 		"It looks like a crocodile is on the loose inside the Zoo.\n" +
 		"We need you to track it down before it hurts anyone!\n" +
 		"1\n" +
 		"Let's Do It!";
-		
+
+	private string level3 = "1\n" +
+		"Good job with the crocodile, but there’s no time to rest.\n" +
+		"2\n" + 
+		"It looks like a flamingo has escaped into the suburbs.\n" + 
+		"We need you to track it down before it hurts itself!\n" +
+		"1\n" +
+		"Let's Do It!";
+
+	private string level4 = "1\n" +
+		"Good job with the flamingo, but there’s not time to rest.\n" +
+		"2\n" +
+		"There’s a rhino running wild in the park.\n" +
+		"Capture it before it’s overrun by squirrels!\n" +
+		"1\n" +
+		"Let's Do It!";
 }

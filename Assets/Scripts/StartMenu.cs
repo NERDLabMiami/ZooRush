@@ -6,44 +6,15 @@ using System.Collections;
  */
 public class StartMenu : MonoBehaviour
 {
-	public static GameObject currentlySelectedOption;
-	private int currentOption;
-	private bool mathWait;
+	public DirectToScene playButton;
 	
 	void Start ()
 	{
-		mathWait = false;
-		TextOption[] textOptions = GameObject.FindObjectsOfType<TextOption> ();
-		foreach (TextOption textOption in textOptions) {
-			textOption.optionEnabled = true;
-		}
-	}
-	
-	void FixedUpdate ()
-	{
-		float yInput = Input.GetAxis ("Vertical");
-		if (yInput > 0 && currentOption > 0) { //pushed up button
-			if (!mathWait) {
-				mathWait = true;
-				StartCoroutine (currentOptionChange (true));
-			}
-		}
-		if (yInput < 0 && currentOption < 2) { //pushed down button
-			if (!mathWait) {
-				mathWait = true;
-				StartCoroutine (currentOptionChange (false));
-			}
-		}
-	}
-	
-	private IEnumerator currentOptionChange (bool substract)
-	{	
-		if (substract) {
-			currentOption = currentOption - 1;
+		if (PlayerPrefs.GetInt ("Levels Unlocked") > 1) {
+			playButton.sceneName = "AllLevels";
 		} else {
-			currentOption = currentOption + 1;
+			StoryModeHandler.NextSceneName = "Level1-Tutorial";
+			playButton.sceneName = "Story";
 		}
-		yield return new WaitForSeconds (0.1f);
-		mathWait = false;
 	}
 }

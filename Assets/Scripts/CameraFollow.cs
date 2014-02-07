@@ -24,7 +24,7 @@ public class CameraFollow : MonoBehaviour
 		cameraSettled = false;
 	}
 	
-	void Update ()
+	void LateUpdate ()
 	{
 		if (character == null) {
 			character = GameObject.FindGameObjectWithTag ("character");

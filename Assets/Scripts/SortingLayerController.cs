@@ -17,6 +17,6 @@ public class SortingLayerController : MonoBehaviour
 	{
 		//values above the camera's center are more and more negative (behind). 
 		//while values below the camera's center are more and more positve (in front)
-		spriteRenderer.sortingOrder = (-1) * Mathf.CeilToInt (transform.position.y);
+		spriteRenderer.sortingOrder = (-1) * (int)Mathf.Round (transform.position.y);
 	}
 }

@@ -28,7 +28,6 @@ public class PowerUp : ObjectModel
 			if (pillCount > 0) {
 				pillCount--;
 				PlayerPrefs.SetInt ("PILLS", pillCount);
-				Debug.Log (PlayerPrefs.GetInt ("PILLS"));
 				GameObject.FindObjectOfType<SceneManager> ().updatePillCount ();
 				painIndicator.subtractPoints (painPoints);
 			}
