@@ -42,6 +42,8 @@ public class Building : MonoBehaviour
 					sceneManager.updatePillCount ();
 				}
 				audioController.objectInteraction (clips, 0.5f);
+				player.gameObject.rigidbody2D.AddForce (new Vector2 (0, -50f));
+				player.resetSpeed ();
 			}
 			painIndicator.objectInteraction (gameObject);
 		}
