@@ -1,0 +1,20 @@
+1. we need a pause button and a mute button.
+
+
+2. no collision on trees and water fountains in level 1 and level 2.
+
+3. no collision on ballon store on level 1 and level 2.
+
+4. In level 2, if you get infected at the very beginning, there’s not enough time to stop by the first doctor’s office.
+
+5. There appears a big bird cage in front of the doctor’s office every time I pass by in level 2.
+
+6. We could have a simple animation of the soccer ball just by rotating it.
+
+7.If the character pass by the doctor’s office and get pills, it’d be better to inform the players by popping up the pill icon.
+
+8. When you about to dyhydrate, we need some instruction to show people that it’s time for time to click the pills if they have some. For instance, having a small hand pointing at the pill icon and move up and down would be good.
+
+9. The background in all levels now is a static blue bg. I think that’d be better if we have a parallax scrolling background. For example, having some mountains or simple building outlines as the bottom layer, and making them moving slower than front layers.
+
+10. In level 7, there is a black line beneath the waves.
