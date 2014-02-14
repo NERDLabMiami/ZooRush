@@ -11,6 +11,7 @@ public class Animal : MonoBehaviour
 	public bool caught; //Indicator for whehter the Animal has been caught by the player
 	public Vector2 speed; //Current speed of the animal object
 	public Sprite animalIcon; //Icon used in the distance meter
+
 	private Animator animator; //Animator for the animal's running sprites
 	private SceneManager sceneManager; // Pointer to the scene manager
 	private bool play; //Current frame's state of whether the game is in play
@@ -37,6 +38,11 @@ public class Animal : MonoBehaviour
 		prevPlay = play; //updates the previous frame's state
 		play = sceneManager.isPlaying; //updates the current frame's state
 		if (sceneManager.startPressed) {
+			if (sceneManager.isPlaying) {
+				if (transform.parent.rigidbody2D.velocity.x < speed.x && !caught) {
+					setSpeed (); //keeps the animal's speed constant during gameplay
+				}
+			}
 			if (!prevPlay && play) { //Our previous state is the paused state, we are now going into the play state
 				StartCoroutine (waitToResume (0.1f));
 			} else { // our previous state was the play state

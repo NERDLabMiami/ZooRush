@@ -36,6 +36,9 @@ public class BackgroundAnimal : MonoBehaviour
 	void Start ()
 	{
 		animalChosen = Random.Range (0, 10);
+		if (GameObject.FindObjectOfType<Animal> () != null) {//We're in gameplay mode, cannot duplicate this animal
+
+		}
 		GetComponent<Animator> ().SetInteger ("Animal", animalChosen);
 		GetComponent<Animator> ().SetTrigger ("Change");
 		if (doubleSize) {
