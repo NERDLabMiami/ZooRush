@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 17af45a682c66462e9f963aef1c30ef5
+guid: 5712b21e552304b8cada6a6eb96e4266
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -45,50 +45,23 @@ TextureImporter:
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: Hotels_0
+    - name: Trees_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 992
-        width: 771
-        height: 987
+        x: 0
+        y: 1
+        width: 550
+        height: 621
       alignment: 7
-      pivot: {x: 0, y: 0}
-    - name: Hotels_1
+      pivot: {x: .5, y: 0}
+    - name: Trees_1
       rect:
         serializedVersion: 2
-        x: 774
-        y: 992
-        width: 772
-        height: 987
+        x: 550
+        y: 27
+        width: 474
+        height: 595
       alignment: 7
-      pivot: {x: 0, y: 0}
-    - name: Hotels_2
-      rect:
-        serializedVersion: 2
-        x: 1546
-        y: 992
-        width: 771
-        height: 987
-      alignment: 7
-      pivot: {x: 0, y: 0}
-    - name: Hotels_3
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 3
-        width: 771
-        height: 987
-      alignment: 7
-      pivot: {x: 0, y: 0}
-    - name: Hotels_4
-      rect:
-        serializedVersion: 2
-        x: 774
-        y: 3
-        width: 772
-        height: 987
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
   spritePackingTag: 
   userData: 

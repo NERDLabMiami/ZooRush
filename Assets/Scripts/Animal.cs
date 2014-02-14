@@ -47,21 +47,23 @@ public class Animal : MonoBehaviour
 		}
 	}
 
+	/**
+	 * Sets the speed to the animal's standard running speed.
+	 */ 
 	public void setSpeed ()
 	{
 		transform.parent.rigidbody2D.velocity = speed; //assigns the rigidbody component the desired velocity
 	}
 
-	/** Randomly changes the y-axis value of the animal object.
-	*/
+	/** 
+	 * Randomly changes the y-axis value of the animal object.
+	 */
 	public void changeY ()
 	{
 		int moveChance = Random.Range (1, 101);
 		if (moveChance % 100 == 0) {//1% chance
-			float newYVelocity = Random.Range (-4.5f, 4.5f);
-			Vector3 newSpeed = speed;
-			newSpeed.y = newYVelocity;
-			transform.parent.rigidbody2D.velocity = newSpeed;
+			float yForce = Random.Range (-150f, 150f);
+			transform.parent.rigidbody2D.AddForce (new Vector2 (0, yForce));
 		}
 
 	}

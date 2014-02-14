@@ -43,7 +43,11 @@ public class BackgroundAnimal : MonoBehaviour
 		} else {
 			transform.localScale = new Vector3 (animalSizes [animalChosen], animalSizes [animalChosen], 1f);
 		}
-		rigidbody2D.velocity = new Vector2 (8f, 0);
+		if (transform.parent.localScale.x > 0) {
+			rigidbody2D.velocity = new Vector2 (8f, 0);
+		} else {
+			rigidbody2D.velocity = new Vector2 (-8f, 0);
+		}
 	}
 
 }
