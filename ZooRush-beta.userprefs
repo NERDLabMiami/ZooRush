@@ -1,16 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DialogTrigger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Button.cs">
     <Files>
-      <File FileName="Assets/Scripts/AnimatedText.cs" Line="25" Column="35" />
-      <File FileName="Assets/Scripts/DialogTrigger.cs" Line="9" Column="30" />
+      <File FileName="Assets/Scripts/Dialog.cs" Line="51" Column="38" />
+      <File FileName="Assets/Scripts/Button.cs" Line="26" Column="24" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True" />
-            <Node name="Dialog.cs" selected="True" />
+            <Node name="Scripts" expanded="True">
+              <Node name="Button.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
