@@ -4,14 +4,12 @@ using System.Collections;
 public class ImmovableObject : ObjectModel
 {
 	private CollisionDetect collisionDetect;
-	// Use this for initialization
 	void Start ()
 	{
 		collisionDetect = GetComponentInChildren<CollisionDetect> ();
 		collisionDetect.objectModel = this;
 	}
 	
-	// Update is called once per frame
 	void Update ()
 	{
 	

@@ -27,7 +27,7 @@ public class PainIndicator : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
+		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
 			painPoints += (Time.deltaTime * painRate);
 		}
 	}
@@ -37,6 +37,7 @@ public class PainIndicator : MonoBehaviour
 		if (painPoints >= 100f) {
 			painPoints = 100f;
 			sceneManager.fainted = true;
+			GameStateMachine.requestEndLevel ();
 		}
 		if (painPoints < 0) {
 			painPoints = 0;

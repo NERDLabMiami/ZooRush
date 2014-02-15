@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TutorialConditionalDialogController : MonoBehaviour
 {
-	private SceneManager sceneManager;
+//	private SceneManager sceneManager;
 	public GameObject stopWatchDialog;
 	public GameObject animalCaptureDialog;
 	public GameObject enteredCrisisDialog;
@@ -13,7 +13,7 @@ public class TutorialConditionalDialogController : MonoBehaviour
 
 	void Start ()
 	{
-		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
+//		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 	}
 	
 	void Update ()

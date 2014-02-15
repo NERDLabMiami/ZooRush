@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LevelGUIController : MonoBehaviour
 {
-	private SceneManager sceneManager;
+//	private SceneManager sceneManager;
 
 	public bool stopwatchActive;
 	private GameObject throwAlert;
@@ -17,7 +17,7 @@ public class LevelGUIController : MonoBehaviour
 
 	void Start ()
 	{
-		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
+//		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 		stopwatchActive = false;
 
 		//menuPrefabs[0] is the start screen by default

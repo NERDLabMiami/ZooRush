@@ -7,39 +7,72 @@ using System.Collections;
 public class GameStateMachine : MonoBehaviour
 {
 
-	enum GameState
+	public enum GameState
 	{
+		StartLevel,
 		Intro,
 		Play,
 		Paused,
+		PauseToPlay,
 		Transition,
 		EndLevel}
 	;
 
-	static int currentState;
+	public static int currentState;
 
 	void Start ()
 	{
-	
+		currentState = (int)GameState.StartLevel;
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+	public static void requestIntro ()
 	{
-	
+		if (currentState == (int)GameState.StartLevel) {
+			currentState = (int)GameState.Intro;
+		}
 	}
 
-	public static void RequestPlay(){
-
+	/**
+	 * Receives request to change the gameplay state to "In Play"
+	 */ 
+	public static void requestPlay ()
+	{
+		if (currentState != (int)GameState.Play) {
+			if (currentState != (int)GameState.EndLevel && currentState != (int)GameState.Transition) {
+				if (currentState != (int)GameState.PauseToPlay) {
+					currentState = (int)GameState.PauseToPlay;
+				} else {
+					currentState = (int)GameState.Play;
+				}
+			}
+		}
 	}
 
-	public static void RequestPause(){
-
+	public static void requestPause ()
+	{
+		if (currentState != (int)GameState.EndLevel && currentState != (int)GameState.Transition) {
+			currentState = (int)GameState.Paused;
+		}
 	}
 
-	public static void RequestAnimationTransition(){
-
+	public static void requestTransition ()
+	{
+		if (currentState == (int)GameState.Play || currentState == (int)GameState.Paused) {
+			currentState = (int)GameState.Transition;
+		}
 	}
 
-	public static void Request
+	public static void requestEndLevel ()
+	{
+		if (currentState == (int)GameState.Transition) {
+			currentState = (int)GameState.EndLevel;
+		} else {
+			currentState = (int)GameState.Transition;
+		}
+	}
+
+	public static void resetState ()
+	{
+		currentState = (int)GameState.StartLevel;
+	}
 }

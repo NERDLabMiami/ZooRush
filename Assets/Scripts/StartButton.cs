@@ -10,7 +10,8 @@ public class StartButton : Button
 
 	public void closeStartScreen ()
 	{
-		GameObject.FindObjectOfType<SceneManager> ().startLevel ();
+//		GameObject.FindObjectOfType<SceneManager> ().startLevel ();
+		GameStateMachine.requestIntro ();
 		Destroy (transform.parent.gameObject);
 	}
 }

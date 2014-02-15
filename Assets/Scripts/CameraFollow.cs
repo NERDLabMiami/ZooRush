@@ -8,8 +8,7 @@ public class CameraFollow : MonoBehaviour
 {
 	private GameObject character;
 	private NetLauncher netLauncher;
-	private SceneManager sceneManager;
-	
+
 	public bool cameraSettled;
 	private bool adjustToLaunchPosition;
 	private bool adjustToStartPosition;
@@ -18,7 +17,6 @@ public class CameraFollow : MonoBehaviour
 	{
 		character = GameObject.FindGameObjectWithTag ("character");
 		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
-		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 		adjustToLaunchPosition = false;
 		adjustToStartPosition = false;
 		cameraSettled = false;
@@ -29,7 +27,7 @@ public class CameraFollow : MonoBehaviour
 		if (character == null) {
 			character = GameObject.FindGameObjectWithTag ("character");
 		}
-		if (!sceneManager.levelStartWait) {
+		if (GameStateMachine.currentState != (int)GameStateMachine.GameState.StartLevel) {
 			if (netLauncher.launchEnabled && !adjustToLaunchPosition) {
 				transform.localPosition = Vector3.Lerp (transform.localPosition, 
 				new Vector3 (character.transform.localPosition.x + 3.5f, transform.localPosition.y, transform.localPosition.z), 

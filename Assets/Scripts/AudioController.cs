@@ -15,7 +15,13 @@ public class AudioController : MonoBehaviour
 		if (levelMusic != null) {
 			audioModel.playMusic (levelMusic);
 		}
+	}
 
+	void Update ()
+	{
+		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Paused) {
+			pauseAudio ();
+		}
 	}
 
 	public void pauseAudio ()
