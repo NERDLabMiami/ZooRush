@@ -17,11 +17,6 @@ public class Dialog : Button
 		opened = over = click = false;
 		animator = GetComponent<Animator> ();
 	}
-	
-	void Update ()
-	{
-	
-	}
 
 	public void stopSpeaking ()
 	{
@@ -69,12 +64,18 @@ public class Dialog : Button
 			}
 		}
 		GetComponentInChildren<TextAnimator> ().AnimateText (displayText);
-
+		clicked = false;
 	}
 
 	private void close ()
 	{
+		GetComponentInChildren<TextMesh> ().text = "";
+		animator.SetTrigger ("Close");
+	}
 
+	private void destroy ()
+	{
+		Destroy (gameObject);
 	}
 
 	protected override void action ()

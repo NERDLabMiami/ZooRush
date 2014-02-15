@@ -18,6 +18,7 @@ public abstract class Button : MonoBehaviour
 	
 	void Update ()
 	{
+		Debug.Log ("WORKING");
 		if (!clicked) {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hit)) {
