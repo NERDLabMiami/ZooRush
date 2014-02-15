@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
+	<ProjectGuid>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\CollisionDetect.cs" />
+     <Compile Include="Assets\Scripts\Dialog.cs" />
      <Compile Include="Assets\Scripts\DialogHandler.cs" />
      <Compile Include="Assets\Scripts\DialogTrigger.cs" />
      <Compile Include="Assets\Scripts\DirectToScene.cs" />
@@ -101,6 +102,7 @@
      <Compile Include="Assets\Scripts\StopwatchController.cs" />
      <Compile Include="Assets\Scripts\StoryModeHandler.cs" />
      <Compile Include="Assets\Scripts\StoryModeSpriteHandler.cs" />
+     <Compile Include="Assets\Scripts\TextAnimator.cs" />
      <Compile Include="Assets\Scripts\TextOption.cs" />
      <Compile Include="Assets\Scripts\TextOptionController.cs" />
      <Compile Include="Assets\Scripts\TextOutline.cs" />

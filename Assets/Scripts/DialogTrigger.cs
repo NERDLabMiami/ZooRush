@@ -7,7 +7,6 @@ public class DialogTrigger : MonoBehaviour
 	public bool opened;
 	
 	public string[] textDisplay;
-	private string[] formatted;
 	public int currentTextIndex;
 	
 	public bool dialogOver;

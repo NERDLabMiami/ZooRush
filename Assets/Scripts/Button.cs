@@ -23,6 +23,7 @@ public abstract class Button : MonoBehaviour
 			if (Physics.Raycast (ray, out hit)) {
 				if (hit.transform.gameObject == gameObject) {
 					selectText ();
+					Debug.Log ("OOO");
 					if (Input.GetMouseButtonUp (0)) {
 						previousScene = Application.loadedLevelName;
 						clicked = true;
