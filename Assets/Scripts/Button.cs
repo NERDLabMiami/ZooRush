@@ -8,7 +8,7 @@ public abstract class Button : MonoBehaviour
 	private RaycastHit hit; 
 	protected bool clicked;
 
-	void Start ()
+	protected void Start ()
 	{
 		clicked = false;
 		if (GetComponent<TextMesh> () != null) {
@@ -18,13 +18,11 @@ public abstract class Button : MonoBehaviour
 	
 	void Update ()
 	{
-		Debug.Log ("WORKING");
 		if (!clicked) {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hit)) {
 				if (hit.transform.gameObject == gameObject) {
 					selectText ();
-					Debug.Log ("OOO");
 					if (Input.GetMouseButtonUp (0)) {
 						previousScene = Application.loadedLevelName;
 						clicked = true;

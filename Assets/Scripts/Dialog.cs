@@ -3,18 +3,15 @@ using System.Collections;
 
 public class Dialog : Button
 {
+	private string[] text;
 
-	public bool tutorialOnly;
-
-	public string[] text;
-
-	private bool opened, over, click;
 	private int currentTextIndex;
 	private Animator animator;
+	public TextAnimator textAnimator;
 
 	void Start ()
 	{
-		opened = over = click = false;
+		base.Start ();
 		animator = GetComponent<Animator> ();
 	}
 
@@ -23,10 +20,15 @@ public class Dialog : Button
 		animator.SetBool ("Speak", false);
 	}
 
+	public void activateDialog (string[] dialogText)
+	{
+		text = dialogText;
+		animator.SetTrigger ("Found");
+		open ();
+	}
 
 	public void open ()
 	{
-		Debug.Log ("OPEN CALLED");
 		animator.SetTrigger ("Opened");
 		animator.SetBool ("Speak", true);
 		string displayText;
@@ -35,6 +37,7 @@ public class Dialog : Button
 		} else {
 			displayText = text [0];
 		}
+		currentTextIndex = 1;
 		if (text.Length > 1 && text [1] [0] == '+') {
 			displayText += "\n" + text [1].Substring (1);
 			currentTextIndex = 2;
@@ -43,7 +46,7 @@ public class Dialog : Button
 				currentTextIndex = 3;
 			}
 		}
-		GetComponentInChildren<TextAnimator> ().AnimateText (displayText);
+		textAnimator.AnimateText (displayText);
 	}
 
 	private void next ()
@@ -75,7 +78,8 @@ public class Dialog : Button
 
 	private void destroy ()
 	{
-		Destroy (gameObject);
+		animator.SetTrigger ("Disable");
+		GameStateMachine.requestPlay ();
 	}
 
 	protected override void action ()

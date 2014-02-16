@@ -14,8 +14,6 @@ public class DialogHandler : MonoBehaviour
 	
 	void Start ()
 	{
-		displaying = false;
-		found = false;
 		sceneManager = FindObjectOfType<SceneManager> ();
 		cameraFollower = FindObjectOfType<CameraFollow> ();
 	}
@@ -26,31 +24,16 @@ public class DialogHandler : MonoBehaviour
 			RaycastHit2D detected = Physics2D.Raycast (transform.position, Vector2.up, 250f, layerMask);
 			if (detected.collider != null) {
 				if (dialog == null || detected.collider.gameObject != dialog.gameObject) { // Dialog Box Found
-					if (dialog == null || dialog.dialogOver) {
-						dialog = detected.collider.GetComponent<DialogTrigger> ();
-						if (dialog.tutOnly) {
-							if (sceneManager.tutEnabled) {
-								found = true;
-								sceneManager.isPlaying = false;
-							} else {
-								found = false;
-							}
-						} else {
-							found = true;
-							sceneManager.isPlaying = false;
-						}
-					}
-				}
-			}
-			if (!displaying && found) {
-				displaying = true;
-			} else {
-				if (displaying && found && !dialog.dialogOver) {
-					if (!dialog.opened) {
+					dialog = detected.collider.GetComponent<DialogTrigger> ();
+					if (dialog.tutOnly) {
+						if (sceneManager.tutEnabled) {
+							GameStateMachine.requestPause ();
+							dialog.openDialog ();
+						} 
+
+					} else {
+						GameStateMachine.requestPause ();
 						dialog.openDialog ();
-					}
-					if (InputManager.enter) {
-						dialog.next ();
 					}
 				}
 			}
@@ -62,15 +45,13 @@ public class DialogHandler : MonoBehaviour
 		dialog = dialogReceived;
 		if (dialog.tutOnly) {
 			if (sceneManager.tutEnabled) {
-				found = true;
-				sceneManager.isPlaying = false;
-			} else {
-				found = false;
-			}
+				GameStateMachine.requestPause ();
+				dialog.openDialog ();
+			} 
+			
 		} else {
-			found = true;
-			sceneManager.isPlaying = false;
+			GameStateMachine.requestPause ();
+			dialog.openDialog ();
 		}
-
 	}
 }

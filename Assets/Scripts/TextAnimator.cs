@@ -27,7 +27,6 @@ public class TextAnimator : MonoBehaviour
 
 	public void AnimateText (string text)
 	{
-		Debug.Log ("CALLED");
 		this.text = text;
 		textMesh.text = "";
 		currentChar = 0;
