@@ -37,7 +37,7 @@ public class InputManager : MonoBehaviour
 	public static bool right;
 	public static bool enter;
 	public static bool touching;
-	
+	public static bool escape;
 
 	void Awake ()
 	{
@@ -51,6 +51,7 @@ public class InputManager : MonoBehaviour
 		left = false;
 		right = false;
 		enter = false;
+		escape = false;
 		if (Input.touchCount > 0) {
 			origin = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
 		} else {
@@ -73,6 +74,7 @@ public class InputManager : MonoBehaviour
 		left = false;
 		right = false;
 		enter = false;
+		escape = false;
 		if (Input.touchCount > 0) {
 			origin = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
 		} else {
@@ -99,6 +101,7 @@ public class InputManager : MonoBehaviour
 		xInput = Input.GetAxis ("Horizontal");
 		yInput = Input.GetAxis ("Vertical");
 		confirm = Input.GetAxis ("Fire1");
+		escape = Input.GetKey (KeyCode.Escape);
 
 		changeValue (ref prevLeft, ref left, xInput < 0);
 		changeValue (ref prevRight, ref right, xInput > 0);

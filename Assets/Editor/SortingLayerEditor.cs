@@ -13,7 +13,9 @@ public class SortingLayerEditor : Editor
 		"Background",
 		"Buildings",
 		"Play Area",
+		"Foreground",
 		"DistanceIndicator",
+		"GUI",
 		"GUI Content",
 		"GUI Outline",
 		"GUI Text Overlay"

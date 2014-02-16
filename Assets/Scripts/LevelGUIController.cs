@@ -14,6 +14,7 @@ public class LevelGUIController : MonoBehaviour
 	public GameObject[] menuPrefabs;
 	public GameObject stopWatchObject;
 	public GameObject screenDimmer;
+	private bool isTutorial;
 
 	void Start ()
 	{
@@ -28,7 +29,11 @@ public class LevelGUIController : MonoBehaviour
 	
 	void Update ()
 	{
-	
+		if (InputManager.escape) {
+			if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
+				pauseMenu ();
+			}
+		}
 	}
 
 	/**
@@ -75,5 +80,16 @@ public class LevelGUIController : MonoBehaviour
 			Destroy (throwAlert);
 		}
 		return false;
+	}
+
+	public void pauseMenu ()
+	{
+		if (GameObject.FindGameObjectWithTag ("menu") == null) {
+			GameStateMachine.requestPause ();
+			GameObject pauseMenu = Instantiate (menuPrefabs [3]) as GameObject;
+			pauseMenu.transform.parent = transform;
+			pauseMenu.transform.localPosition = new Vector3 (0, 0, 0);
+		}
+
 	}
 }

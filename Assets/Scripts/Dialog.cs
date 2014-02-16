@@ -84,7 +84,6 @@ public class Dialog : Button
 
 	protected override void action ()
 	{
-		Debug.Log ("CLICKED");
 		if (currentTextIndex < text.Length) {
 			next ();
 		} else {
