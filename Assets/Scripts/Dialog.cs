@@ -5,6 +5,7 @@ public class Dialog : Button
 {
 	private string[] text;
 
+	private bool displaying;
 	private int currentTextIndex;
 	private Animator animator;
 	public TextAnimator textAnimator;
@@ -12,6 +13,7 @@ public class Dialog : Button
 	void Start ()
 	{
 		base.Start ();
+		displaying = false;
 		animator = GetComponent<Animator> ();
 	}
 
@@ -29,6 +31,7 @@ public class Dialog : Button
 
 	public void open ()
 	{
+		displaying = true;
 		animator.SetTrigger ("Opened");
 		animator.SetBool ("Speak", true);
 		string displayText;
@@ -79,15 +82,20 @@ public class Dialog : Button
 	private void destroy ()
 	{
 		animator.SetTrigger ("Disable");
+		displaying = false;
 		GameStateMachine.requestPlay ();
 	}
 
 	protected override void action ()
 	{
-		if (currentTextIndex < text.Length) {
-			next ();
-		} else {
-			close ();
+		Debug.Log ("CLICK");
+		if (displaying) {
+			Debug.Log ("YUP");
+			if (currentTextIndex < text.Length) {
+				next ();
+			} else {
+				close ();
+			}
 		}
 	}
 

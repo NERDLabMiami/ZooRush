@@ -67,11 +67,16 @@ public class AnimatedText : MonoBehaviour
 	private IEnumerator Animate (int lineNumber)
 	{
 		clear = false;
-		yield return new WaitForSeconds (0.05f);
-		textMeshes [lineNumber].text = fullText [lineNumber].Substring (0, lengthShown [lineNumber]);
-		if (lengthShown [lineNumber] < fullText [lineNumber].Length) {
-			lengthShown [lineNumber]++;
+		while (lengthShown [lineNumber] < fullText [lineNumber].Length) {
+			textMeshes [lineNumber].text += fullText [lineNumber] [lengthShown [lineNumber]++];
+			yield return new WaitForSeconds (0.05f);
 		}
+//
+//		yield return new WaitForSeconds (0.05f);
+//		textMeshes [lineNumber].text = fullText [lineNumber].Substring (0, lengthShown [lineNumber]);
+//		if (lengthShown [lineNumber] < fullText [lineNumber].Length) {
+//			lengthShown [lineNumber]++;
+//		}
 		clear = true;
 
 	}

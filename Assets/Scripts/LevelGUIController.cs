@@ -88,7 +88,7 @@ public class LevelGUIController : MonoBehaviour
 			GameStateMachine.requestPause ();
 			GameObject pauseMenu = Instantiate (menuPrefabs [3]) as GameObject;
 			pauseMenu.transform.parent = transform;
-			pauseMenu.transform.localPosition = new Vector3 (0, 0, 0);
+			pauseMenu.transform.localPosition = new Vector3 (0, 0, 10);
 		}
 
 	}

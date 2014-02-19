@@ -43,6 +43,7 @@ public class GameStateMachine : MonoBehaviour
 					currentState = (int)GameState.PauseToPlay;
 				} else {
 					currentState = (int)GameState.Play;
+					GameObject.FindObjectOfType<CameraFollow> ().cameraFollowEnabled = true;
 				}
 			}
 		}
