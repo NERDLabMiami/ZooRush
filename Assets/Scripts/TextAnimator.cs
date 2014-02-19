@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TextAnimator : MonoBehaviour
 {
-	private bool animating/*, clear*/;
+	public bool animating;
 	public bool finished;
 	private string text;
 	public TextMesh textMesh;
@@ -12,18 +12,11 @@ public class TextAnimator : MonoBehaviour
 
 	void Start ()
 	{
-		animating = /*clear =*/ finished = false;
+		animating = false;
+		finished = false;
 		dialog = transform.parent.GetComponent<Dialog> ();
 	}
-	
-	void FixedUpdate ()
-	{
-		if (animating) {
-//			if (clear) {
-			StartCoroutine (Animate ());
-//			}
-		}
-	}
+
 
 	public void AnimateText (string text)
 	{
@@ -31,29 +24,19 @@ public class TextAnimator : MonoBehaviour
 		textMesh.text = "";
 		currentChar = 0;
 		animating = true;
-//		clear = true;
+		StartCoroutine (Animate ());
 	}
 
 	private IEnumerator Animate ()
 	{
-//		clear = false;
-		animating = false;
 		while (currentChar < text.Length) {
 			textMesh.text += text [currentChar++];
 			yield return new WaitForSeconds (0.05f);
 		}
-//
-//
-//		textMesh.text = text.Substring (0, currentChar);
-//		if (currentChar < text.Length) {
-//			currentChar++;
-//		} else {
 
 		finished = true;
 		dialog.stopSpeaking ();
-//		}
-//		clear = true;
-		
+		animating = false;
 	}
 
 }

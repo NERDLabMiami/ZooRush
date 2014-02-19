@@ -83,6 +83,9 @@ public class SceneManager : MonoBehaviour
 		distanceDiffMin = 6.5f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 		updatePillCount ();
+		if (tutEnabled) {
+			gameObject.AddComponent<TutorialConditionalDialogController> ();
+		}
 	}
 	
 	void Update ()

@@ -25,31 +25,19 @@ public class Dialog : Button
 	public void activateDialog (string[] dialogText)
 	{
 		text = dialogText;
+		currentTextIndex = 0;
 		animator.SetTrigger ("Found");
 		open ();
 	}
 
 	public void open ()
 	{
+		Debug.Log ("OPEN");
 		displaying = true;
 		animator.SetTrigger ("Opened");
-		animator.SetBool ("Speak", true);
-		string displayText;
-		if (text [0] [0] == '+') {
-			displayText = text [0].Substring (1);
-		} else {
-			displayText = text [0];
-		}
-		currentTextIndex = 1;
-		if (text.Length > 1 && text [1] [0] == '+') {
-			displayText += "\n" + text [1].Substring (1);
-			currentTextIndex = 2;
-			if (text.Length > 2 && text [2] [0] == '+') {
-				displayText += "\n" + text [2].Substring (1);
-				currentTextIndex = 3;
-			}
-		}
-		textAnimator.AnimateText (displayText);
+		textAnimator.gameObject.SetActive (true);
+		next ();
+
 	}
 
 	private void next ()
@@ -63,13 +51,15 @@ public class Dialog : Button
 		}
 		if (text.Length > currentTextIndex + 1 && text [currentTextIndex + 1] [0] == '+') {
 			displayText += "\n" + text [currentTextIndex + 1].Substring (1);
-			currentTextIndex = currentTextIndex + 2;
+			currentTextIndex = currentTextIndex + 1;
 			if (text.Length > currentTextIndex + 2 && text [currentTextIndex + 2] [0] == '+') {
 				displayText += "\n" + text [currentTextIndex + 2].Substring (1);
-				currentTextIndex = currentTextIndex + 3;
+				currentTextIndex = currentTextIndex + 1;
 			}
 		}
-		GetComponentInChildren<TextAnimator> ().AnimateText (displayText);
+		while (textAnimator.animating)
+			;
+		textAnimator.AnimateText (displayText);
 		clicked = false;
 	}
 
@@ -81,8 +71,10 @@ public class Dialog : Button
 
 	private void destroy ()
 	{
+		text = null;
 		animator.SetTrigger ("Disable");
 		displaying = false;
+		clicked = false;
 		GameStateMachine.requestPlay ();
 	}
 
