@@ -12,7 +12,9 @@ public class DialogTrigger : MonoBehaviour
 	void Start ()
 	{	
 		opened = false;
-		GetComponentInChildren<SpriteRenderer> ().enabled = false;
+		if (GetComponentInChildren<SpriteRenderer> () != null) {
+			GetComponentInChildren<SpriteRenderer> ().enabled = false;
+		}
 	}
 
 	public void openDialog ()

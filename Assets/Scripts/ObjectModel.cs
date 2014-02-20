@@ -10,11 +10,6 @@ public abstract class ObjectModel : MonoBehaviour
 
 	protected AudioController audioController;
 
-	void Update ()
-	{
-
-	}
-
 	public abstract void collisionDetected ();
 
 
@@ -24,12 +19,6 @@ public abstract class ObjectModel : MonoBehaviour
 		if (!gameObject.activeSelf) {
 			gameObject.SetActive (true);
 		}
-//		if (GetComponent<Animator> () != null) {
-//			GetComponent<Animator> ().SetTrigger ("Reset");
-//		}
-//		if (GetComponentInChildren<CollisionDetect> () != null) {
-//			GetComponentInChildren<CollisionDetect> ().resetTouch ();
-//		}
 	}
 
 	protected abstract void resetOtherValues ();

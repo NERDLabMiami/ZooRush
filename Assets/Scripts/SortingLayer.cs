@@ -8,10 +8,24 @@ public class SortingLayer : MonoBehaviour
 {
 	public string sortingLayerName;
 	public int sortingOrder;
+	public bool matchParentSprite;
 
 	void Start ()
 	{
-		renderer.sortingLayerName = sortingLayerName;
-		renderer.sortingOrder = sortingOrder;
+		if (matchParentSprite) {
+			renderer.sortingLayerName = transform.parent.gameObject.renderer.sortingLayerName;
+			renderer.sortingOrder = transform.parent.gameObject.renderer.sortingOrder + 1;
+		} else {
+			renderer.sortingLayerName = sortingLayerName;
+			renderer.sortingOrder = sortingOrder;
+		}
+	}
+
+	void Update ()
+	{
+		if (matchParentSprite) {
+			renderer.sortingLayerName = transform.parent.gameObject.renderer.sortingLayerName;
+			renderer.sortingOrder = transform.parent.gameObject.renderer.sortingOrder + 1;
+		}
 	}
 }

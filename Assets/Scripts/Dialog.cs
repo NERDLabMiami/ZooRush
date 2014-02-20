@@ -9,12 +9,29 @@ public class Dialog : Button
 	private int currentTextIndex;
 	private Animator animator;
 	public TextAnimator textAnimator;
+	private Renderer[] renderers;
 
-	void Start ()
+	new void Start ()
 	{
 		base.Start ();
 		displaying = false;
 		animator = GetComponent<Animator> ();
+		renderers = GetComponentsInChildren<Renderer> ();
+		hide ();
+	}
+
+	private void hide ()
+	{
+		foreach (Renderer rend in renderers) {
+			rend.enabled = false;
+		}
+	}
+
+	private void show ()
+	{
+		foreach (Renderer rend in renderers) {
+			rend.enabled = true;
+		}
 	}
 
 	public void stopSpeaking ()
@@ -32,12 +49,12 @@ public class Dialog : Button
 
 	public void open ()
 	{
-		Debug.Log ("OPEN");
+//		Debug.Log ("OPEN");
 		displaying = true;
 		textAnimator.gameObject.SetActive (true);
 		animator.SetTrigger ("Opened");
+//		show ();
 		next ();
-
 	}
 
 	private void next ()
@@ -57,9 +74,10 @@ public class Dialog : Button
 				currentTextIndex = currentTextIndex + 1;
 			}
 		}
-		while (textAnimator.animating)
-			;
+
 		textAnimator.AnimateText (displayText);
+		stopSpeaking ();
+		currentTextIndex++;
 		clicked = false;
 	}
 
@@ -75,12 +93,13 @@ public class Dialog : Button
 		animator.SetTrigger ("Disable");
 		displaying = false;
 		clicked = false;
+//		hide ();
 		GameStateMachine.requestPlay ();
 	}
 
 	protected override void action ()
 	{
-		Debug.Log ("CLICK");
+		Debug.Log ("Current Index: " + currentTextIndex);
 		if (displaying) {
 			Debug.Log ("YUP");
 			if (currentTextIndex < text.Length) {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BackgroundAnimal : MonoBehaviour
 {
@@ -33,11 +34,32 @@ public class BackgroundAnimal : MonoBehaviour
 		0.548549f //Size of Tortoise
 	};
 
+	private enum AnimalValues
+	{
+		Bear,
+		Cheetah,
+		Crocodile,
+		Elephant,
+		Flamingo,
+		Gorilla,
+		Ostritch,
+		Penguin,
+		Rhino,
+		Tortoise
+	}
+	;
+
 	void Start ()
 	{
-		animalChosen = Random.Range (0, 10);
-		if (GameObject.FindObjectOfType<Animal> () != null) {//We're in gameplay mode, cannot duplicate this animal
-
+		while (true) {
+			animalChosen = UnityEngine.Random.Range (0, 10);
+			if (GameObject.FindObjectOfType<Animal> () != null) {//We're in gameplay mode, cannot duplicate this animal
+				string animal = GameObject.FindObjectOfType<Animal> ().name;
+				AnimalValues animalValue = (AnimalValues)Enum.Parse (typeof(AnimalValues), animal);
+				if (animalChosen != (int)animalValue) {
+					break;
+				}
+			}
 		}
 		GetComponent<Animator> ().SetInteger ("Animal", animalChosen);
 		GetComponent<Animator> ().SetTrigger ("Change");
