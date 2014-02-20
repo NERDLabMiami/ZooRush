@@ -5,7 +5,9 @@ using System.Collections;
 [CustomEditor(typeof(SortingLayer))]
 public class SortingLayerEditor : Editor
 {
+	
 	private SortingLayer thisSort;
+	private bool followParent;
 	private int selection;
 	private string[] sortingLayers = {
 		"Default",
@@ -13,7 +15,9 @@ public class SortingLayerEditor : Editor
 		"Background",
 		"Buildings",
 		"Play Area",
+		"Foreground",
 		"DistanceIndicator",
+		"GUI",
 		"GUI Content",
 		"GUI Outline",
 		"GUI Text Overlay"
@@ -25,6 +29,13 @@ public class SortingLayerEditor : Editor
 		if (thisSort == null) {
 			thisSort = target as SortingLayer;
 		}
+
+		EditorGUILayout.BeginHorizontal ();
+		{
+			EditorGUILayout.LabelField ("Follow's Parent: ");
+			thisSort.matchParentSprite = EditorGUILayout.Toggle (thisSort.matchParentSprite);
+		}
+		EditorGUILayout.EndHorizontal ();
 
 		EditorGUILayout.BeginHorizontal ();
 		{

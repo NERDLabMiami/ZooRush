@@ -7,8 +7,7 @@ using System.Collections;
 public class PlayerControls : MonoBehaviour
 {
 	private Vector2 speed;
-	private float minSpeed;
-	public Vector2 maxSpeed;
+	private float maxSpeed;
 
 	private float yMovement;
 	
@@ -16,12 +15,13 @@ public class PlayerControls : MonoBehaviour
 	private SceneManager sceneManager;
 	private InputManager inputManager;
 	private NetLauncher netLauncher;
+	private Animal animal;
 
-	private bool play;
-	private bool prevPlay;
+//	private bool play;
+//	private bool prevPlay;
 
 	public string characterName;
-	private bool changingSpeed;
+//	private bool changingSpeed;
 
 	public Sprite[] faceIcons;
 
@@ -31,12 +31,12 @@ public class PlayerControls : MonoBehaviour
 		sceneManager = FindObjectOfType<SceneManager> ();
 		inputManager = FindObjectOfType<InputManager> ();
 		netLauncher = FindObjectOfType<NetLauncher> ();
-		play = sceneManager.isPlaying;
-		prevPlay = play;
+		animal = FindObjectOfType<Animal> ();
+//		play = sceneManager.isPlaying;
+//		prevPlay = play;
 		speed = new Vector2 (7f, 0f);
-		maxSpeed.x = 5f;
-		maxSpeed.y = 4f;
-		minSpeed = 1f;
+
+		maxSpeed = 4f;
 	}
 
 	void FixedUpdate ()
@@ -47,7 +47,7 @@ public class PlayerControls : MonoBehaviour
 			yMovement = Input.GetAxis ("Vertical");
 		}
 		if (sceneManager.isPlaying) {
-			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed.y);
+			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed);
 		} else {
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, 0f);
 		}
@@ -55,26 +55,23 @@ public class PlayerControls : MonoBehaviour
 
 	void Update ()
 	{
-		//Tracking for the paused or played state
-		prevPlay = play;
-		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
-			play = true;
-			if (rigidbody2D.velocity.x < speed.x && !changingSpeed && !netLauncher.launchEnabled) {
+		switch (GameStateMachine.currentState) {
+		case (int)GameStateMachine.GameState.Play:
+			if (netLauncher.launchEnabled) {
+				setSpeed (animal.speed);
+			} else {
 				setSpeed ();
 			}
-		} else {// otherwise keep track that the input is not active
-			play = false;
-		}
-		if (!prevPlay && play) { //our previous state is the paused state, we are now going into the play state
+			break;
+		case (int)GameStateMachine.GameState.PauseToPlay:
 			StartCoroutine (waitToResume (0.1f));
 			animate.StopPlayback ();
-		} else { // our previous state is the play state
-			if (!play) {//we need to move into the paused state
-				rigidbody2D.velocity = new Vector2 (0f, 0f);
-				animate.StartPlayback ();
-//				Debug.Log ("STOPPED");
-			}
-		}	
+			break;
+		default:
+			rigidbody2D.velocity = new Vector2 (0f, 0f);
+			animate.StartPlayback ();
+			break;
+		}
 	}
 
 	public void flash ()
@@ -94,24 +91,24 @@ public class PlayerControls : MonoBehaviour
 
 	public void resetSpeed ()
 	{
-		changingSpeed = true;
+//		changingSpeed = true;
 		rigidbody2D.velocity = new Vector2 (0f, 0f);
 		StartCoroutine (waitToResume (0.3f));
 	}
-	public void decrementSpeed (float value)
-	{
-//		Debug.Log ("DECREMENTING SPEED");
-		if (rigidbody2D.velocity.x - value >= minSpeed) {
-			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x - value, rigidbody2D.velocity.y);
-		} else {
-			rigidbody2D.velocity = new Vector2 (minSpeed, rigidbody2D.velocity.y);
-		}
-	}
+//	public void decrementSpeed (float value)
+//	{
+////		Debug.Log ("DECREMENTING SPEED");
+//		if (rigidbody2D.velocity.x - value >= minSpeed) {
+//			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x - value, rigidbody2D.velocity.y);
+//		} else {
+//			rigidbody2D.velocity = new Vector2 (minSpeed, rigidbody2D.velocity.y);
+//		}
+//	}
 	private IEnumerator waitToResume (float time)
 	{
 		animate.SetTrigger ("Flash");
 		yield return new WaitForSeconds (time);
 		rigidbody2D.velocity = speed;
-		changingSpeed = false;
+//		changingSpeed = false;
 	}
 }

@@ -11,7 +11,8 @@ public class NetLauncher : MonoBehaviour
 	public bool launchEnabled; //Indicates if it is possible to launch a net 
 	public Rigidbody2D prefab; //The net prefab that will be instantiated
 	
-	private LevelGUIController levelGUI; //Pointer the the throw alert dialog box
+	private LevelGUIController levelGUI; //Pointer to the throw alert dialog box
+	private SceneManager sceneManager; //Pointer to the level's scene manager
 	private bool throwAlertDisplayed;
 	private Animal animal;	//Pointer to the animal class
 	private float speed;	//Speed at which the net will be launched on the x-axis
@@ -25,10 +26,12 @@ public class NetLauncher : MonoBehaviour
 		throwCount = 0;
 		animal = GameObject.FindObjectOfType<Animal> ();
 		levelGUI = GameObject.FindObjectOfType<LevelGUIController> ();
+		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 	}
 	
 	void Update ()
 	{
+		launchEnabled = enableLaunch ();
 		if (launchEnabled) {
 			if (!throwAlertDisplayed) {
 				throwAlertDisplayed = levelGUI.displayThrowAlert ();
@@ -64,6 +67,23 @@ public class NetLauncher : MonoBehaviour
 		Rigidbody2D netInstance = Instantiate (prefab, transform.position, prefab.transform.rotation) as Rigidbody2D;
 		netInstance.velocity = new Vector2 (speed, 0f);
 		throwCount += 1;
+	}
+
+	public void disableLaunch ()
+	{
+		launchEnabled = false;
+	}
+
+	public bool enableLaunch ()
+	{
+		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
+			if (GameObject.FindObjectOfType<StopwatchController> () == null) {
+				if (sceneManager.currentDistanceDiff < sceneManager.distanceDiffMin) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 }

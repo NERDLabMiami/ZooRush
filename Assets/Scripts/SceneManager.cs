@@ -7,7 +7,7 @@ using System.Collections;
  */ 
 public class SceneManager : MonoBehaviour
 {
-	public bool startPressed;
+//	public bool startPressed;
 	public string NextSceneName; 		//Filename of the next scene 
 	public float distanceDiffMin; 		//Minimum distance needed between character and animal
 	public float currentDistanceDiff; 	//Current distance between character and animal
@@ -18,17 +18,13 @@ public class SceneManager : MonoBehaviour
 	
 	public GameObject[] menus;
 	private GameObject screenDimmer;
-	
-	private PlayerControls playerControl;
-	private AudioController audioController;
+
 	private ScoreKeeper scoreKeeper;
 	private Animal animalControl;
 	private GameObject character;
 	private GameObject animal;
-	private NetLauncher netLauncher;
-	
+
 	public bool isEndless;
-	public bool levelStartWait;
 	public bool isPlaying;
 	public bool pauseAudio;
 	public bool tutEnabled;
@@ -54,10 +50,9 @@ public class SceneManager : MonoBehaviour
 	
 	void Start ()
 	{
-		startPressed = false;
+		currentDistanceDiff = 100f;
 		isPlaying = true;
 		pauseAudio = false;
-		levelStartWait = true;
 		fainted = false;
 		hitByVehicle = false;
 		scoreDisplayed = false;
@@ -79,96 +74,72 @@ public class SceneManager : MonoBehaviour
 				}
 			}
 		}
-		
-		playerControl = GameObject.FindObjectOfType<PlayerControls> ();
-		audioController = GameObject.FindObjectOfType<AudioController> ();
+
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
 		animalControl = GameObject.FindObjectOfType<Animal> ();
-		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
-		
+
 		screenDimmer = GameObject.Find ("GUI - Level Dimmer");
 		
 		distanceDiffMin = 6.5f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 		updatePillCount ();
+		if (tutEnabled) {
+			gameObject.AddComponent<TutorialConditionalDialogController> ();
+		}
 	}
 	
 	void Update ()
 	{
-		if (startPressed) {
+		if (GameStateMachine.currentState != (int)GameStateMachine.GameState.StartLevel) {
 			currentDistanceDiff = Mathf.Abs (animal.transform.localPosition.x - character.transform.localPosition.x);
-			if (levelStartWait) {
-				if (currentDistanceDiff > 25f) {
-					animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
-					levelStartWait = false;
-				}	
+		}
+
+		switch (GameStateMachine.currentState) {
+		case (int)GameStateMachine.GameState.Intro:
+			if (currentDistanceDiff > 25f) {
+				animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
+				GameStateMachine.requestPlay ();
+			}
+			break;
+		case (int)GameStateMachine.GameState.Play:
+
+			break;
+		case (int)GameStateMachine.GameState.Paused:
+			if (animalControl.caught) {
+				GameStateMachine.requestTransition ();
+			}
+			break;
+		case (int)GameStateMachine.GameState.Transition:
+			if (animalControl.caught) {
+				GameStateMachine.requestEndLevel ();
+			}
+			break;
+		case (int) GameStateMachine.GameState.EndLevel:
+			if (isEndless) {
+				StartCoroutine (displayEndlessScore ());
 			} else {
-				if (isPlaying) {
-					if (animalControl.caught) {
-						isPlaying = false;
-						if (isEndless) {
-							StartCoroutine (resetSceneEndlessMode ());
-						} else {
-							audioController.pauseAudio ();
-							if (!scoreDisplayed) {
-								StartCoroutine (displayScore ());
-							}
-						}
-					} else {
-						if (GameObject.FindObjectOfType<StopwatchController> () == null) {
-							if (currentDistanceDiff < distanceDiffMin) {
-								playerControl.setSpeed (animalControl.speed);
-								netLauncher.launchEnabled = true;
-							} else {
-								netLauncher.launchEnabled = false;
-							}
-						} else {
-							netLauncher.launchEnabled = false;
-						}
-						if (fainted) {
-							isPlaying = false;
-							pauseAudio = true;
-							if (isEndless) {
-								StartCoroutine (displayEndlessScore ());
-							} else {
-								NextSceneHandler.fainted ();
-							}
-						} else {
-							if (hitByVehicle) {
-								isPlaying = false;
-								pauseAudio = true;
-								if (isEndless) {
-									StartCoroutine (displayEndlessScore ());
-								} else {
-									NextSceneHandler.hitByCar ();
-								}
-							} else {
-								if (GameObject.FindObjectOfType<StopwatchController> () == null) {
-									if (currentDistanceDiff < distanceDiffMin) {
-										playerControl.setSpeed (animalControl.speed);
-										netLauncher.launchEnabled = true;
-									} else {
-										netLauncher.launchEnabled = false;
-									}
-								} else {
-									netLauncher.launchEnabled = false;
-								}
-								if (netLauncher.launchEnabled) {
-									playerControl.setSpeed (animalControl.speed);
-								}
-							}
-						}	
+				if (fainted) {
+					NextSceneHandler.fainted ();
+				}
+				
+				if (hitByVehicle) {
+					NextSceneHandler.hitByCar ();
+				}
+				if (animalControl.caught) {
+					if (!scoreDisplayed) {
+						StartCoroutine (displayScore ());
 					}
-				} else {
-					netLauncher.launchEnabled = false;
 				}
 			}
+			break;
+		default:
+			break;
 		}
 	}
 	
 	void FixedUpdate ()
 	{
-		if (startPressed) {
+		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.EndLevel) {
 			if (timeCountDown) {
 				if (timeWait) {
 					StartCoroutine (TimeWait ());
@@ -263,16 +234,9 @@ public class SceneManager : MonoBehaviour
 			}
 		}
 	}
-
-	public void startLevel ()
-	{
-		startPressed = true;
-		animalControl.setSpeed ();
-	}
 	
 	private IEnumerator TimeWait ()
 	{
-//		Debug.Log ("Waiting");
 		yield return new WaitForSeconds (1.5f);
 		timeWait = false;
 	}
@@ -444,7 +408,6 @@ public class SceneManager : MonoBehaviour
 		yield return new WaitForSeconds (1f);
 		lightScreen ();
 		changeAnimal ();
-		levelStartWait = true;
 		isPlaying = true;
 	}
 }

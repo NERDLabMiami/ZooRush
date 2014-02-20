@@ -5,23 +5,38 @@ public class StopwatchController : MonoBehaviour
 {
 	private bool start;
 	private float currentSpeed;
-	private static bool tutDialogDisplayed;
+//	private static bool tutDialogDisplayed;
 
-	void Awake ()
-	{
-		tutDialogDisplayed = false;
-	}
+//	void Awake ()
+//	{
+//		tutDialogDisplayed = false;
+//	}
 
 	void Start ()
 	{
 		start = false;
 		currentSpeed = 1.0f;
-		if (!tutDialogDisplayed) {
-			if (GameObject.FindObjectOfType<SceneManager> ().tutEnabled) {
-				GameObject.FindObjectOfType<DialogHandler> ().forceDialog (GetComponentInChildren<DialogTrigger> ());
-			}
-			tutDialogDisplayed = true;
+//		if (!tutDialogDisplayed) {
+//			if (GameObject.FindObjectOfType<SceneManager> ().tutEnabled) {
+//				GameObject.FindObjectOfType<DialogHandler> ().forceDialog (GetComponentInChildren<DialogTrigger> ());
+//			}
+//			tutDialogDisplayed = true;
+//		}
+	}
+
+	void FixedUpdate ()
+	{
+		switch (GameStateMachine.currentState) {
+		case (int)GameStateMachine.GameState.Paused:
+			pauseStopwatch ();
+			break;
+		case (int)GameStateMachine.GameState.PauseToPlay:
+			resumeStopwatch ();
+			break;
+		default:
+			break;
 		}
+
 	}
 
 	public void receiveInteraction (string infectionType)

@@ -34,7 +34,7 @@ public class ScoreKeeper : MonoBehaviour
 
 	void Update ()
 	{
-		if (sceneManager.isPlaying && !sceneManager.levelStartWait) {
+		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
 			timeElapsed += Time.deltaTime;
 		}
 //		displayTime ();

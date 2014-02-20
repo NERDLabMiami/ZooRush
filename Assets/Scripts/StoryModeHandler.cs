@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Collections;
 
-public class StoryModeHandler : MonoBehaviour
+public class StoryModeHandler : Button
 {
 	public static string NextSceneName;
 	public GameObject[] introSlides;
@@ -25,8 +25,9 @@ public class StoryModeHandler : MonoBehaviour
 	private AnimatedText textAnimator;
 
 
-	void Start ()
+	new void Start ()
 	{
+		base.Start ();
 		slides = new GameObject[][] {
 			introSlides,
 			level2Slides,
@@ -83,20 +84,19 @@ public class StoryModeHandler : MonoBehaviour
 		textAnimator = GameObject.FindObjectOfType<AnimatedText> ();
 		readSlideText ();
 	}
-	
-	void Update ()
+
+	protected override void action ()
 	{
-		if (InputManager.enter) {
-			if (slideIndex < slides [nextLevel - 1].Length - 1) {
-				readSlideText ();
-				slideIndex++;
-				Destroy (currentSlide);
-				currentSlide = Instantiate (slides [nextLevel - 1] [slideIndex], new Vector3 (0, 0, 0), Quaternion.identity) as GameObject;
-			} else {
-				LoadLevel.levelToLoad = NextSceneName;
-				Application.LoadLevel ("Loading");
-			}
+		if (slideIndex < slides [nextLevel - 1].Length - 1) {
+			readSlideText ();
+			slideIndex++;
+			Destroy (currentSlide);
+			currentSlide = Instantiate (slides [nextLevel - 1] [slideIndex], new Vector3 (0, 0, 0), Quaternion.identity) as GameObject;
+		} else {
+			LoadLevel.levelToLoad = NextSceneName;
+			Application.LoadLevel ("Loading");
 		}
+		clicked = false;
 	}
 
 	private void readSlideText ()

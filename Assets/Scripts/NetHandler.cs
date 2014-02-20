@@ -17,6 +17,7 @@ public class NetHandler : MonoBehaviour
 	{//on interaction with another object with a trigger collider
 		if (other.gameObject.GetComponentInChildren<Animal> () != null) { //if that object is an animal
 			StartCoroutine (interact (other.gameObject));
+			GameStateMachine.requestPause ();
 			other.gameObject.GetComponentInChildren<Animal> ().caught = true;
 		}
 	}
