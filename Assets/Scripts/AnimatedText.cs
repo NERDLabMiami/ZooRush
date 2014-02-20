@@ -5,7 +5,6 @@ public class AnimatedText : MonoBehaviour
 {
 	private string[] fullText;
 	private TextMesh[] textMeshes;
-	private int[] lengthShown;
 
 	private bool clear;
 	public bool complete;
@@ -22,8 +21,6 @@ public class AnimatedText : MonoBehaviour
 			mesh.text = "";
 		}
 
-		lengthShown = new int[] {0,0,0};
-
 		clear = true;
 		complete = false;
 		start = false;
@@ -32,25 +29,16 @@ public class AnimatedText : MonoBehaviour
 	void FixedUpdate ()
 	{
 		if (!complete && start) {
-			if (!textMeshes [0].text.Equals (fullText [0]) && clear) {
-				StartCoroutine (Animate (0));
+			if (clear) {
+				StartCoroutine (Animate ());
 			} else {
-				if (!textMeshes [1].text.Equals (fullText [1]) && clear) {
-					StartCoroutine (Animate (1));
-				} else {
-					if (!textMeshes [2].text.Equals (fullText [2]) && clear) {
-						StartCoroutine (Animate (2));
-					} else {
-						if (textMeshes [0].text.Equals (fullText [0]) && textMeshes [1].text.Equals (fullText [1]) && textMeshes [2].text.Equals (fullText [2])) {
-							complete = true;
-							GameObject.FindObjectOfType<StoryModeHandler> ().stopSpeechSprites ();
-							start = false;
-						}
-					}
-				}
+				complete = true;
+				GameObject.FindObjectOfType<StoryModeHandler> ().stopSpeechSprites ();
+				start = false;
 			}
 		}
 	}
+	
 
 	public void DisplayText (string[] textArray)
 	{
@@ -58,26 +46,22 @@ public class AnimatedText : MonoBehaviour
 			mesh.text = "";
 		}
 		fullText = textArray;
-		lengthShown = new int[] {0,0,0};
 		complete = false;
 		start = true;
 	}
 
 
-	private IEnumerator Animate (int lineNumber)
+	private IEnumerator Animate ()
 	{
 		clear = false;
-		while (lengthShown [lineNumber] < fullText [lineNumber].Length) {
-			textMeshes [lineNumber].text += fullText [lineNumber] [lengthShown [lineNumber]++];
-			yield return new WaitForSeconds (0.05f);
+		int index = 0;
+		while (index < 3) {
+			foreach (char letter in fullText [index].ToCharArray()) {
+				textMeshes [index].text += letter;
+				yield return new WaitForSeconds (0.05f);
+			}
+			index++;
 		}
-//
-//		yield return new WaitForSeconds (0.05f);
-//		textMeshes [lineNumber].text = fullText [lineNumber].Substring (0, lengthShown [lineNumber]);
-//		if (lengthShown [lineNumber] < fullText [lineNumber].Length) {
-//			lengthShown [lineNumber]++;
-//		}
 		clear = true;
-
 	}
 }
