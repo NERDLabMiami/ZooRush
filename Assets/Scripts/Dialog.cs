@@ -34,8 +34,8 @@ public class Dialog : Button
 	{
 		Debug.Log ("OPEN");
 		displaying = true;
-		animator.SetTrigger ("Opened");
 		textAnimator.gameObject.SetActive (true);
+		animator.SetTrigger ("Opened");
 		next ();
 
 	}
@@ -52,8 +52,8 @@ public class Dialog : Button
 		if (text.Length > currentTextIndex + 1 && text [currentTextIndex + 1] [0] == '+') {
 			displayText += "\n" + text [currentTextIndex + 1].Substring (1);
 			currentTextIndex = currentTextIndex + 1;
-			if (text.Length > currentTextIndex + 2 && text [currentTextIndex + 2] [0] == '+') {
-				displayText += "\n" + text [currentTextIndex + 2].Substring (1);
+			if (text.Length > currentTextIndex + 1 && text [currentTextIndex + 1] [0] == '+') {
+				displayText += "\n" + text [currentTextIndex + 1].Substring (1);
 				currentTextIndex = currentTextIndex + 1;
 			}
 		}

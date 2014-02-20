@@ -24,19 +24,23 @@ public class TextAnimator : MonoBehaviour
 		textMesh.text = "";
 		currentChar = 0;
 		animating = true;
+//		while (animating) {
 		StartCoroutine (Animate ());
+//		}
 	}
 
 	private IEnumerator Animate ()
 	{
 		while (currentChar < text.Length) {
+			Debug.Log ("Current char: " + currentChar);
+			new WaitForSeconds (0.5f);
 			textMesh.text += text [currentChar++];
-			yield return new WaitForSeconds (0.05f);
-		}
 
+		}
 		finished = true;
 		dialog.stopSpeaking ();
 		animating = false;
+		yield return new WaitForEndOfFrame ();
 	}
 
 }

@@ -27,7 +27,6 @@ public class DialogHandler : MonoBehaviour
 					if (dialog != null) {
 						Destroy (dialog.gameObject);
 					}
-					Debug.Log ("DIALOG ASSIGNED");
 					dialog = detected.collider.GetComponent<DialogTrigger> ();
 					if (dialog.tutOnly) {
 						if (sceneManager.tutEnabled) {
@@ -44,12 +43,8 @@ public class DialogHandler : MonoBehaviour
 		}
 	}
 
-	public bool forceDialog (DialogTrigger dialogReceived)
+	public void forceDialog (DialogTrigger dialogReceived)
 	{
-		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Paused) {
-			//most likely already reading a dialog
-			return false;
-		}
 		if (dialog != null) {
 			Destroy (dialog.gameObject);
 		}
@@ -64,6 +59,5 @@ public class DialogHandler : MonoBehaviour
 			GameStateMachine.requestPause ();
 			dialog.openDialog ();
 		}
-		return true;
 	}
 }

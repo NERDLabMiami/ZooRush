@@ -10,9 +10,8 @@ public class TutorialConditionalDialogController : MonoBehaviour
 	
 	void Start ()
 	{
-//		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 		stopWatchExplained = false;
-
+		crisisExplained = false;
 	}
 	
 	void Update ()
@@ -36,7 +35,8 @@ public class TutorialConditionalDialogController : MonoBehaviour
 		if (GameStateMachine.currentState != (int)GameStateMachine.GameState.Paused) {
 			GameObject DialogTrigger = new GameObject ("Dialog Trigger", typeof(DialogTrigger));
 			DialogTrigger.GetComponent<DialogTrigger> ().textDisplay = text;
-			return GameObject.FindObjectOfType<DialogHandler> ().forceDialog (DialogTrigger.GetComponent<DialogTrigger> ());
+			GameObject.FindObjectOfType<DialogHandler> ().forceDialog (DialogTrigger.GetComponent<DialogTrigger> ());
+			return true;
 		}
 		return false;
 	}
