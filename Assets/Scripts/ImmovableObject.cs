@@ -26,12 +26,15 @@ public class ImmovableObject : ObjectModel
 	
 	public override void interactWithCharacter (Collider2D character)
 	{
+		Vector2 speed;
 		if (character.transform.localPosition.y < -3f) {
-			character.rigidbody2D.AddForce (new Vector2 (-350f, 50f));
+			speed = new Vector2 (650f, 1000f);
 		} else {
-			character.rigidbody2D.AddForce (new Vector2 (-350f, -50f));
+			speed = new Vector2 (650f, -1000f);
 		}
-		character.GetComponent<PlayerControls> ().resetSpeed ();
+		Debug.Log ("Current Speed is: " + character.rigidbody2D.velocity.x);
+		character.GetComponent<PlayerControls> ().pushAway (speed, true);
+		Debug.Log ("Current Speed is: " + character.rigidbody2D.velocity.x);
 		collisionDetect.signalSent = false;
 	}
 }

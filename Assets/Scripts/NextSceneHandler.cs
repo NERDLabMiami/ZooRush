@@ -23,10 +23,10 @@ public class NextSceneHandler : MonoBehaviour
 		Application.LoadLevel ("LevelFail");
 	}
 
-	public static void hitByCar ()
-	{
-		LevelFailModel.failReason = "Hit";
-		LevelFailModel.levelFailed = Application.loadedLevelName;
-		Application.LoadLevel ("LevelFail");
-	}
+//	public static void hitByCar ()
+//	{
+//		LevelFailModel.failReason = "Hit";
+//		LevelFailModel.levelFailed = Application.loadedLevelName;
+//		Application.LoadLevel ("LevelFail");
+//	}
 }

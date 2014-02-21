@@ -29,7 +29,7 @@ public class SceneManager : MonoBehaviour
 	public bool pauseAudio;
 	public bool tutEnabled;
 	public bool fainted;
-	public bool hitByVehicle;
+//	public bool hitByVehicle;
 	
 	private bool starDisplay1;
 	private bool starDisplay2;
@@ -54,7 +54,6 @@ public class SceneManager : MonoBehaviour
 		isPlaying = true;
 		pauseAudio = false;
 		fainted = false;
-		hitByVehicle = false;
 		scoreDisplayed = false;
 		timeCountDown = false;
 		timeWait = true;
@@ -120,10 +119,6 @@ public class SceneManager : MonoBehaviour
 			} else {
 				if (fainted) {
 					NextSceneHandler.fainted ();
-				}
-				
-				if (hitByVehicle) {
-					NextSceneHandler.hitByCar ();
 				}
 				if (animalControl.caught) {
 					if (!scoreDisplayed) {

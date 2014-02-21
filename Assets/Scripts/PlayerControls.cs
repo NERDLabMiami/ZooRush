@@ -10,6 +10,8 @@ public class PlayerControls : MonoBehaviour
 	private Vector2 currentSpeed;
 	private float maxSpeed;
 
+
+	private bool changeSpeed;
 	private float yMovement;
 	
 	private Animator animate;
@@ -31,6 +33,7 @@ public class PlayerControls : MonoBehaviour
 		animal = FindObjectOfType<Animal> ();
 		speed = new Vector2 (7f, 0f);
 		maxSpeed = 4f;
+		changeSpeed = false;
 	}
 
 	void FixedUpdate ()
@@ -78,18 +81,47 @@ public class PlayerControls : MonoBehaviour
 	
 	public void setSpeed ()
 	{
-		rigidbody2D.velocity = speed;
+		if (!changeSpeed) {
+			rigidbody2D.velocity = speed;
+		}
 	}
-	
+
+	public void pushAway (float speed, bool left)
+	{
+		changeSpeed = true;
+		rigidbody2D.velocity = new Vector2 (0f, 0f);
+		Debug.Log ("Push Away Called");
+		if (left) {
+			rigidbody2D.AddForce (new Vector2 (-speed, 0));
+		} else {
+			rigidbody2D.AddForce (new Vector2 (speed * 1.5f, 0));
+		}
+		StartCoroutine (waitToResume (0.5f));
+	}
+
+	public void pushAway (Vector2 speed, bool left)
+	{
+		changeSpeed = true;
+		rigidbody2D.velocity = new Vector2 (0f, 0f);
+		Debug.Log ("Push Away Called");
+		if (left) {
+			rigidbody2D.AddForce (new Vector2 (-speed.x, speed.y));
+		} else {
+			rigidbody2D.AddForce (new Vector2 (speed.x * 1.5f, speed.y));
+		}
+		StartCoroutine (waitToResume (0.5f));
+	}
+
+
 	public void setSpeed (Vector2 thespeed)
 	{
 		rigidbody2D.velocity = thespeed;
 	}
 
-	public void resetSpeed ()
+	public void resetSpeed (float time = 0.3f)
 	{
 		rigidbody2D.velocity = new Vector2 (0f, 0f);
-		StartCoroutine (waitToResume (0.3f));
+		StartCoroutine (waitToResume (time));
 	}
 
 	private IEnumerator waitToResume (float time)
@@ -97,6 +129,6 @@ public class PlayerControls : MonoBehaviour
 		animate.SetTrigger ("Flash");
 		yield return new WaitForSeconds (time);
 		rigidbody2D.velocity = currentSpeed;
-		;
+		changeSpeed = false;
 	}
 }
