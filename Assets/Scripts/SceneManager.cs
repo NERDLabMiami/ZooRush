@@ -50,7 +50,7 @@ public class SceneManager : MonoBehaviour
 	
 	void Start ()
 	{
-		currentDistanceDiff = 100f;
+		GameStateMachine.resetState ();
 		isPlaying = true;
 		pauseAudio = false;
 		fainted = false;
@@ -80,7 +80,7 @@ public class SceneManager : MonoBehaviour
 
 		screenDimmer = GameObject.Find ("GUI - Level Dimmer");
 		
-		distanceDiffMin = 6.5f;
+		distanceDiffMin = 10f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 		updatePillCount ();
 		if (tutEnabled) {

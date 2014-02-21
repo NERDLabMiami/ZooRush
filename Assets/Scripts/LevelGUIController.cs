@@ -62,6 +62,9 @@ public class LevelGUIController : MonoBehaviour
 	 */ 
 	public bool displayThrowAlert ()
 	{
+		if (GameObject.FindObjectOfType<StopwatchController> () != null) {
+			return false;
+		}
 		if (throwAlert == null) {
 			//menuPrefabs[1] is the throw alert dialog box by default
 			throwAlert = Instantiate (menuPrefabs [1]) as GameObject;
