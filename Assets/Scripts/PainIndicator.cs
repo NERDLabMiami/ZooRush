@@ -69,6 +69,11 @@ public class PainIndicator : MonoBehaviour
 		painPoints -= points;
 	}
 
+	public void setPoints (int points)
+	{
+		painPoints = points;
+	}
+
 	public void addPoints (int points)
 	{
 		painPoints += points;

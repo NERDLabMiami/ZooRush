@@ -11,11 +11,19 @@ public class Animal : MonoBehaviour
 	public bool caught; //Indicator for whehter the Animal has been caught by the player
 	public Vector2 speed; //Current speed of the animal object
 	public Sprite animalIcon; //Icon used in the distance meter
+	public AudioClip audioClip; // Animal audio sound clip
 
 	private Animator animator; //Animator for the animal's running sprites
+	private AudioSource audioSource; //Audio Source that plays sound clip
 
 	void Start ()
 	{
+		if (PlayerPrefs.GetInt ("Sound") != 0) { // sound is enabled, we will add a sound source for the animal
+			audioSource = gameObject.AddComponent<AudioSource> ();
+			audioSource.playOnAwake = false; //disable playing on instatiation
+			audioSource.clip = audioClip; 
+		}
+
 		animator = GetComponent<Animator> (); //assigns the pointer to the animator component
 		caught = false; //default value for whether the animal has been caught
 		transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
@@ -29,6 +37,18 @@ public class Animal : MonoBehaviour
 		case (int)GameStateMachine.GameState.Intro:
 		case (int)GameStateMachine.GameState.Play:
 			setSpeed ();
+			if (audioSource) {
+				if (!audioSource.isPlaying) {
+					audioSource.Play ();
+				}
+			}
+			break;
+		case (int)GameStateMachine.GameState.Paused:
+			if (audioSource) {
+				if (audioSource.isPlaying) {
+					audioSource.Pause ();
+				}
+			}
 			break;
 		case (int)GameStateMachine.GameState.PauseToPlay:
 			StartCoroutine (waitToResume (0.1f));
