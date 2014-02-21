@@ -37,6 +37,16 @@ public class BackgroundCharacter : MonoBehaviour
 	
 	void Update ()
 	{
+		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.PauseToPlay) {
+			if (transform.parent.localScale.x > 0) {
+				rigidbody2D.velocity = new Vector2 (8f, 0);
+			} else {
+				rigidbody2D.velocity = new Vector2 (-8f, 0);
+			}
+		} else if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Paused) {
+			rigidbody2D.velocity = new Vector2 (0f, 0);
+		}
+		
 		if (left) {
 			if (transform.position.x < Camera.main.transform.position.x - 25f) {
 				Destroy (transform.parent.gameObject);

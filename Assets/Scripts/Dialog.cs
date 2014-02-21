@@ -74,11 +74,12 @@ public class Dialog : Button
 				currentTextIndex = currentTextIndex + 1;
 			}
 		}
-
+		
 		textAnimator.AnimateText (displayText);
 		stopSpeaking ();
 		currentTextIndex++;
 		clicked = false;
+
 	}
 
 	private void close ()
@@ -92,7 +93,7 @@ public class Dialog : Button
 		text = null;
 		animator.SetTrigger ("Disable");
 		displaying = false;
-		clicked = false;
+
 //		hide ();
 		GameStateMachine.requestPlay ();
 	}
@@ -101,8 +102,12 @@ public class Dialog : Button
 	{
 		Debug.Log ("Current Index: " + currentTextIndex);
 		if (displaying) {
-			Debug.Log ("YUP");
+			clicked = false;
+			if (textAnimator.animating) {
+				textAnimator.forceFinish ();
+			}
 			if (currentTextIndex < text.Length) {
+
 				next ();
 			} else {
 				close ();
