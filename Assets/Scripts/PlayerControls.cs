@@ -7,6 +7,7 @@ using System.Collections;
 public class PlayerControls : MonoBehaviour
 {
 	private Vector2 speed;
+	private Vector2 currentSpeed;
 	private float maxSpeed;
 
 	private float yMovement;
@@ -17,11 +18,7 @@ public class PlayerControls : MonoBehaviour
 	private NetLauncher netLauncher;
 	private Animal animal;
 
-//	private bool play;
-//	private bool prevPlay;
-
 	public string characterName;
-//	private bool changingSpeed;
 
 	public Sprite[] faceIcons;
 
@@ -32,24 +29,23 @@ public class PlayerControls : MonoBehaviour
 		inputManager = FindObjectOfType<InputManager> ();
 		netLauncher = FindObjectOfType<NetLauncher> ();
 		animal = FindObjectOfType<Animal> ();
-//		play = sceneManager.isPlaying;
-//		prevPlay = play;
 		speed = new Vector2 (7f, 0f);
-
 		maxSpeed = 4f;
 	}
 
 	void FixedUpdate ()
 	{
-		if (Input.GetMouseButton (0)) {
-			yMovement = inputManager.yDelta;
-		} else {
-			yMovement = Input.GetAxis ("Vertical");
-		}
-		if (sceneManager.isPlaying) {
-			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed);
-		} else {
-			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, 0f);
+		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
+			if (Input.GetMouseButton (0)) {
+				yMovement = inputManager.yDelta;
+			} else {
+				yMovement = Input.GetAxis ("Vertical");
+			}
+			if (sceneManager.isPlaying) {
+				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed);
+			} else {
+				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, 0f);
+			}
 		}
 	}
 
@@ -62,6 +58,7 @@ public class PlayerControls : MonoBehaviour
 			} else {
 				setSpeed ();
 			}
+			currentSpeed = rigidbody2D.velocity;
 			break;
 		case (int)GameStateMachine.GameState.PauseToPlay:
 			StartCoroutine (waitToResume (0.1f));
@@ -91,24 +88,15 @@ public class PlayerControls : MonoBehaviour
 
 	public void resetSpeed ()
 	{
-//		changingSpeed = true;
 		rigidbody2D.velocity = new Vector2 (0f, 0f);
 		StartCoroutine (waitToResume (0.3f));
 	}
-//	public void decrementSpeed (float value)
-//	{
-////		Debug.Log ("DECREMENTING SPEED");
-//		if (rigidbody2D.velocity.x - value >= minSpeed) {
-//			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x - value, rigidbody2D.velocity.y);
-//		} else {
-//			rigidbody2D.velocity = new Vector2 (minSpeed, rigidbody2D.velocity.y);
-//		}
-//	}
+
 	private IEnumerator waitToResume (float time)
 	{
 		animate.SetTrigger ("Flash");
 		yield return new WaitForSeconds (time);
-		rigidbody2D.velocity = speed;
-//		changingSpeed = false;
+		rigidbody2D.velocity = currentSpeed;
+		;
 	}
 }

@@ -48,7 +48,7 @@ public class NetLauncher : MonoBehaviour
 		if (!InputManager.enter) {
 			firing = false;
 		} else {
-			if (!firing && launchEnabled && throwCount < 3) {
+			if (!firing && throwAlertDisplayed && throwCount < 3) {
 				firing = true;
 				fire ();
 			}	
@@ -76,14 +76,16 @@ public class NetLauncher : MonoBehaviour
 
 	public bool enableLaunch ()
 	{
-		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
-			if (GameObject.FindObjectOfType<StopwatchController> () == null) {
-				if (sceneManager.currentDistanceDiff < sceneManager.distanceDiffMin) {
-					return true;
-				}
+		switch (GameStateMachine.currentState) {
+		case (int)GameStateMachine.GameState.Play:
+		case (int) GameStateMachine.GameState.Transition:
+			if (sceneManager.currentDistanceDiff < sceneManager.distanceDiffMin) {
+				return true;
 			}
+			return false;
+		default:
+			return false;
 		}
-		return false;
 	}
 	
 }
