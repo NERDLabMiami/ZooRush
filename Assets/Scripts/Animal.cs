@@ -49,6 +49,7 @@ public class Animal : MonoBehaviour
 					audioSource.Pause ();
 				}
 			}
+			transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 			break;
 		case (int)GameStateMachine.GameState.PauseToPlay:
 			StartCoroutine (waitToResume (0.1f));
