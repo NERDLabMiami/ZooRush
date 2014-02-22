@@ -84,7 +84,6 @@ public class Dialog : Button
 
 	private void close ()
 	{
-		GetComponentInChildren<TextMesh> ().text = "";
 		animator.SetTrigger ("Close");
 	}
 
@@ -102,9 +101,9 @@ public class Dialog : Button
 	{
 		if (displaying & !textAnimator.animating) {
 			if (currentTextIndex < text.Length) {
-
 				next ();
 			} else {
+				textAnimator.textMesh.text = "";
 				close ();
 			}
 		}
