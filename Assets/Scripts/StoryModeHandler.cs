@@ -18,6 +18,8 @@ public class StoryModeHandler : Button
 
 	private int nextLevel;
 	private GameObject[][] slides;
+
+	private GameObject[] thisStory;
 	private GameObject currentSlide;
 	private int slideIndex;
 	private string[] slideText;
@@ -78,7 +80,18 @@ public class StoryModeHandler : Button
 		slideText = new string[3];
 		slideIndex = 0;
 
-		currentSlide = Instantiate (slides [nextLevel - 1] [slideIndex], new Vector3 (0, 0, 0), Quaternion.identity) as GameObject;
+		thisStory = new GameObject[slides [nextLevel - 1].Length];
+
+		for (int i = 0; i < slides[nextLevel-1].Length; i++) {
+			thisStory [i] = Instantiate (slides [nextLevel - 1] [i], new Vector3 (0, 0, i), Quaternion.identity) as GameObject;
+			if (i != 0) {
+				thisStory [i].SetActive (false);
+			}
+		}
+
+//		currentSlide = Instantiate (slides [nextLevel - 1] [slideIndex], new Vector3 (0, 0, 0), Quaternion.identity) as GameObject;
+
+		currentSlide = thisStory [slideIndex];
 
 		fileInput = new StringReader (sceneTexts [nextLevel - 1]);
 		textAnimator = GameObject.FindObjectOfType<AnimatedText> ();
@@ -90,10 +103,14 @@ public class StoryModeHandler : Button
 		if (slideIndex < slides [nextLevel - 1].Length - 1) {
 			readSlideText ();
 			slideIndex++;
-			Destroy (currentSlide);
-			currentSlide = Instantiate (slides [nextLevel - 1] [slideIndex], new Vector3 (0, 0, 0), Quaternion.identity) as GameObject;
+			currentSlide.SetActive (false);
+//			Destroy (currentSlide);
+			currentSlide = thisStory [slideIndex];
+			currentSlide.SetActive (true);
+//			currentSlide = Instantiate (slides [nextLevel - 1] [slideIndex], new Vector3 (0, 0, 0), Quaternion.identity) as GameObject;
 		} else {
 			LoadLevel.levelToLoad = NextSceneName;
+			PlayerPrefs.SetInt (NextSceneName + "StoryMode", 1);
 			Application.LoadLevel ("Loading");
 		}
 		clicked = false;

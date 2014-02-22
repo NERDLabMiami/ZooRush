@@ -4,14 +4,17 @@ using System.Collections;
 public class TutorialConditionalDialogController : MonoBehaviour
 {
 	private bool stopWatchExplained;
-	private bool animalExplained;
 	private bool crisisExplained;
+	private bool animalExplained;
 
+	NetLauncher netLauncher;
 	
 	void Start ()
 	{
+		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
 		stopWatchExplained = false;
 		crisisExplained = false;
+		animalExplained = false;
 	}
 	
 	void Update ()
@@ -25,6 +28,11 @@ public class TutorialConditionalDialogController : MonoBehaviour
 		if (!crisisExplained) {
 			if (GameObject.FindObjectOfType<PainIndicator> ().painPoints >= 75f) {
 				crisisExplained = createDialog (crisisText);
+			}
+		}
+		if (!animalExplained) {
+			if (netLauncher.launchEnabled) {
+				animalExplained = createDialog (animalText);
 			}
 		}
 
@@ -50,9 +58,18 @@ public class TutorialConditionalDialogController : MonoBehaviour
 	};
 
 	private string[] crisisText = {
-		"You're having a crisis!",
-		"+If you're in a pinch, some",
-		"+painkillers can help prevent",
-		"+you from fainting!"
+		"Look out! You just got",
+		"+an infection! Get to",
+		"+the hospital before it",
+		"+gets worse!"
+	};
+
+	private string[] animalText = {
+		"When you're close to an",
+		"+animal, you can throw a",
+		"+a net by tapping on it.",
+		"+Make sure you position",
+		"+yourself correctly or",
+		"+you might end up missing!"
 	};
 }

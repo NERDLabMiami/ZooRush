@@ -6,6 +6,10 @@ using System.Collections;
  */
 public class StartMenu : MonoBehaviour
 {
+	void Start ()
+	{
+		Application.targetFrameRate = 60;
+	}
 //	public DirectToScene playButton;
 //	
 //	void Start ()
