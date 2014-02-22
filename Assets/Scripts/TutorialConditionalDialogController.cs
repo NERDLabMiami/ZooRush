@@ -50,18 +50,18 @@ public class TutorialConditionalDialogController : MonoBehaviour
 	}
 
 	private string[] stopwatchText = {
-		"Oh no! You've been",
-		"+exposed to bad bacteria,",
-		"+be sure to get to a doctor",
-		"+before it turns into",
-		"+a bad infection!"
-	};
-
-	private string[] crisisText = {
 		"Look out! You just got",
 		"+an infection! Get to",
 		"+the hospital before it",
 		"+gets worse!"
+	};
+
+	private string[] crisisText = {
+		"You're about to have a",
+		"+crisis! Staying hydrated",
+		"+and taking painkillers",
+		"+can help you manage your",
+		"+condition."
 	};
 
 	private string[] animalText = {
