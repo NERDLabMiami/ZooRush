@@ -31,10 +31,6 @@ public class AnimatedText : MonoBehaviour
 		if (!complete && start) {
 			if (clear) {
 				StartCoroutine (Animate ());
-			} else {
-				complete = true;
-				GameObject.FindObjectOfType<StoryModeHandler> ().stopSpeechSprites ();
-				start = false;
 			}
 		}
 	}
@@ -56,12 +52,14 @@ public class AnimatedText : MonoBehaviour
 		clear = false;
 		int index = 0;
 		while (index < 3) {
-			foreach (char letter in fullText [index].ToCharArray()) {
-				textMeshes [index].text += letter;
+			for (int i = 0; i < fullText [index].Length; i++) {
+				textMeshes [index].text = fullText [index].Substring (0, i + 1);
 				yield return new WaitForSeconds (0.05f);
 			}
 			index++;
 		}
+		GameObject.FindObjectOfType<StoryModeHandler> ().stopSpeechSprites ();
+		complete = true;
 		clear = true;
 	}
 }

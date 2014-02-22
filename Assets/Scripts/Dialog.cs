@@ -100,12 +100,7 @@ public class Dialog : Button
 
 	protected override void action ()
 	{
-		Debug.Log ("Current Index: " + currentTextIndex);
-		if (displaying) {
-			clicked = false;
-			if (textAnimator.animating) {
-				textAnimator.forceFinish ();
-			}
+		if (displaying & !textAnimator.animating) {
 			if (currentTextIndex < text.Length) {
 
 				next ();
@@ -113,6 +108,7 @@ public class Dialog : Button
 				close ();
 			}
 		}
+		clicked = false;
 	}
 
 }

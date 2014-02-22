@@ -23,6 +23,21 @@ public class NextSceneHandler : MonoBehaviour
 		Application.LoadLevel ("LevelFail");
 	}
 
+	public static void loadGameLevelWithConditions (string levelName)
+	{
+		if (PlayerPrefs.GetInt (levelName + "StoryMode", 0) == 0) {
+			nextLevelStoryMode (levelName);
+		} else {
+			nextLevel (levelName);
+		}
+	}
+
+	public static void nextLevelStoryMode (string levelName)
+	{
+		StoryModeHandler.NextSceneName = levelName;
+		Application.LoadLevel ("Story");
+	}
+
 //	public static void hitByCar ()
 //	{
 //		LevelFailModel.failReason = "Hit";
