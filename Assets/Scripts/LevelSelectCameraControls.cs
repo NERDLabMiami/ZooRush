@@ -47,7 +47,7 @@ public class LevelSelectCameraControls : MonoBehaviour
 
 	public void moveLeft ()
 	{
-		if (!Mathf.Approximately (Mathf.Round (rightMost.rect.x * 1000), 350f)) {
+		if (Mathf.Round (rightMost.rect.x * 1000) >= 675f) {
 			
 			StartCoroutine (moveCameras (true));
 		}
@@ -55,7 +55,7 @@ public class LevelSelectCameraControls : MonoBehaviour
 
 	public void moveRight ()
 	{
-		if (!Mathf.Approximately (Mathf.Round (leftMost.rect.x * 1000), 350f)) {
+		if (Mathf.Round (leftMost.rect.x * 1000) <= 25f) {
 			if (!move) {
 				StartCoroutine (moveCameras (false));
 			}
