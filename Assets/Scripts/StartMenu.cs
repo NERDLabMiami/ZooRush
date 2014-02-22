@@ -6,19 +6,16 @@ using System.Collections;
  */
 public class StartMenu : MonoBehaviour
 {
+	public DirectToScene playButton;
+	
 	void Start ()
 	{
 		Application.targetFrameRate = 60;
+		if (PlayerPrefs.GetInt ("Levels Unlocked", 0) > 1) {
+			playButton.sceneName = "MultipleCameraTest";
+		} else {
+			StoryModeHandler.NextSceneName = "Level1-Tutorial";
+			playButton.sceneName = "Story";
+		}
 	}
-//	public DirectToScene playButton;
-//	
-//	void Start ()
-//	{
-//		if (PlayerPrefs.GetInt ("Levels Unlocked") > 1) {
-//			playButton.sceneName = "AllLevels";
-//		} else {
-//			StoryModeHandler.NextSceneName = "Level1-Tutorial";
-//			playButton.sceneName = "Story";
-//		}
-//	}
 }
