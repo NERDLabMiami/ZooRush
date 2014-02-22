@@ -6,7 +6,7 @@ public class LevelSelectButtonController : MonoBehaviour
 	public bool go, clicked;
 	private bool waitForClickReset;
 	private RaycastHit hit; 
-	public GameObject left, right, center;
+	public GameObject left, right, center, back;
 	private LevelSelectCameraControls cameraControl;
 
 	void Start ()
@@ -16,12 +16,13 @@ public class LevelSelectButtonController : MonoBehaviour
 	}
 	
 
-	void FixedUpdate ()
+	void Update ()
 	{
 		if (!clicked) {
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			Ray ray = camera.ScreenPointToRay (Input.mousePosition);
+			Debug.DrawRay (ray.origin, ray.direction);
 			if (Physics.Raycast (ray, out hit)) {
-				if (hit.transform.gameObject != null) {
+				if (hit.transform.gameObject) {
 					if (Input.GetMouseButtonUp (0)) {
 						if (hit.transform.gameObject == left && !waitForClickReset) {
 							go = false;
@@ -38,6 +39,10 @@ public class LevelSelectButtonController : MonoBehaviour
 								if (hit.transform.gameObject == center) {
 									go = true;
 									clicked = true;
+								} else {
+									if (hit.transform.gameObject == back) {
+										NextSceneHandler.nextLevel ("Splash");
+									}
 								}
 							}
 						}

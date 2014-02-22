@@ -1,18 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelSelect.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelSelectCameraControls.cs">
     <Files>
-      <File FileName="Assets/LevelSelectButtonController.cs" Line="12" Column="2" />
-      <File FileName="Assets/Scripts/LevelSelectCameraControls.cs" Line="42" Column="18" />
-      <File FileName="Assets/Scripts/LevelSelect.cs" Line="9" Column="2" />
-      <File FileName="Assets/Scripts/Button.cs" Line="8" Column="1" />
+      <File FileName="Assets/Scripts/LevelSelectCameraControls.cs" Line="42" Column="19" />
+      <File FileName="Assets/Scripts/LevelSelect.cs" Line="35" Column="21" />
+      <File FileName="Assets/Scripts/SceneManager.cs" Line="379" Column="3" />
+      <File FileName="Assets/Scripts/LevelSelectButtonController.cs" Line="24" Column="41" />
+      <File FileName="Assets/Scripts/Button.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="LevelSelect.cs" selected="True" />
+              <Node name="LevelSelectCameraControls.cs" selected="True" />
             </Node>
           </Node>
           <Node name="Assembly-CSharp-Editor" expanded="True">

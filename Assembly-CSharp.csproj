@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LevelSelectButtonController.cs" />
      <Compile Include="Assets\Scripts\Animal.cs" />
      <Compile Include="Assets\Scripts\AnimalTouched.cs" />
      <Compile Include="Assets\Scripts\AnimatedText.cs" />
@@ -82,6 +81,7 @@
      <Compile Include="Assets\Scripts\LevelMenu.cs" />
      <Compile Include="Assets\Scripts\LevelOption.cs" />
      <Compile Include="Assets\Scripts\LevelSelect.cs" />
+     <Compile Include="Assets\Scripts\LevelSelectButtonController.cs" />
      <Compile Include="Assets\Scripts\LevelSelectCameraControls.cs" />
      <Compile Include="Assets\Scripts\LoadLevel.cs" />
      <Compile Include="Assets\Scripts\MovingObjectSpawner.cs" />
