@@ -4,6 +4,8 @@ using System;
 
 public class LevelSelect : MonoBehaviour
 {
+	private LevelSelectCameraControls cameraControl;
+	private LevelSelectButtonController buttonControl;
 
 	GameObject[] cameras;
 	Camera leftLevel;
@@ -29,14 +31,19 @@ public class LevelSelect : MonoBehaviour
 	void Start ()
 	{
 		cameras = GameObject.FindGameObjectsWithTag ("option");
+		cameraControl = GameObject.FindObjectOfType<LevelSelectCameraControls> ();
+		buttonControl = GameObject.FindObjectOfType<LevelSelectButtonController> ();
+
 		updateStarScores ();
 	}
 	
 	void Update ()
 	{
 		updateLevelCameras ();
-		if (Input.GetButtonUp ("Fire1") || Input.GetMouseButtonUp (0)) {
-			goToLevel ();
+		if (!cameraControl.move) {
+			if (buttonControl.go) {
+				goToLevel ();
+			}
 		}
 	}
 
