@@ -57,6 +57,7 @@ public class LevelEditor : EditorWindow
 				EditorGUILayout.EndVertical ();
 				EditorGUILayout.Space ();
 			}
+			EditorUtility.SetDirty (sceneManager);
 		}
 		EditorGUILayout.BeginHorizontal ();
 		{
