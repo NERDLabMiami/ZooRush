@@ -81,6 +81,7 @@
      <Compile Include="Assets\Scripts\LevelMenu.cs" />
      <Compile Include="Assets\Scripts\LevelOption.cs" />
      <Compile Include="Assets\Scripts\LevelSelect.cs" />
+     <Compile Include="Assets\Scripts\LevelSelectButtonController.cs" />
      <Compile Include="Assets\Scripts\LevelSelectCameraControls.cs" />
      <Compile Include="Assets\Scripts\LoadLevel.cs" />
      <Compile Include="Assets\Scripts\MovingObjectSpawner.cs" />

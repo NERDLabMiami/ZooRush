@@ -8,19 +8,23 @@ public class LevelSelectCameraControls : MonoBehaviour
 	Camera rightMost;
 	Camera leftMost;
 	float width;
-
-	private bool move;
+	private LevelSelectButtonController buttonControl;
+	public float xInput, mousePosition;
+	public bool move;
 
 	void Start ()
 	{
 		cameras = GameObject.FindObjectsOfType<Camera> ();
+		buttonControl = GameObject.FindObjectOfType<LevelSelectButtonController> ();
 		foreach (Camera camera in cameras) {
-			if (camera.rect.x > rightMax) {
-				rightMax = camera.rect.x;
-				rightMost = camera;
-			}
-			if (Mathf.Approximately (camera.rect.x, 0.025f)) {
-				leftMost = camera;
+			if (camera.gameObject.tag == "option") {
+				if (camera.rect.x > rightMax) {
+					rightMax = camera.rect.x;
+					rightMost = camera;
+				}
+				if (Mathf.Approximately (camera.rect.x, 0.025f)) {
+					leftMost = camera;
+				}
 			}
 		}
 		move = false;
@@ -30,19 +34,30 @@ public class LevelSelectCameraControls : MonoBehaviour
 	
 	void FixedUpdate ()
 	{
-		float xInput = Input.GetAxis ("Horizontal");
-		if (xInput > 0) {
-			if (!Mathf.Approximately (Mathf.Round (rightMost.rect.x * 1000), 350f)) {
-				if (!move) {
-					StartCoroutine (moveCameras (true));
-				}
+		xInput = Input.GetAxis ("Horizontal");
+		if (!move) {
+			if (xInput > 0) {
+				moveLeft ();
+			}
+			if (xInput < 0) {
+				moveRight ();
 			}
 		}
-		if (xInput < 0) {
-			if (!Mathf.Approximately (Mathf.Round (leftMost.rect.x * 1000), 350f)) {
-				if (!move) {
-					StartCoroutine (moveCameras (false));
-				}
+	}
+
+	public void moveLeft ()
+	{
+		if (Mathf.Round (rightMost.rect.x * 1000) >= 675f) {
+			
+			StartCoroutine (moveCameras (true));
+		}
+	}
+
+	public void moveRight ()
+	{
+		if (Mathf.Round (leftMost.rect.x * 1000) <= 25f) {
+			if (!move) {
+				StartCoroutine (moveCameras (false));
 			}
 		}
 	}
@@ -56,35 +71,44 @@ public class LevelSelectCameraControls : MonoBehaviour
 		float newLeftMost = leftMost.rect.x + width;
 
 		for (int i = 0; i < cameras.Length; i++) {
-			newValues [i] = cameras [i].rect.x;
-			if (left) {
-				newValues [i] -= width + 0.1f;
-			} else {
-				newValues [i] += width + 0.1f;
+			if (cameras [i].gameObject.tag == "option") {
+				newValues [i] = cameras [i].rect.x;
+				if (left) {
+					newValues [i] -= width + 0.1f;
+				} else {
+					newValues [i] += width + 0.1f;
+				}
 			}
 		}
 
 		while (true) {
 			for (int i = 0; i < cameras.Length; i++) {
-				Rect temp = cameras [i].rect;
-				temp.x = Mathf.SmoothDamp (temp.x, newValues [i], ref newValuesVelocity [i], 1.5f);
-				cameras [i].rect = temp;
+				if (cameras [i].gameObject.tag == "option") {
+					Rect temp = cameras [i].rect;
+					temp.x = Mathf.SmoothDamp (temp.x, newValues [i], ref newValuesVelocity [i], 1.5f);
+					cameras [i].rect = temp;
+				}
 			}
 			if (left) {
 				if (rightMost.rect.x <= newRightMost) {
+
 					for (int i = 0; i < cameras.Length; i++) {
-						Rect temp = cameras [i].rect;
-						temp.x = newValues [i] + 0.1f;
-						cameras [i].rect = temp;
+						if (cameras [i].gameObject.tag == "option") {
+							Rect temp = cameras [i].rect;
+							temp.x = newValues [i] + 0.1f;
+							cameras [i].rect = temp;
+						}
 					}
 					break;
 				}
 			} else {
 				if (leftMost.rect.x >= newLeftMost) {
 					for (int i = 0; i < cameras.Length; i++) {
-						Rect temp = cameras [i].rect;
-						temp.x = newValues [i] - 0.1f;
-						cameras [i].rect = temp;
+						if (cameras [i].gameObject.tag == "option") {
+							Rect temp = cameras [i].rect;
+							temp.x = newValues [i] - 0.1f;
+							cameras [i].rect = temp;
+						}
 					}
 					break;
 				}

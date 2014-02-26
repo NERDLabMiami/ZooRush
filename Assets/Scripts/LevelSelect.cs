@@ -4,10 +4,10 @@ using System;
 
 public class LevelSelect : MonoBehaviour
 {
+	private LevelSelectCameraControls cameraControl;
+	private LevelSelectButtonController buttonControl;
 
 	GameObject[] cameras;
-	Camera leftLevel;
-	Camera rightLevel;
 	Camera currentLevel;
 
 	string[] levelNames = {
@@ -26,17 +26,33 @@ public class LevelSelect : MonoBehaviour
 
 	public Sprite[] starImages;
 
+	void Awake ()
+	{
+		cameras = GameObject.FindGameObjectsWithTag ("option");
+		foreach (GameObject camera in cameras) {
+			int num = Int32.Parse (camera.name.Substring (camera.name.LastIndexOf ('a') + 1));
+			if (num != 1 && PlayerPrefs.GetInt (levelNames [num], 0) == 0) {
+				camera.SetActive (false);
+			}
+		}
+	}
+
 	void Start ()
 	{
 		cameras = GameObject.FindGameObjectsWithTag ("option");
+		cameraControl = GameObject.FindObjectOfType<LevelSelectCameraControls> ();
+		buttonControl = GameObject.FindObjectOfType<LevelSelectButtonController> ();
+
 		updateStarScores ();
 	}
 	
 	void Update ()
 	{
 		updateLevelCameras ();
-		if (Input.GetButtonUp ("Fire1") || Input.GetMouseButtonUp (0)) {
-			goToLevel ();
+		if (!cameraControl.move) {
+			if (buttonControl.go) {
+				goToLevel ();
+			}
 		}
 	}
 
