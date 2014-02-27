@@ -7,7 +7,8 @@ using System.Collections;
 public class StartMenu : MonoBehaviour
 {
 	public DirectToScene playButton;
-	
+	public DirectToScene instructionsButton;
+
 	void Start ()
 	{
 		if (PlayerPrefs.GetInt ("Music") != 0) {
@@ -16,11 +17,11 @@ public class StartMenu : MonoBehaviour
 			audio.mute = true;
 		}
 		Application.targetFrameRate = 60;
-		if (PlayerPrefs.GetInt ("Levels Unlocked", 0) > 1) {
-			playButton.sceneName = "MultipleCameraTest";
-		} else {
-			StoryModeHandler.NextSceneName = "Level1-Tutorial";
-			playButton.sceneName = "Story";
-		}
+//		if (PlayerPrefs.GetInt ("Levels Unlocked", 0) > 1) {
+//			playButton.sceneName = "MultipleCameraTest";
+//		} else {
+		StoryModeHandler.NextSceneName = "Level1-Tutorial";
+//			playButton.sceneName = "Story";
+//		}
 	}
 }
