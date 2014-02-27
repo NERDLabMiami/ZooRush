@@ -32,9 +32,7 @@ public class ImmovableObject : ObjectModel
 		} else {
 			speed = new Vector2 (650f, -1000f);
 		}
-		Debug.Log ("Current Speed is: " + character.rigidbody2D.velocity.x);
 		character.GetComponent<PlayerControls> ().pushAway (speed, true);
-		Debug.Log ("Current Speed is: " + character.rigidbody2D.velocity.x);
 		collisionDetect.signalSent = false;
 	}
 }

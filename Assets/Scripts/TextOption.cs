@@ -35,30 +35,36 @@ public class TextOption : MonoBehaviour
 	void OnMouseUp ()
 	{
 		if (optionEnabled) {
-			if (isLevelOption) {
-				if (gameObject.name.Contains ("Retry")) {
-					NextSceneHandler.nextLevel (Application.loadedLevelName);
-				} else {
-					if (gameObject.name.Contains ("Quit") || gameObject.name.Contains ("Main")) {
-						Application.LoadLevel ("Splash");
-					} else {
-						if (gameObject.name.Contains ("Next")) {
-							NextSceneHandler.nextLevel (levelName);
-						} 
-					}
-				}
-				
-			} else {
-				if (gameObject.name.Contains ("Resume")) {
-					GameStateMachine.requestPlay ();
-					Destroy (transform.parent.gameObject);
-				}
 
-				if (gameObject.name.Contains ("Back")) {
-					if (PlayerPrefs.HasKey ("Last Scene") && !PlayerPrefs.GetString ("Last Scene").Equals (Application.loadedLevelName)) {
-						Application.LoadLevel (PlayerPrefs.GetString ("Last Scene"));
+			if (levelName.Equals ("Reset")) {
+				PlayerPrefs.DeleteAll ();
+			} else {
+
+				if (isLevelOption) {
+					if (gameObject.name.Contains ("Retry")) {
+						NextSceneHandler.nextLevel (Application.loadedLevelName);
 					} else {
-						Application.LoadLevel ("Splash");
+						if (gameObject.name.Contains ("Quit") || gameObject.name.Contains ("Main")) {
+							Application.LoadLevel ("Splash");
+						} else {
+							if (gameObject.name.Contains ("Next")) {
+								NextSceneHandler.nextLevel (levelName);
+							} 
+						}
+					}
+				
+				} else {
+					if (gameObject.name.Contains ("Resume")) {
+						GameStateMachine.requestPlay ();
+						Destroy (transform.parent.gameObject);
+					}
+
+					if (gameObject.name.Contains ("Back")) {
+						if (PlayerPrefs.HasKey ("Last Scene") && !PlayerPrefs.GetString ("Last Scene").Equals (Application.loadedLevelName)) {
+							Application.LoadLevel (PlayerPrefs.GetString ("Last Scene"));
+						} else {
+							Application.LoadLevel ("Splash");
+						}
 					}
 				}
 			}

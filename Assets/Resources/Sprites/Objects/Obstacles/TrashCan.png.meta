@@ -52,8 +52,8 @@ TextureImporter:
         y: 56
         width: 429
         height: 557
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: TrashCan_1
       rect:
         serializedVersion: 2
@@ -70,7 +70,7 @@ TextureImporter:
         y: 4
         width: 429
         height: 609
-      alignment: 9
-      pivot: {x: .5, y: .439999998}
+      alignment: 7
+      pivot: {x: .5, y: 0}
   spritePackingTag: 
   userData: 

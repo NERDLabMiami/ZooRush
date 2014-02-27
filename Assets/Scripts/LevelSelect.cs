@@ -28,13 +28,13 @@ public class LevelSelect : MonoBehaviour
 
 	void Awake ()
 	{
-		cameras = GameObject.FindGameObjectsWithTag ("option");
-		foreach (GameObject camera in cameras) {
-			int num = Int32.Parse (camera.name.Substring (camera.name.LastIndexOf ('a') + 1));
-			if (num != 1 && PlayerPrefs.GetInt (levelNames [num], 0) == 0) {
-				camera.SetActive (false);
-			}
-		}
+//		cameras = GameObject.FindGameObjectsWithTag ("option");
+//		foreach (GameObject camera in cameras) {
+//			int num = Int32.Parse (camera.name.Substring (camera.name.LastIndexOf ('a') + 1));
+//			if (num != 1 && PlayerPrefs.GetInt (levelNames [num], 0) == 0) {
+//				camera.SetActive (false);
+//			}
+//		}
 	}
 
 	void Start ()
@@ -59,7 +59,11 @@ public class LevelSelect : MonoBehaviour
 	void goToLevel ()
 	{
 		int levelNumber = Int32.Parse (currentLevel.name.Substring (currentLevel.name.LastIndexOf ('a') + 1));
-		NextSceneHandler.loadGameLevelWithConditions (levelNames [levelNumber]);
+		if (levelNumber <= 4) {
+			NextSceneHandler.loadGameLevelWithConditions (levelNames [levelNumber]);
+		} else {
+			NextSceneHandler.nextLevel (levelNames [levelNumber]);
+		}
 	}
 
 	void updateLevelCameras ()

@@ -29,6 +29,11 @@ public class StoryModeHandler : Button
 
 	new void Start ()
 	{
+		if (PlayerPrefs.GetInt ("Music") != 0) {
+			audio.mute = false;
+		} else {
+			audio.mute = true;
+		}
 		base.Start ();
 		slides = new GameObject[][] {
 			introSlides,

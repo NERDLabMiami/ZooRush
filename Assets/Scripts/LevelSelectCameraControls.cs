@@ -8,14 +8,12 @@ public class LevelSelectCameraControls : MonoBehaviour
 	Camera rightMost;
 	Camera leftMost;
 	float width;
-	private LevelSelectButtonController buttonControl;
 	public float xInput, mousePosition;
 	public bool move;
 
 	void Start ()
 	{
 		cameras = GameObject.FindObjectsOfType<Camera> ();
-		buttonControl = GameObject.FindObjectOfType<LevelSelectButtonController> ();
 		foreach (Camera camera in cameras) {
 			if (camera.gameObject.tag == "option") {
 				if (camera.rect.x > rightMax) {

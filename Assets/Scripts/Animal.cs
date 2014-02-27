@@ -66,6 +66,10 @@ public class Animal : MonoBehaviour
 	public void setSpeed ()
 	{
 		transform.parent.rigidbody2D.velocity = speed; //assigns the rigidbody component the desired velocity
+		if (Random.Range (0, 101) == 37) {//.01% chance
+			Vector2 randomY = new Vector2 (0, ((Random.Range (0, 2) == 1) ? -1 : 1) * Random.Range (600, 751));
+			transform.parent.rigidbody2D.AddForce (randomY);
+		}
 	}
 
 	/** 

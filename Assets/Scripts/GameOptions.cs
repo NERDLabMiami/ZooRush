@@ -26,6 +26,7 @@ public class GameOptions : MonoBehaviour
 	
 	void Start ()
 	{
+
 		Back = GameObject.Find ("Text - Back");
 		charSelect = GameObject.Find ("Sprite - Character").GetComponent<SpriteRenderer> ();
 
@@ -82,6 +83,11 @@ public class GameOptions : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+		if (PlayerPrefs.GetInt ("Music") != 0) {
+			audio.mute = false;
+		} else {
+			audio.mute = true;
+		}
 		musicValue = (PlayerPrefs.GetInt ("Music") == 1);
 		soundValue = (PlayerPrefs.GetInt ("Sound") == 1);
 
