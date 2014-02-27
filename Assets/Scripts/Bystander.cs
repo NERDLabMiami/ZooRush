@@ -6,11 +6,14 @@ public class Bystander : ObjectModel
 	private bool touched;
 	public AudioClip clip;
 	public Sprite reaction;
+	private Sprite original;
 
 	void Start ()
 	{
 		touched = false;
+		audioController = GameObject.FindObjectOfType<AudioController> ();
 		GetComponentInChildren<CollisionDetect> ().objectModel = this;
+		original = GetComponent<SpriteRenderer> ().sprite;
 	}
 	
 	void Update ()
@@ -20,7 +23,9 @@ public class Bystander : ObjectModel
 
 	protected override void resetOtherValues ()
 	{
-		
+		GetComponent<SpriteRenderer> ().sprite = original;
+		touched = false;
+		GetComponentInChildren<CollisionDetect> ().signalSent = false;
 	}
 
 	public override void collisionDetected ()
@@ -32,13 +37,8 @@ public class Bystander : ObjectModel
 	public override void interactWithCharacter (Collider2D character)
 	{
 		if (!touched) {
-			GameObject.FindObjectOfType<AudioController> ().objectInteraction (clip);
-			if (character.transform.position.y < -2.5f) {
-				character.rigidbody2D.AddForce (new Vector2 (-350f, 50f));
-			} else {
-				character.rigidbody2D.AddForce (new Vector2 (-350f, -50f));
-			}
-			character.GetComponent<PlayerControls> ().resetSpeed ();
+			audioController.objectInteraction (clip);
+			character.GetComponent<PlayerControls> ().pushAway (50, true);
 			touched = true;
 		}
 	}

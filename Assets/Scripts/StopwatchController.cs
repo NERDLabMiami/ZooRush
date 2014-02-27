@@ -5,23 +5,14 @@ public class StopwatchController : MonoBehaviour
 {
 	private bool start;
 	private float currentSpeed;
-//	private static bool tutDialogDisplayed;
-
-//	void Awake ()
-//	{
-//		tutDialogDisplayed = false;
-//	}
 
 	void Start ()
 	{
 		start = false;
 		currentSpeed = 1.0f;
-//		if (!tutDialogDisplayed) {
-//			if (GameObject.FindObjectOfType<SceneManager> ().tutEnabled) {
-//				GameObject.FindObjectOfType<DialogHandler> ().forceDialog (GetComponentInChildren<DialogTrigger> ());
-//			}
-//			tutDialogDisplayed = true;
-//		}
+		if (PlayerPrefs.GetInt ("Sound") == 0) {
+			audio.mute = true;
+		}
 	}
 
 	void FixedUpdate ()

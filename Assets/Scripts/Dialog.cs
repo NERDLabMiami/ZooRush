@@ -49,11 +49,9 @@ public class Dialog : Button
 
 	public void open ()
 	{
-//		Debug.Log ("OPEN");
 		displaying = true;
 		textAnimator.gameObject.SetActive (true);
 		animator.SetTrigger ("Opened");
-//		show ();
 		next ();
 	}
 
@@ -77,13 +75,21 @@ public class Dialog : Button
 		
 		textAnimator.AnimateText (displayText);
 		stopSpeaking ();
-		currentTextIndex++;
+		++currentTextIndex;
 		clicked = false;
 
 	}
 
 	private void close ()
 	{
+		StartCoroutine (closeDelay ());
+		textAnimator.textMesh.text = "";
+	}
+
+	private IEnumerator closeDelay ()
+	{
+		Debug.Log ("Waiting");
+		yield return new WaitForSeconds (1f);
 		animator.SetTrigger ("Close");
 	}
 
@@ -92,8 +98,6 @@ public class Dialog : Button
 		text = null;
 		animator.SetTrigger ("Disable");
 		displaying = false;
-
-//		hide ();
 		GameStateMachine.requestPlay ();
 	}
 
@@ -103,7 +107,6 @@ public class Dialog : Button
 			if (currentTextIndex < text.Length) {
 				next ();
 			} else {
-				textAnimator.textMesh.text = "";
 				close ();
 			}
 		}

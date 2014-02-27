@@ -3,20 +3,19 @@ using System.Collections;
 
 public class TextAnimator : MonoBehaviour
 {
-	public bool animating, finished, forceStop;
+	public bool animating;
 	private string text;
 	public TextMesh textMesh;
 
 	void Start ()
 	{
-		animating = finished = forceStop = false;
+		animating = false;
 	}
 	
 	public void AnimateText (string displayText)
 	{
 		this.text = displayText;
 		textMesh.text = "";
-		forceStop = false;
 		animating = true;
 		StartCoroutine (Animate ());
 
@@ -24,25 +23,12 @@ public class TextAnimator : MonoBehaviour
 
 	private IEnumerator Animate ()
 	{
-		foreach (char letter in text.ToCharArray()) {
-			Debug.Log ("Animating is " + animating);
-			if (forceStop) {
-				yield return 0;
-			}
-			textMesh.text += letter;
+		for (int i = 1; i <= text.Length; i++) {
+			textMesh.text = text.Substring (0, i);
 			yield return new WaitForSeconds (0.05f);
 		}
-		Debug.Log ("YUP");
-		if (!textMesh.text.Equals (text)) {
-			textMesh.text = text;
-		}
-		finished = true;
+
 		animating = false;
 	}
 
-	public void forceFinish ()
-	{
-		Debug.Log ("OTAY");
-		forceStop = true;
-	}
 }

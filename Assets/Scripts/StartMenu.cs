@@ -10,6 +10,11 @@ public class StartMenu : MonoBehaviour
 	
 	void Start ()
 	{
+		if (PlayerPrefs.GetInt ("Music") != 0) {
+			audio.mute = false;
+		} else {
+			audio.mute = true;
+		}
 		Application.targetFrameRate = 60;
 		if (PlayerPrefs.GetInt ("Levels Unlocked", 0) > 1) {
 			playButton.sceneName = "MultipleCameraTest";
