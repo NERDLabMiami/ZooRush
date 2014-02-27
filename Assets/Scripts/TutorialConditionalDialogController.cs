@@ -58,18 +58,20 @@ public class TutorialConditionalDialogController : MonoBehaviour
 
 	private string[] crisisText = {
 		"You're about to have a",
-		"+crisis! Staying hydrated",
-		"+and taking painkillers",
-		"+can help you manage your",
+		"+crisis! Staying",
+		"+hydrated and taking",
+		"painkillers can help",
+		"+you manage your",
 		"+condition."
 	};
 
 	private string[] animalText = {
-		"When you're close to an",
-		"+animal, you can throw a",
-		"+a net by tapping on it.",
-		"+Make sure you position",
-		"+yourself correctly or",
-		"+you might end up missing!"
+		"When you're close to",
+		"+an animal, you can",
+		"+throw a net by tapping",
+		"+on it. Make sure you",
+		"+position yourself",
+		"+correctly or you might",
+		"+end up missing!"
 	};
 }
