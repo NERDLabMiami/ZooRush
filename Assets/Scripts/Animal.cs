@@ -15,47 +15,49 @@ public class Animal : MonoBehaviour
 
 	private Animator animator; //Animator for the animal's running sprites
 	private AudioSource audioSource; //Audio Source that plays sound clip
+	private Rigidbody2D animalPhysics; //The rigid body component that controls our animal's physics
 
 	void Start ()
 	{
 		if (PlayerPrefs.GetInt ("Sound") != 0) { // sound is enabled, we will add a sound source for the animal
-			audioSource = gameObject.AddComponent<AudioSource> ();
+			audioSource = gameObject.AddComponent<AudioSource> (); //adding the sound source
 			audioSource.playOnAwake = false; //disable playing on instatiation
 			audioSource.clip = audioClip; 
 		}
 
 		animator = GetComponent<Animator> (); //assigns the pointer to the animator component
 		caught = false; //default value for whether the animal has been caught
-		transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
+		animalPhysics = transform.parent.rigidbody2D; //setting the pointer to our rigid body physics controller
+		animalPhysics.velocity = new Vector2 (0f, 0f); //we set the initial velocity to 0
 		GameObject.Find ("Animal Icon").GetComponent<SpriteRenderer> ().sprite = animalIcon; //Changes the icon in the distance meter
 	}
 	
 	void Update ()
 	{
-		animator.SetFloat ("Speed", transform.parent.rigidbody2D.velocity.x); //Tells the animator state machine what the current speed value is
-		switch (GameStateMachine.currentState) {
+		animator.SetFloat ("Speed", animalPhysics.velocity.x); //Tells the animator state machine what the current speed value is
+		switch (GameStateMachine.currentState) {//Checking what our current game state is
 		case (int)GameStateMachine.GameState.Intro:
-		case (int)GameStateMachine.GameState.Play:
+		case (int)GameStateMachine.GameState.Play://If we are in the intro or play state, then we want our animal to maintain speed and the animal sound to be active
 			setSpeed ();
-			if (audioSource) {
+			if (audioSource) { //start audio playback
 				if (!audioSource.isPlaying) {
 					audioSource.Play ();
 				}
 			}
 			break;
-		case (int)GameStateMachine.GameState.Paused:
+		case (int)GameStateMachine.GameState.Paused://If we're paused, then the animal needs to stop and audio must pause as well
+			animalPhysics.velocity = new Vector2 (0f, 0f);
 			if (audioSource) {
 				if (audioSource.isPlaying) {
 					audioSource.Pause ();
 				}
 			}
-			transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
 			break;
-		case (int)GameStateMachine.GameState.PauseToPlay:
+		case (int)GameStateMachine.GameState.PauseToPlay: //going from the pause to play state, we want a slight delay before resuming speed
 			StartCoroutine (waitToResume (0.1f));
 			break;
 		default:
-			transform.parent.rigidbody2D.velocity = new Vector2 (0f, 0f);
+			animalPhysics.velocity = new Vector2 (0f, 0f);
 			break;
 		}
 	}
@@ -65,33 +67,21 @@ public class Animal : MonoBehaviour
 	 */ 
 	public void setSpeed ()
 	{
-		transform.parent.rigidbody2D.velocity = speed; //assigns the rigidbody component the desired velocity
-		if (Random.Range (0, 101) == 37) {//.01% chance
+		animalPhysics.velocity = speed; //assigns the rigidbody component the desired velocity
+		if (Random.Range (0, 101) == 37) {//.01% chance per frame of moving the animal up or down
 			Vector2 randomY = new Vector2 (0, ((Random.Range (0, 2) == 1) ? -1 : 1) * Random.Range (600, 751));
-			transform.parent.rigidbody2D.AddForce (randomY);
+			animalPhysics.AddForce (randomY);
 		}
 	}
 
-	/** 
-	 * Randomly changes the y-axis value of the animal object.
-	 */
-	public void changeY ()
-	{
-		int moveChance = Random.Range (1, 101);
-		if (moveChance % 100 == 0) {//1% chance
-			float yForce = Random.Range (-150f, 150f);
-			transform.parent.rigidbody2D.AddForce (new Vector2 (0, yForce));
-		}
-	}
-	
-	/** Resumes the default speed of the animal.
+	/** Resumes the default speed of the animal after a delay.
 	* @param time the wait time before resetting the speed of the animal
 	*/
 	
 	private IEnumerator waitToResume (float time)
 	{
 		yield return new WaitForSeconds (time);
-		transform.parent.rigidbody2D.velocity = speed;
+		animalPhysics.velocity = speed;
 		GameStateMachine.requestPlay ();
 	}
 }

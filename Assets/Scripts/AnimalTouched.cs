@@ -17,7 +17,7 @@ public class AnimalTouched : MonoBehaviour
 	void Update ()
 	{
 		if (Input.GetMouseButton (0)) { //If the mouse button has been pressed/touch input received
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition); //
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition); //draw a ray from the touch point to the scene
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit, 100)) {
 				if (hit.collider.gameObject == gameObject) {
