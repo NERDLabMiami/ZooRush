@@ -5,27 +5,34 @@ using System.Collections;
  * 
  * @author Ebtissam Wahman
  */
-public class AnimalTouched : MonoBehaviour
+public class AnimalTouched : TouchHandler
 {
-	public bool touched; //Indicator for whether the animal has been touched
+	private bool touched; //Indicator for whether the animal has been touched
+	private Animal animal; //animal model
 	
 	void Start ()
 	{
 		touched = false; //by default the animal starts off as untouched
+		animal = GetComponent<Animal> ();
 	}
-	
-	void Update ()
+
+	public override void objectTouched ()
 	{
-		if (Input.GetMouseButton (0)) { //If the mouse button has been pressed/touch input received
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition); //draw a ray from the touch point to the scene
-			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit, 100)) {
-				if (hit.collider.gameObject == gameObject) {
-					touched = true;
-				}
-			}
-		} else {
-			touched = false;
+		if (!touched && Input.GetMouseButton (0)) {
+			touched = true;
+			animal.touched ();
 		}
 	}
+
+	public override void objectUntouched ()
+	{
+
+	}
+
+	protected override IEnumerator waitToResetTouch ()
+	{
+		yield return new WaitForSeconds (0.2f);
+		touched = false;
+	}
+
 }

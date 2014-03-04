@@ -2,72 +2,65 @@
 using System.Collections;
 
 /** Generic Button Class, used for clicakble objects in the game.
- * Objects are requires to have a 3d collider in order to perform proper interaction. 
+ * Objects are required to have a 2d collider in order to perform proper interaction. 
+ * @author Ebtissam Wahman
  */ 
-public abstract class Button : MonoBehaviour
+public abstract class Button : TouchHandler
 {
 	public static string previousScene;
-	private Color originalColor;
-	private RaycastHit hit; 
+	protected Color originalColor;
 	protected bool clicked;
+	protected TextMesh textMesh;
 
 	protected void Start ()
 	{
 		clicked = false;
-		if (GetComponent<TextMesh> () != null) {
-			originalColor = GetComponent<TextMesh> ().color;
+		textMesh = GetComponentInChildren<TextMesh> ();
+		if (textMesh) {
+			originalColor = textMesh.color;
+		}
+	}
+
+	public override void objectTouched ()
+	{
+		if (textMesh) {
+			selectText ();
+		}
+		if (!clicked) {
+			if (Input.GetMouseButtonUp (0)) {
+				previousScene = Application.loadedLevelName;
+				clicked = true;
+				action ();
+			}
+		}
+	}
+
+	public override void objectUntouched ()
+	{
+		if (textMesh) {
+			deselectText ();
 		}
 	}
 	
-	protected void Update ()
-	{
-		if (!clicked) {
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray, out hit)) {
-				if (hit.transform.gameObject == gameObject) {
-					selectText ();
-					if (Input.GetMouseButtonUp (0)) {
-						previousScene = Application.loadedLevelName;
-						clicked = true;
-						action ();
-					}
-				} else {
-					deselectText ();
-				}
-			}
-		}
-	}
-
-	private void onHoverAndClick ()
-	{
-		
-	}
-
-	private void onClickOnly ()
-	{
-		if (Input.GetMouseButtonUp (0)) {
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray, out hit)) {
-				if (hit.transform.gameObject == gameObject) {
-				}
-			}
-
-		}
-	}
-
 	public void selectText ()
 	{
-		if (GetComponent<TextMesh> () != null) {
-			GetComponent<TextMesh> ().color = Color.yellow;
+		if (textMesh && !textMesh.color.Equals (Color.yellow)) {
+			textMesh.color = Color.yellow;
 		}
 	}
 
 	public void deselectText ()
 	{
-		if (GetComponent<TextMesh> () != null) {
-			GetComponent<TextMesh> ().color = originalColor;
+		if (textMesh && !textMesh.color.Equals (originalColor)) {
+			textMesh.color = originalColor;
 		}
 	}
 
 	protected abstract void action ();
+
+	protected override IEnumerator waitToResetTouch ()
+	{
+		yield return new WaitForSeconds (0.2f);
+		clicked = false;
+	}
 }

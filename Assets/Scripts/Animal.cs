@@ -84,4 +84,9 @@ public class Animal : MonoBehaviour
 		animalPhysics.velocity = speed;
 		GameStateMachine.requestPlay ();
 	}
+
+	public void touched ()
+	{
+
+	}
 }

@@ -4,6 +4,7 @@ using System.Collections;
 public class PauseButton : Button
 {
 	private SpriteRenderer[] renderers;
+	private LevelGUIController guiControls;
 	private bool visible;
 
 	new void Start ()
@@ -11,11 +12,11 @@ public class PauseButton : Button
 		base.Start ();
 		visible = true;
 		renderers = GetComponentsInChildren<SpriteRenderer> ();
+		guiControls = GameObject.FindObjectOfType<LevelGUIController> ();
 	}
 	
-	new void Update ()
+	void Update ()
 	{
-		base.Update ();
 		visible = hideShowButton (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play);
 	}
 
@@ -41,7 +42,7 @@ public class PauseButton : Button
 	protected override void action ()
 	{
 		if (visible) {
-			GameObject.FindObjectOfType<LevelGUIController> ().pauseMenu ();
+			guiControls.pauseMenu ();
 		}
 		clicked = false;
 	}
