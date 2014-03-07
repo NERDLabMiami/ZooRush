@@ -10,7 +10,6 @@ public class PowerUp : ObjectModel
 
 	private Animator animator;
 	public int painPoints; // pills = 75 , water bottles = 25
-	public bool isPill;
 
 	private bool interacted;
 	private int pillCount;
