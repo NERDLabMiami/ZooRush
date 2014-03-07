@@ -113,4 +113,14 @@ public class Dialog : Button
 		clicked = false;
 	}
 
+	new public void selectText ()
+	{
+		textMesh.color = originalColor;
+	}
+	
+	new public void deselectText ()
+	{
+		textMesh.color = originalColor;
+	}
+
 }
