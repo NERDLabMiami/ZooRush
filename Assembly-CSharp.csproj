@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\DialogTrigger.cs" />
      <Compile Include="Assets\Scripts\DirectToScene.cs" />
      <Compile Include="Assets\Scripts\DistanceMeter.cs" />
+     <Compile Include="Assets\Scripts\GUITouchController.cs" />
      <Compile Include="Assets\Scripts\GameOptions.cs" />
      <Compile Include="Assets\Scripts\GameSetup.cs" />
      <Compile Include="Assets\Scripts\GameStateMachine.cs" />
@@ -78,7 +79,6 @@
      <Compile Include="Assets\Scripts\LevelButton.cs" />
      <Compile Include="Assets\Scripts\LevelFailModel.cs" />
      <Compile Include="Assets\Scripts\LevelGUIController.cs" />
-     <Compile Include="Assets\Scripts\LevelMenu.cs" />
      <Compile Include="Assets\Scripts\LevelOption.cs" />
      <Compile Include="Assets\Scripts\LevelSelect.cs" />
      <Compile Include="Assets\Scripts\LevelSelectButtonController.cs" />
@@ -92,6 +92,7 @@
      <Compile Include="Assets\Scripts\ObjectModel.cs" />
      <Compile Include="Assets\Scripts\ObstacleSpawner.cs" />
      <Compile Include="Assets\Scripts\PainIndicator.cs" />
+     <Compile Include="Assets\Scripts\PainKiller.cs" />
      <Compile Include="Assets\Scripts\PauseButton.cs" />
      <Compile Include="Assets\Scripts\PlayButton.cs" />
      <Compile Include="Assets\Scripts\PlaySound.cs" />
@@ -112,9 +113,11 @@
      <Compile Include="Assets\Scripts\TextOptionController.cs" />
      <Compile Include="Assets\Scripts\TextOutline.cs" />
      <Compile Include="Assets\Scripts\ToggleButton.cs" />
+     <Compile Include="Assets\Scripts\TouchHandler.cs" />
      <Compile Include="Assets\Scripts\TutorialConditionalDialogController.cs" />
      <Compile Include="Assets\Scripts\Vehicle.cs" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
+     <None Include="Assets\Resources\Sprites\Characters\Doctor.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

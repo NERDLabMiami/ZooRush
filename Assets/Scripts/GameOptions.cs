@@ -30,12 +30,6 @@ public class GameOptions : MonoBehaviour
 		Back = GameObject.Find ("Text - Back");
 		charSelect = GameObject.Find ("Sprite - Character").GetComponent<SpriteRenderer> ();
 
-		//Enable all Text Options
-		TextOption[] textOptions = GameObject.FindObjectsOfType<TextOption> ();
-		foreach (TextOption textOption in textOptions) {
-			textOption.optionEnabled = true;
-		}
-
 		if (!PlayerPrefs.HasKey ("Music")) {
 			PlayerPrefs.SetInt ("Music", 1);
 		}

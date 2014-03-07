@@ -9,4 +9,5 @@ public class DirectToScene : Button
 	{
 		Application.LoadLevel (sceneName);
 	}
+
 }
