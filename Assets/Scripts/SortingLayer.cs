@@ -21,7 +21,7 @@ public class SortingLayer : MonoBehaviour
 		}
 	}
 
-	void Update ()
+	void FixedUpdate ()
 	{
 		if (matchParentSprite) {
 			renderer.sortingLayerName = transform.parent.gameObject.renderer.sortingLayerName;

@@ -6,6 +6,8 @@ using System.Collections;
  */ 
 public class Character : MonoBehaviour
 {
+	public GameObject speechBubble;
+	private TextMesh speechBubbleText;
 
 	public Sprite[] baseSprites;
 	public Sprite[] davidFaceSprites;
@@ -32,6 +34,35 @@ public class Character : MonoBehaviour
 		playerControls = GetComponent<PlayerControls> ();
 		playerControls.characterName = characters [currentCharacter];
 		playerControls.faceIcons = characterFaceIcons [currentCharacter];
+	}
+
+
+	void Start ()
+	{
+		speechBubbleText = speechBubble.GetComponentInChildren<TextMesh> ();
+		SpeechBubbleDisplay ("LOL");
+//		speechBubble.SetActive (false);
+	}
+
+	public void SpeechBubbleDisplay (string text)
+	{
+
+		speechBubble.SetActive (true);
+		speechBubbleText.text = text;
+		speechBubble.GetComponent<Animator> ().SetTrigger ("Hide");
+		StartCoroutine (waitForDisappear ());
+	}
+
+	private IEnumerator waitForDisappear ()
+	{
+
+		while (speechBubbleText.renderer.material.color.a > 0.1f) {
+			yield return new WaitForSeconds (0.1f);
+		}
+
+		speechBubble.SetActive (false);
+
+
 	}
 
 }

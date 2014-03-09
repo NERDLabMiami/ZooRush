@@ -22,6 +22,8 @@ public class PainKiller : TouchHandler
 		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 		painIndicator = GameObject.FindObjectOfType<PainIndicator> ();
 		audioController = GameObject.FindObjectOfType<AudioController> ();
+		pillCount = PlayerPrefs.GetInt ("PILLS"); //at the start of the level we get our current pill count
+		sceneManager.updatePillCount (pillCount);
 	}
 
 	/**
@@ -33,11 +35,9 @@ public class PainKiller : TouchHandler
 		if (!interacted && Input.GetMouseButtonUp (0)) {
 			interacted = true;
 			audioController.objectInteraction (clip);
-			pillCount = PlayerPrefs.GetInt ("PILLS");
 			if (pillCount > 0) {
 				pillCount--;
-				PlayerPrefs.SetInt ("PILLS", pillCount); //updates our global value for the pill count
-				sceneManager.updatePillCount (); //tells the scene manager to update our pill count
+				sceneManager.updatePillCount (pillCount); //tells the scene manager to update our pill count
 				scoreKeeper.addToCount ("Pill");
 				painIndicator.subtractPoints (painPoints);
 			}
@@ -48,6 +48,20 @@ public class PainKiller : TouchHandler
 	public override void objectUntouched ()
 	{
 
+	}
+
+	public void incrementPillCount ()
+	{
+		//TODO Add +1 GUI Animation and pill shake/glow as well as temporary smiley face to character face
+		if (pillCount < 3) {
+			pillCount = pillCount + 1;
+			sceneManager.updatePillCount (pillCount);
+		}
+	}
+
+	public void savePillCount ()
+	{
+		PlayerPrefs.SetInt ("PILLS", pillCount); //updates our global value for the pill count
 	}
 
 	protected override IEnumerator waitToResetTouch ()

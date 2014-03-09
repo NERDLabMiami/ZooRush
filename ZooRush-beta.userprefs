@@ -1,42 +1,9 @@
 ﻿<Properties>
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Dialog.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Character.cs">
     <Files>
-      <File FileName="Assets/Scripts/TextOption.cs" Line="18" Column="19" />
-      <File FileName="Assets/Scripts/GameOptions.cs" Line="24" Column="26" />
-      <File FileName="Assets/Scripts/Button.cs" Line="13" Column="11" />
-      <File FileName="Assets/Scripts/Dialog.cs" Line="118" Column="34" />
-      <File FileName="Assets/Scripts/GUITouchController.cs" Line="10" Column="1" />
-      <File FileName="Assets/Scripts/TouchHandler.cs" Line="10" Column="40" />
+      <File FileName="Assets/Scripts/Character.cs" Line="59" Column="26" />
     </Files>
-=======
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneManager.cs">
-    <Files>
-      <File FileName="Assets/Scripts/TutorialConditionalDialogController.cs" Line="65" Column="5" />
-      <File FileName="Assets/Scripts/GameStateMachine.cs" Line="68" Column="31" />
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="67" Column="35" />
-      <File FileName="Assets/Scripts/PlayerControls.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/NetLauncher.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/LevelGUIController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Animal.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CameraFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Character.cs" Line="26" Column="25" />
-      <File FileName="Assets/Scripts/CameraAspect.cs" Line="1" Column="1" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True">
-              <Node name="SceneManager.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
->>>>>>> master
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
