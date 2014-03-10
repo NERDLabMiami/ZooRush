@@ -32,7 +32,7 @@ public class ImmovableObject : ObjectModel
 		} else {
 			speed = new Vector2 (650f, -1000f);
 		}
-		character.GetComponent<PlayerControls> ().pushAway (speed, true);
+		character.GetComponentInChildren<PlayerControls> ().pushAway (speed, true);
 		collisionDetect.signalSent = false;
 	}
 }

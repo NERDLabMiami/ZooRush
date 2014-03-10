@@ -45,7 +45,7 @@ public class LevelGUIController : MonoBehaviour
 		//menuPrefabs[0] is the start screen by default
 		startMenu = GameObject.Instantiate (menuPrefabs [0]) as GameObject;
 		startMenu.transform.parent = transform;
-		startMenu.transform.localPosition = new Vector3 (0, 0, 10);
+		startMenu.transform.localPosition = new Vector3 (0, 0, 0);
 
 		scoreDisplayed = false;
 		timeCountDown = false;
@@ -158,7 +158,7 @@ public class LevelGUIController : MonoBehaviour
 		if (stopwatch == null) {
 			stopwatch = Instantiate (stopWatchObject) as GameObject;
 			stopwatch.transform.parent = transform;
-			stopwatch.transform.localPosition = new Vector3 (0, 0, 10);
+			stopwatch.transform.localPosition = new Vector3 (0, 0, 0);
 			stopwatchController = stopwatch.GetComponent<StopwatchController> ();
 		}
 		stopwatchController.receiveInteraction (infectionType);
@@ -183,7 +183,7 @@ public class LevelGUIController : MonoBehaviour
 			//menuPrefabs[1] is the throw alert dialog box by default
 			throwAlert = Instantiate (menuPrefabs [1]) as GameObject;
 			throwAlert.transform.parent = transform;
-			throwAlert.transform.localPosition = new Vector3 (0, 0, 10);
+			throwAlert.transform.localPosition = new Vector3 (0, 0, 0);
 		}
 		return true;
 	}
@@ -205,7 +205,7 @@ public class LevelGUIController : MonoBehaviour
 			GameStateMachine.requestPause ();
 			GameObject pauseMenu = Instantiate (menuPrefabs [3]) as GameObject;
 			pauseMenu.transform.parent = transform;
-			pauseMenu.transform.localPosition = new Vector3 (0, 0, 10);
+			pauseMenu.transform.localPosition = new Vector3 (0, 0, 0);
 		}
 
 	}
@@ -219,8 +219,8 @@ public class LevelGUIController : MonoBehaviour
 		dimScreen ();
 		if (GameObject.Find ("GUI Menu - Endless Mode(Clone)") == null) {
 			GameObject menu = Instantiate (menuPrefabs [4]) as GameObject;
-			menu.transform.parent = Camera.main.transform;
-			menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
+			menu.transform.parent = transform;
+			menu.transform.localPosition = new Vector3 (0f, 0f, 0f);
 			GameObject.Find ("Menu - Time Value").GetComponent<TextMesh> ().text = TimeText (time);
 			GameObject.Find ("Menu - Animals Value").GetComponent<TextMesh> ().text = "" + scores [7];
 		}
@@ -240,8 +240,8 @@ public class LevelGUIController : MonoBehaviour
 		GameObject menu = GameObject.Find (menuPrefabs [2].name);
 		if (menu == null) {
 			menu = Instantiate (menuPrefabs [2]) as GameObject;
-			menu.transform.parent = Camera.main.transform;
-			menu.transform.localPosition = new Vector3 (0f, 0f, 10f);
+			menu.transform.parent = transform;
+			menu.transform.localPosition = new Vector3 (0f, 0f, 0f);
 		}
 		
 		TextMesh[] menuText = menu.GetComponentsInChildren<TextMesh> ();

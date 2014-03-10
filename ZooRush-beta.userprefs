@@ -1,8 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Character.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ImmovableObject.cs">
     <Files>
-      <File FileName="Assets/Scripts/Character.cs" Line="59" Column="26" />
+      <File FileName="Assets/Scripts/SortingLayer.cs" Line="17" Column="70" />
+      <File FileName="Assets/Scripts/SortingLayerController.cs" Line="21" Column="88" />
+      <File FileName="Assets/Scripts/ImmovableObject.cs" Line="35" Column="1" />
+      <File FileName="Assets/Scripts/ObjectModel.cs" Line="31" Column="44" />
+      <File FileName="Assets/Scripts/CollisionDetect.cs" Line="39" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

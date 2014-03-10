@@ -55,7 +55,7 @@ public class TextOutline : MonoBehaviour
 			other.lineSpacing = textMesh.lineSpacing;
 			other.offsetZ = textMesh.offsetZ;
 			other.renderer.sortingLayerName = renderer.sortingLayerName;
-			other.renderer.sortingOrder = renderer.sortingOrder;
+			other.renderer.sortingOrder = renderer.sortingOrder - 1;
 			
 			Vector3 pixelOffset = GetOffset (i) * pixelSize;
 			Vector3 worldPoint = Camera.main.ScreenToWorldPoint (screenPoint + pixelOffset);
