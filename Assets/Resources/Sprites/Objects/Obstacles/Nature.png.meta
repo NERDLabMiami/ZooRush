@@ -38,84 +38,80 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites:
     - name: Nature_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 1590
-        width: 801
+        x: 8
+        y: 836
+        width: 803
         height: 273
       alignment: 7
       pivot: {x: .5, y: 0}
     - name: Nature_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 1369
-        width: 290
-        height: 219
+        x: 816
+        y: 889
+        width: 291
+        height: 220
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: Nature_2
       rect:
         serializedVersion: 2
-        x: 5
-        y: 744
-        width: 549
+        x: 8
+        y: 208
+        width: 551
         height: 622
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: Nature_3
       rect:
         serializedVersion: 2
-        x: 3
-        y: 145
-        width: 476
-        height: 596
+        x: 565
+        y: 234
+        width: 477
+        height: 595
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: Nature_4
       rect:
         serializedVersion: 2
-        x: 481
-        y: 664
+        x: 7
+        y: 124
         width: 291
         height: 77
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: Nature_5
       rect:
         serializedVersion: 2
-        x: 3
-        y: 43
-        width: 380
-        height: 95
+        x: 304
+        y: 104
+        width: 381
+        height: 97
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: Nature_6
       rect:
         serializedVersion: 2
-        x: 384
-        y: 107
-        width: 199
-        height: 31
+        x: 689
+        y: 166
+        width: 200
+        height: 35
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
     - name: Nature_7
       rect:
         serializedVersion: 2
-        x: 5
-        y: 3
-        width: 407
-        height: 38
+        x: 8
+        y: 60
+        width: 408
+        height: 37
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

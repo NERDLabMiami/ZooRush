@@ -24,7 +24,7 @@ public class ImmovableObject : ObjectModel
 	{
 	}
 	
-	public override void interactWithCharacter (Collider2D character)
+	public override void interactWithCharacter (GameObject character)
 	{
 		Vector2 speed;
 		if (character.transform.localPosition.y < -3f) {

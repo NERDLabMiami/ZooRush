@@ -24,6 +24,8 @@ public class PlayerControls : MonoBehaviour
 
 	public Sprite[] faceIcons;
 
+	private float sensitivity;
+
 	void Start ()
 	{
 		animate = GetComponent<Animator> ();
@@ -34,6 +36,7 @@ public class PlayerControls : MonoBehaviour
 		speed = new Vector2 (7f, 0f);
 		maxSpeed = 4f;
 		changeSpeed = false;
+		sensitivity = PlayerPrefs.GetFloat ("Sensitivity", 1);
 	}
 
 	void FixedUpdate ()
@@ -45,7 +48,7 @@ public class PlayerControls : MonoBehaviour
 				yMovement = Input.GetAxis ("Vertical");
 			}
 			if (sceneManager.isPlaying) {
-				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed);
+				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed * sensitivity);
 			} else {
 				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, 0f);
 			}

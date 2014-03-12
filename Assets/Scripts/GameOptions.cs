@@ -22,6 +22,7 @@ public class GameOptions : MonoBehaviour
 	
 	private bool musicValue;
 	private bool soundValue;
+	private float sensitivity;
 	
 	
 	void Start ()
@@ -35,6 +36,9 @@ public class GameOptions : MonoBehaviour
 		}
 		if (!PlayerPrefs.HasKey ("Sound")) {
 			PlayerPrefs.SetInt ("Sound", 1);
+		}
+		if (!PlayerPrefs.HasKey ("Sensitivity")) {
+			PlayerPrefs.SetFloat ("Sensitivity", 1);
 		}
 		
 		if (!PlayerPrefs.HasKey ("Character Selected")) { //Set up default character
@@ -59,6 +63,7 @@ public class GameOptions : MonoBehaviour
 		
 		musicValue = (PlayerPrefs.GetInt ("Music") == 1);
 		soundValue = (PlayerPrefs.GetInt ("Sound") == 1);
+		sensitivity = PlayerPrefs.GetFloat ("Sensitivity", 1);
 
 		if (musicValue) {
 			MusicButton.GetComponent<ToggleButton> ().Activate ();

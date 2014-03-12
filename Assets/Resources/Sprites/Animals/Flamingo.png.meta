@@ -40,9 +40,9 @@ TextureImporter:
   textureType: 8
   buildTargetSettings:
   - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+    maxTextureSize: 512
+    textureFormat: -1
+    compressionQuality: 100
   spriteSheet:
     sprites:
     - name: Flamingo_0

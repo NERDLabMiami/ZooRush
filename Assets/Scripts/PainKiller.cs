@@ -15,6 +15,9 @@ public class PainKiller : TouchHandler
 	private bool interacted; //if an interaction has been registered
 	public AudioClip clip; //audio clip that plays on clicking the pill
 	private AudioController audioController; //pointer to the scene audio controller
+	private Animator animator; //Animator for +/- 1 effect when interecting with painkiller button & doctors
+	public TextMesh animationText; //Text that is animated after interaction
+	private CharacterSpeech characterSpeech; //pointer to character speech bubble handler
 
 	void Start ()
 	{
@@ -22,6 +25,8 @@ public class PainKiller : TouchHandler
 		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 		painIndicator = GameObject.FindObjectOfType<PainIndicator> ();
 		audioController = GameObject.FindObjectOfType<AudioController> ();
+		characterSpeech = GameObject.FindObjectOfType<CharacterSpeech> ();
+		animator = GetComponent<Animator> ();
 		pillCount = PlayerPrefs.GetInt ("PILLS"); //at the start of the level we get our current pill count
 		sceneManager.updatePillCount (pillCount);
 	}
@@ -34,13 +39,7 @@ public class PainKiller : TouchHandler
 	{
 		if (!interacted && Input.GetMouseButtonUp (0)) {
 			interacted = true;
-			audioController.objectInteraction (clip);
-			if (pillCount > 0) {
-				pillCount--;
-				sceneManager.updatePillCount (pillCount); //tells the scene manager to update our pill count
-				scoreKeeper.addToCount ("Pill");
-				painIndicator.subtractPoints (painPoints);
-			}
+			decrementPillCount ();
 			StartCoroutine (waitToResetTouch ()); //resets the intereacted tracker after a small period of time
 		}
 	}
@@ -52,11 +51,39 @@ public class PainKiller : TouchHandler
 
 	public void incrementPillCount ()
 	{
-		//TODO Add +1 GUI Animation and pill shake/glow as well as temporary smiley face to character face
+		characterSpeech.SpeechBubbleDisplay ("Thanks Doc!");
 		if (pillCount < 3) {
-			pillCount = pillCount + 1;
-			sceneManager.updatePillCount (pillCount);
+			++pillCount;
+			animationText.text = "+1";
+			animator.SetTrigger ("Increment");
 		}
+	}
+
+	private void increment ()
+	{
+		sceneManager.updatePillCount (pillCount);
+		animator.SetTrigger ("Reset");
+	}
+
+	private void decrementPillCount ()
+	{
+		if (pillCount > 0) {
+			--pillCount;
+			characterSpeech.SpeechBubbleDisplay ("What a Relief!");
+			animationText.text = "-1";
+			animator.SetTrigger ("Decrement");
+		}
+	}
+
+	private void decrement ()
+	{
+		audioController.objectInteraction (clip);
+
+		sceneManager.updatePillCount (pillCount); //tells the scene manager to update our pill count
+		scoreKeeper.addToCount ("Pill");
+		painIndicator.subtractPoints (painPoints);
+		animator.SetTrigger ("Reset");
+
 	}
 
 	public void savePillCount ()

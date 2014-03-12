@@ -31,7 +31,7 @@ public class Building : MonoBehaviour
 	
 	void OnTriggerEnter2D (Collider2D coll)
 	{
-		if (coll.gameObject.Equals (player.gameObject)) {
+		if (coll.transform.parent.gameObject.Equals (player.gameObject)) {
 			animate.SetTrigger ("Open");
 			player.flash ();
 

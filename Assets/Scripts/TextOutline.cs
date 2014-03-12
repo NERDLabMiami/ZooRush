@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 /**
  * Adds an outline around Objects with a Text Mesh. Obtained from: 
@@ -12,14 +14,17 @@ public class TextOutline : MonoBehaviour
 	public float pixelSize = 1;
 	public Color outlineColor = Color.black;
 	private TextMesh textMesh;
-	
+	private List<TextMesh> outlineText;
+
 	void Start ()
 	{
-		textMesh = GetComponent<TextMesh> ();  
+		textMesh = GetComponent<TextMesh> (); 
+		outlineText = new List<TextMesh> ();
 		MeshRenderer meshRenderer = GetComponent<MeshRenderer> ();
 		
 		for (int i = 0; i < 8; i++) {
 			GameObject outline = new GameObject ("outline", typeof(TextMesh));
+			outlineText.Add (outline.GetComponent<TextMesh> ());
 			outline.transform.parent = transform;
 			outline.transform.localScale = new Vector3 (1, 1, 1);
 			
@@ -36,12 +41,12 @@ public class TextOutline : MonoBehaviour
 	{
 		Vector3 screenPoint = Camera.main.WorldToScreenPoint (transform.position);
 		
-		outlineColor.a = textMesh.color.a;
+//		outlineColor.a = textMesh.renderer.material.color.a;
 		
 		// copy attributes
-		for (int i = 0; i < transform.childCount; i++) {
+		for (int i = 0; i < outlineText.Count; i++) {
 			
-			TextMesh other = transform.GetChild (i).GetComponent<TextMesh> ();
+			TextMesh other = outlineText [i];
 			other.color = outlineColor;
 			other.text = textMesh.text;
 			other.alignment = textMesh.alignment;
