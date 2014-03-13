@@ -31,7 +31,7 @@ public class Building : MonoBehaviour
 	
 	void OnTriggerEnter2D (Collider2D coll)
 	{
-		if (coll.transform.parent.gameObject.Equals (player.gameObject)) {
+		if (coll.transform.parent != null && coll.transform.parent.gameObject.Equals (player.gameObject)) {
 			animate.SetTrigger ("Open");
 			player.flash ();
 
@@ -43,8 +43,6 @@ public class Building : MonoBehaviour
 				}
 				GameObject.FindObjectOfType<PainKiller> ().incrementPillCount ();
 				audioController.objectInteraction (clips, 0.5f);
-				player.gameObject.rigidbody2D.AddForce (new Vector2 (0, -50f));
-				player.resetSpeed ();
 			}
 			painIndicator.objectInteraction (gameObject);
 		}

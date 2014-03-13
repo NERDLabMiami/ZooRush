@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameOptions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StoryModeHandler.cs">
     <Files>
-      <File FileName="Assets/Scripts/InputManager.cs" Line="31" Column="24" />
-      <File FileName="Assets/Scripts/PlayerControls.cs" Line="55" Column="4" />
-      <File FileName="Assets/Scripts/GameOptions.cs" Line="63" Column="3" />
+      <File FileName="Assets/Scripts/LevelFailModel.cs" Line="37" Column="16" />
+      <File FileName="Assets/Scripts/NextSceneHandler.cs" Line="28" Column="39" />
+      <File FileName="Assets/Scripts/SceneManager.cs" Line="101" Column="34" />
+      <File FileName="Assets/Scripts/StoryModeHandler.cs" Line="84" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

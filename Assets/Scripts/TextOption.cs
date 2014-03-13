@@ -25,6 +25,7 @@ public class TextOption : TouchHandler
 			clicked = true;
 			if (levelName.Equals ("Reset")) {
 				PlayerPrefs.DeleteAll ();
+				GameObject.FindObjectOfType<Character> ().changeCharacter ();
 			} else {
 				if (isLevelOption) {
 					if (gameObject.name.Contains ("Retry")) {
