@@ -32,9 +32,9 @@ public class GameOptions : MonoBehaviour
 	private bool soundValue;
 	private float sensitivity;
 
-	public static bool touching;
+	public bool touching;
 	private Ray origin;
-	public static RaycastHit pointerTouch;
+	public RaycastHit pointerTouch;
 
 	void Awake ()
 	{
@@ -128,7 +128,7 @@ public class GameOptions : MonoBehaviour
 
 
 		for (int i = 0; i <= charMaxIndex; i++) {
-			if (PlayerPrefs.GetInt ("Character Selected") == i) {
+			if (PlayerPrefs.GetInt ("Character Selected", 0) == i) {
 				charSelect.sprite = characters [i];
 				charSelectName.text = characterNames [i];
 				charIndex = i;
