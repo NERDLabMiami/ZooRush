@@ -57,7 +57,6 @@ public class PlayerControls : MonoBehaviour
 			}
 			if (rigidbody2D.velocity.x > 0) {
 				currentSpeed = rigidbody2D.velocity;
-				Debug.Log (currentSpeed);
 			}
 			break;
 		case (int)GameStateMachine.GameState.PauseToPlay:
@@ -87,7 +86,6 @@ public class PlayerControls : MonoBehaviour
 	{
 		changeSpeed = true;
 		rigidbody2D.velocity = new Vector2 (0f, 0f);
-		Debug.Log ("Push Away Called");
 		if (left) {
 			rigidbody2D.AddForce (new Vector2 (-speed, 0));
 		} else {

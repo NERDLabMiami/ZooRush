@@ -6,42 +6,48 @@ public class LevelFailModel : MonoBehaviour
 
 	public static string failReason;
 	public static string levelFailed;
-	private TextMesh title;
-	private GameObject retry;
-	private GameObject quit;
+	public TextMesh title;
+	public TextMesh dialog;
+	public GameObject retry;
+	public GameObject quit;
 	private RaycastHit hit; 
 	private bool buttonClicked;
-	private string[] titleOptions = {	"You Had A Crisis!", 
-										"You Were Hit By A Car!", 
-										"You Had A Bad Infection!",
-										"Ouch! Watch Out Next Time!",
-										"It Got Away!"};
+	private string[] titleOptions = {	
+		"You Had A Crisis!", 
+		"You Had A Bad Infection!",
+		"It Got Away!",
+		"Ouch! Watch Out Next Time!"
+	};
+	private string[] dialogText = {
+		"Infections can only be\ncured by visiting the\nhospital",
+		"Drink water to avoid\na sickle cell crisis",
+		"Failed!\nIt's time to stop\nchasing this one, it's long gone\nby now.",
+		"Chin up, you'll probably\ncatch it next time!"
+	};
 	public Sprite[] timeOutSprites;
 
 	void Start ()
 	{
-		title = GameObject.Find ("Title Text").GetComponent<TextMesh> ();
-		retry = GameObject.Find ("Retry");
-		quit = GameObject.Find ("Quit");
+
 		buttonClicked = false;
 		switch (failReason) {
 		case "Fainted":
 			title.text = titleOptions [0];
-			break;
-		case "Hit":
-			title.text = titleOptions [1];
+			dialog.text = dialogText [0];
 			break;
 		case "Infected":
-			title.text = titleOptions [2];
+			title.text = titleOptions [1];
+			dialog.text = dialogText [1];
 			break;
 		case "TimeOut":
-			title.text = titleOptions [4];
+			title.text = titleOptions [2];
+			dialog.text = dialogText [2];
 			GameObject.FindObjectOfType<StoryModeSpriteHandler> ().sprites = timeOutSprites;
 			GameObject.FindObjectOfType<StoryModeSpriteHandler> ().changeSprites ();
-
 			break;
 		default:
 			title.text = titleOptions [3];
+			dialog.text = dialogText [3];
 			break;
 		}
 	}

@@ -60,7 +60,7 @@ public class SceneManager : MonoBehaviour
 		}
 
 		animalControl = GameObject.FindObjectOfType<Animal> ();
-		distanceDiffMin = 10f;
+		distanceDiffMin = 7f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 		if (tutEnabled) {
 			gameObject.AddComponent<TutorialConditionalDialogController> ();
