@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StoryModeHandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerControls.cs">
     <Files>
-      <File FileName="Assets/Scripts/LevelFailModel.cs" Line="37" Column="16" />
-      <File FileName="Assets/Scripts/NextSceneHandler.cs" Line="28" Column="39" />
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="101" Column="34" />
-      <File FileName="Assets/Scripts/StoryModeHandler.cs" Line="84" Column="18" />
+      <File FileName="Assets/Scripts/CityScapeRepeater.cs" Line="19" Column="4" />
+      <File FileName="Assets/Scripts/CloudGenerator.cs" Line="18" Column="44" />
+      <File FileName="Assets/Scripts/CameraFollow.cs" Line="34" Column="1" />
+      <File FileName="Assets/Scripts/PlayerControls.cs" Line="89" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

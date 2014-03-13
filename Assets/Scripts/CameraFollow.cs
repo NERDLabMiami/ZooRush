@@ -31,7 +31,6 @@ public class CameraFollow : MonoBehaviour
 
 	public void moveCameraToCharacterOffset (float offset)
 	{
-		Debug.Log ("Camera Move Called for offset " + offset);
 		StartCoroutine (moveCameraToXPosition (offset));
 	}
 
@@ -44,8 +43,6 @@ public class CameraFollow : MonoBehaviour
 
 		while (currentDistance >= offset) {
 			currentDistance = transform.position.x - character.transform.position.x;
-			Debug.Log ("Current Distance = " + currentDistance);
-			Debug.Log ("INSIDE LOOP");
 			float nextX = Mathf.SmoothDamp (transform.position.x, character.transform.position.x + offset, ref velocity, 0.2f);
 			transform.position = new Vector3 (nextX, transform.position.y, transform.position.z);
 			yield return new WaitForEndOfFrame ();
