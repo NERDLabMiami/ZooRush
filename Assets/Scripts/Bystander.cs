@@ -38,6 +38,7 @@ public class Bystander : ObjectModel
 	{
 		if (!touched) {
 			audioController.objectInteraction (clip);
+			transform.localPosition = new Vector3 (transform.localPosition.x + 1f, transform.localPosition.y, transform.localPosition.z);
 			character.GetComponent<PlayerControls> ().pushAway (50, true);
 			touched = true;
 		}

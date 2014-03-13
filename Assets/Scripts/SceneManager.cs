@@ -11,6 +11,8 @@ public class SceneManager : MonoBehaviour
 	public float distanceDiffMin; 		//Minimum distance needed between character and animal
 	public float currentDistanceDiff; 	//Current distance between character and animal
 
+	public float timeOutDistance; //Distance at which it is almost impossible to catch the animal
+	private bool timedOut;
 	public float targetTimeVar;
 	public float multiplier1;
 	public float multiplier2;
@@ -32,6 +34,12 @@ public class SceneManager : MonoBehaviour
 	
 	void Start ()
 	{
+		if (timeOutDistance < 10) {
+			timeOutDistance = 1000f;
+		}
+
+		timedOut = false; 
+
 		GameStateMachine.resetState ();
 		isPlaying = true;
 		pauseAudio = false;
@@ -74,7 +82,10 @@ public class SceneManager : MonoBehaviour
 			}
 			break;
 		case (int)GameStateMachine.GameState.Play:
-
+			if (currentDistanceDiff > timeOutDistance) {
+				GameStateMachine.requestEndLevel ();
+				timedOut = true;
+			}
 			break;
 		case (int)GameStateMachine.GameState.Paused:
 			if (animalControl.caught) {
@@ -85,6 +96,10 @@ public class SceneManager : MonoBehaviour
 			if (animalControl.caught) {
 				GameObject.FindObjectOfType<PainKiller> ().savePillCount ();
 				GameStateMachine.requestEndLevel ();
+			} else {
+				if (timedOut) {
+					NextSceneHandler.timeOut ();
+				}
 			}
 			break;
 		case (int) GameStateMachine.GameState.EndLevel:

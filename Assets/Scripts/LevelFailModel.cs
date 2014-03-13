@@ -14,7 +14,9 @@ public class LevelFailModel : MonoBehaviour
 	private string[] titleOptions = {	"You Had A Crisis!", 
 										"You Were Hit By A Car!", 
 										"You Had A Bad Infection!",
-										"Ouch! Watch Out Next Time!"};
+										"Ouch! Watch Out Next Time!",
+										"It Got Away!"};
+	public Sprite[] timeOutSprites;
 
 	void Start ()
 	{
@@ -31,6 +33,12 @@ public class LevelFailModel : MonoBehaviour
 			break;
 		case "Infected":
 			title.text = titleOptions [2];
+			break;
+		case "TimeOut":
+			title.text = titleOptions [4];
+			GameObject.FindObjectOfType<StoryModeSpriteHandler> ().sprites = timeOutSprites;
+			GameObject.FindObjectOfType<StoryModeSpriteHandler> ().changeSprites ();
+
 			break;
 		default:
 			title.text = titleOptions [3];
