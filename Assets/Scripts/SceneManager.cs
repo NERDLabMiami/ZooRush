@@ -70,6 +70,7 @@ public class SceneManager : MonoBehaviour
 			if (currentDistanceDiff > 25f) {
 				animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
 				GameStateMachine.requestPlay ();
+				GameObject.FindObjectOfType<CameraFollow> ().moveCameraToCharacterOffset (5f);
 			}
 			break;
 		case (int)GameStateMachine.GameState.Play:

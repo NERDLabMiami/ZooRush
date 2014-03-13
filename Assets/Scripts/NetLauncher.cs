@@ -35,16 +35,16 @@ public class NetLauncher : MonoBehaviour
 		if (launchEnabled) {
 			if (!throwAlertDisplayed) {
 				throwAlertDisplayed = levelGUI.displayThrowAlert ();
+				GameObject.FindObjectOfType<CameraFollow> ().moveCameraToCharacterOffset (3.5f);
 			}
 		} else {
 			if (throwAlertDisplayed) {
 				throwAlertDisplayed = levelGUI.removeThrowAlert ();
+				throwCount = 0;
+				GameObject.FindObjectOfType<CameraFollow> ().moveCameraToCharacterOffset (5f);
 			}
 		}
-	}
-	
-	void FixedUpdate ()
-	{
+
 		if (!InputManager.enter) {
 			firing = false;
 		} else {
@@ -53,9 +53,11 @@ public class NetLauncher : MonoBehaviour
 				fire ();
 			}	
 		}
+		
 		if (throwCount >= 3 && !animal.caught) { //Pauses character momentarily and resets the netthrow count
-			GameObject.FindObjectOfType<PlayerControls> ().resetSpeed ();
-			throwCount = 0;
+			animal.getAway ();
+			GameObject.FindObjectOfType<PlayerControls> ().resetSpeed (1f);
+			launchEnabled = false;
 		}
 	}
 	
@@ -79,7 +81,7 @@ public class NetLauncher : MonoBehaviour
 		switch (GameStateMachine.currentState) {
 		case (int)GameStateMachine.GameState.Play:
 		case (int) GameStateMachine.GameState.Transition:
-			if (sceneManager.currentDistanceDiff < sceneManager.distanceDiffMin) {
+			if (sceneManager && sceneManager.currentDistanceDiff < sceneManager.distanceDiffMin) {
 				return true;
 			}
 			return false;

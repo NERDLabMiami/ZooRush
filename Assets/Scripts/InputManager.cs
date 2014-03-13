@@ -75,6 +75,7 @@ public class InputManager : MonoBehaviour
 		right = false;
 		enter = false;
 		escape = false;
+
 		if (Input.touchCount > 0) {
 			origin = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
 		} else {
