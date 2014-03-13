@@ -23,6 +23,13 @@ public class NextSceneHandler : MonoBehaviour
 		Application.LoadLevel ("LevelFail");
 	}
 
+	public static void timeOut ()
+	{
+		LevelFailModel.failReason = "TimeOut";
+		LevelFailModel.levelFailed = Application.loadedLevelName;
+		Application.LoadLevel ("LevelFail");
+	}
+
 	public static void loadGameLevelWithConditions (string levelName)
 	{
 		if (PlayerPrefs.GetInt (levelName + "StoryMode", 0) == 0) {
