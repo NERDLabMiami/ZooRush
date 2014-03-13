@@ -19,12 +19,23 @@ public class Infection : ObjectModel
 		painIndicator = GameObject.FindObjectOfType<PainIndicator> ();
 		GetComponentInChildren<CollisionDetect> ().objectModel = this;
 		audioController = GameObject.FindObjectOfType<AudioController> ();
-
-	}
-	
-	void Update ()
-	{
-	
+		GetComponent<Animator> ().SetInteger ("DelayVal", Random.Range (0, 3));
+		int infectionVal = 0;
+		switch (infectionType) {
+		case "Red":
+			infectionVal = 2;
+			break;
+		case "Yellow":
+			infectionVal = 1;
+			break;
+		case "Green":
+			infectionVal = 0;
+			break;
+		default:
+			infectionVal = 0;
+			break;
+		}
+		GetComponent<Animator> ().SetInteger ("InfectionType", infectionVal);
 	}
 
 	protected override void resetOtherValues ()
@@ -57,6 +68,11 @@ public class Infection : ObjectModel
 			character.GetComponent<PlayerControls> ().resetSpeed ();
 			GameObject.FindObjectOfType<LevelGUIController> ().displayStopwatch (infectionType);
 		}
+	}
+
+	private void leaveDelayState ()
+	{
+		GetComponent<Animator> ().SetTrigger ("StopDelay");
 	}
 
 }
