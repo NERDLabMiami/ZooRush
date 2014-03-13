@@ -93,7 +93,6 @@
      <Compile Include="Assets\Scripts\MovingObjectSpawner.cs" />
      <Compile Include="Assets\Scripts\NetHandler.cs" />
      <Compile Include="Assets\Scripts\NetLauncher.cs" />
-     <Compile Include="Assets\Scripts\NetLauncherTest.cs" />
      <Compile Include="Assets\Scripts\NextSceneHandler.cs" />
      <Compile Include="Assets\Scripts\ObjectModel.cs" />
      <Compile Include="Assets\Scripts\ObstacleSpawner.cs" />

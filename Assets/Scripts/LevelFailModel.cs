@@ -19,8 +19,8 @@ public class LevelFailModel : MonoBehaviour
 		"Ouch! Watch Out Next Time!"
 	};
 	private string[] dialogText = {
-		"Infections can only be\ncured by visiting the\nhospital",
 		"Drink water to avoid\na sickle cell crisis",
+		"Infections can only be\ncured by visiting the\nhospital",
 		"Failed!\nIt's time to stop\nchasing this one, it's long gone\nby now.",
 		"Chin up, you'll probably\ncatch it next time!"
 	};
