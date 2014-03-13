@@ -80,6 +80,7 @@
      <Compile Include="Assets\Scripts\ImmovableObjectWithReaction.cs" />
      <Compile Include="Assets\Scripts\Infection.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
+     <Compile Include="Assets\Scripts\InstructionLevel.cs" />
      <Compile Include="Assets\Scripts\IntroStoryScene.cs" />
      <Compile Include="Assets\Scripts\LevelButton.cs" />
      <Compile Include="Assets\Scripts\LevelFailModel.cs" />
