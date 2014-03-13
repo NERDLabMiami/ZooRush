@@ -43,7 +43,7 @@ public class Infection : ObjectModel
 		GetComponent<Animator> ().SetTrigger ("Flash");
 
 	}
-	public override void interactWithCharacter (Collider2D character)
+	public override void interactWithCharacter (GameObject character)
 	{
 		if (!interacted) {
 			GameObject.FindObjectOfType<AudioController> ().objectInteraction (clip);

@@ -24,7 +24,7 @@ public class ImmovableObjectWithReaction : ObjectModel
 	{
 	}
 	
-	public override void interactWithCharacter (Collider2D character)
+	public override void interactWithCharacter (GameObject character)
 	{
 		if (!touched) {
 			gameObject.GetComponent<Animator> ().SetTrigger (Reaction);

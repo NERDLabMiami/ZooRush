@@ -28,7 +28,7 @@ public class InputManager : MonoBehaviour
 	private  bool prevRight;
 	private  bool prevEnter;
 	
-	public float xDelta;
+//	public float xDelta;
 	public float yDelta;
 	
 	public static bool up;
@@ -75,6 +75,7 @@ public class InputManager : MonoBehaviour
 		right = false;
 		enter = false;
 		escape = false;
+
 		if (Input.touchCount > 0) {
 			origin = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
 		} else {
@@ -93,7 +94,8 @@ public class InputManager : MonoBehaviour
 		} else {
 			origin = Camera.main.ScreenPointToRay (Input.mousePosition);
 		}
-		xDelta = (Input.GetAxis ("Mouse X") > 0) ? 1 : ((Input.GetAxis ("Mouse X") < 0) ? -1 : 0);
+
+//		xDelta = (Input.GetAxis ("Mouse X") > 0) ? 1 : ((Input.GetAxis ("Mouse X") < 0) ? -1 : 0);
 		yDelta = (Input.GetAxis ("Mouse Y") > 0) ? 1 : ((Input.GetAxis ("Mouse Y") < 0) ? -1 : 0);
 //		Debug.Log ("X: " + xDelta + "\nY: " + yDelta);
 		touching = Physics.Raycast (origin, out pointerTouch);

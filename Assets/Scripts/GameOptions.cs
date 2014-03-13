@@ -9,23 +9,42 @@ using System.Globalization;
 public class GameOptions : MonoBehaviour
 {	
 	private GameObject[] options;
-	
+
+	public Transform characterCamera;
+	public Transform character;
 	public GameObject MusicButton;
 	public GameObject SoundButton;
+	public GameObject leftChar;
+	public GameObject rightChar;
+
+	public Slider sensitivityBar;
+
 	private GameObject Back;
 	
 	private SpriteRenderer charSelect;
+	public TextMesh charSelectName;
 	private string[] characterNames = {"David", "Lisa", "Christina","Zane"};
 	public Sprite[] characters;
 	private int charIndex;
-	private int charMaxIndex = 0;
+	private int charMaxIndex;
 	
 	private bool musicValue;
 	private bool soundValue;
-	
+	private float sensitivity;
+
+	public static bool touching;
+	private Ray origin;
+	public static RaycastHit pointerTouch;
+
+	void Awake ()
+	{
+		sensitivity = PlayerPrefs.GetFloat ("Sensitivity", 1);
+	}
 	
 	void Start ()
 	{
+		Input.simulateMouseWithTouches = true;
+		GameStateMachine.currentState = (int)GameStateMachine.GameState.Play;
 
 		Back = GameObject.Find ("Text - Back");
 		charSelect = GameObject.Find ("Sprite - Character").GetComponent<SpriteRenderer> ();
@@ -36,22 +55,23 @@ public class GameOptions : MonoBehaviour
 		if (!PlayerPrefs.HasKey ("Sound")) {
 			PlayerPrefs.SetInt ("Sound", 1);
 		}
+		if (!PlayerPrefs.HasKey ("Sensitivity")) {
+			PlayerPrefs.SetFloat ("Sensitivity", 1);
+		}
 		
 		if (!PlayerPrefs.HasKey ("Character Selected")) { //Set up default character
 			PlayerPrefs.SetInt ("Character Selected", 0);
-		} 
-		
+		}
+
+		charMaxIndex = 1; // 0 for david, 1 for lisa
+		//Set Characters as available in player prefs
+		PlayerPrefs.SetInt (characterNames [0], 1); 
+		PlayerPrefs.SetInt (characterNames [1], 1);
+
 		//Set the limit based on which characters are unlocked
-		for (int i = 0; i < characterNames.Length; i++) {
+		for (int i = 2; i < characterNames.Length; i++) {
 			if (PlayerPrefs.HasKey (characterNames [i])) {
-				if (PlayerPrefs.GetString (characterNames [i]).Equals ("true")) {
-					charMaxIndex++;
-				}
-			} else {
-				if (i > 1) {
-					PlayerPrefs.SetString (characterNames [i], "false");
-				} else {
-					PlayerPrefs.SetString (characterNames [i], "true");
+				if (PlayerPrefs.GetInt (characterNames [i], 0) > 0) {
 					charMaxIndex++;
 				}
 			}
@@ -59,6 +79,8 @@ public class GameOptions : MonoBehaviour
 		
 		musicValue = (PlayerPrefs.GetInt ("Music") == 1);
 		soundValue = (PlayerPrefs.GetInt ("Sound") == 1);
+
+
 
 		if (musicValue) {
 			MusicButton.GetComponent<ToggleButton> ().Activate ();
@@ -72,7 +94,9 @@ public class GameOptions : MonoBehaviour
 			SoundButton.GetComponent<ToggleButton> ().Deactivate ();
 		}
 		
-		options = new GameObject[] {MusicButton, SoundButton, charSelect.gameObject, Back};
+		options = new GameObject[] {MusicButton, SoundButton, leftChar, rightChar, Back};
+
+
 	}
 
 	void FixedUpdate ()
@@ -84,55 +108,60 @@ public class GameOptions : MonoBehaviour
 		}
 		musicValue = (PlayerPrefs.GetInt ("Music") == 1);
 		soundValue = (PlayerPrefs.GetInt ("Sound") == 1);
+		sensitivity = sensitivityBar.GetSliderPercent ();
 
 		PlayerPrefs.SetInt ("Music", MusicButton.GetComponent<ToggleButton> ().activated ? 1 : 0);
 		PlayerPrefs.SetInt ("Sound", SoundButton.GetComponent<ToggleButton> ().activated ? 1 : 0);
+		PlayerPrefs.SetFloat ("Sensitivity", sensitivity);
 
 	}
 
 	void Update ()
 	{
-		for (int i = 0; i < charMaxIndex; i++) {
+		if (Input.touchCount > 0) {
+			origin = camera.ScreenPointToRay (Input.GetTouch (0).position);
+		} else {
+			origin = camera.ScreenPointToRay (Input.mousePosition);
+		}
+		
+		touching = Physics.Raycast (origin, out pointerTouch);
+
+
+		for (int i = 0; i <= charMaxIndex; i++) {
 			if (PlayerPrefs.GetInt ("Character Selected") == i) {
 				charSelect.sprite = characters [i];
+				charSelectName.text = characterNames [i];
 				charIndex = i;
 			}
 		}
 		
 		foreach (GameObject option in options) {
-			if (InputManager.touching && InputManager.pointerTouch.collider.name.Equals (option.name)) {
-				if (InputManager.enter) {
+			if (touching && pointerTouch.collider.gameObject == option) {
+				if (Input.GetMouseButtonUp (0)) {
 					changeValue (option);
 				}
 			}
 		}
-		
+
+		characterCamera.position = new Vector3 (character.position.x, characterCamera.position.y, characterCamera.position.z);
 	}
 	
 	void changeValue (GameObject option)
 	{
-//		if (option.name.Contains ("Music")) {
-//			if (musicValue.Equals ("ON")) {
-//				PlayerPrefs.SetString ("Music", "OFF");
-//			} else {
-//				PlayerPrefs.SetString ("Music", "ON");
-//			}
-//		} else {
-//			if (option.name.Contains ("Sound")) {
-//				if (soundValue.Equals ("ON")) {
-//					PlayerPrefs.SetString ("Sound", "OFF");
-//				} else {
-//					PlayerPrefs.SetString ("Sound", "ON");
-//				}
-//			} else {
-		if (option.name.Contains ("Character")) {
-			if (charIndex == charMaxIndex - 1) {
-				PlayerPrefs.SetInt ("Character Selected", 0);
-			} else {
-				PlayerPrefs.SetInt ("Character Selected", charIndex + 1);
+		if (option == leftChar) {
+			if (charIndex > 0) {
+				PlayerPrefs.SetInt ("Character Selected", charIndex - 1);
+				GameObject.FindObjectOfType<Character> ().changeCharacter ();
 			}
+			return;
 		}
-//			}
-//		}
+
+		if (option == rightChar) {
+			if (charIndex < charMaxIndex) {
+				PlayerPrefs.SetInt ("Character Selected", charIndex + 1);
+				GameObject.FindObjectOfType<Character> ().changeCharacter ();
+			}
+			return;
+		}
 	}
 }

@@ -10,7 +10,7 @@ public class PowerUp : ObjectModel
 
 	private Animator animator;
 	public int painPoints; // pills = 75 , water bottles = 25
-
+	public bool isFountain; 
 	private bool interacted;
 	private int pillCount;
 
@@ -33,10 +33,13 @@ public class PowerUp : ObjectModel
 	{
 		interacted = false;
 		animator.SetTrigger ("Reset");
+		if (isFountain) {
+			collisionDetect.collider2D.isTrigger = false;
+		}
 		collisionDetect.resetTouch ();
 	}
 
-	public void addToScore ()
+	private void addToScore ()
 	{
 		scoreKeeper.addToCount ("Water Bottle");
 	}
@@ -44,11 +47,15 @@ public class PowerUp : ObjectModel
 	public override void collisionDetected ()
 	{
 		animator.SetTrigger ("Flash");
+		if (isFountain) {
+			collisionDetect.collider2D.isTrigger = true;
+		}
 	}
 
-	public override void interactWithCharacter (Collider2D character)
+	public override void interactWithCharacter (GameObject character)
 	{
 		if (!interacted) {
+			character.GetComponent<CharacterSpeech> ().SpeechBubbleDisplay ("Refreshing!");
 			addToScore ();
 			painIndicator.subtractPoints (painPoints);
 			audioController.objectInteraction (clip);

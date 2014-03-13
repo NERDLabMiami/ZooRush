@@ -12,7 +12,7 @@ public class GUITouchController : MonoBehaviour
 
 	void Update ()
 	{
-		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition); //create a ray going from the mouse into the z-direction
+		Ray ray = camera.ScreenPointToRay (Input.mousePosition); //create a ray going from the mouse into the z-direction
 		if (Physics2D.GetRayIntersectionNonAlloc (ray, results) > 0) { //if we've hit at least one collider
 			foreach (RaycastHit2D element in results) { //iterate through the colliders we've touched
 				if (element.transform != null) {

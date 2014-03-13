@@ -55,7 +55,7 @@ public class Vehicle : ObjectModel
 		}
 	}
 	
-	public override void interactWithCharacter (Collider2D character)
+	public override void interactWithCharacter (GameObject character)
 	{
 		if (clip != null) {
 			audioController.objectInteraction (clip);

@@ -61,12 +61,14 @@
      <Compile Include="Assets\Scripts\CameraAspect.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
+     <Compile Include="Assets\Scripts\CharacterSpeech.cs" />
      <Compile Include="Assets\Scripts\CollisionDetect.cs" />
      <Compile Include="Assets\Scripts\Dialog.cs" />
      <Compile Include="Assets\Scripts\DialogHandler.cs" />
      <Compile Include="Assets\Scripts\DialogTrigger.cs" />
      <Compile Include="Assets\Scripts\DirectToScene.cs" />
      <Compile Include="Assets\Scripts\DistanceMeter.cs" />
+     <Compile Include="Assets\Scripts\Doctor.cs" />
      <Compile Include="Assets\Scripts\GUITouchController.cs" />
      <Compile Include="Assets\Scripts\GameOptions.cs" />
      <Compile Include="Assets\Scripts\GameSetup.cs" />
@@ -101,6 +103,7 @@
      <Compile Include="Assets\Scripts\SceneManager.cs" />
      <Compile Include="Assets\Scripts\SceneRepeater.cs" />
      <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
+     <Compile Include="Assets\Scripts\Slider.cs" />
      <Compile Include="Assets\Scripts\SortingLayer.cs" />
      <Compile Include="Assets\Scripts\SortingLayerController.cs" />
      <Compile Include="Assets\Scripts\StartButton.cs" />
@@ -114,10 +117,10 @@
      <Compile Include="Assets\Scripts\TextOutline.cs" />
      <Compile Include="Assets\Scripts\ToggleButton.cs" />
      <Compile Include="Assets\Scripts\TouchHandler.cs" />
+     <Compile Include="Assets\Scripts\TouchInput.cs" />
      <Compile Include="Assets\Scripts\TutorialConditionalDialogController.cs" />
      <Compile Include="Assets\Scripts\Vehicle.cs" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
-     <None Include="Assets\Resources\Sprites\Characters\Doctor.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

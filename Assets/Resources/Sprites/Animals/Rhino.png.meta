@@ -41,8 +41,8 @@ TextureImporter:
   buildTargetSettings:
   - buildTarget: iPhone
     maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+    textureFormat: -1
+    compressionQuality: 100
   spriteSheet:
     sprites:
     - name: Rhino_0

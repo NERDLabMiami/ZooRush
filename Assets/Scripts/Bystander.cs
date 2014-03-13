@@ -34,7 +34,7 @@ public class Bystander : ObjectModel
 			GetComponent<SpriteRenderer> ().sprite = reaction;
 		}
 	}
-	public override void interactWithCharacter (Collider2D character)
+	public override void interactWithCharacter (GameObject character)
 	{
 		if (!touched) {
 			audioController.objectInteraction (clip);

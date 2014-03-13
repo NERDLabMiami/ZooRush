@@ -28,7 +28,7 @@ public class PlaySound : ObjectModel
 	{
 
 	}
-	public override void interactWithCharacter (Collider2D character)
+	public override void interactWithCharacter (GameObject character)
 	{
 		if (!touched) {
 			audioController.objectInteraction (clip);

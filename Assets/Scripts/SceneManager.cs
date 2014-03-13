@@ -54,7 +54,6 @@ public class SceneManager : MonoBehaviour
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 		distanceDiffMin = 10f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
-		updatePillCount ();
 		if (tutEnabled) {
 			gameObject.AddComponent<TutorialConditionalDialogController> ();
 		}
@@ -71,6 +70,7 @@ public class SceneManager : MonoBehaviour
 			if (currentDistanceDiff > 25f) {
 				animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
 				GameStateMachine.requestPlay ();
+				GameObject.FindObjectOfType<CameraFollow> ().moveCameraToCharacterOffset (5f);
 			}
 			break;
 		case (int)GameStateMachine.GameState.Play:
@@ -83,21 +83,23 @@ public class SceneManager : MonoBehaviour
 			break;
 		case (int)GameStateMachine.GameState.Transition:
 			if (animalControl.caught) {
+				GameObject.FindObjectOfType<PainKiller> ().savePillCount ();
 				GameStateMachine.requestEndLevel ();
 			}
+			break;
+		case (int) GameStateMachine.GameState.EndLevel:
+
 			break;
 		default:
 			break;
 		}
 	}
 
-	public void updatePillCount ()
+	public void updatePillCount (int pillCount)
 	{
-		string theCount = "x" + PlayerPrefs.GetInt ("PILLS");
-		TextMesh[] pillCount = GameObject.Find ("Pill Count").GetComponentsInChildren<TextMesh> ();
-		foreach (TextMesh texts in pillCount) {
-			texts.text = theCount;
-		}
+		string theCount = "x" + pillCount;
+		TextMesh pillCountText = GameObject.Find ("Pill Count").GetComponentInChildren<TextMesh> ();
+		pillCountText.text = theCount;
 	}
 	
 	private void changeAnimal ()

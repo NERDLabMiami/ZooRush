@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+
+
 /** Script to make the camera follow the character.
  * @author: Ebtissam Wahman
  * 
@@ -7,57 +9,53 @@ using System.Collections;
 public class CameraFollow : MonoBehaviour
 {
 	private GameObject character;
-	private NetLauncher netLauncher;
 
 	public bool cameraFollowEnabled;
 	public bool cameraSettled;
-	private bool adjustToLaunchPosition;
-	private bool adjustToStartPosition;
-
+	public float characterOffset;
+	
 	void Start ()
 	{
 		character = GameObject.FindGameObjectWithTag ("character");
-		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
-		adjustToLaunchPosition = false;
-		adjustToStartPosition = false;
 		cameraSettled = false;
 	}
-	
+
 	void LateUpdate ()
 	{
-		if (cameraFollowEnabled) {
-			if (character == null) {
-				character = GameObject.FindGameObjectWithTag ("character");
-			}
-			if (GameStateMachine.currentState != (int)GameStateMachine.GameState.StartLevel) {
-				if (netLauncher.launchEnabled && !adjustToLaunchPosition) {
-					transform.localPosition = Vector3.Lerp (transform.localPosition, 
-				new Vector3 (character.transform.localPosition.x + 3.5f, transform.localPosition.y, transform.localPosition.z), 
-				3f * Time.deltaTime);
-					cameraSettled = false;
-					if (transform.localPosition.x <= character.transform.localPosition.x + 3.48f) {
-						adjustToLaunchPosition = true;
-						cameraSettled = true;
-					}
-				} else {
-					if (!adjustToLaunchPosition) {
-						if (!adjustToStartPosition) {
-							transform.localPosition = Vector3.Lerp (transform.localPosition,
-					                                        new Vector3 (character.transform.localPosition.x + 5f, transform.localPosition.y, transform.localPosition.z),
-					                                        3f * Time.deltaTime);
-							cameraSettled = false;
-							if (transform.localPosition.x <= character.transform.localPosition.x + 4.9f) {
-								adjustToStartPosition = true;
-								cameraSettled = true;
-							}
-						} else {
-							transform.localPosition = new Vector3 (character.transform.localPosition.x + 5f, transform.localPosition.y, transform.localPosition.z);
-						}
-					} else {
-						transform.localPosition = new Vector3 (character.transform.localPosition.x + 3.55f, transform.localPosition.y, transform.localPosition.z);
-					}
-				}
+		if (GameStateMachine.currentState != (int)GameStateMachine.GameState.StartLevel) { //we are not in the intro gameplay state and need to move the camera
+			if (cameraSettled) {
+				transform.position = addXOffsetToCharacter (characterOffset);
 			}
 		}
 	}
+
+	public void moveCameraToCharacterOffset (float offset)
+	{
+		Debug.Log ("Camera Move Called for offset " + offset);
+		StartCoroutine (moveCameraToXPosition (offset));
+	}
+
+	private IEnumerator moveCameraToXPosition (float offset)
+	{
+		float velocity = 0;
+		cameraSettled = false;
+		characterOffset = offset;
+		float currentDistance = transform.position.x - character.transform.position.x;
+
+		while (currentDistance >= offset) {
+			currentDistance = transform.position.x - character.transform.position.x;
+			Debug.Log ("Current Distance = " + currentDistance);
+			Debug.Log ("INSIDE LOOP");
+			float nextX = Mathf.SmoothDamp (transform.position.x, character.transform.position.x + offset, ref velocity, 0.2f);
+			transform.position = new Vector3 (nextX, transform.position.y, transform.position.z);
+			yield return new WaitForEndOfFrame ();
+		}
+		cameraSettled = true;
+	}
+
+	private Vector3 addXOffsetToCharacter (float offset)
+	{
+		return new Vector3 (character.transform.position.x + offset, transform.position.y, transform.position.z);
+	}
+
 }

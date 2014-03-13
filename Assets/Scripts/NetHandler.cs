@@ -13,12 +13,18 @@ public class NetHandler : MonoBehaviour
 		}
 	}
 	
-	void OnTriggerEnter2D (Collider2D other)
-	{//on interaction with another object with a trigger collider
-		if (other.gameObject.GetComponentInChildren<Animal> () != null) { //if that object is an animal
-			StartCoroutine (interact (other.gameObject));
+	void OnCollisionEnter2D (Collision2D coll)
+	{
+		//on interaction with another object with a trigger collider
+		if (coll.gameObject.name.Contains ("Animal")) { //if that object is an animal
+			StartCoroutine (interact (coll.gameObject));
 			GameStateMachine.requestPause ();
-			other.gameObject.GetComponentInChildren<Animal> ().caught = true;
+			coll.gameObject.GetComponentInChildren<Animal> ().caught = true;
+			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Gotcha!");
+		} else {
+			rigidbody2D.velocity = new Vector2 (0, 0);
+			GameObject.FindObjectOfType<Animal> ().rotate ();
+			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("I Missed!");
 		}
 	}
 	

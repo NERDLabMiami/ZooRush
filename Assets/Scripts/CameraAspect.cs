@@ -9,7 +9,8 @@ using System.Collections;
  */ 
 public class CameraAspect : MonoBehaviour
 {
-	
+	public bool heightOnly;
+
 	void Start ()
 	{
 		// set the desired aspect ratio (the values in this example are
@@ -29,10 +30,13 @@ public class CameraAspect : MonoBehaviour
 		// if scaled height is less than current height, add letterbox
 		if (scaleheight < 1.0f) {  
 			Rect rect = camera.rect;
-			
-			rect.width = 1.0f;
+
+			if (!heightOnly) {
+				rect.width = 1.0f;
+				rect.x = 0;
+			}
+
 			rect.height = scaleheight;
-			rect.x = 0;
 			rect.y = (1.0f - scaleheight) / 2.0f;
 			
 			camera.rect = rect;
@@ -40,10 +44,13 @@ public class CameraAspect : MonoBehaviour
 			float scalewidth = 1.0f / scaleheight;
 			
 			Rect rect = camera.rect;
-			
-			rect.width = scalewidth;
+
+			if (!heightOnly) {
+				rect.width = scalewidth;
+				rect.x = (1.0f - scalewidth) / 2.0f;
+			}
+
 			rect.height = 1.0f;
-			rect.x = (1.0f - scalewidth) / 2.0f;
 			rect.y = 0;
 			
 			camera.rect = rect;

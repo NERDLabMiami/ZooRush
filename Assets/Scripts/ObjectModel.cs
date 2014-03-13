@@ -28,6 +28,6 @@ public abstract class ObjectModel : MonoBehaviour
 		StartCoroutine (GameObject.FindObjectOfType<SceneRepeater> ().DestroyObstacle (gameObject));
 	}
 
-	public abstract void interactWithCharacter (Collider2D character);
+	public abstract void interactWithCharacter (GameObject character);
 
 }
