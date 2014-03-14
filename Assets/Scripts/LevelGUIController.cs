@@ -16,7 +16,7 @@ public class LevelGUIController : MonoBehaviour
 
 	public GameObject[] menuPrefabs;
 	public GameObject stopWatchObject;
-	public GameObject screenDimmer;
+	public SpriteRenderer screenDimmer;
 	private bool isTutorial;
 
 	private bool starDisplay1;
@@ -142,12 +142,12 @@ public class LevelGUIController : MonoBehaviour
 
 	private void dimScreen ()
 	{
-		screenDimmer.GetComponent<SpriteRenderer> ().enabled = true;
+		screenDimmer.enabled = true;
 	}
 	
 	private void lightScreen ()
 	{
-		screenDimmer.GetComponent<SpriteRenderer> ().enabled = false;
+		screenDimmer.enabled = false;
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class LevelGUIController : MonoBehaviour
 			//menuPrefabs[1] is the throw alert dialog box by default
 			throwAlert = Instantiate (menuPrefabs [1]) as GameObject;
 			throwAlert.transform.parent = transform;
-			throwAlert.transform.localPosition = new Vector3 (0, 0, 0);
+			throwAlert.transform.localPosition = Vector3.zero;
 		}
 		return true;
 	}
@@ -199,13 +199,23 @@ public class LevelGUIController : MonoBehaviour
 		return false;
 	}
 
+	public void timeOutMenu ()
+	{
+		if (GameObject.FindGameObjectWithTag ("menu") == null) {
+			dimScreen ();
+			GameObject timeOutMenu = Instantiate (menuPrefabs [5]) as GameObject;
+			timeOutMenu.transform.parent = transform;
+			timeOutMenu.transform.localPosition = Vector3.zero;
+		}
+	}
+
 	public void pauseMenu ()
 	{
 		if (GameObject.FindGameObjectWithTag ("menu") == null) {
 			GameStateMachine.requestPause ();
 			GameObject pauseMenu = Instantiate (menuPrefabs [3]) as GameObject;
 			pauseMenu.transform.parent = transform;
-			pauseMenu.transform.localPosition = new Vector3 (0, 0, 0);
+			pauseMenu.transform.localPosition = Vector3.zero;
 		}
 
 	}

@@ -10,7 +10,7 @@ public class SceneRepeater : MonoBehaviour
 	private GameObject[] sceneThings; //All repeatable objects in the scene
 	float sceneWidth; //distance from the leftmost to the rightmost sprite in the Scene
 
-	void Start ()
+	void Awake ()
 	{
 		sceneObjects = FindObjectsOfType<SpriteRenderer> (); 
 		sceneThings = GameObject.FindGameObjectsWithTag ("repeatable");
@@ -60,5 +60,10 @@ public class SceneRepeater : MonoBehaviour
 		if (obj.activeSelf) {
 			obj.SetActive (false);
 		}
+	}
+
+	public float getSceneWidth ()
+	{
+		return sceneWidth;
 	}
 }
