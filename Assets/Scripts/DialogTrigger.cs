@@ -24,6 +24,7 @@ public class DialogTrigger : MonoBehaviour
 				GetComponentInChildren<SpriteRenderer> ().enabled = true;
 			}
 			GameObject.FindObjectOfType<Dialog> ().activateDialog (textDisplay);
+			opened = true;
 		}
 	}
 
