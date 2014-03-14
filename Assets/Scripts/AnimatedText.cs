@@ -58,7 +58,6 @@ public class AnimatedText : MonoBehaviour
 			}
 			index++;
 		}
-		GameObject.FindObjectOfType<StoryModeHandler> ().stopSpeechSprites ();
 		complete = true;
 		clear = true;
 	}

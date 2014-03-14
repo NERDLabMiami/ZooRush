@@ -12,6 +12,7 @@ public class CloudGenerator : MonoBehaviour
 	{
 		cloudCollection = new List<GameObject> ();
 	}
+
 	void FixedUpdate ()
 	{
 		if (enableCloudGeneration && GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
@@ -21,12 +22,17 @@ public class CloudGenerator : MonoBehaviour
 			}
 
 			foreach (GameObject obj in cloudCollection) {
-				if (obj.transform.position.x < Camera.main.transform.position.x - 25f) {
-					cloudCollection.Remove (obj);
-					Destroy (obj);
+				if (obj.transform.position.x < Camera.main.transform.position.x && !inView (obj.renderer)) {
+					recycleCloud (obj);
 				}
 			}
 		}
+	}
+
+	private bool inView (Renderer obj)
+	{
+		Plane[] planes = GeometryUtility.CalculateFrustumPlanes (Camera.main);
+		return GeometryUtility.TestPlanesAABB (planes, obj.bounds);
 	}
 
 	private GameObject createCloudObject ()
@@ -48,4 +54,19 @@ public class CloudGenerator : MonoBehaviour
 		return cloud;
 	}
 
+	private void recycleCloud (GameObject cloud)
+	{
+		cloud.transform.position = new Vector3 (cloud.transform.position.x + Camera.main.transform.position.x + Random.Range (25f, 50f), cloud.transform.position.y, cloud.transform.position.z);
+	}
+
+	void OnDisable ()
+	{
+		if (cloudCollection != null) {
+			for (int i = cloudCollection.Count -1; i >=0; i--) {
+				GameObject obj = cloudCollection [i];
+				cloudCollection.RemoveAt (i);
+				Destroy (obj);
+			}
+		}
+	}
 }

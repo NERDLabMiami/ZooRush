@@ -44,7 +44,7 @@ public class BackgroundCharacter : MonoBehaviour
 				rigidbody2D.velocity = new Vector2 (-8f, 0);
 			}
 		} else if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Paused) {
-			rigidbody2D.velocity = new Vector2 (0f, 0);
+			rigidbody2D.velocity = Vector2.zero;
 		}
 		
 		if (left) {

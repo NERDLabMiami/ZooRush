@@ -107,6 +107,16 @@ public class PainIndicator : MonoBehaviour
 	{
 		if (!sprite.sprite.Equals (healthFaces [index])) {
 			sprite.sprite = healthFaces [index];
+			switch (index) {
+			case 1: //discomfort
+				GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Got Water?");
+				break;
+			case 2: //pain
+				GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("So thirsty!");
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }

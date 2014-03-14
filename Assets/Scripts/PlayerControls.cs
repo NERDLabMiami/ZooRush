@@ -57,7 +57,6 @@ public class PlayerControls : MonoBehaviour
 			}
 			if (rigidbody2D.velocity.x > 0) {
 				currentSpeed = rigidbody2D.velocity;
-				Debug.Log (currentSpeed);
 			}
 			break;
 		case (int)GameStateMachine.GameState.PauseToPlay:
@@ -65,7 +64,7 @@ public class PlayerControls : MonoBehaviour
 			animate.StopPlayback ();
 			break;
 		default:
-			rigidbody2D.velocity = new Vector2 (0f, 0f);
+			rigidbody2D.velocity = Vector2.zero;
 			animate.StartPlayback ();
 			break;
 		}
@@ -86,8 +85,7 @@ public class PlayerControls : MonoBehaviour
 	public void pushAway (float speed, bool left)
 	{
 		changeSpeed = true;
-		rigidbody2D.velocity = new Vector2 (0f, 0f);
-		Debug.Log ("Push Away Called");
+		rigidbody2D.velocity = Vector2.zero;
 		if (left) {
 			rigidbody2D.AddForce (new Vector2 (-speed, 0));
 		} else {
@@ -99,7 +97,7 @@ public class PlayerControls : MonoBehaviour
 	public void pushAway (Vector2 speed, bool left)
 	{
 		changeSpeed = true;
-		rigidbody2D.velocity = new Vector2 (0f, 0f);
+		rigidbody2D.velocity = Vector2.zero;
 		Debug.Log ("Push Away Called");
 		if (left) {
 			rigidbody2D.AddForce (new Vector2 (-speed.x, speed.y));
@@ -119,7 +117,7 @@ public class PlayerControls : MonoBehaviour
 
 	public void resetSpeed (float time = 0.3f)
 	{
-		rigidbody2D.velocity = new Vector2 (0f, 0f);
+		rigidbody2D.velocity = Vector2.zero;
 		StartCoroutine (waitToResume (time));
 	}
 

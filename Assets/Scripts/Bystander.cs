@@ -3,10 +3,19 @@ using System.Collections;
 
 public class Bystander : ObjectModel
 {
+	public bool male;
 	private bool touched;
-	public AudioClip clip;
+	private AudioClip clip;
+	private static AudioClip[] maleclips;
+	private static AudioClip[] femaleclips;
 	public Sprite reaction;
 	private Sprite original;
+
+	void Awake ()
+	{
+		maleclips = Resources.LoadAll<AudioClip> ("Sounds/Ows/Male");
+		femaleclips = Resources.LoadAll<AudioClip> ("Sounds/Ows/Female");
+	}
 
 	void Start ()
 	{
@@ -14,11 +23,11 @@ public class Bystander : ObjectModel
 		audioController = GameObject.FindObjectOfType<AudioController> ();
 		GetComponentInChildren<CollisionDetect> ().objectModel = this;
 		original = GetComponent<SpriteRenderer> ().sprite;
-	}
-	
-	void Update ()
-	{
-	
+		if (male) {
+			clip = maleclips [Random.Range (0, maleclips.Length)];
+		} else {
+			clip = femaleclips [Random.Range (0, maleclips.Length)];
+		}
 	}
 
 	protected override void resetOtherValues ()

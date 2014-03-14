@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Text;
 
 public class Dialog : Button
 {
@@ -7,120 +8,82 @@ public class Dialog : Button
 
 	private bool displaying;
 	private int currentTextIndex;
-	private Animator animator;
-	public TextAnimator textAnimator;
-	private Renderer[] renderers;
+	public SpriteRenderer[] renderers;
+	public TextMesh textMeshDisplay;
 
 	new void Start ()
 	{
 		base.Start ();
-		displaying = false;
-		animator = GetComponent<Animator> ();
-		renderers = GetComponentsInChildren<Renderer> ();
 		hide ();
 	}
 
 	private void hide ()
 	{
-		foreach (Renderer rend in renderers) {
-			rend.enabled = false;
+		foreach (SpriteRenderer rend in renderers) {
+			rend.color = Color.clear;
 		}
+		displaying = false;
 	}
 
 	private void show ()
 	{
-		foreach (Renderer rend in renderers) {
-			rend.enabled = true;
+		foreach (SpriteRenderer rend in renderers) {
+			rend.color = Color.white;
 		}
-	}
-
-	public void stopSpeaking ()
-	{
-		animator.SetBool ("Speak", false);
+		displaying = true;
 	}
 
 	public void activateDialog (string[] dialogText)
 	{
-		text = dialogText;
-		currentTextIndex = 0;
-		animator.SetTrigger ("Found");
-		open ();
+		if (!displaying) {
+			text = dialogText;
+			currentTextIndex = 0;
+			next ();
+			show ();
+			GameStateMachine.requestPause ();
+		}
 	}
-
-	public void open ()
-	{
-		displaying = true;
-		textAnimator.gameObject.SetActive (true);
-		animator.SetTrigger ("Opened");
-		next ();
-	}
-
+	
 	private void next ()
 	{
-		animator.SetBool ("Speak", true);
-		string displayText;
-		if (text [currentTextIndex] [0] == '+') {
-			displayText = text [currentTextIndex].Substring (1);
-		} else {
-			displayText = text [currentTextIndex];
-		}
-		if (text.Length > currentTextIndex + 1 && text [currentTextIndex + 1] [0] == '+') {
-			displayText += "\n" + text [currentTextIndex + 1].Substring (1);
-			currentTextIndex = currentTextIndex + 1;
-			if (text.Length > currentTextIndex + 1 && text [currentTextIndex + 1] [0] == '+') {
-				displayText += "\n" + text [currentTextIndex + 1].Substring (1);
-				currentTextIndex = currentTextIndex + 1;
+		StringBuilder displayText = new StringBuilder ();
+		int nextIndex = currentTextIndex;
+
+		for (int i = currentTextIndex; i < text.Length; i++) {
+			if (i < currentTextIndex + 3) {
+				if (text [i] [0] == '+') {
+					displayText.Append (text [i].Substring (1));
+				} else {
+					displayText.Append (text [i]);
+				}
+				displayText.Append ("\n");
+				nextIndex = i + 1;
+			} else {
+				break;
 			}
 		}
-		
-		textAnimator.AnimateText (displayText);
-		stopSpeaking ();
-		++currentTextIndex;
-		clicked = false;
-
+		currentTextIndex = nextIndex;
+		textMeshDisplay.text = displayText.ToString ();
+		StartCoroutine (waitToResetTouch ());
 	}
 
 	private void close ()
 	{
-		StartCoroutine (closeDelay ());
-		textAnimator.textMesh.text = "";
-	}
-
-	private IEnumerator closeDelay ()
-	{
-		Debug.Log ("Waiting");
-		yield return new WaitForSeconds (1f);
-		animator.SetTrigger ("Close");
-	}
-
-	private void destroy ()
-	{
-		text = null;
-		animator.SetTrigger ("Disable");
-		displaying = false;
+		GetComponentInChildren<TextMesh> ().text = "";
+		hide ();
 		GameStateMachine.requestPlay ();
+		StartCoroutine (waitToResetTouch ());
 	}
 
 	protected override void action ()
 	{
-		if (displaying & !textAnimator.animating) {
+		if (displaying) {
 			if (currentTextIndex < text.Length) {
+				Debug.Log ("Next Called");
 				next ();
 			} else {
 				close ();
 			}
 		}
-		clicked = false;
 	}
-
-	new public void selectText ()
-	{
-		textMesh.color = originalColor;
-	}
-	
-	new public void deselectText ()
-	{
-		textMesh.color = originalColor;
-	}
-
 }

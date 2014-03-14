@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\CharacterSelect.cs" />
      <Compile Include="Assets\Scripts\CharacterSpeech.cs" />
+     <Compile Include="Assets\Scripts\CityScapeRepeater.cs" />
      <Compile Include="Assets\Scripts\CloudGenerator.cs" />
      <Compile Include="Assets\Scripts\CollisionDetect.cs" />
      <Compile Include="Assets\Scripts\Dialog.cs" />
@@ -79,6 +80,7 @@
      <Compile Include="Assets\Scripts\ImmovableObjectWithReaction.cs" />
      <Compile Include="Assets\Scripts\Infection.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
+     <Compile Include="Assets\Scripts\InstructionLevel.cs" />
      <Compile Include="Assets\Scripts\IntroStoryScene.cs" />
      <Compile Include="Assets\Scripts\LevelButton.cs" />
      <Compile Include="Assets\Scripts\LevelFailModel.cs" />
@@ -91,7 +93,6 @@
      <Compile Include="Assets\Scripts\MovingObjectSpawner.cs" />
      <Compile Include="Assets\Scripts\NetHandler.cs" />
      <Compile Include="Assets\Scripts\NetLauncher.cs" />
-     <Compile Include="Assets\Scripts\NetLauncherTest.cs" />
      <Compile Include="Assets\Scripts\NextSceneHandler.cs" />
      <Compile Include="Assets\Scripts\ObjectModel.cs" />
      <Compile Include="Assets\Scripts\ObstacleSpawner.cs" />
@@ -102,6 +103,7 @@
      <Compile Include="Assets\Scripts\PlaySound.cs" />
      <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\PowerUp.cs" />
+     <Compile Include="Assets\Scripts\RandomFact.cs" />
      <Compile Include="Assets\Scripts\SceneManager.cs" />
      <Compile Include="Assets\Scripts\SceneRepeater.cs" />
      <Compile Include="Assets\Scripts\ScoreKeeper.cs" />

@@ -11,7 +11,7 @@ public class SceneManager : MonoBehaviour
 	public float distanceDiffMin; 		//Minimum distance needed between character and animal
 	public float currentDistanceDiff; 	//Current distance between character and animal
 
-	public float timeOutDistance; //Distance at which it is almost impossible to catch the animal
+	private float timeOutDistance; //Distance at which it is almost impossible to catch the animal
 	private bool timedOut;
 	public float targetTimeVar;
 	public float multiplier1;
@@ -20,6 +20,7 @@ public class SceneManager : MonoBehaviour
 	private Animal animalControl;
 	private GameObject character;
 	private GameObject animal;
+	private CameraFollow cameraFollow;
 
 	public bool isEndless;
 	public bool isPlaying;
@@ -34,10 +35,9 @@ public class SceneManager : MonoBehaviour
 	
 	void Start ()
 	{
-		if (timeOutDistance < 10) {
-			timeOutDistance = 1000f;
-		}
-
+		timeOutDistance = GameObject.FindObjectOfType<SceneRepeater> ().getSceneWidth () * 0.90f;
+		Debug.Log ("TimeOutDistnace is : " + timeOutDistance);
+		cameraFollow = GameObject.FindObjectOfType<CameraFollow> ();
 		timedOut = false; 
 
 		GameStateMachine.resetState ();
@@ -60,7 +60,7 @@ public class SceneManager : MonoBehaviour
 		}
 
 		animalControl = GameObject.FindObjectOfType<Animal> ();
-		distanceDiffMin = 10f;
+		distanceDiffMin = 7f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 		if (tutEnabled) {
 			gameObject.AddComponent<TutorialConditionalDialogController> ();
@@ -78,18 +78,25 @@ public class SceneManager : MonoBehaviour
 			if (currentDistanceDiff > 25f) {
 				animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
 				GameStateMachine.requestPlay ();
-				GameObject.FindObjectOfType<CameraFollow> ().moveCameraToCharacterOffset (5f);
+				GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Ok! Let's go!");
+				cameraFollow.moveCameraToCharacterOffset (5f);
 			}
 			break;
 		case (int)GameStateMachine.GameState.Play:
 			if (currentDistanceDiff > timeOutDistance) {
-				GameStateMachine.requestEndLevel ();
 				timedOut = true;
+				GameStateMachine.requestPause ();
 			}
 			break;
 		case (int)GameStateMachine.GameState.Paused:
 			if (animalControl.caught) {
 				GameStateMachine.requestTransition ();
+			}
+			if (timedOut) {
+				if (cameraFollow.cameraSettled) {
+					cameraFollow.moveCameraToCharacterOffset (currentDistanceDiff + 5f);
+					GameStateMachine.requestTransition ();
+				}
 			}
 			break;
 		case (int)GameStateMachine.GameState.Transition:
@@ -97,18 +104,30 @@ public class SceneManager : MonoBehaviour
 				GameObject.FindObjectOfType<PainKiller> ().savePillCount ();
 				GameStateMachine.requestEndLevel ();
 			} else {
-				if (timedOut) {
-					NextSceneHandler.timeOut ();
+				if (timedOut && cameraFollow.cameraSettled) {
+					if (objInView (animalControl.gameObject.renderer)) {
+						animalControl.setSpeed ();
+					} else {
+						animalControl.speed = Vector2.zero;
+						GameObject.FindObjectOfType<LevelGUIController> ().timeOutMenu ();
+					}
 				}
 			}
 			break;
 		case (int) GameStateMachine.GameState.EndLevel:
-
+			
 			break;
 		default:
 			break;
 		}
 	}
+
+	private bool objInView (Renderer obj)
+	{
+		Plane[] planes = GeometryUtility.CalculateFrustumPlanes (Camera.main);
+		return GeometryUtility.TestPlanesAABB (planes, obj.bounds);
+	}
+
 
 	public void updatePillCount (int pillCount)
 	{

@@ -10,6 +10,7 @@ public abstract class Button : TouchHandler
 	public static string previousScene;
 	protected Color originalColor;
 	protected bool clicked;
+	protected bool touched;
 	protected TextMesh textMesh;
 
 	protected void Start ()
@@ -23,9 +24,9 @@ public abstract class Button : TouchHandler
 
 	public override void objectTouched ()
 	{
-		if (textMesh) {
-			selectText ();
-		}
+//		if (textMesh) {
+//			selectText ();
+//		}
 		if (!clicked) {
 			if (Input.GetMouseButtonUp (0)) {
 				previousScene = Application.loadedLevelName;
@@ -37,9 +38,9 @@ public abstract class Button : TouchHandler
 
 	public override void objectUntouched ()
 	{
-		if (textMesh) {
-			deselectText ();
-		}
+//		if (textMesh) {
+//			deselectText ();
+//		}
 	}
 	
 	public void selectText ()
