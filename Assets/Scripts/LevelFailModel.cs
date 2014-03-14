@@ -21,7 +21,7 @@ public class LevelFailModel : MonoBehaviour
 	private string[] dialogText = {
 		"Drink water to avoid\na sickle cell crisis",
 		"Infections can only be\ncured by visiting the\nhospital",
-		"Failed!\nIt's time to stop\nchasing this one, it's long gone\nby now.",
+		"Failed!\nIt's time to stop\nchasing this one, it's long\ngone by now.",
 		"Chin up, you'll probably\ncatch it next time!"
 	};
 	public Sprite[] timeOutSprites;

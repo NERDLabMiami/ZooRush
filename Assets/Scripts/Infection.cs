@@ -58,6 +58,7 @@ public class Infection : ObjectModel
 	{
 		if (!interacted) {
 			GameObject.FindObjectOfType<AudioController> ().objectInteraction (clip);
+			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("I hate infections!");
 			addToScore ();
 			painIndicator.addPoints (painPoints);
 			if (character.transform.position.y < -2.5f) {

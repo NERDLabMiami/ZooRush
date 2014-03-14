@@ -6,7 +6,7 @@ public class CityScapeRepeater : MonoBehaviour
 
 	public SpriteRenderer[] cityblocks;
 	private Vector2 moving = new Vector2 (-0.5f, 0);
-	private Vector2 stopped = new Vector2 (0, 0);
+	private Vector2 stopped = Vector2.zero;
 
 	void FixedUpdate ()
 	{

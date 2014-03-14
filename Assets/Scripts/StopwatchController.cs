@@ -32,7 +32,6 @@ public class StopwatchController : MonoBehaviour
 
 	public void receiveInteraction (string infectionType)
 	{
-
 		switch (infectionType) {
 		case "Red":
 			if (currentSpeed <= 2) {

@@ -22,7 +22,7 @@ public class NetHandler : MonoBehaviour
 			coll.gameObject.GetComponentInChildren<Animal> ().caught = true;
 			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Gotcha!");
 		} else {
-			rigidbody2D.velocity = new Vector2 (0, 0);
+			rigidbody2D.velocity = Vector2.zero;
 			GameObject.FindObjectOfType<Animal> ().rotate ();
 			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("I Missed!");
 		}
