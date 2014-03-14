@@ -5,6 +5,8 @@ using System.Collections;
 
 public class StoryModeHandler : Button
 {
+	public TextMesh[] textMeshes;
+
 	public static string NextSceneName;
 	public GameObject[] introSlides;
 	public GameObject[] level2Slides;
@@ -15,6 +17,8 @@ public class StoryModeHandler : Button
 	public GameObject[] level7Slides;
 	public GameObject[] level8Slides;
 	public GameObject[] level9Slides;
+	public GameObject[] level10Slides;
+	public GameObject[] endSlides;
 
 	private int nextLevel;
 	private GameObject[][] slides;
@@ -24,11 +28,10 @@ public class StoryModeHandler : Button
 	private int slideIndex;
 	private string[] slideText;
 	private StringReader fileInput;
-	private AnimatedText textAnimator;
-
 
 	new void Start ()
 	{
+		GameStateMachine.currentState = (int)GameStateMachine.GameState.Play;
 		if (PlayerPrefs.GetInt ("Music") != 0) {
 			audio.mute = false;
 		} else {
@@ -44,7 +47,9 @@ public class StoryModeHandler : Button
 			level6Slides,
 			level7Slides,
 			level8Slides,
-			level9Slides
+			level9Slides,
+			level10Slides,
+			endSlides
 		};
 		string[] sceneTexts = {introScene,level2,level3,level4,level5,level6,level7,level8,level9,level10,end};
 		nextLevel = 1;
@@ -84,7 +89,7 @@ public class StoryModeHandler : Button
 			nextLevel = 11;
 			break;
 		default:
-			nextLevel = 4;
+			nextLevel = 11;
 			break;
 		}
 
@@ -99,13 +104,10 @@ public class StoryModeHandler : Button
 				thisStory [i].SetActive (false);
 			}
 		}
-
-//		currentSlide = Instantiate (slides [nextLevel - 1] [slideIndex], new Vector3 (0, 0, 0), Quaternion.identity) as GameObject;
-
+	
 		currentSlide = thisStory [slideIndex];
 
 		fileInput = new StringReader (sceneTexts [nextLevel - 1]);
-		textAnimator = GameObject.FindObjectOfType<AnimatedText> ();
 		readSlideText ();
 	}
 
@@ -115,37 +117,27 @@ public class StoryModeHandler : Button
 			readSlideText ();
 			slideIndex++;
 			currentSlide.SetActive (false);
-//			Destroy (currentSlide);
 			currentSlide = thisStory [slideIndex];
 			currentSlide.SetActive (true);
-//			currentSlide = Instantiate (slides [nextLevel - 1] [slideIndex], new Vector3 (0, 0, 0), Quaternion.identity) as GameObject;
 		} else {
 			LoadLevel.levelToLoad = NextSceneName;
 			PlayerPrefs.SetInt (NextSceneName + "StoryMode", 1);
+			GameStateMachine.currentState = (int)GameStateMachine.GameState.Intro;
 			Application.LoadLevel ("Loading");
 		}
-		clicked = false;
+		StartCoroutine (waitToResetTouch ());
 	}
 
 	private void readSlideText ()
 	{
 		//Makes all dialog lines blank first
 		for (int i = 0; i < slideText.Length; i++) {
-			slideText [i] = "";
+			textMeshes [i].text = "";
 		}
 		int numberOfLines;
 		numberOfLines = Int32.Parse (fileInput.ReadLine ());
 		for (int i = 0; i < numberOfLines; i++) {
-			slideText [i] = fileInput.ReadLine ();
-		}
-		textAnimator.DisplayText (slideText);
-	}
-
-	public void stopSpeechSprites ()
-	{
-		Animator[] animators = GameObject.FindObjectsOfType<Animator> ();
-		foreach (Animator animator in animators) {
-			animator.SetTrigger ("Stop");
+			textMeshes [i].text = fileInput.ReadLine ();
 		}
 	}
 
@@ -187,7 +179,7 @@ public class StoryModeHandler : Button
 		"3\n" +
 		"We got another report of a rhino in the suburbs.\n" +
 		"Let’s get it back to the zoo!\n" +
-		"And watch out for lawnmowers." +
+		"And watch out for lawnmowers.\n" +
 		"1\n" +
 		"Let's Do It!\n";
 

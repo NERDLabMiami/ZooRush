@@ -12,6 +12,7 @@ public class CloudGenerator : MonoBehaviour
 	{
 		cloudCollection = new List<GameObject> ();
 	}
+
 	void FixedUpdate ()
 	{
 		if (enableCloudGeneration && GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
@@ -58,4 +59,14 @@ public class CloudGenerator : MonoBehaviour
 		cloud.transform.position = new Vector3 (cloud.transform.position.x + Camera.main.transform.position.x + Random.Range (25f, 50f), cloud.transform.position.y, cloud.transform.position.z);
 	}
 
+	void OnDisable ()
+	{
+		if (cloudCollection != null) {
+			for (int i = cloudCollection.Count -1; i >=0; i--) {
+				GameObject obj = cloudCollection [i];
+				cloudCollection.RemoveAt (i);
+				Destroy (obj);
+			}
+		}
+	}
 }
