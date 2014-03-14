@@ -10,6 +10,7 @@ public abstract class Button : TouchHandler
 	public static string previousScene;
 	protected Color originalColor;
 	protected bool clicked;
+	protected bool touched;
 	protected TextMesh textMesh;
 
 	protected void Start ()
