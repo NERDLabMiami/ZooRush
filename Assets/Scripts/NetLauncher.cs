@@ -36,6 +36,7 @@ public class NetLauncher : MonoBehaviour
 			if (!throwAlertDisplayed) {
 				throwAlertDisplayed = levelGUI.displayThrowAlert ();
 				GameObject.FindObjectOfType<CameraFollow> ().moveCameraToCharacterOffset (3.5f);
+				GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("AHA!");
 			}
 		} else {
 			if (throwAlertDisplayed) {

@@ -28,7 +28,7 @@ public class Animal : MonoBehaviour
 		animator = GetComponent<Animator> (); //assigns the pointer to the animator component
 		caught = false; //default value for whether the animal has been caught
 		animalPhysics = transform.parent.rigidbody2D; //setting the pointer to our rigid body physics controller
-		animalPhysics.velocity = new Vector2 (0f, 0f); //we set the initial velocity to 0
+		animalPhysics.velocity = Vector2.zero; //we set the initial velocity to 0
 		GameObject.Find ("Animal Icon").GetComponent<SpriteRenderer> ().sprite = animalIcon; //Changes the icon in the distance meter
 	}
 	
@@ -46,7 +46,7 @@ public class Animal : MonoBehaviour
 			}
 			break;
 		case (int)GameStateMachine.GameState.Paused://If we're paused, then the animal needs to stop and audio must pause as well
-			animalPhysics.velocity = new Vector2 (0f, 0f);
+			animalPhysics.velocity = Vector2.zero;
 			if (audioSource) {
 				if (audioSource.isPlaying) {
 					audioSource.Pause ();
@@ -56,8 +56,10 @@ public class Animal : MonoBehaviour
 		case (int)GameStateMachine.GameState.PauseToPlay: //going from the pause to play state, we want a slight delay before resuming speed
 			StartCoroutine (waitToResume (0.1f));
 			break;
+		case(int)GameStateMachine.GameState.Transition:
+			break;
 		default:
-			animalPhysics.velocity = new Vector2 (0f, 0f);
+			animalPhysics.velocity = Vector2.zero;
 			break;
 		}
 	}
