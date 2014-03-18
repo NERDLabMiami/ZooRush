@@ -5,16 +5,23 @@ public class CityScapeRepeater : MonoBehaviour
 {
 
 	public SpriteRenderer[] cityblocks;
+	private CameraFollow cameraFollower;
 	private Vector2 moving = new Vector2 (-0.5f, 0);
 	private Vector2 stopped = Vector2.zero;
+
+	void Start ()
+	{
+		cameraFollower = GameObject.FindObjectOfType<CameraFollow> ();
+	}
 
 	void FixedUpdate ()
 	{
 		speedUpdate ();
-	
-		foreach (SpriteRenderer block in cityblocks) {
-			if (block.bounds.max.x < Camera.main.transform.position.x && !inView (block)) { // if the block is not in view and to the left of the camera
-				moveToEnd (block);
+		if (cameraFollower.cameraSettled) {
+			foreach (SpriteRenderer block in cityblocks) {
+				if (block.bounds.max.x < Camera.main.transform.position.x && !inView (block)) { // if the block is not in view and to the left of the camera
+					moveToEnd (block);
+				}
 			}
 		}
 	}

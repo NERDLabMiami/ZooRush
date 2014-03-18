@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e5c83cefb14c4dfa9d7b34a82981639
+guid: 9792ca9d13c83463e8bf5fbadd32d162
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -45,41 +45,68 @@ TextureImporter:
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: DowntownBuilding_0
+    - name: PainKillerPill_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 707
-        width: 704
-        height: 667
-      alignment: 7
+        x: 0
+        y: 765
+        width: 555
+        height: 255
+      alignment: 0
       pivot: {x: 0, y: 0}
-    - name: DowntownBuilding_1
+    - name: PainKillerPill_1
       rect:
         serializedVersion: 2
-        x: 727
-        y: 690
-        width: 723
-        height: 686
-      alignment: 7
+        x: 555
+        y: 765
+        width: 555
+        height: 255
+      alignment: 0
       pivot: {x: 0, y: 0}
-    - name: DowntownBuilding_2
+    - name: PainKillerPill_2
       rect:
         serializedVersion: 2
-        x: 2
-        y: 2
-        width: 723
-        height: 686
-      alignment: 7
+        x: 0
+        y: 510
+        width: 555
+        height: 255
+      alignment: 0
       pivot: {x: 0, y: 0}
-    - name: DowntownBuilding_3
+    - name: PainKillerPill_3
       rect:
         serializedVersion: 2
-        x: 727
-        y: 4
-        width: 723
-        height: 684
-      alignment: 7
+        x: 555
+        y: 510
+        width: 555
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: PainKillerPill_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 255
+        width: 555
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: PainKillerPill_5
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 255
+        width: 555
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: PainKillerPill_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 555
+        height: 255
+      alignment: 0
       pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 
