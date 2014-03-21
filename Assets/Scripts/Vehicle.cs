@@ -46,6 +46,7 @@ public class Vehicle : ObjectModel
 
 	void Update ()
 	{	
+
 		if (transform.localScale.x > 0) { //facing right
 			if (transform.position.x > Camera.main.transform.position.x && !inView ()) {
 				GameObject.FindObjectOfType<SceneRepeater> ().DestroyObstacle (gameObject);

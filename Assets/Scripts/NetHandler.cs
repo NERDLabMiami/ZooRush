@@ -6,6 +6,13 @@ using System.Collections;
 */
 public class NetHandler : MonoBehaviour
 {
+	public bool collided;
+
+	void Start ()
+	{
+		collided = false;
+	}
+
 	void Update ()
 	{
 		if (transform.position.y < Camera.main.transform.position.y - 10f) { //if completely out of view of the camera
@@ -15,6 +22,7 @@ public class NetHandler : MonoBehaviour
 	
 	void OnCollisionEnter2D (Collision2D coll)
 	{
+		collided = true;
 		//on interaction with another object with a trigger collider
 		if (coll.gameObject.name.Contains ("Animal")) { //if that object is an animal
 			StartCoroutine (interact (coll.gameObject));

@@ -19,9 +19,15 @@ public class DialogHandler : MonoBehaviour
 		if (cameraFollower.cameraSettled) {
 			RaycastHit2D detected = Physics2D.Raycast (transform.position, Vector2.up, 250f, layerMask);
 			if (detected.collider != null) {
-				detected.collider.GetComponent<DialogTrigger> ().openDialog ();
+				dialog = detected.collider.GetComponent<DialogTrigger> ();
+				dialog.openDialog ();
 			}
 		}
+	}
+
+	public void closeDialog ()
+	{
+		dialog.cleanUp ();
 	}
 
 	public void forceDialog (DialogTrigger dialogReceived)

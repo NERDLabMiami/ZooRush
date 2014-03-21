@@ -125,12 +125,20 @@ public class ScoreKeeper : MonoBehaviour
 			stars--;
 		}
 		if (stars > 0) {
-			int totalInfections = redInfectionCount + yellowInfectionCount + greenInfectionCount;
-			int totalPowerUps = waterBottleCount + pillCount;
-			if (totalInfections > totalPowerUps) {
+			if (totalInfectionsTouched () > totalPowerUpsTouched ()) {
 				stars--;
 			}
 		}
 		return stars;
+	}
+
+	public int totalInfectionsTouched ()
+	{
+		return redInfectionCount + yellowInfectionCount + greenInfectionCount;
+	}
+
+	public int totalPowerUpsTouched ()
+	{
+		return waterBottleCount + pillCount;
 	}
 }

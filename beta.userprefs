@@ -1,17 +1,25 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Vehicle.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelGUIController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Vehicle.cs" Line="55" Column="66" />
-      <File FileName="Assets/Scripts/SceneRepeater.cs" Line="54" Column="4" />
-      <File FileName="Assets/Scripts/ObjectModel.cs" Line="37" Column="77" />
+      <File FileName="Assets/Scripts/CollisionDetect.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Dialog.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DialogHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Animal.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Vehicle.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CollisionDetect.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ObjectModel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Infection.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/NetLauncher.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/NetHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/LevelGUIController.cs" Line="187" Column="21" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="Vehicle.cs" selected="True" />
+              <Node name="LevelGUIController.cs" selected="True" />
             </Node>
           </Node>
         </State>

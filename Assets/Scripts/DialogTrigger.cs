@@ -28,4 +28,11 @@ public class DialogTrigger : MonoBehaviour
 		}
 	}
 
+	public void cleanUp ()
+	{
+		if (showArrow) {
+			GetComponentInChildren<SpriteRenderer> ().enabled = false;
+		}
+	}
+
 }
