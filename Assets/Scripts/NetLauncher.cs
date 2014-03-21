@@ -8,6 +8,7 @@ using System.Collections;
 
 public class NetLauncher : MonoBehaviour
 {
+	public AudioClip clip;
 	public bool launchEnabled; //Indicates if it is possible to launch a net 
 	public Rigidbody2D prefab; //The net prefab that will be instantiated
 	
@@ -67,6 +68,7 @@ public class NetLauncher : MonoBehaviour
 	*/
 	private void fire ()
 	{
+		GameObject.FindObjectOfType<AudioController> ().objectInteraction (clip);
 		Rigidbody2D netInstance = Instantiate (prefab, transform.position, prefab.transform.rotation) as Rigidbody2D;
 		netInstance.velocity = new Vector2 (speed, 0f);
 		throwCount += 1;
