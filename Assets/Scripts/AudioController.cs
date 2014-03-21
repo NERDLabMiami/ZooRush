@@ -17,10 +17,34 @@ public class AudioController : MonoBehaviour
 		}
 	}
 
-	void Update ()
+	void OnEnable ()
 	{
-		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Paused) {
-			pauseAudio ();
+		GameStateMachine.Paused += OnPause;
+		GameStateMachine.Play += OnPlay;
+	}
+	
+	
+	void OnDisable ()
+	{
+		GameStateMachine.Paused -= OnPause;
+		GameStateMachine.Play -= OnPlay;
+	}
+
+	void OnPlay ()
+	{
+		resumeAudio ();
+	}
+
+	void OnPause ()
+	{
+		pauseAudio ();
+	}
+
+	public void resumeAudio ()
+	{
+		if (audioPaused) {
+			audioModel.resumeAudio ();
+			audioPaused = false;
 		}
 	}
 

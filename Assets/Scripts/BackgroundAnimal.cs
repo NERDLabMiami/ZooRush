@@ -75,17 +75,31 @@ public class BackgroundAnimal : MonoBehaviour
 		}
 	}
 
-	void Update ()
+	void OnEnable ()
 	{
-		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.PauseToPlay) {
-			if (transform.parent.localScale.x > 0) {
-				rigidbody2D.velocity = new Vector2 (8f, 0);
-			} else {
-				rigidbody2D.velocity = new Vector2 (-8f, 0);
-			}
-		} else if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Paused) {
-			rigidbody2D.velocity = new Vector2 (0f, 0);
+		GameStateMachine.Paused += OnPause;
+		GameStateMachine.Play += OnPauseToPlay;
+	}
+	
+	
+	void OnDisable ()
+	{
+		GameStateMachine.Paused -= OnPause;
+		GameStateMachine.Play -= OnPauseToPlay;
+	}
+	
+	void OnPauseToPlay ()
+	{
+		if (transform.parent.localScale.x > 0) {
+			rigidbody2D.velocity = new Vector2 (8f, 0);
+		} else {
+			rigidbody2D.velocity = new Vector2 (-8f, 0);
 		}
+	}
+	
+	void OnPause ()
+	{
+		rigidbody2D.velocity = new Vector2 (0f, 0);
 	}
 
 }

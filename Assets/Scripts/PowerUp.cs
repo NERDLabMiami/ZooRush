@@ -6,7 +6,6 @@ public class PowerUp : ObjectModel
 	public AudioClip clip; //Audio played when interacting with this object
 	private PainIndicator painIndicator;
 	private ScoreKeeper scoreKeeper; //pointer to score keeper
-	private CollisionDetect collisionDetect; //pointer to the collision detector
 
 	private Animator animator;
 	public int painPoints; // pills = 75 , water bottles = 25
@@ -14,17 +13,13 @@ public class PowerUp : ObjectModel
 	private bool interacted;
 	private int pillCount;
 
-	void Start ()
+	new void Start ()
 	{
+		base.Start ();
 		interacted = false;
 		painIndicator = GameObject.FindObjectOfType<PainIndicator> ();
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
-
 		animator = GetComponent<Animator> ();
-		collisionDetect = GetComponentInChildren<CollisionDetect> ();
-		if (collisionDetect) {
-			collisionDetect.objectModel = this;
-		}
 		audioController = GameObject.FindObjectOfType<AudioController> ();
 	}
 

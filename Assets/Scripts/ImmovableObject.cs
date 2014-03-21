@@ -3,17 +3,6 @@ using System.Collections;
 
 public class ImmovableObject : ObjectModel
 {
-	private CollisionDetect collisionDetect;
-	void Start ()
-	{
-		collisionDetect = GetComponentInChildren<CollisionDetect> ();
-		collisionDetect.objectModel = this;
-	}
-	
-	void Update ()
-	{
-	
-	}
 
 	protected override void resetOtherValues ()
 	{

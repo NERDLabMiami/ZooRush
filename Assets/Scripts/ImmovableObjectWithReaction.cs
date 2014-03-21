@@ -5,10 +5,11 @@ public class ImmovableObjectWithReaction : ObjectModel
 {
 	public string Reaction;
 	private bool touched;
-	void Start ()
+
+	new void Start ()
 	{
+		base.Start ();
 		touched = false;
-		GetComponentInChildren<CollisionDetect> ().objectModel = this;
 	}
 
 	protected override void resetOtherValues ()

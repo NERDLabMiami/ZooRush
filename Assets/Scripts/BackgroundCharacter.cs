@@ -8,6 +8,7 @@ public class BackgroundCharacter : MonoBehaviour
 
 	private int chosenCharacter;
 	private bool left;
+
 	void Awake ()
 	{
 		chosenCharacter = Random.Range (0, 4);
@@ -32,27 +33,49 @@ public class BackgroundCharacter : MonoBehaviour
 			rigidbody2D.velocity = new Vector2 (-8f, 0);
 			left = true;
 		}
+	}
 
+	void OnEnable ()
+	{
+		GameStateMachine.Paused += OnPause;
+		GameStateMachine.PauseToPlay += OnPauseToPlay;
 	}
 	
-	void Update ()
+	
+	void OnDisable ()
 	{
-		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.PauseToPlay) {
-			if (transform.parent.localScale.x > 0) {
-				rigidbody2D.velocity = new Vector2 (8f, 0);
-			} else {
-				rigidbody2D.velocity = new Vector2 (-8f, 0);
-			}
-		} else if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Paused) {
-			rigidbody2D.velocity = Vector2.zero;
+		GameStateMachine.Paused -= OnPause;
+		GameStateMachine.PauseToPlay -= OnPauseToPlay;
+	}
+
+	void OnPause ()
+	{
+		rigidbody2D.velocity = Vector2.zero;
+	}
+
+	void OnPauseToPlay ()
+	{
+		if (transform.parent.localScale.x > 0) {
+			rigidbody2D.velocity = new Vector2 (8f, 0);
+		} else {
+			rigidbody2D.velocity = new Vector2 (-8f, 0);
 		}
-		
+	}
+
+	private bool inView ()
+	{
+		Plane[] planes = GeometryUtility.CalculateFrustumPlanes (Camera.main);
+		return GeometryUtility.TestPlanesAABB (planes, renderer.bounds);
+	}
+
+	void Update ()
+	{	
 		if (left) {
-			if (transform.position.x < Camera.main.transform.position.x - 25f) {
+			if (transform.position.x < Camera.main.transform.position.x && !inView ()) {
 				Destroy (transform.parent.gameObject);
 			}
 		} else {
-			if (transform.position.x > Camera.main.transform.position.x + 25f) {
+			if (transform.position.x > Camera.main.transform.position.x && !inView ()) {
 				Destroy (transform.parent.gameObject);
 			}
 		}

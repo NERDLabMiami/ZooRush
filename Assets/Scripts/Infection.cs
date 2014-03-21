@@ -13,12 +13,12 @@ public class Infection : ObjectModel
 
 
 
-	void Start ()
+	new void Start ()
 	{
+		base.Start (); 
+
 		interacted = false;
 		painIndicator = GameObject.FindObjectOfType<PainIndicator> ();
-		GetComponentInChildren<CollisionDetect> ().objectModel = this;
-		audioController = GameObject.FindObjectOfType<AudioController> ();
 		GetComponent<Animator> ().SetInteger ("DelayVal", Random.Range (0, 3));
 		int infectionVal = 0;
 		switch (infectionType) {
