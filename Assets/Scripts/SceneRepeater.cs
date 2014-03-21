@@ -53,8 +53,13 @@ public class SceneRepeater : MonoBehaviour
 			}
 		}
 	}
+
+	public void DestroyObstacle (GameObject obj)
+	{
+		StartCoroutine (destroyer (obj));
+	}
 	
-	public IEnumerator DestroyObstacle (GameObject obj)
+	private IEnumerator destroyer (GameObject obj)
 	{
 		yield return new WaitForSeconds (0.2f);
 		if (obj.activeSelf) {

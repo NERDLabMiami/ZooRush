@@ -21,9 +21,7 @@ public class DistanceMeter : MonoBehaviour
 	{	
 		characterIcon = GameObject.Find ("Character Icon");
 		animalIcon = GameObject.Find ("Animal Icon");
-		
-		//TODO change animal icon based on which animal is currently playing
-		
+
 		charIconStarting = characterIcon.transform.localPosition.x;
 		distanceDiffMin = GameObject.FindObjectOfType<SceneManager> ().distanceDiffMin;
 		maxLength = Mathf.Abs (animalIcon.transform.localPosition.x 

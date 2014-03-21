@@ -7,17 +7,12 @@ public class PlaySound : ObjectModel
 	private bool touched;
 
 
-	void Start ()
+	new void Start ()
 	{
+		base.Start ();
+
 		touched = false;
 		audioController = GameObject.FindObjectOfType<AudioController> ();
-		GetComponentInChildren<CollisionDetect> ().objectModel = this;
-
-	}
-	
-	void Update ()
-	{
-	
 	}
 
 	protected override void resetOtherValues ()

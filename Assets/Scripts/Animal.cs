@@ -17,6 +17,58 @@ public class Animal : MonoBehaviour
 	private AudioSource audioSource; //Audio Source that plays sound clip
 	private Rigidbody2D animalPhysics; //The rigid body component that controls our animal's physics
 
+	void OnEnable ()
+	{
+		GameStateMachine.Intro += OnIntro;
+		GameStateMachine.Paused += OnPause;
+		GameStateMachine.PauseToPlay += OnPauseToPlay;
+		GameStateMachine.Play += OnPlay;
+	}
+	
+	
+	void OnDisable ()
+	{
+		GameStateMachine.Intro -= OnIntro;
+		GameStateMachine.Paused -= OnPause;
+		GameStateMachine.PauseToPlay -= OnPauseToPlay;
+		GameStateMachine.Play -= OnPlay;
+	}
+
+	private void OnIntro ()
+	{
+		setSpeed ();
+	}
+
+	private void OnPause ()
+	{
+		Debug.Log ("ON PAUSE CALLED");
+		animator.SetTrigger ("Stop");
+		animalPhysics.velocity = Vector2.zero;
+		if (audioSource) {
+			if (audioSource.isPlaying) {
+				audioSource.Pause ();
+			}
+		}
+	}
+
+	private void OnPauseToPlay ()
+	{
+		Debug.Log ("ON PAUSE TO PLAY CALLED");
+
+		StartCoroutine (waitToResume (0.1f));
+	}
+	
+	private void OnPlay ()
+	{
+		Debug.Log ("ON PLAY CALLED");
+		setSpeed ();
+		if (audioSource) { //start audio playback
+			if (!audioSource.isPlaying) {
+				audioSource.Play ();
+			}
+		}
+	}
+
 	void Start ()
 	{
 		if (PlayerPrefs.GetInt ("Sound") != 0) { // sound is enabled, we will add a sound source for the animal
@@ -32,43 +84,12 @@ public class Animal : MonoBehaviour
 		GameObject.Find ("Animal Icon").GetComponent<SpriteRenderer> ().sprite = animalIcon; //Changes the icon in the distance meter
 	}
 	
-	void Update ()
-	{
-		animator.SetFloat ("Speed", animalPhysics.velocity.x); //Tells the animator state machine what the current speed value is
-		switch (GameStateMachine.currentState) {//Checking what our current game state is
-		case (int)GameStateMachine.GameState.Intro:
-		case (int)GameStateMachine.GameState.Play://If we are in the intro or play state, then we want our animal to maintain speed and the animal sound to be active
-			setSpeed ();
-			if (audioSource) { //start audio playback
-				if (!audioSource.isPlaying) {
-					audioSource.Play ();
-				}
-			}
-			break;
-		case (int)GameStateMachine.GameState.Paused://If we're paused, then the animal needs to stop and audio must pause as well
-			animalPhysics.velocity = Vector2.zero;
-			if (audioSource) {
-				if (audioSource.isPlaying) {
-					audioSource.Pause ();
-				}
-			}
-			break;
-		case (int)GameStateMachine.GameState.PauseToPlay: //going from the pause to play state, we want a slight delay before resuming speed
-			StartCoroutine (waitToResume (0.1f));
-			break;
-		case(int)GameStateMachine.GameState.Transition:
-			break;
-		default:
-			animalPhysics.velocity = Vector2.zero;
-			break;
-		}
-	}
-
 	/**
 	 * Sets the speed to the animal's standard running speed.
 	 */ 
 	public void setSpeed ()
 	{
+		animator.SetTrigger ("Go");
 		animalPhysics.velocity = speed; //assigns the rigidbody component the desired velocity
 		if (Random.Range (0, 101) == 37) {//.01% chance per frame of moving the animal up or down
 			Vector2 randomY = new Vector2 (0, ((Random.Range (0, 2) == 1) ? -1 : 1) * Random.Range (600, 751));

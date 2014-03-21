@@ -66,6 +66,8 @@ public class SceneManager : MonoBehaviour
 			gameObject.AddComponent<TutorialConditionalDialogController> ();
 		}
 	}
+
+
 	
 	void Update ()
 	{

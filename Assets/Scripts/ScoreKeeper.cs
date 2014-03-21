@@ -37,7 +37,6 @@ public class ScoreKeeper : MonoBehaviour
 		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
 			timeElapsed += Time.deltaTime;
 		}
-//		displayTime ();
 	}
 
 	public void addToCount (string obj)

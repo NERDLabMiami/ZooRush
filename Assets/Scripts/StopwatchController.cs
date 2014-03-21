@@ -15,19 +15,27 @@ public class StopwatchController : MonoBehaviour
 		}
 	}
 
-	void FixedUpdate ()
+	void OnEnable ()
 	{
-		switch (GameStateMachine.currentState) {
-		case (int)GameStateMachine.GameState.Paused:
-			pauseStopwatch ();
-			break;
-		case (int)GameStateMachine.GameState.PauseToPlay:
-			resumeStopwatch ();
-			break;
-		default:
-			break;
-		}
+		GameStateMachine.Paused += OnPause;
+		GameStateMachine.PauseToPlay += OnPauseToPlay;
+	}
+	
+	
+	void OnDisable ()
+	{
+		GameStateMachine.Paused -= OnPause;
+		GameStateMachine.PauseToPlay -= OnPauseToPlay;
+	}
 
+	void OnPause ()
+	{
+		pauseStopwatch ();
+	}
+
+	void OnPauseToPlay ()
+	{
+		resumeStopwatch ();
 	}
 
 	public void receiveInteraction (string infectionType)

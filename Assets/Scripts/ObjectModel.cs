@@ -9,9 +9,18 @@ public abstract class ObjectModel : MonoBehaviour
 {	
 
 	protected AudioController audioController;
+	protected CollisionDetect collisionDetect;
 
 	public abstract void collisionDetected ();
 
+	protected void Start ()
+	{
+		audioController = GameObject.FindObjectOfType<AudioController> ();
+		collisionDetect = GetComponentInChildren<CollisionDetect> ();
+		if (collisionDetect) {
+			collisionDetect.objectModel = this;
+		}
+	}
 
 	public void resetState ()
 	{
@@ -25,7 +34,7 @@ public abstract class ObjectModel : MonoBehaviour
 
 	protected void destroyObstacle ()
 	{
-		StartCoroutine (GameObject.FindObjectOfType<SceneRepeater> ().DestroyObstacle (gameObject));
+		GameObject.FindObjectOfType<SceneRepeater> ().DestroyObstacle (gameObject);
 	}
 
 	public abstract void interactWithCharacter (GameObject character);
