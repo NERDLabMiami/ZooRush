@@ -18,6 +18,8 @@ public class CollisionDetect : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
+		Debug.Log ("I AM " + transform.root.name + " & I SAW " + other.gameObject.name);
+
 		if (other.transform.parent != null && other.transform.parent.name.Contains ("Character")) {
 			if (!signalSent) {
 				objectModel.interactWithCharacter (other.transform.parent.gameObject);
@@ -34,6 +36,7 @@ public class CollisionDetect : MonoBehaviour
 	
 	void OnCollisionEnter2D (Collision2D coll)
 	{
+		Debug.Log ("I AM " + transform.root.name + " & I SAW " + coll.gameObject.name);
 		if (coll.gameObject.name.Contains ("Character")) {
 			if (!signalSent) {
 				objectModel.interactWithCharacter (coll.gameObject);

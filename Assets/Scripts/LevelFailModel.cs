@@ -13,8 +13,8 @@ public class LevelFailModel : MonoBehaviour
 	private RaycastHit hit; 
 	private bool buttonClicked;
 	private string[] titleOptions = {	
-		"You Had A Crisis!", 
-		"You Had A Bad Infection!",
+		"Sickle Cell Crisis", 
+		"Infection!",
 		"It Got Away!",
 		"Ouch! Watch Out Next Time!"
 	};

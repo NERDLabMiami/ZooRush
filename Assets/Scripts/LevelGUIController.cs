@@ -31,7 +31,7 @@ public class LevelGUIController : MonoBehaviour
 	private int powerUps;
 	private int starCount;
 	private int stars;
-	private int nextAnimalIndex;
+//	private int nextAnimalIndex;
 
 	void Start ()
 	{
@@ -58,15 +58,15 @@ public class LevelGUIController : MonoBehaviour
 
 		GameObject animal = GameObject.FindGameObjectWithTag ("animal");
 
-		for (int i = 0; i < sceneManager.animals.Length; i++) {
-			if (sceneManager.animals [i].name.Contains (animal.name)) {
-				if (i == sceneManager.animals.Length - 1) {
-					nextAnimalIndex = 0;
-				} else {
-					nextAnimalIndex = i + 1;
-				}
-			}
-		}
+//		for (int i = 0; i < sceneManager.animals.Length; i++) {
+//			if (sceneManager.animals [i].name.Contains (animal.name)) {
+//				if (i == sceneManager.animals.Length - 1) {
+//					nextAnimalIndex = 0;
+//				} else {
+//					nextAnimalIndex = i + 1;
+//				}
+//			}
+//		}
 	}
 	
 	void Update ()
@@ -119,6 +119,12 @@ public class LevelGUIController : MonoBehaviour
 							if (time - (sceneManager.multiplier2 * sceneManager.targetTimeVar) > 0) {
 								stars--;
 							}
+							if (stars > 0) {
+								if (scoreKeeper.totalInfectionsTouched () > scoreKeeper.totalPowerUpsTouched ()) {
+									stars--;
+								}
+							}
+
 							StartCoroutine (starDisplay (stars));
 						} else {
 							if (infectionCounter < infections) {
@@ -155,13 +161,15 @@ public class LevelGUIController : MonoBehaviour
 	 */ 
 	public void displayStopwatch (string infectionType)
 	{
-		if (stopwatch == null) {
-			stopwatch = Instantiate (stopWatchObject) as GameObject;
-			stopwatch.transform.parent = transform;
-			stopwatch.transform.localPosition = new Vector3 (0, 0, 0);
-			stopwatchController = stopwatch.GetComponent<StopwatchController> ();
+		if (!netCurrentlyInMotion () || !GameObject.FindObjectOfType<Animal> ().caught) {
+			if (stopwatch == null) {
+				stopwatch = Instantiate (stopWatchObject) as GameObject;
+				stopwatch.transform.parent = transform;
+				stopwatch.transform.localPosition = new Vector3 (0, 0, 0);
+				stopwatchController = stopwatch.GetComponent<StopwatchController> ();
+			}
+			stopwatchController.receiveInteraction (infectionType);
 		}
-		stopwatchController.receiveInteraction (infectionType);
 	}
 
 	public void removeStopwatch ()
@@ -169,6 +177,19 @@ public class LevelGUIController : MonoBehaviour
 		if (stopwatch != null) {
 			stopwatchController.stopStopwatch ();
 		}
+	}
+
+	private bool netCurrentlyInMotion ()
+	{
+		NetHandler[] nets = GameObject.FindObjectsOfType<NetHandler> ();
+		if (nets != null) {
+			foreach (NetHandler net in nets) {
+				if (!net.collided) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**

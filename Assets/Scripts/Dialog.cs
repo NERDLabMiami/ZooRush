@@ -70,6 +70,7 @@ public class Dialog : Button
 	private void close ()
 	{
 		GetComponentInChildren<TextMesh> ().text = "";
+		GameObject.FindObjectOfType<DialogHandler> ().closeDialog ();
 		hide ();
 		GameStateMachine.requestPlay ();
 		StartCoroutine (waitToResetTouch ());

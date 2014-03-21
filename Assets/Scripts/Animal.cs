@@ -99,6 +99,7 @@ public class Animal : MonoBehaviour
 
 	public void getAway ()
 	{
+		Debug.Log ("GET AWAY CALLEd");
 		StartCoroutine (tempChangeToSpeed (speed.x + 3f));
 	}
 
@@ -138,25 +139,25 @@ public class Animal : MonoBehaviour
 		while (transform.localEulerAngles.z < 3) {
 			float nextR = Mathf.SmoothDamp (transform.localEulerAngles.z, 3.1f, ref velocity, 0.2f);
 			transform.eulerAngles = new Vector3 (0, 0, nextR);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 
 		while (transform.localEulerAngles.z > 0.05f) {
 			float nextR = Mathf.SmoothDamp (transform.localEulerAngles.z, 0f, ref velocity, 0.2f);
 			transform.eulerAngles = new Vector3 (0, 0, nextR);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 
 		while (transform.localEulerAngles.z < 3) {
 			float nextR = Mathf.SmoothDamp (transform.localEulerAngles.z, 3.1f, ref velocity, 0.2f);
 			transform.eulerAngles = new Vector3 (0, 0, nextR);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 
 		while (transform.localEulerAngles.z > 0.05f) {
 			float nextR = Mathf.SmoothDamp (transform.localEulerAngles.z, 0f, ref velocity, 0.2f);
 			transform.eulerAngles = new Vector3 (0, 0, nextR);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 
 		transform.eulerAngles = new Vector3 (0, 0, 0);
@@ -171,47 +172,47 @@ public class Animal : MonoBehaviour
 		while (sprite.color.a > 0.1f) {
 			float newAlpha = Mathf.SmoothDamp (sprite.color.a, 0, ref velocity, 0.1f);
 			sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b, newAlpha);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 
 		while (sprite.color.a < 0.9f) {
 			float newAlpha = Mathf.SmoothDamp (sprite.color.a, 1, ref velocity, 0.1f);
 			sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b, newAlpha);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 
 		while (sprite.color.a > 0.1f) {
 			float newAlpha = Mathf.SmoothDamp (sprite.color.a, 0, ref velocity, 0.1f);
 			sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b, newAlpha);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 
 		while (sprite.color.a < 0.9f) {
 			float newAlpha = Mathf.SmoothDamp (sprite.color.a, 1, ref velocity, 0.1f);
 			sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b, newAlpha);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 		while (sprite.color.a > 0.1f) {
 			float newAlpha = Mathf.SmoothDamp (sprite.color.a, 0, ref velocity, 0.1f);
 			sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b, newAlpha);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 		
 		while (sprite.color.a < 0.9f) {
 			float newAlpha = Mathf.SmoothDamp (sprite.color.a, 1, ref velocity, 0.1f);
 			sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b, newAlpha);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 		while (sprite.color.a > 0.1f) {
 			float newAlpha = Mathf.SmoothDamp (sprite.color.a, 0, ref velocity, 0.1f);
 			sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b, newAlpha);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 		
 		while (sprite.color.a < 0.9f) {
 			float newAlpha = Mathf.SmoothDamp (sprite.color.a, 1, ref velocity, 0.1f);
 			sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b, newAlpha);
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForSeconds (0.1f);
 		}
 
 		sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b, 1);
