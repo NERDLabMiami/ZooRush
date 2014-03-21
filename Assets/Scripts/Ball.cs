@@ -8,8 +8,10 @@ public class Ball : ObjectModel
 	public Transform[] shadows;
 	private Vector3[] distanceDiff;
 
-	void Start ()
+	new void Start ()
 	{
+		base.Start ();
+
 		GetComponentInChildren<CollisionDetect> ().objectModel = this;
 		audioController = GameObject.FindObjectOfType<AudioController> ();
 		distanceDiff = new Vector3[shadows.Length];

@@ -17,8 +17,10 @@ public class Bystander : ObjectModel
 		femaleclips = Resources.LoadAll<AudioClip> ("Sounds/Ows/Female");
 	}
 
-	void Start ()
+	new void Start ()
 	{
+		base.Start ();
+
 		touched = false;
 		audioController = GameObject.FindObjectOfType<AudioController> ();
 		GetComponentInChildren<CollisionDetect> ().objectModel = this;
