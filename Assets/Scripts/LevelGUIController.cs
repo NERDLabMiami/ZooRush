@@ -120,7 +120,7 @@ public class LevelGUIController : MonoBehaviour
 								stars--;
 							}
 							if (stars > 0) {
-								if (scoreKeeper.totalInfectionsTouched () > scoreKeeper.totalPowerUpsTouched ()) {
+								if (scoreKeeper.totalInfectionsTouched () > 0) {
 									stars--;
 								}
 							}
