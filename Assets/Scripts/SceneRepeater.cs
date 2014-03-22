@@ -12,22 +12,7 @@ public class SceneRepeater : MonoBehaviour
 
 	void Awake ()
 	{
-		sceneObjects = FindObjectsOfType<SpriteRenderer> (); 
-		sceneThings = GameObject.FindGameObjectsWithTag ("repeatable");
-		SpriteRenderer rightmostObject = sceneObjects [0];
-		SpriteRenderer leftmostObject = sceneObjects [0];
-		
-		//find the leftmost and rightmost sprites in the scene
-		foreach (SpriteRenderer element in sceneObjects) {
-			if (element.transform.position.x > rightmostObject.transform.position.x) {
-				rightmostObject = element;
-			}
-			if (element.transform.position.x < leftmostObject.transform.position.x) {
-				leftmostObject = element;
-			}
-		}
-		sceneWidth = rightmostObject.transform.position.x + (rightmostObject.transform.lossyScale.x * rightmostObject.sprite.bounds.extents.x)
-			- (leftmostObject.transform.position.x - leftmostObject.transform.lossyScale.x * leftmostObject.sprite.bounds.extents.x);
+		recalculate ();
 	}
 	
 	void Update ()
@@ -52,6 +37,26 @@ public class SceneRepeater : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	public void recalculate ()
+	{
+		sceneObjects = FindObjectsOfType<SpriteRenderer> (); 
+		sceneThings = GameObject.FindGameObjectsWithTag ("repeatable");
+		SpriteRenderer rightmostObject = sceneObjects [0];
+		SpriteRenderer leftmostObject = sceneObjects [0];
+		
+		//find the leftmost and rightmost sprites in the scene
+		foreach (SpriteRenderer element in sceneObjects) {
+			if (element.transform.position.x > rightmostObject.transform.position.x) {
+				rightmostObject = element;
+			}
+			if (element.transform.position.x < leftmostObject.transform.position.x) {
+				leftmostObject = element;
+			}
+		}
+		sceneWidth = rightmostObject.transform.position.x + (rightmostObject.transform.lossyScale.x * rightmostObject.sprite.bounds.extents.x)
+			- (leftmostObject.transform.position.x - leftmostObject.transform.lossyScale.x * leftmostObject.sprite.bounds.extents.x);
 	}
 
 	public void DestroyObstacle (GameObject obj)
