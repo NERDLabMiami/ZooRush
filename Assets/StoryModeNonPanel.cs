@@ -11,7 +11,8 @@ public class StoryModeNonPanel : MonoBehaviour
 	void Start ()
 	{
 		GameStateMachine.currentState = (int)GameStateMachine.GameState.PauseToPlay;
-
+		character = GameObject.FindObjectOfType<Character> ();
+		character.gameObject.rigidbody2D.velocity = new Vector2 (8f, 0);
 	}
 	
 	// Update is called once per frame
