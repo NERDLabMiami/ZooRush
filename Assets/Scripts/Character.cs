@@ -32,7 +32,9 @@ public class Character : MonoBehaviour
 		gameObject.GetComponent<SpriteRenderer> ().sprite = baseSprites [currentCharacter];
 		GetComponent<Animator> ().runtimeAnimatorController = animatorControllers [currentCharacter];
 		playerControls = GetComponent<PlayerControls> ();
-		playerControls.characterName = characters [currentCharacter];
-		playerControls.faceIcons = characterFaceIcons [currentCharacter];
+		if (playerControls != null) {
+			playerControls.characterName = characters [currentCharacter];
+			playerControls.faceIcons = characterFaceIcons [currentCharacter];
+		}
 	}
 }
