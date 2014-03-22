@@ -40,28 +40,8 @@ TextureImporter:
   textureType: 8
   buildTargetSettings:
   - buildTarget: iPhone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     textureFormat: -2
-<<<<<<< HEAD
-    compressionQuality: 100
-=======
-    compressionQuality: 50
->>>>>>> FETCH_HEAD
-  - buildTarget: Standalone
-    maxTextureSize: 2048
-    textureFormat: -1
-    compressionQuality: 50
-  - buildTarget: Web
-    maxTextureSize: 2048
-    textureFormat: -1
-    compressionQuality: 50
-  - buildTarget: Android
-    maxTextureSize: 2048
-    textureFormat: -1
-    compressionQuality: 50
-  - buildTarget: BlackBerry
-    maxTextureSize: 2048
-    textureFormat: -1
     compressionQuality: 50
   spriteSheet:
     sprites:
@@ -69,9 +49,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 1385
+        y: 1386
         width: 476
-        height: 516
+        height: 515
       alignment: 7
       pivot: {x: .5, y: 0}
     - name: Houses_1
@@ -89,7 +69,7 @@ TextureImporter:
         x: 3
         y: 871
         width: 476
-        height: 515
+        height: 513
       alignment: 7
       pivot: {x: .5, y: 0}
     - name: Houses_3
@@ -98,24 +78,24 @@ TextureImporter:
         x: 481
         y: 871
         width: 476
-        height: 515
+        height: 511
       alignment: 7
       pivot: {x: .5, y: 0}
     - name: Houses_4
       rect:
         serializedVersion: 2
         x: 3
-        y: 436
-        width: 515
-        height: 433
+        y: 437
+        width: 516
+        height: 432
       alignment: 7
       pivot: {x: .5, y: 0}
     - name: Houses_5
       rect:
         serializedVersion: 2
-        x: 521
+        x: 520
         y: 435
-        width: 512
+        width: 513
         height: 434
       alignment: 7
       pivot: {x: .5, y: 0}
@@ -125,16 +105,16 @@ TextureImporter:
         x: 3
         y: 3
         width: 515
-        height: 434
+        height: 431
       alignment: 7
       pivot: {x: .5, y: 0}
     - name: Houses_7
       rect:
         serializedVersion: 2
-        x: 517
+        x: 519
         y: 3
-        width: 516
-        height: 433
+        width: 514
+        height: 432
       alignment: 7
       pivot: {x: .5, y: 0}
   spritePackingTag: 
