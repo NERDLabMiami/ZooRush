@@ -78,18 +78,18 @@ public class LevelGUIController : MonoBehaviour
 		} else {
 			switch (GameStateMachine.currentState) {
 			case (int)GameStateMachine.GameState.EndLevel:
-				if (sceneManager.isEndless) {
-					StartCoroutine (displayEndlessScore ());
-				} else {
-					if (sceneManager.fainted) {
-						NextSceneHandler.fainted ();
-					}
-					if (animalControl.caught) {
-						if (!scoreDisplayed) {
-							StartCoroutine (displayScore ());
-						}
+//				if (sceneManager.isEndless) {
+//					StartCoroutine (displayEndlessScore ());
+//				} else {
+				if (sceneManager.fainted) {
+					NextSceneHandler.fainted ();
+				}
+				if (animalControl.caught) {
+					if (!scoreDisplayed) {
+						StartCoroutine (displayScore ());
 					}
 				}
+//				}
 
 				break;
 
@@ -241,21 +241,21 @@ public class LevelGUIController : MonoBehaviour
 
 	}
 
-	private IEnumerator displayEndlessScore ()
-	{
-		int[] scores = scoreKeeper.getScore ();
-		time = scores [5];
-		yield return new WaitForSeconds (0.1f);
-		
-		dimScreen ();
-		if (GameObject.Find ("GUI Menu - Endless Mode(Clone)") == null) {
-			GameObject menu = Instantiate (menuPrefabs [4]) as GameObject;
-			menu.transform.parent = transform;
-			menu.transform.localPosition = new Vector3 (0f, 0f, 0f);
-			GameObject.Find ("Menu - Time Value").GetComponent<TextMesh> ().text = TimeText (time);
-			GameObject.Find ("Menu - Animals Value").GetComponent<TextMesh> ().text = "" + scores [7];
-		}
-	}
+//	private IEnumerator displayEndlessScore ()
+//	{
+//		int[] scores = scoreKeeper.getScore ();
+//		time = scores [5];
+//		yield return new WaitForSeconds (0.1f);
+//		
+//		dimScreen ();
+//		if (GameObject.Find ("GUI Menu - Endless Mode(Clone)") == null) {
+//			GameObject menu = Instantiate (menuPrefabs [4]) as GameObject;
+//			menu.transform.parent = transform;
+//			menu.transform.localPosition = new Vector3 (0f, 0f, 0f);
+//			GameObject.Find ("Menu - Time Value").GetComponent<TextMesh> ().text = TimeText (time);
+//			GameObject.Find ("Menu - Animals Value").GetComponent<TextMesh> ().text = "" + scores [7];
+//		}
+//	}
 
 	private IEnumerator displayScore ()
 	{

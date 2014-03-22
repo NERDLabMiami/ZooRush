@@ -52,6 +52,9 @@ public class Vehicle : ObjectModel
 				GameObject.FindObjectOfType<SceneRepeater> ().DestroyObstacle (gameObject);
 			}
 		} else { //facing left
+			if (inView () && transform.position.x > Camera.main.transform.position.x) {
+				rigidbody2D.velocity = new Vector2 (9.5f, 0);
+			}
 			if (transform.position.x < Camera.main.transform.position.x && !inView ()) {
 				GameObject.FindObjectOfType<SceneRepeater> ().DestroyObstacle (gameObject);
 			}
