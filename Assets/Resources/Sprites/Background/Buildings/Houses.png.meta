@@ -42,7 +42,11 @@ TextureImporter:
   - buildTarget: iPhone
     maxTextureSize: 2048
     textureFormat: -2
+<<<<<<< HEAD
+    compressionQuality: 100
+=======
     compressionQuality: 50
+>>>>>>> FETCH_HEAD
   - buildTarget: Standalone
     maxTextureSize: 2048
     textureFormat: -1
