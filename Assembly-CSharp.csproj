@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GroundRepeater.cs" />
      <Compile Include="Assets\Scripts\Animal.cs" />
      <Compile Include="Assets\Scripts\AnimalSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\AnimalTouched.cs" />
@@ -123,6 +124,7 @@
      <Compile Include="Assets\Scripts\TouchInput.cs" />
      <Compile Include="Assets\Scripts\TutorialConditionalDialogController.cs" />
      <Compile Include="Assets\Scripts\Vehicle.cs" />
+     <Compile Include="Assets\StoryModeNonPanel.cs" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
