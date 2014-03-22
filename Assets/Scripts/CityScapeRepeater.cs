@@ -23,7 +23,7 @@ public class CityScapeRepeater : MonoBehaviour
 					moveToEnd (block);
 				}
 			}
-		}
+		} 
 	}
 
 	private bool inView (SpriteRenderer obj)

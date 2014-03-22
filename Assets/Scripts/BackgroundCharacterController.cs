@@ -4,6 +4,7 @@ using System.Collections;
 public class BackgroundCharacterController : MonoBehaviour
 {
 
+	public bool OneShot;
 	public GameObject prefab;
 	public float minWait;
 	public float maxWait;
@@ -17,8 +18,16 @@ public class BackgroundCharacterController : MonoBehaviour
 	
 	void Update ()
 	{
-		if (!waiting) {
+		if (!waiting && !OneShot) {
 			StartCoroutine (delayGeneration ());
+		}
+	}
+
+	public void createInstance ()
+	{
+		if (instance == null) {
+			transform.localPosition = new Vector3 (transform.localPosition.x, Random.Range (-0.95f, -4.8f), transform.localPosition.z);
+			instance = Instantiate (prefab, transform.position, Quaternion.identity) as GameObject;
 		}
 	}
 

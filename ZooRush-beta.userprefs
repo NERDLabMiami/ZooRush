@@ -1,16 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CityScapeRepeater.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BackgroundCharacterController.cs">
     <Files>
-      <File FileName="Assets/Scripts/SceneManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Infection.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SceneRepeater.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PainIndicator.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/StopwatchController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CharacterSelect.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CharacterSpeech.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/NetLauncher.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CityScapeRepeater.cs" Line="26" Column="4" />
+      <File FileName="Assets/StoryModeNonPanel.cs" Line="17" Column="1" />
+      <File FileName="Assets/Scripts/StoryModeHandler.cs" Line="152" Column="4" />
+      <File FileName="Assets/Scripts/BackgroundCharacterController.cs" Line="28" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -18,7 +18,9 @@ public class CharacterSpeech : MonoBehaviour
 	{
 		show ();
 		speechBubbleText.text = text;
-		animator.SetTrigger ("Hide");
+		if (animator != null) {
+			animator.SetTrigger ("Hide");
+		}
 		StartCoroutine (waitForDisappear ());
 	}
 
@@ -29,15 +31,17 @@ public class CharacterSpeech : MonoBehaviour
 			yield return new WaitForSeconds (0.1f);
 		}
 		hide ();
-		speechBubble.GetComponent<Animator> ().SetTrigger ("Reset");
+		if (animator != null) {
+			animator.SetTrigger ("Reset");
+		}
 	}
 
-	private void hide ()
+	public void hide ()
 	{
 		changeAlpha (0);
 	}
 
-	private void show ()
+	public void show ()
 	{
 		changeAlpha (1);
 	}
