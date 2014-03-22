@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;Text;-;Change;Character</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;Text;-;Change;Character</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GroundRepeater.cs" />
      <Compile Include="Assets\Scripts\Animal.cs" />
      <Compile Include="Assets\Scripts\AnimalSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\AnimalTouched.cs" />
@@ -78,6 +77,7 @@
      <Compile Include="Assets\Scripts\GameOptions.cs" />
      <Compile Include="Assets\Scripts\GameSetup.cs" />
      <Compile Include="Assets\Scripts\GameStateMachine.cs" />
+     <Compile Include="Assets\Scripts\GroundRepeater.cs" />
      <Compile Include="Assets\Scripts\ImmovableObject.cs" />
      <Compile Include="Assets\Scripts\ImmovableObjectWithReaction.cs" />
      <Compile Include="Assets\Scripts\Infection.cs" />
@@ -114,6 +114,7 @@
      <Compile Include="Assets\Scripts\StartMenu.cs" />
      <Compile Include="Assets\Scripts\StopwatchController.cs" />
      <Compile Include="Assets\Scripts\StoryModeHandler.cs" />
+     <Compile Include="Assets\Scripts\StoryModeNonPanel.cs" />
      <Compile Include="Assets\Scripts\StoryModeSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\TextAnimator.cs" />
      <Compile Include="Assets\Scripts\TextOption.cs" />
@@ -124,7 +125,6 @@
      <Compile Include="Assets\Scripts\TouchInput.cs" />
      <Compile Include="Assets\Scripts\TutorialConditionalDialogController.cs" />
      <Compile Include="Assets\Scripts\Vehicle.cs" />
-     <Compile Include="Assets\StoryModeNonPanel.cs" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

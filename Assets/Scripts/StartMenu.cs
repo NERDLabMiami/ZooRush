@@ -16,12 +16,18 @@ public class StartMenu : MonoBehaviour
 		} else {
 			audio.mute = true;
 		}
+
 		Application.targetFrameRate = 60;
+
 		if (PlayerPrefs.GetInt ("Levels Unlocked", 0) > 1) {
 			playButton.sceneName = "LevelSelect";
 		} else {
-			StoryModeHandler.NextSceneName = "Level1-Tutorial";
-			playButton.sceneName = "CharacterSelect";
+			if (PlayerPrefs.GetInt ("Level1-TutorialStory", 0) == 0) {
+				playButton.sceneName = "CharacterSelect";
+			} else {
+				playButton.sceneName = "Level1-Tutorial";
+			}
+
 		}
 	}
 }

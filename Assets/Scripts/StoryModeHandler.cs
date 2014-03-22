@@ -121,7 +121,7 @@ public class StoryModeHandler : Button
 			currentSlide.SetActive (true);
 		} else {
 			LoadLevel.levelToLoad = NextSceneName;
-			PlayerPrefs.SetInt (NextSceneName + "StoryMode", 1);
+			PlayerPrefs.SetInt (NextSceneName + "Story", 1);
 			GameStateMachine.currentState = (int)GameStateMachine.GameState.Intro;
 			Application.LoadLevel ("Loading");
 		}
