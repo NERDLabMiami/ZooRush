@@ -39,7 +39,11 @@ public class SceneManager : MonoBehaviour
 		Debug.Log ("TimeOutDistnace is : " + timeOutDistance);
 		cameraFollow = GameObject.FindObjectOfType<CameraFollow> ();
 		timedOut = false; 
-
+		if (NextSceneName.Contains ("2-Zoo")) {
+			if (PlayerPrefs.GetInt ("TUTORIAL", 0) == 0) {
+				tutEnabled = true;
+			}
+		}
 		GameStateMachine.resetState ();
 		isPlaying = true;
 		pauseAudio = false;
@@ -80,7 +84,11 @@ public class SceneManager : MonoBehaviour
 			if (currentDistanceDiff > 25f) {
 				animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
 				GameStateMachine.requestPlay ();
-				GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Ok! Let's go!");
+				if (!tutEnabled) {
+					GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Ok! Let's go!");
+				} else {
+					GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("The first day\nis the hardest.");
+				}
 				cameraFollow.moveCameraToCharacterOffset (5f);
 			}
 			break;
@@ -103,6 +111,9 @@ public class SceneManager : MonoBehaviour
 			break;
 		case (int)GameStateMachine.GameState.Transition:
 			if (animalControl.caught) {
+				if (NextSceneName.Contains ("2-Zoo")) {
+					PlayerPrefs.SetInt ("TUTORIAL", 1);
+				}
 				GameObject.FindObjectOfType<PainKiller> ().savePillCount ();
 				GameStateMachine.requestEndLevel ();
 			} else {

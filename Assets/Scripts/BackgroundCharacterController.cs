@@ -25,10 +25,7 @@ public class BackgroundCharacterController : MonoBehaviour
 
 	public void createInstance ()
 	{
-		if (instance == null) {
-			transform.localPosition = new Vector3 (transform.localPosition.x, Random.Range (-0.95f, -4.8f), transform.localPosition.z);
-			instance = Instantiate (prefab, transform.position, Quaternion.identity) as GameObject;
-		}
+		instance = Instantiate (prefab, transform.position, Quaternion.identity) as GameObject;
 	}
 
 	IEnumerator delayGeneration ()

@@ -56,7 +56,7 @@ public class LevelGUIController : MonoBehaviour
 		timeCounter = 0;
 		infectionCounter = 0;
 
-		GameObject animal = GameObject.FindGameObjectWithTag ("animal");
+//		GameObject animal = GameObject.FindGameObjectWithTag ("animal");
 
 //		for (int i = 0; i < sceneManager.animals.Length; i++) {
 //			if (sceneManager.animals [i].name.Contains (animal.name)) {
