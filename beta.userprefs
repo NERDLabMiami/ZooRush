@@ -1,18 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TouchInput.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GroundRepeater.cs">
     <Files>
-      <File FileName="Assets/Scripts/TouchInput.cs" Line="61" Column="7" />
+      <File FileName="Assets/Scripts/CityScapeRepeater.cs" Line="8" Column="22" />
+      <File FileName="Assets/GroundRepeater.cs" Line="8" Column="38" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True">
-              <Node name="TouchInput.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

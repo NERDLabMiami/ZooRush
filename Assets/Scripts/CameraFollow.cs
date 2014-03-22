@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour
 	
 	void Start ()
 	{
-		character = GameObject.FindGameObjectWithTag ("character");
+		character = GameObject.FindObjectOfType<Character> ().gameObject;
 		cameraSettled = false;
 	}
 

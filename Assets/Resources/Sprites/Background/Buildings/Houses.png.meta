@@ -41,8 +41,8 @@ TextureImporter:
   buildTargetSettings:
   - buildTarget: iPhone
     maxTextureSize: 2048
-    textureFormat: -1
-    compressionQuality: 100
+    textureFormat: -2
+    compressionQuality: 50
   - buildTarget: Standalone
     maxTextureSize: 2048
     textureFormat: -1
