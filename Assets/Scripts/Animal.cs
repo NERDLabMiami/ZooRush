@@ -41,7 +41,6 @@ public class Animal : MonoBehaviour
 
 	private void OnPause ()
 	{
-		Debug.Log ("ON PAUSE CALLED");
 		animator.SetTrigger ("Stop");
 		animalPhysics.velocity = Vector2.zero;
 		if (audioSource) {
@@ -53,14 +52,12 @@ public class Animal : MonoBehaviour
 
 	private void OnPauseToPlay ()
 	{
-		Debug.Log ("ON PAUSE TO PLAY CALLED");
 
 		StartCoroutine (waitToResume (0.1f));
 	}
 	
 	private void OnPlay ()
 	{
-		Debug.Log ("ON PLAY CALLED");
 		setSpeed ();
 		if (audioSource) { //start audio playback
 			if (!audioSource.isPlaying) {

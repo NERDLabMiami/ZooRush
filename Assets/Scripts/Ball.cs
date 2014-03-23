@@ -7,7 +7,7 @@ public class Ball : ObjectModel
 	private GameObject player;
 	public Transform[] shadows;
 	private Vector3[] distanceDiff;
-
+	public SpriteRenderer sprite;
 	new void Start ()
 	{
 		base.Start ();
@@ -20,7 +20,6 @@ public class Ball : ObjectModel
 			distanceDiff [i].y = shadows [i].position.y - transform.position.y;
 			distanceDiff [i].z = shadows [i].position.z - transform.position.z;
 		}
-
 	}
 
 	void Update ()
@@ -29,14 +28,16 @@ public class Ball : ObjectModel
 			for (int i = 0; i < distanceDiff.Length; i++) {
 				shadows [i].position = transform.position + distanceDiff [i];
 			}
-			if (transform.position.x > player.transform.position.x + 40f) {
+			if (!inView (sprite)) {
 				destroyObstacle ();
-			} else {
-				if (40f < Mathf.Abs (transform.position.x - Camera.main.transform.position.x)) {
-					destroyObstacle ();
-				}
 			}
 		}
+	}
+
+	private bool inView (SpriteRenderer obj)
+	{
+		Plane[] planes = GeometryUtility.CalculateFrustumPlanes (Camera.main);
+		return GeometryUtility.TestPlanesAABB (planes, obj.bounds);
 	}
 
 	protected override void resetOtherValues ()

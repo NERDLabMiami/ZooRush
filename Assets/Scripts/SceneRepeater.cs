@@ -17,23 +17,25 @@ public class SceneRepeater : MonoBehaviour
 	
 	void Update ()
 	{
-		foreach (GameObject element in sceneThings) {
-			if (element != null) {
-				if (element.transform.position.x < Camera.main.transform.position.x - 25f) {
-					if (!element.activeSelf) {
-						element.SetActive (true);
-					}
-					if (element.GetComponent<Building> () != null) {
-						element.GetComponent<Building> ().resetState ();
-					}
-					if (element.GetComponent<ObjectModel> () != null) {
-						element.GetComponent<ObjectModel> ().resetState ();
-					}
+		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
+			foreach (GameObject element in sceneThings) {
+				if (element != null) {
+					if (element.transform.position.x < Camera.main.transform.position.x - 50f) {
+						if (!element.activeSelf) {
+							element.SetActive (true);
+						}
+						if (element.GetComponent<Building> () != null) {
+							element.GetComponent<Building> ().resetState ();
+						}
+						if (element.GetComponent<ObjectModel> () != null) {
+							element.GetComponent<ObjectModel> ().resetState ();
+						}
 					
-					element.transform.position = new Vector3 (
+						element.transform.position = new Vector3 (
 						element.transform.position.x + sceneWidth,
 						element.transform.position.y,
 						element.transform.position.z);
+					}
 				}
 			}
 		}

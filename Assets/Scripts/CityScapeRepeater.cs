@@ -19,7 +19,7 @@ public class CityScapeRepeater : MonoBehaviour
 		speedUpdate ();
 		if (cameraFollower.cameraSettled) {
 			foreach (SpriteRenderer block in cityblocks) {
-				if (block.bounds.max.x < Camera.main.transform.position.x && !inView (block)) { // if the block is not in view and to the left of the camera
+				if (block.bounds.max.x < Camera.main.transform.position.x - 50f && !inView (block)) { // if the block is not in view and to the left of the camera
 					moveToEnd (block);
 				}
 			}

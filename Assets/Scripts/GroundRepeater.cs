@@ -16,11 +16,11 @@ public class GroundRepeater : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate ()
+	void Update ()
 	{
 		if (cameraFollower.cameraSettled) {
 			foreach (SpriteRenderer block in blocks) {
-				if (block.bounds.max.x < Camera.main.transform.position.x && !inView (block)) { // if the block is not in view and to the left of the camera
+				if (block.bounds.max.x < Camera.main.transform.position.x - 25f && !inView (block)) { // if the block is not in view and to the left of the camera
 					moveToEnd (block);
 				}
 			}
