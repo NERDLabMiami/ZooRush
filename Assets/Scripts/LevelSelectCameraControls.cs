@@ -27,7 +27,7 @@ public class LevelSelectCameraControls : MonoBehaviour
 		}
 		move = false;
 		width = 0.325f;
-		Debug.Log ("RIGHT MAX IS: " + rightMax);
+//		Debug.Log ("RIGHT MAX IS: " + rightMax);
 	}
 	
 	void FixedUpdate ()

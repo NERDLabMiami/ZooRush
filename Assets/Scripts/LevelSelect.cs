@@ -28,13 +28,14 @@ public class LevelSelect : MonoBehaviour
 
 	void Awake ()
 	{
-//		cameras = GameObject.FindGameObjectsWithTag ("option");
-//		foreach (GameObject camera in cameras) {
-//			int num = Int32.Parse (camera.name.Substring (camera.name.LastIndexOf ('a') + 1));
-//			if (num != 1 && PlayerPrefs.GetInt (levelNames [num], 0) == 0) {
-//				camera.SetActive (false);
-//			}
-//		}
+		//disables any locked levels
+		cameras = GameObject.FindGameObjectsWithTag ("option");
+		foreach (GameObject camera in cameras) {
+			int num = Int32.Parse (camera.name.Substring (camera.name.LastIndexOf ('a') + 1));
+			if (num != 1 && PlayerPrefs.GetInt (levelNames [num], 0) == 0) {
+				camera.SetActive (false);
+			}
+		}
 	}
 
 	void Start ()
