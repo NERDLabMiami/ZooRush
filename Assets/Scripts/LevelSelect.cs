@@ -60,11 +60,7 @@ public class LevelSelect : MonoBehaviour
 	void goToLevel ()
 	{
 		int levelNumber = Int32.Parse (currentLevel.name.Substring (currentLevel.name.LastIndexOf ('a') + 1));
-		if (levelNumber <= 4) {
-			NextSceneHandler.loadGameLevelWithConditions (levelNames [levelNumber]);
-		} else {
-			NextSceneHandler.nextLevel (levelNames [levelNumber]);
-		}
+		NextSceneHandler.loadGameLevelWithConditions (levelNames [levelNumber]);
 	}
 
 	void updateLevelCameras ()
