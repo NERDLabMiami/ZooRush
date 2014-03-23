@@ -87,9 +87,12 @@ public class StoryModeHandler : Button
 			break;
 		case "End":
 			nextLevel = 11;
+			NextSceneName = "Credits";
+
 			break;
 		default:
 			nextLevel = 11;
+			NextSceneName = "Credits";
 			break;
 		}
 
@@ -120,14 +123,10 @@ public class StoryModeHandler : Button
 			currentSlide = thisStory [slideIndex];
 			currentSlide.SetActive (true);
 		} else {
-			if (LoadLevel.levelToLoad.Equals ("End")) {
-				NextSceneHandler.nextLevel ("Credits");
-			} else {
-				LoadLevel.levelToLoad = NextSceneName;
-				PlayerPrefs.SetInt (NextSceneName + "Story", 1);
-				GameStateMachine.currentState = (int)GameStateMachine.GameState.Intro;
-				Application.LoadLevel ("Loading");
-			}
+			LoadLevel.levelToLoad = NextSceneName;
+			PlayerPrefs.SetInt (NextSceneName + "Story", 1);
+			GameStateMachine.currentState = (int)GameStateMachine.GameState.Intro;
+			Application.LoadLevel ("Loading");
 		}
 		StartCoroutine (waitToResetTouch ());
 	}
