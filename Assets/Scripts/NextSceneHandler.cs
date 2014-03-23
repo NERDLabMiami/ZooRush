@@ -32,6 +32,10 @@ public class NextSceneHandler : MonoBehaviour
 
 	public static void loadGameLevelWithConditions (string levelName)
 	{
+		if (levelName.Equals ("End")) {
+			nextLevelStoryMode (levelName);
+		}
+
 		if (PlayerPrefs.GetInt (levelName + "Story", 0) == 0) {
 			nextLevelStoryMode (levelName);
 		} else {
