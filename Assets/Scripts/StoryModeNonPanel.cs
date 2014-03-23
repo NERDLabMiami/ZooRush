@@ -96,7 +96,7 @@ public class StoryModeNonPanel : TouchHandler
 
 	private IEnumerator fadeOut ()
 	{
-		while (dimScreen.color != Color.white) {
+		while (dimScreen.color.a < 0.97f) {
 			dimScreen.color = Color.Lerp (dimScreen.color, Color.white, 1f * Time.deltaTime);
 			yield return new WaitForFixedUpdate ();
 		}
@@ -108,10 +108,11 @@ public class StoryModeNonPanel : TouchHandler
 //		Destroy (SuburbsBG);
 //		GameObject.FindObjectOfType<SceneRepeater> ().recalculate ();
 
-		while (dimScreen.color != Color.clear) {
+		while (dimScreen.color.a > 0.1f) {
 			dimScreen.color = Color.Lerp (dimScreen.color, Color.clear, 1f * Time.deltaTime);
 			yield return new WaitForFixedUpdate ();
 		}
+		dimScreen.color = Color.clear;
 
 		cueZooKeeper ();
 	}

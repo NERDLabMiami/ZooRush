@@ -125,7 +125,7 @@ public class ScoreKeeper : MonoBehaviour
 			stars--;
 		}
 		if (stars > 0) {
-			if (totalInfectionsTouched () > totalPowerUpsTouched ()) {
+			if (totalInfectionsTouched () > 0) {
 				stars--;
 			}
 		}

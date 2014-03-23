@@ -12,9 +12,13 @@ public class TutorialConditionalDialogController : MonoBehaviour
 	void Start ()
 	{
 		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
-		stopWatchExplained = false;
-		crisisExplained = false;
-		animalExplained = false;
+		if (Application.loadedLevelName.Contains ("Tutorial")) {
+			stopWatchExplained = false;
+			crisisExplained = false;
+			animalExplained = false;
+		} else {
+			stopWatchExplained = crisisExplained = animalExplained = true;
+		}
 	}
 	
 	void Update ()

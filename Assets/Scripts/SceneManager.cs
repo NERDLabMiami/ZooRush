@@ -43,6 +43,8 @@ public class SceneManager : MonoBehaviour
 			if (PlayerPrefs.GetInt ("TUTORIAL", 0) == 0) {
 				tutEnabled = true;
 			}
+		} else {
+			tutEnabled = false;
 		}
 		GameStateMachine.resetState ();
 		isPlaying = true;
