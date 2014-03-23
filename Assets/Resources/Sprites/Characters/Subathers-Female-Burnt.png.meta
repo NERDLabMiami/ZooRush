@@ -78,7 +78,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 643
-        height: 738
+        height: 737
       alignment: 2
       pivot: {x: .5, y: 1}
     - name: Subathers-Female-Burnt_4
@@ -87,7 +87,7 @@ TextureImporter:
         x: 643
         y: 0
         width: 643
-        height: 738
+        height: 737
       alignment: 2
       pivot: {x: .5, y: 1}
     - name: Subathers-Female-Burnt_5
@@ -96,7 +96,7 @@ TextureImporter:
         x: 1286
         y: 0
         width: 643
-        height: 738
+        height: 737
       alignment: 2
       pivot: {x: .5, y: 1}
   spritePackingTag: 

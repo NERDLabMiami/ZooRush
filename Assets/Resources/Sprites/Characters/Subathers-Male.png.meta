@@ -69,7 +69,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 643
-        height: 737
+        height: 736
       alignment: 2
       pivot: {x: .5, y: 1}
     - name: Subathers-Male_3
@@ -78,7 +78,7 @@ TextureImporter:
         x: 643
         y: 0
         width: 643
-        height: 737
+        height: 736
       alignment: 2
       pivot: {x: .5, y: 1}
     - name: Subathers-Male_4
@@ -96,7 +96,7 @@ TextureImporter:
         x: 1286
         y: 0
         width: 642
-        height: 737
+        height: 736
       alignment: 2
       pivot: {x: .5, y: 1}
   spritePackingTag: 
