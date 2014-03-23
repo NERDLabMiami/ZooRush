@@ -8,10 +8,8 @@ public class LevelFailModel : MonoBehaviour
 	public static string levelFailed;
 	public TextMesh title;
 	public TextMesh dialog;
-	public GameObject retry;
-	public GameObject quit;
-	private RaycastHit hit; 
-	private bool buttonClicked;
+	public DirectToScene retry;
+
 	private string[] titleOptions = {	
 		"Sickle Cell Crisis", 
 		"Infection!",
@@ -29,7 +27,6 @@ public class LevelFailModel : MonoBehaviour
 	void Start ()
 	{
 
-		buttonClicked = false;
 		switch (failReason) {
 		case "Fainted":
 			title.text = titleOptions [0];
@@ -50,26 +47,7 @@ public class LevelFailModel : MonoBehaviour
 			dialog.text = dialogText [3];
 			break;
 		}
-	}
-	
-	void Update ()
-	{
-		if (!buttonClicked) {
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray, out hit)) {
-				if (Input.GetMouseButtonUp (0)) {
-					if (hit.transform.gameObject == retry) {
-						buttonClicked = true;
-						LoadLevel.levelToLoad = levelFailed;
-						Application.LoadLevel ("Loading");
-					} else {
-						if (hit.transform.gameObject == quit) {
-							buttonClicked = true;
-							Application.LoadLevel ("Splash");
-						}
-					}
-				}
-			}
-		}
+		LoadLevel.levelToLoad = levelFailed;
+		retry.sceneName = "Loading";
 	}
 }
