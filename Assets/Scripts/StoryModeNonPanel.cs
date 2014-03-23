@@ -14,8 +14,8 @@ public class StoryModeNonPanel : TouchHandler
 	private bool readyForAnimal, readyToFadeOut, readyToStart;
 	public SpriteRenderer dimScreen;
 	public SpriteRenderer zooKeeper;
-	public GameObject SuburbsBG;
-	public GameObject ZooBG;
+//	public GameObject SuburbsBG;
+//	public GameObject ZooBG;
 	public GameObject speechBubble;
 	
 	// Use this for initialization
@@ -101,9 +101,12 @@ public class StoryModeNonPanel : TouchHandler
 			yield return new WaitForFixedUpdate ();
 		}
 
-		Instantiate (ZooBG, new Vector3 (SuburbsBG.transform.position.x, 2.3f, 0), Quaternion.identity);
-		Destroy (SuburbsBG);
-		GameObject.FindObjectOfType<SceneRepeater> ().recalculate ();
+		Camera.main.transform.localPosition = new Vector3 (Camera.main.transform.localPosition.x, -57.25f, Camera.main.transform.localPosition.z);
+		character.transform.localPosition = new Vector3 (character.transform.localPosition.x, -60.5f, character.transform.localPosition.z);
+
+//		Instantiate (ZooBG, new Vector3 (SuburbsBG.transform.position.x, 2.3f, 0), Quaternion.identity);
+//		Destroy (SuburbsBG);
+//		GameObject.FindObjectOfType<SceneRepeater> ().recalculate ();
 
 		while (dimScreen.color != Color.clear) {
 			dimScreen.color = Color.Lerp (dimScreen.color, Color.clear, 1f * Time.deltaTime);
