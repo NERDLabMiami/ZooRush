@@ -35,7 +35,7 @@ public class TextOption : TouchHandler
 							Application.LoadLevel ("Splash");
 						} else {
 							if (gameObject.name.Contains ("Next")) {
-								NextSceneHandler.nextLevel (levelName);
+								NextSceneHandler.loadGameLevelWithConditions (levelName);
 							} 
 						}
 					}

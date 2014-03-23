@@ -97,54 +97,54 @@ public class LevelGUIController : MonoBehaviour
 		}
 	}
 
-	void FixedUpdate ()
-	{
-		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.EndLevel) {
-			if (timeCountDown) {
-				if (timeWait) {
-					StartCoroutine (TimeWait ());
-				} else {
-					if (timeCounter < time) {
-						StartCoroutine (starDisplay (stars));
-						StartCoroutine (timeCountUpMethod ());
-					} else {
-						timeCountDown = false;
-						if (!starDisplay1) {
-							if (time - sceneManager.targetTimeVar > 0) {
-								stars--;
-							}
-							if (time - (sceneManager.multiplier1 * sceneManager.targetTimeVar) > 0) {
-								stars--;
-							}
-							if (time - (sceneManager.multiplier2 * sceneManager.targetTimeVar) > 0) {
-								stars--;
-							}
-							if (stars > 0) {
-								if (scoreKeeper.totalInfectionsTouched () > 0) {
-									stars--;
-								}
-							}
-
-							StartCoroutine (starDisplay (stars));
-						} else {
-							if (infectionCounter < infections) {
-								StartCoroutine (infectionCountUp ());
-							} else {
-								if (!starDisplay2) {
-									if (stars > 0) {
-										if (infections > powerUps) {
-											stars--;
-										}
-									}
-									StartCoroutine (starDisplay (stars));
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+//	void FixedUpdate ()
+//	{
+//		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.EndLevel) {
+//			if (timeCountDown) {
+//				if (timeWait) {
+//					StartCoroutine (TimeWait ());
+//				} else {
+//					if (timeCounter < time) {
+//						StartCoroutine (starDisplay (stars));
+//						StartCoroutine (timeCountUpMethod ());
+//					} else {
+//						timeCountDown = false;
+//						if (!starDisplay1) {
+//							if (time - sceneManager.targetTimeVar > 0) {
+//								stars--;
+//							}
+//							if (time - (sceneManager.multiplier1 * sceneManager.targetTimeVar) > 0) {
+//								stars--;
+//							}
+//							if (time - (sceneManager.multiplier2 * sceneManager.targetTimeVar) > 0) {
+//								stars--;
+//							}
+//							if (stars > 0) {
+//								if (scoreKeeper.totalInfectionsTouched () > 0) {
+//									stars--;
+//								}
+//							}
+//
+//							StartCoroutine (starDisplay (stars));
+//						} else {
+//							if (infectionCounter < infections) {
+//								StartCoroutine (infectionCountUp ());
+//							} else {
+//								if (!starDisplay2) {
+//									if (stars > 0) {
+//										if (infections > powerUps) {
+//											stars--;
+//										}
+//									}
+//									StartCoroutine (starDisplay (stars));
+//								}
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
 
 	private void dimScreen ()
 	{
@@ -300,8 +300,12 @@ public class LevelGUIController : MonoBehaviour
 		}
 		
 		starCount = scores [6];
+		TextMesh timeTextMesh = GameObject.Find ("Menu - Time").GetComponent<TextMesh> ();
+		timeTextMesh.text = TimeText (time);
+
+		StartCoroutine (starDisplay (starCount));
+
 		unlockLevel ();
-		timeCountDown = true;
 	}
 
 	private IEnumerator starDisplay (int starNumber)
@@ -343,19 +347,19 @@ public class LevelGUIController : MonoBehaviour
 		}
 	}
 
-	private IEnumerator TimeWait ()
-	{
-		yield return new WaitForSeconds (1.5f);
-		timeWait = false;
-	}
+//	private IEnumerator TimeWait ()
+//	{
+//		yield return new WaitForSeconds (1.5f);
+//		timeWait = false;
+//	}
 	
-	private IEnumerator timeCountUpMethod ()
-	{
-		TextMesh timeTextMesh = GameObject.Find ("Menu - Time").GetComponent<TextMesh> ();
-		timeTextMesh.text = TimeText (timeCounter);
-		yield return new WaitForSeconds (0.1f);
-		timeCounter += 1;
-	}
+//	private IEnumerator timeCountUpMethod ()
+//	{
+//		TextMesh timeTextMesh = GameObject.Find ("Menu - Time").GetComponent<TextMesh> ();
+//		timeTextMesh.text = TimeText (timeCounter);
+//		yield return new WaitForSeconds (0.1f);
+//		timeCounter += 1;
+//	}
 
 	private string TimeText (int timeVal)
 	{

@@ -8,6 +8,11 @@ public class GUITouchController : MonoBehaviour
 {
 	//TODO implement touchHandler.objectUntouched() case
 
+	void Start ()
+	{
+		Input.simulateMouseWithTouches = true;
+	}
+
 	private RaycastHit2D[] results = new RaycastHit2D[1]; //array of objects touched by the ray
 
 	void Update ()

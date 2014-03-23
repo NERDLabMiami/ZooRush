@@ -4,7 +4,7 @@ using System.Collections;
 public class CityScapeRepeater : MonoBehaviour
 {
 
-	public SpriteRenderer[] cityblocks;
+	private SpriteRenderer[] cityblocks;
 	private CameraFollow cameraFollower;
 	private Vector2 moving = new Vector2 (-0.5f, 0);
 	private Vector2 stopped = Vector2.zero;
@@ -12,6 +12,7 @@ public class CityScapeRepeater : MonoBehaviour
 	void Start ()
 	{
 		cameraFollower = GameObject.FindObjectOfType<CameraFollow> ();
+		cityblocks = GetComponentsInChildren<SpriteRenderer> ();
 	}
 
 	void FixedUpdate ()
