@@ -41,9 +41,7 @@ public class GameStateMachine : MonoBehaviour
 	{
 		if (currentState == (int)GameState.StartLevel) {
 			currentState = (int)GameState.Intro;
-			Debug.Log ("IN INTRO");
 			if (Intro != null) {
-				Debug.Log ("GAME STATE CALLING INTRO");
 				Intro ();
 			}
 		}

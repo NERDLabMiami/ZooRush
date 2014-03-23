@@ -36,7 +36,7 @@ public class SceneManager : MonoBehaviour
 	void Start ()
 	{
 		timeOutDistance = GameObject.FindObjectOfType<SceneRepeater> ().getSceneWidth () * 0.90f;
-		Debug.Log ("TimeOutDistnace is : " + timeOutDistance);
+//		Debug.Log ("TimeOutDistnace is : " + timeOutDistance);
 		cameraFollow = GameObject.FindObjectOfType<CameraFollow> ();
 		timedOut = false; 
 		if (NextSceneName.Contains ("2-Zoo")) {

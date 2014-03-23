@@ -33,7 +33,6 @@ public class StoryModeNonPanel : TouchHandler
 	void Update ()
 	{
 		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.PauseToPlay) {
-			Debug.Log ("ASSIGNMENT CALLED");
 			GameStateMachine.requestPlay ();
 			GameObject.FindObjectOfType<CameraFollow> ().moveCameraToCharacterOffset (5f);
 			speech.SpeechBubbleDisplay (currentDialog [speechIndex]);
@@ -53,11 +52,9 @@ public class StoryModeNonPanel : TouchHandler
 	{
 		clicked = true;
 		if (++speechIndex < currentDialog.Length) {
-			Debug.Log ("INDEX IS " + speechIndex);
 			speech.SpeechBubbleDisplay (currentDialog [speechIndex]);
 			StartCoroutine (waitToResetTouch ());
 		} else {
-			Debug.Log ("END OF DIALOG");
 			nextAction ();
 		}
 	}
@@ -76,7 +73,6 @@ public class StoryModeNonPanel : TouchHandler
 	{
 		if (readyForAnimal) {
 			speech.hide ();
-			Debug.Log ("CUE ANIMAL APPEARANCE");
 			readyForAnimal = false;
 			animal = Instantiate (animalPrefab, new Vector3 (transform.position.x + 20f, transform.position.y - 2.5f, transform.position.z), Quaternion.identity) as GameObject;
 			animal.rigidbody2D.velocity = new Vector2 (-6, 0);

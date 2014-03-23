@@ -120,10 +120,14 @@ public class StoryModeHandler : Button
 			currentSlide = thisStory [slideIndex];
 			currentSlide.SetActive (true);
 		} else {
-			LoadLevel.levelToLoad = NextSceneName;
-			PlayerPrefs.SetInt (NextSceneName + "Story", 1);
-			GameStateMachine.currentState = (int)GameStateMachine.GameState.Intro;
-			Application.LoadLevel ("Loading");
+			if (LoadLevel.levelToLoad.Equals ("End")) {
+				NextSceneHandler.nextLevel ("Credits");
+			} else {
+				LoadLevel.levelToLoad = NextSceneName;
+				PlayerPrefs.SetInt (NextSceneName + "Story", 1);
+				GameStateMachine.currentState = (int)GameStateMachine.GameState.Intro;
+				Application.LoadLevel ("Loading");
+			}
 		}
 		StartCoroutine (waitToResetTouch ());
 	}
