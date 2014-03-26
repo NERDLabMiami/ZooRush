@@ -78,9 +78,6 @@ public class LevelGUIController : MonoBehaviour
 		} else {
 			switch (GameStateMachine.currentState) {
 			case (int)GameStateMachine.GameState.EndLevel:
-//				if (sceneManager.isEndless) {
-//					StartCoroutine (displayEndlessScore ());
-//				} else {
 				if (sceneManager.fainted) {
 					NextSceneHandler.fainted ();
 				}
@@ -89,8 +86,6 @@ public class LevelGUIController : MonoBehaviour
 						StartCoroutine (displayScore ());
 					}
 				}
-//				}
-
 				break;
 
 			}
