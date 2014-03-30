@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InstructionLevel : MonoBehaviour
+public class InstructionLevel : OtherButtonClass
 {
 
 	private int instructionIndex;
 	public GameObject left;
 	public GameObject right;
 	public Camera[] slides;
-	private RaycastHit2D[] results = new RaycastHit2D[1]; //array of objects touched by the ray
 
 	void Start ()
 	{
@@ -27,20 +26,6 @@ public class InstructionLevel : MonoBehaviour
 			right.SetActive (false);
 		} else {
 			right.SetActive (true);
-		}
-
-		if (Input.GetMouseButtonDown (0)) {
-			Ray ray = camera.ScreenPointToRay (Input.mousePosition); //create a ray going from the mouse into the z-direction
-			if (Physics2D.GetRayIntersectionNonAlloc (ray, results) > 0) { //if we've hit at least one collider
-				foreach (RaycastHit2D element in results) { //iterate through the colliders we've touched
-					if (element.transform == left.transform) {
-						moveCameras (true);
-					}
-					if (element.transform == right.transform) {
-						moveCameras (false);
-					}
-				}
-			}
 		}
 	}
 
@@ -63,8 +48,10 @@ public class InstructionLevel : MonoBehaviour
 				}
 			}
 		}
+	}
 
-
-
+	public override void otherButtonAction (Button thisButton)
+	{
+		moveCameras (thisButton.GetComponent<NextButton> ().left);
 	}
 }

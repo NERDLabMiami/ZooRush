@@ -14,8 +14,6 @@ public class StoryModeNonPanel : TouchHandler
 	private bool readyForAnimal, readyToFadeOut, readyToStart;
 	public SpriteRenderer dimScreen;
 	public SpriteRenderer zooKeeper;
-//	public GameObject SuburbsBG;
-//	public GameObject ZooBG;
 	public GameObject speechBubble;
 	
 	// Use this for initialization
@@ -34,7 +32,10 @@ public class StoryModeNonPanel : TouchHandler
 	{
 		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.PauseToPlay) {
 			GameStateMachine.requestPlay ();
-			GameObject.FindObjectOfType<CameraFollow> ().moveCameraToCharacterOffset (5f);
+			CameraFollow cameraFollower = GameObject.FindObjectOfType<CameraFollow> ();
+			cameraFollower.characterOffset = 5;
+			cameraFollower.cameraFollowEnabled = true;
+			cameraFollower.cameraSettled = true;
 			speech.SpeechBubbleDisplay (currentDialog [speechIndex]);
 			readyForAnimal = true;
 		}

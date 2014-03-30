@@ -18,11 +18,13 @@ public class Slider : MonoBehaviour
 	private Vector3 targetPos; //destination position for the slider knob
 	private float sliderPercent; //current perecentage of the slider
 	private float sliderLength; //length of the slider
-	
+	private float leftEdge;//leftmost edge of the slider
+
 	void Start ()
 	{
 		sliderLength = GetComponent<BoxCollider> ().size.x;
 		sliderPercent = PlayerPrefs.GetFloat ("Sensitivity", 1);
+		leftEdge = knob.position.x - sliderLength / 2f;
 		targetPos = knob.position + Vector3.right * (sliderLength / -2 + sliderLength * sliderPercent);
 		knob.position = targetPos; 
 	}
@@ -30,12 +32,22 @@ public class Slider : MonoBehaviour
 	void Update ()
 	{
 		knob.position = Vector3.Lerp (knob.position, targetPos, Time.deltaTime * 7);
-		sliderPercent = Mathf.Clamp01 ((knob.localPosition.x + sliderLength) / sliderLength);
+		sliderPercent = calculatePercent ();
+	}
+
+	private float calculatePercent ()
+	{
+		return (knob.position.x - leftEdge) / sliderLength;
 	}
 	
 	void OnTouchStay (Vector3 point)
 	{
 		targetPos = new Vector3 (point.x, targetPos.y, targetPos.z);
+	}
+
+	void OnTouchExit (Vector3 point)
+	{
+		PlayerPrefs.SetFloat ("Sensitivity", sliderPercent);
 	}
 
 	public float GetSliderPercent ()
