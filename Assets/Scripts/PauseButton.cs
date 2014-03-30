@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class PauseButton : Button
+public class PauseButton : ButtonOld
 {
 	private SpriteRenderer[] renderers;
 	private LevelGUIController guiControls;

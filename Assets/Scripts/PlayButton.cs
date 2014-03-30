@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class PlayButton : Button
+public class PlayButton : ButtonOld
 {
 	public string sceneName;
 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Globalization;
 
@@ -83,15 +83,15 @@ public class GameOptions : MonoBehaviour
 
 
 		if (musicValue) {
-			MusicButton.GetComponent<ToggleButton> ().Activate ();
+			MusicButton.GetComponent<ToggleButtonOld> ().Activate ();
 		} else {
-			MusicButton.GetComponent<ToggleButton> ().Deactivate ();
+			MusicButton.GetComponent<ToggleButtonOld> ().Deactivate ();
 		}
 		
 		if (soundValue) {
-			SoundButton.GetComponent<ToggleButton> ().Activate ();
+			SoundButton.GetComponent<ToggleButtonOld> ().Activate ();
 		} else {
-			SoundButton.GetComponent<ToggleButton> ().Deactivate ();
+			SoundButton.GetComponent<ToggleButtonOld> ().Deactivate ();
 		}
 		
 		options = new GameObject[] {MusicButton, SoundButton, leftChar, rightChar, Back};
@@ -110,8 +110,8 @@ public class GameOptions : MonoBehaviour
 		soundValue = (PlayerPrefs.GetInt ("Sound") == 1);
 		sensitivity = sensitivityBar.GetSliderPercent ();
 
-		PlayerPrefs.SetInt ("Music", MusicButton.GetComponent<ToggleButton> ().activated ? 1 : 0);
-		PlayerPrefs.SetInt ("Sound", SoundButton.GetComponent<ToggleButton> ().activated ? 1 : 0);
+		PlayerPrefs.SetInt ("Music", MusicButton.GetComponent<ToggleButtonOld> ().activated ? 1 : 0);
+		PlayerPrefs.SetInt ("Sound", SoundButton.GetComponent<ToggleButtonOld> ().activated ? 1 : 0);
 		PlayerPrefs.SetFloat ("Sensitivity", sensitivity);
 
 	}

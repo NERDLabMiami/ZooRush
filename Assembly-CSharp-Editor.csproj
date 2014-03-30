@@ -46,10 +46,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Editor\ButtonEditor.cs" />
      <Compile Include="Assets\Editor\DialogTriggerEditor.cs" />
      <Compile Include="Assets\Editor\LevelEditor.cs" />
+     <Compile Include="Assets\Editor\RendererEditor.cs" />
      <Compile Include="Assets\Editor\SortingLayerEditor.cs" />
+     <None Include="Assets\GUI\Fonts\SIL Open Font License.txt" />
+     <None Include="Assets\GUI\Fonts\Freeware License.txt" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
+     <None Include="Assets\GUI\Fonts\Iconian Fonts License.txt" />
+     <None Include="Assets\GUI\Fonts\Daniel Midgley.txt" />
  <Reference Include="\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>

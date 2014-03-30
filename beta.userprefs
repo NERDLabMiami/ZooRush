@@ -1,8 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../Tester/Assets/MainMenuGUI.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StartMenu.cs">
     <Files>
-      <File FileName="../Tester/Assets/MainMenuGUI.cs" Line="6" Column="44" />
+      <File FileName="Assets/Scripts/ButtonOld.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ToggleButtonOld.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameSetup.cs" Line="13" Column="3" />
+      <File FileName="Assets/Scripts/StartMenu.cs" Line="16" Column="3" />
+      <File FileName="Assets/GUI/Scripts/RectangleButton.cs" Line="46" Column="15" />
+      <File FileName="Assets/GUI/Scripts/Button.cs" Line="16" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
