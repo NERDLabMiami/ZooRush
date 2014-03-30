@@ -15,9 +15,6 @@ public abstract class Button : UserTouchable
 	public string
 		SceneName; //Name of the scene this button directs to.
 	[HideInInspector]
-	public string
-		otherType; //Descriptor of button if is of type "other"
-	[HideInInspector]
 	public OtherButtonClass
 		otherButtonClass;
 
@@ -69,29 +66,15 @@ public abstract class Button : UserTouchable
 
 	private void retry ()
 	{
+		BreadCrumbs.nextScene = Application.loadedLevelName;
 		//TODO Update Scene Name and any other Preparations/data needed before reloading this scene
 		directToScene ();
 	}
 
 	private void other ()
 	{
-		switch (otherType) {
-		case "Toggle":
-			Debug.Log ("Toggle Button Pressed");
-			//Toggle buttons handle their own data functionality since they are straight forward
-			break;
-		case "Pause":
-			//TODO Pause Buttons are only enabled when the scene is not already paused so we need code that reflects that
-			break;
-		case "Dialog":
-			otherButtonClass.otherButtonAction ();
-			break;
-		case "State Change":
-		case "Next":
+		if (otherButtonClass != null) {
 			otherButtonClass.otherButtonAction (this);
-			break;
-		default:
-			break;
 		}
 	}
 

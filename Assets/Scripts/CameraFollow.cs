@@ -8,15 +8,14 @@ using System.Collections;
  */ 
 public class CameraFollow : MonoBehaviour
 {
-	private GameObject character;
+	public GameObject character;
 
 	public bool cameraFollowEnabled;
 	public bool cameraSettled;
 	public float characterOffset;
 	
-	void Start ()
+	void OnEnable ()
 	{
-		character = GameObject.FindObjectOfType<Character> ().gameObject;
 		cameraSettled = false;
 	}
 

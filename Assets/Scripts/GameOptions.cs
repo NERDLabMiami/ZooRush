@@ -6,7 +6,7 @@ using System.Globalization;
  * @author: Ebtissam Wahman
  */ 
 
-public class GameOptions : MonoBehaviour
+public class GameOptions : OtherButtonClass
 {	
 	private GameObject[] options;
 
@@ -39,11 +39,11 @@ public class GameOptions : MonoBehaviour
 	void Awake ()
 	{
 		sensitivity = PlayerPrefs.GetFloat ("Sensitivity", 1);
+
 	}
 	
 	void Start ()
 	{
-		Input.simulateMouseWithTouches = true;
 		GameStateMachine.currentState = (int)GameStateMachine.GameState.Play;
 
 		Back = GameObject.Find ("Text - Back");
@@ -95,8 +95,6 @@ public class GameOptions : MonoBehaviour
 		}
 		
 		options = new GameObject[] {MusicButton, SoundButton, leftChar, rightChar, Back};
-
-
 	}
 
 	void FixedUpdate ()
@@ -163,5 +161,10 @@ public class GameOptions : MonoBehaviour
 			}
 			return;
 		}
+	}
+
+	public override void otherButtonAction (Button thisButton)
+	{
+		throw new System.NotImplementedException ();
 	}
 }

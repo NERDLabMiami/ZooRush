@@ -26,8 +26,6 @@ public class ButtonEditor : Editor
 		thisButton = target as Button;
 		currentButtonType = thisButton.buttonType;
 		sceneName = thisButton.SceneName;
-		otherType = thisButton.otherType;
-//		Debug.Log ("Button Found");
 	}
 
 	public override void OnInspectorGUI ()
@@ -52,10 +50,6 @@ public class ButtonEditor : Editor
 		if (currentButtonType == 4) {
 			EditorGUILayout.EndHorizontal ();
 			EditorGUILayout.BeginHorizontal ();
-			EditorGUILayout.LabelField ("Type of Button: ");
-			otherType = EditorGUILayout.TextField (thisButton.otherType);
-			EditorGUILayout.EndHorizontal ();
-			EditorGUILayout.BeginHorizontal ();
 			EditorGUILayout.LabelField ("Other Button Class Link: ");
 			otherButtonLink = EditorGUILayout.ObjectField (thisButton.otherButtonClass, typeof(OtherButtonClass), true) as OtherButtonClass;
 		}
@@ -66,7 +60,6 @@ public class ButtonEditor : Editor
 				thisButton.SceneName = sceneName;
 			}
 			if (currentButtonType == 4) {
-				thisButton.otherType = otherType;
 				thisButton.otherButtonClass = otherButtonLink;
 			}
 			EditorUtility.SetDirty (thisButton);

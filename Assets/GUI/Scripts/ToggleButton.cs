@@ -55,7 +55,7 @@ public class ToggleButton : Button
 		} else {
 			toggleSprite.color = Color.clear;
 		}
-
+		buttonAction ();
 		return toggleValue;
 	}
 
