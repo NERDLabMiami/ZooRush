@@ -41,7 +41,7 @@ public class LevelSelectButtonController : MonoBehaviour
 									clicked = true;
 								} else {
 									if (hit.transform.gameObject == back) {
-										NextSceneHandler.nextLevel ("Splash");
+										NextSceneHandler.nextLevel ("MainMenu");
 									}
 								}
 							}

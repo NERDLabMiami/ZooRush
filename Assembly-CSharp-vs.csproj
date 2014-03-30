@@ -50,7 +50,9 @@
      <Compile Include="Assets\GUI\Scripts\Button.cs" />
      <Compile Include="Assets\GUI\Scripts\DialogBox.cs" />
      <Compile Include="Assets\GUI\Scripts\GameState.cs" />
+     <Compile Include="Assets\GUI\Scripts\MainMenuClouds.cs" />
      <Compile Include="Assets\GUI\Scripts\OtherButtonClass.cs" />
+     <Compile Include="Assets\GUI\Scripts\RandomAnimalGenerator.cs" />
      <Compile Include="Assets\GUI\Scripts\RectangleButton.cs" />
      <Compile Include="Assets\GUI\Scripts\TextAnimator.cs" />
      <Compile Include="Assets\GUI\Scripts\ToggleButton.cs" />

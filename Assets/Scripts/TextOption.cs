@@ -32,7 +32,7 @@ public class TextOption : TouchHandler
 						NextSceneHandler.nextLevel (Application.loadedLevelName);
 					} else {
 						if (gameObject.name.Contains ("Quit") || gameObject.name.Contains ("Main")) {
-							Application.LoadLevel ("Splash");
+							Application.LoadLevel ("MainMenu");
 						} else {
 							if (gameObject.name.Contains ("Next")) {
 								NextSceneHandler.loadGameLevelWithConditions (levelName);
