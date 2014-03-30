@@ -58,6 +58,7 @@
      <Compile Include="Assets\GUI\Scripts\ToggleButton.cs" />
      <Compile Include="Assets\GUI\Scripts\TouchController.cs" />
      <Compile Include="Assets\GUI\Scripts\UserTouchable.cs" />
+     <Compile Include="Assets\NextButton.cs" />
      <Compile Include="Assets\Scripts\Animal.cs" />
      <Compile Include="Assets\Scripts\AnimalSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\AnimalTouched.cs" />

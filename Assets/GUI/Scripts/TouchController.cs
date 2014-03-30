@@ -42,10 +42,13 @@ public class TouchController : MonoBehaviour
 	private void processObject (GameObject objectTouched, bool pressDown)
 	{
 		Debug.Log (objectTouched.name + " touched.");
-		if (pressDown) {
-			objectTouched.GetComponent<UserTouchable> ().onPressDown ();
-		} else {
-			objectTouched.GetComponent<UserTouchable> ().onPressUp ();
+		UserTouchable touchInterface = objectTouched.GetComponent<UserTouchable> ();
+		if (touchInterface != null) {
+			if (pressDown) {
+				objectTouched.GetComponent<UserTouchable> ().onPressDown ();
+			} else {
+				objectTouched.GetComponent<UserTouchable> ().onPressUp ();
+			}
 		}
 	}
 }

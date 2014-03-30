@@ -87,7 +87,7 @@ public abstract class Button : UserTouchable
 			otherButtonClass.otherButtonAction ();
 			break;
 		case "State Change":
-			Debug.Log ("State Change Button Pressed");
+		case "Next":
 			otherButtonClass.otherButtonAction (this);
 			break;
 		default:

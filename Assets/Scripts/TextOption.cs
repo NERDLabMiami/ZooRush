@@ -32,7 +32,7 @@ public class TextOption : TouchHandler
 						NextSceneHandler.nextLevel (Application.loadedLevelName);
 					} else {
 						if (gameObject.name.Contains ("Quit") || gameObject.name.Contains ("Main")) {
-							Application.LoadLevel ("MainMenu");
+							Application.LoadLevel ("Main Menu");
 						} else {
 							if (gameObject.name.Contains ("Next")) {
 								NextSceneHandler.loadGameLevelWithConditions (levelName);
@@ -50,7 +50,7 @@ public class TextOption : TouchHandler
 						if (PlayerPrefs.HasKey ("Last Scene") && !PlayerPrefs.GetString ("Last Scene").Equals (Application.loadedLevelName)) {
 							Application.LoadLevel (PlayerPrefs.GetString ("Last Scene"));
 						} else {
-							Application.LoadLevel ("Splash");
+							Application.LoadLevel ("Main Menu");
 						}
 					}
 				}

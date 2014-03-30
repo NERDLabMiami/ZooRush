@@ -11,7 +11,7 @@ public class LevelSelect : MonoBehaviour
 	Camera currentLevel;
 
 	string[] levelNames = {
-		"MainMenu",
+		"Main Menu",
 		"Level1-Tutorial",
 		"Level2-Zoo",
 		"Level3-Suburbs",
