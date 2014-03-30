@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class DirectToScene : Button
+public class DirectToScene : ButtonOld
 {
 	public string sceneName;
 

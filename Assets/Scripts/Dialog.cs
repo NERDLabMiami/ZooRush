@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Text;
 
-public class Dialog : Button
+public class Dialog : ButtonOld
 {
 	private string[] text;
 

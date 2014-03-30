@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</ProjectGuid>
+	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,10 +46,22 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GUI\Scripts\BreadCrumbs.cs" />
+     <Compile Include="Assets\GUI\Scripts\Button.cs" />
+     <Compile Include="Assets\GUI\Scripts\DialogBox.cs" />
+     <Compile Include="Assets\GUI\Scripts\GameState.cs" />
+     <Compile Include="Assets\GUI\Scripts\MainMenuClouds.cs" />
+     <Compile Include="Assets\GUI\Scripts\OtherButtonClass.cs" />
+     <Compile Include="Assets\GUI\Scripts\RandomAnimalGenerator.cs" />
+     <Compile Include="Assets\GUI\Scripts\RectangleButton.cs" />
+     <Compile Include="Assets\GUI\Scripts\TextAnimator.cs" />
+     <Compile Include="Assets\GUI\Scripts\ToggleButton.cs" />
+     <Compile Include="Assets\GUI\Scripts\TouchController.cs" />
+     <Compile Include="Assets\GUI\Scripts\UserTouchable.cs" />
+     <Compile Include="Assets\NextButton.cs" />
      <Compile Include="Assets\Scripts\Animal.cs" />
      <Compile Include="Assets\Scripts\AnimalSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\AnimalTouched.cs" />
-     <Compile Include="Assets\Scripts\AnimatedText.cs" />
      <Compile Include="Assets\Scripts\AudioController.cs" />
      <Compile Include="Assets\Scripts\AudioModel.cs" />
      <Compile Include="Assets\Scripts\BackgroundAnimal.cs" />
@@ -57,7 +69,7 @@
      <Compile Include="Assets\Scripts\BackgroundCharacterController.cs" />
      <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\Building.cs" />
-     <Compile Include="Assets\Scripts\Button.cs" />
+     <Compile Include="Assets\Scripts\ButtonOld.cs" />
      <Compile Include="Assets\Scripts\Bystander.cs" />
      <Compile Include="Assets\Scripts\CameraAspect.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
@@ -116,16 +128,20 @@
      <Compile Include="Assets\Scripts\StoryModeHandler.cs" />
      <Compile Include="Assets\Scripts\StoryModeNonPanel.cs" />
      <Compile Include="Assets\Scripts\StoryModeSpriteHandler.cs" />
-     <Compile Include="Assets\Scripts\TextAnimator.cs" />
      <Compile Include="Assets\Scripts\TextOption.cs" />
      <Compile Include="Assets\Scripts\TextOptionController.cs" />
      <Compile Include="Assets\Scripts\TextOutline.cs" />
-     <Compile Include="Assets\Scripts\ToggleButton.cs" />
+     <Compile Include="Assets\Scripts\ToggleButtonOld.cs" />
      <Compile Include="Assets\Scripts\TouchHandler.cs" />
      <Compile Include="Assets\Scripts\TouchInput.cs" />
      <Compile Include="Assets\Scripts\TutorialConditionalDialogController.cs" />
      <Compile Include="Assets\Scripts\Vehicle.cs" />
+     <Compile Include="Assets\Settings.cs" />
+     <None Include="Assets\GUI\Fonts\SIL Open Font License.txt" />
+     <None Include="Assets\GUI\Fonts\Freeware License.txt" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
+     <None Include="Assets\GUI\Fonts\Iconian Fonts License.txt" />
+     <None Include="Assets\GUI\Fonts\Daniel Midgley.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

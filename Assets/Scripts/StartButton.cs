@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class StartButton : Button
+public class StartButton : ButtonOld
 {
 	protected override void action ()
 	{

@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
 
-public class StoryModeHandler : Button
+public class StoryModeHandler : ButtonOld
 {
 	public TextMesh[] textMeshes;
 

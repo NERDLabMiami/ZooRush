@@ -35,7 +35,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 150
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings:
@@ -57,7 +57,7 @@ TextureImporter:
         width: 415
         height: 200
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Tortoise_1
       rect:
         serializedVersion: 2
@@ -66,7 +66,7 @@ TextureImporter:
         width: 415
         height: 200
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Tortoise_2
       rect:
         serializedVersion: 2
@@ -75,15 +75,6 @@ TextureImporter:
         width: 415
         height: 200
       alignment: 7
-      pivot: {x: 0, y: 0}
-    - name: Tortoise_3
-      rect:
-        serializedVersion: 2
-        x: 415
-        y: 0
-        width: 415
-        height: 200
-      alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
   spritePackingTag: 
   userData: 
