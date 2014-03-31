@@ -9,25 +9,22 @@ public class StoryModeNonPanel : OtherButtonClass
 	public GameObject animalPrefab;
 	private GameObject animal;
 	private int speechIndex;
-	private bool clicked;
 	private string[] currentDialog;
 	private bool readyForAnimal, readyToFadeOut, readyToStart;
 	public SpriteRenderer dimScreen;
 	public SpriteRenderer zooKeeper;
 	public GameObject speechBubble;
+	public Button continueButton;
 	
-	// Use this for initialization
 	void Start ()
 	{
 		GameStateMachine.currentState = (int)GameStateMachine.GameState.PauseToPlay;
 		character.gameObject.rigidbody2D.velocity = new Vector2 (8f, 0);
 		speechIndex = 0;
-		clicked = false;
 		//assign current scene's dialog
 		currentDialog = dialog1;
 	}
 	
-	// Update is called once per frame
 	void Update ()
 	{
 		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.PauseToPlay) {
@@ -43,6 +40,7 @@ public class StoryModeNonPanel : OtherButtonClass
 			if (animal.transform.position.x < Camera.main.transform.position.x && !inView (animal.renderer)) {
 				Destroy (animal);
 				speech.SpeechBubbleDisplay ("Uh oh... This doesn't look good...");
+				continueButton.enableButton ();
 				readyToFadeOut = true;
 			}
 		}
@@ -71,12 +69,14 @@ public class StoryModeNonPanel : OtherButtonClass
 	{
 		if (readyForAnimal) {
 			speech.hide ();
+			continueButton.disableButton ();
 			readyForAnimal = false;
 			animal = Instantiate (animalPrefab, new Vector3 (transform.position.x + 20f, transform.position.y - 2.5f, transform.position.z), Quaternion.identity) as GameObject;
 			animal.rigidbody2D.velocity = new Vector2 (-6, 0);
 		}
 		if (readyToFadeOut) {
 			speech.hide ();
+			continueButton.disableButton ();
 			StartCoroutine (fadeOut ());
 			readyToFadeOut = false;
 		}
@@ -102,10 +102,6 @@ public class StoryModeNonPanel : OtherButtonClass
 		Camera.main.transform.localPosition = new Vector3 (Camera.main.transform.localPosition.x, -57.25f, Camera.main.transform.localPosition.z);
 		character.transform.localPosition = new Vector3 (character.transform.localPosition.x, -60.5f, character.transform.localPosition.z);
 
-//		Instantiate (ZooBG, new Vector3 (SuburbsBG.transform.position.x, 2.3f, 0), Quaternion.identity);
-//		Destroy (SuburbsBG);
-//		GameObject.FindObjectOfType<SceneRepeater> ().recalculate ();
-
 		while (dimScreen.color.a > 0.1f) {
 			dimScreen.color = Color.Lerp (dimScreen.color, Color.clear, 1f * Time.deltaTime);
 			yield return new WaitForFixedUpdate ();
@@ -127,6 +123,7 @@ public class StoryModeNonPanel : OtherButtonClass
 		GameObject textObject = speechBubble.GetComponentInChildren<TextMesh> ().gameObject;
 		textObject.transform.localScale = new Vector3 (-textObject.transform.localScale.x, textObject.transform.localScale.y, textObject.transform.localScale.z);
 		speech.SpeechBubbleDisplay (ZooKeeperDialog);
+		continueButton.enableButton ();
 		readyToStart = true;
 	}
 
