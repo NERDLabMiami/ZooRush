@@ -1,62 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LevelSelectButtonController : MonoBehaviour
+public class LevelSelectButtonController : OtherButtonClass
 {
-	public bool go, clicked;
-	private bool waitForClickReset;
-	private RaycastHit hit; 
-	public GameObject left, right, center, back;
-	private LevelSelectCameraControls cameraControl;
-
-	void Start ()
-	{
-		waitForClickReset = false;
-		cameraControl = GameObject.FindObjectOfType<LevelSelectCameraControls> ();
-	}
+	public Button left;
+	public Button right;
+	public Button center;
+	public LevelSelectCameraControls cameraControl;
+	public LevelSelect levelSelectController;
 	
-
-	void Update ()
+	public override void otherButtonAction (Button thisButton)
 	{
-		if (!clicked) {
-			Ray ray = camera.ScreenPointToRay (Input.mousePosition);
-			Debug.DrawRay (ray.origin, ray.direction);
-			if (Physics.Raycast (ray, out hit)) {
-				if (hit.transform.gameObject) {
-					if (Input.GetMouseButtonUp (0)) {
-						if (hit.transform.gameObject == left && !waitForClickReset) {
-							go = false;
-							clicked = true;
-							cameraControl.moveRight ();
-							StartCoroutine (waitToResetClicked ());
-						} else {
-							if (hit.transform.gameObject == right && !waitForClickReset) {
-								go = false;
-								clicked = true;
-								cameraControl.moveLeft ();
-								StartCoroutine (waitToResetClicked ());
-							} else {
-								if (hit.transform.gameObject == center) {
-									go = true;
-									clicked = true;
-								} else {
-									if (hit.transform.gameObject == back) {
-										NextSceneHandler.nextLevel ("Main Menu");
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+		if (thisButton == left) {
+			cameraControl.moveRight ();
+			return;
 		}
-	}
-
-	private IEnumerator waitToResetClicked ()
-	{
-		waitForClickReset = true;
-		yield return new WaitForSeconds (0.2f);
-		clicked = false;
-		waitForClickReset = false;
+		if (thisButton == right) {
+			cameraControl.moveLeft ();
+			return;
+		}
+		if (thisButton == center) {
+			levelSelectController.goToLevel ();
+			return;
+		}
 	}
 }

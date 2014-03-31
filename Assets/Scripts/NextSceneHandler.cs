@@ -46,7 +46,12 @@ public class NextSceneHandler : MonoBehaviour
 	public static void nextLevelStoryMode (string levelName)
 	{
 		StoryModeHandler.NextSceneName = levelName;
-		Application.LoadLevel ("Story");
+
+		if (levelName.Equals ("Level1-Tutorial")) {
+			Application.LoadLevel ("StoryMode");
+		} else {
+			Application.LoadLevel ("Story");
+		}
 	}
 
 //	public static void hitByCar ()
