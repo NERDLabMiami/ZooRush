@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</ProjectGuid>
+	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -51,14 +51,15 @@
      <Compile Include="Assets\GUI\Scripts\DialogBox.cs" />
      <Compile Include="Assets\GUI\Scripts\GameState.cs" />
      <Compile Include="Assets\GUI\Scripts\MainMenuClouds.cs" />
+     <Compile Include="Assets\GUI\Scripts\NextButton.cs" />
      <Compile Include="Assets\GUI\Scripts\OtherButtonClass.cs" />
      <Compile Include="Assets\GUI\Scripts\RandomAnimalGenerator.cs" />
      <Compile Include="Assets\GUI\Scripts\RectangleButton.cs" />
      <Compile Include="Assets\GUI\Scripts\TextAnimator.cs" />
      <Compile Include="Assets\GUI\Scripts\ToggleButton.cs" />
+     <Compile Include="Assets\GUI\Scripts\TouchAreaButton.cs" />
      <Compile Include="Assets\GUI\Scripts\TouchController.cs" />
      <Compile Include="Assets\GUI\Scripts\UserTouchable.cs" />
-     <Compile Include="Assets\NextButton.cs" />
      <Compile Include="Assets\Scripts\Animal.cs" />
      <Compile Include="Assets\Scripts\AnimalSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\AnimalTouched.cs" />

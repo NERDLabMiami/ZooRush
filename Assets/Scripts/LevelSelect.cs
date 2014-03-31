@@ -46,31 +46,25 @@ public class LevelSelect : MonoBehaviour
 
 		updateStarScores ();
 	}
-	
-	void Update ()
+
+	public void goToLevel ()
 	{
-		updateLevelCameras ();
-		if (!cameraControl.move) {
-			if (buttonControl.go) {
-				goToLevel ();
-			}
+		if (currentLevel != null) {
+			int levelNumber = Int32.Parse (currentLevel.name.Substring (currentLevel.name.LastIndexOf ('a') + 1));
+			NextSceneHandler.loadGameLevelWithConditions (levelNames [levelNumber]);
 		}
 	}
 
-	void goToLevel ()
-	{
-		int levelNumber = Int32.Parse (currentLevel.name.Substring (currentLevel.name.LastIndexOf ('a') + 1));
-		NextSceneHandler.loadGameLevelWithConditions (levelNames [levelNumber]);
-	}
-
-	void updateLevelCameras ()
+	public void updateLevelCameras ()
 	{
 		foreach (GameObject camera in cameras) {
 			float camLocation = Mathf.Round (camera.camera.rect.x * 1000);
 			if (Mathf.Approximately (camLocation, 350f)) {
 				currentLevel = camera.camera;
+				return;
 			}
 		}
+		currentLevel = null;
 	}
 
 	void updateStarScores ()

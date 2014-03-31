@@ -10,6 +10,7 @@ public class LevelSelectCameraControls : MonoBehaviour
 	float width;
 	public float xInput, mousePosition;
 	public bool move;
+	public LevelSelect levelSelectController;
 
 	void Start ()
 	{
@@ -27,7 +28,6 @@ public class LevelSelectCameraControls : MonoBehaviour
 		}
 		move = false;
 		width = 0.325f;
-//		Debug.Log ("RIGHT MAX IS: " + rightMax);
 	}
 	
 	void FixedUpdate ()
@@ -114,6 +114,8 @@ public class LevelSelectCameraControls : MonoBehaviour
 		}
 
 		yield return new WaitForSeconds (0.3f);
+		levelSelectController.updateLevelCameras ();
 		move = false;
+
 	}
 }

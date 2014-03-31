@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StoryModeNonPanel : TouchHandler
+public class StoryModeNonPanel : OtherButtonClass
 {
 
 	public CharacterSpeech speech;
@@ -44,17 +44,14 @@ public class StoryModeNonPanel : TouchHandler
 				Destroy (animal);
 				speech.SpeechBubbleDisplay ("Uh oh... This doesn't look good...");
 				readyToFadeOut = true;
-				StartCoroutine (waitToResetTouch ());
 			}
 		}
 	}
 
 	private void nextSpeech ()
 	{
-		clicked = true;
 		if (++speechIndex < currentDialog.Length) {
 			speech.SpeechBubbleDisplay (currentDialog [speechIndex]);
-			StartCoroutine (waitToResetTouch ());
 		} else {
 			nextAction ();
 		}
@@ -130,25 +127,13 @@ public class StoryModeNonPanel : TouchHandler
 		GameObject textObject = speechBubble.GetComponentInChildren<TextMesh> ().gameObject;
 		textObject.transform.localScale = new Vector3 (-textObject.transform.localScale.x, textObject.transform.localScale.y, textObject.transform.localScale.z);
 		speech.SpeechBubbleDisplay (ZooKeeperDialog);
-		StartCoroutine (waitToResetTouch ());
 		readyToStart = true;
 	}
 
 	string ZooKeeperDialog = "Help! Help! All the animals have\nescaped their pens. They’re getting\naway!";
 
-	public override void objectTouched ()
+	public override void otherButtonAction (Button thisButton)
 	{
-		if (!clicked && Input.GetMouseButtonUp (0)) {
-			nextSpeech ();
-		}
-	}
-	public override void objectUntouched ()
-	{
-
-	}
-	protected override IEnumerator waitToResetTouch ()
-	{
-		yield return new WaitForSeconds (0.5f);
-		clicked = false;
+		nextSpeech ();
 	}
 }
