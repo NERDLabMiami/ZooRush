@@ -18,6 +18,30 @@ public abstract class Button : UserTouchable
 	public OtherButtonClass
 		otherButtonClass;
 
+	public void disableButton ()
+	{
+		Renderer[] allRenderers = GetComponentsInChildren<Renderer> ();
+		Collider[] allColliders = GetComponentsInChildren<Collider> ();
+		foreach (Renderer rend in allRenderers) {
+			rend.enabled = false;
+		}
+		foreach (Collider coll in allColliders) {
+			coll.enabled = false;
+		}
+	}
+
+	public void enableButton ()
+	{
+		Renderer[] allRenderers = GetComponentsInChildren<Renderer> ();
+		Collider[] allColliders = GetComponentsInChildren<Collider> ();
+		foreach (Renderer rend in allRenderers) {
+			rend.enabled = true;
+		}
+		foreach (Collider coll in allColliders) {
+			coll.enabled = true;
+		}
+	}
+
 	protected void buttonAction ()
 	{
 		switch (buttonType) {
