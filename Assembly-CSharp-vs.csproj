@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</ProjectGuid>
+	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -60,6 +60,53 @@
      <Compile Include="Assets\GUI\Scripts\TouchAreaButton.cs" />
      <Compile Include="Assets\GUI\Scripts\TouchController.cs" />
      <Compile Include="Assets\GUI\Scripts\UserTouchable.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Components\GA_Tracker.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\ComboBox.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleBall.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleController.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleFloor.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleHighScore.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleManager.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleMoveWithPlayer.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleTarget.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleWall.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_AdSupport.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Archive.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Business.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_ContinuationManager.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_CustomAdTrigger.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_DataPoint.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Debug.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Design.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Error.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_FacebookSDK.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_GUIHelper.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_GameObjectManager.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_GenericInfo.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Gui.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_HeatMapDataFilter.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_HeatMapDataFilterBase.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_HeatMapRenderer.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_HeatmapData.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Histogram.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_MiniJson.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Quality.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Queue.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Request.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_ServerFieldTypes.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Settings.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_SpecialEvents.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Submit.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_SystemTracker.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Tracking.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_User.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\MD5.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\MD5Wrapper.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendBusinessEvent.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendDesignEvent.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendQualityEvent.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendUserEvent.cs" />
      <Compile Include="Assets\Scripts\Animal.cs" />
      <Compile Include="Assets\Scripts\AnimalSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\AnimalTouched.cs" />
@@ -138,10 +185,18 @@
      <Compile Include="Assets\Scripts\TutorialConditionalDialogController.cs" />
      <Compile Include="Assets\Scripts\Vehicle.cs" />
      <Compile Include="Assets\Settings.cs" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolidOverlay.shader" />
      <None Include="Assets\GUI\Fonts\SIL Open Font License.txt" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparentOverlay.shader" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolid.shader" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparent.shader" />
      <None Include="Assets\GUI\Fonts\Freeware License.txt" />
+     <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
+     <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
      <None Include="Assets\GUI\Fonts\Iconian Fonts License.txt" />
+     <None Include="Assets\GameAnalytics\Plugins\WebPlayer\crossdomain.xml" />
+     <None Include="Assets\GameAnalytics\Plugins\Android\Android_Readme.txt" />
      <None Include="Assets\GUI\Fonts\Daniel Midgley.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

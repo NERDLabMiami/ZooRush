@@ -1,0 +1,1 @@
+In version 0.5.8 we optimized the Android setup process, so you no longer have to add a special AndroidManifest.xml file or .jar file. GameAnalytics now works with Android out of the box.
