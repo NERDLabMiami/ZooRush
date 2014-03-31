@@ -66,10 +66,10 @@ TextureImporter:
     - name: Greenery_2
       rect:
         serializedVersion: 2
-        x: 3
-        y: 859
-        width: 1484
-        height: 115
+        x: 5
+        y: 860
+        width: 1479
+        height: 114
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: Greenery_3

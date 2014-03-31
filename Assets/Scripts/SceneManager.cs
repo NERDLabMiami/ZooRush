@@ -53,7 +53,6 @@ public class SceneManager : MonoBehaviour
 
 		character = GameObject.FindGameObjectWithTag ("character");
 		animal = GameObject.FindGameObjectWithTag ("animal");
-		Application.targetFrameRate = 30;
 
 //		for (int i = 0; i < animals.Length; i++) {
 //			if (animals [i].name.Contains (animal.name)) {

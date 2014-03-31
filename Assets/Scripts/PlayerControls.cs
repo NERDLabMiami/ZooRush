@@ -50,7 +50,7 @@ public class PlayerControls : MonoBehaviour
 	{
 		switch (GameStateMachine.currentState) {
 		case (int)GameStateMachine.GameState.Play:
-			if (netLauncher.launchEnabled) {
+			if (netLauncher != null && netLauncher.launchEnabled) {
 				setSpeed (animal.speed);
 			} else {
 				setSpeed ();

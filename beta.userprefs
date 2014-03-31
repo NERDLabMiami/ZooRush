@@ -1,12 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../Tester/Assets/MainMenuGUI.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Animal.cs">
     <Files>
-      <File FileName="../Tester/Assets/MainMenuGUI.cs" Line="6" Column="44" />
+      <File FileName="Assets/NextButton.cs" Line="1" Column="1" />
+      <File FileName="Assets/Settings.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CameraFollow.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/StoryModeNonPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SceneManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Animal.cs" Line="20" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/ebbyw/Desktop/beta/Assets/Scripts/TextOutline.cs" line="50" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

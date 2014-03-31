@@ -7,8 +7,10 @@ using System.Collections;
 public class GameSetup : MonoBehaviour
 {
 
-	void Start ()
+	void Awake ()
 	{
+		Application.targetFrameRate = 60;
+
 		//INPUT RELATED VALUES
 		if (!Input.simulateMouseWithTouches) {
 			Input.simulateMouseWithTouches = true;
@@ -20,19 +22,19 @@ public class GameSetup : MonoBehaviour
 		}
 		
 		//SOUND RELATED VALUES
-		if (!PlayerPrefs.HasKey ("Music")) {
-			PlayerPrefs.SetInt ("Music", 1);
+		if (!PlayerPrefs.HasKey ("Music")) { //Music Settings
+			PlayerPrefs.SetInt ("Music", 1); //Default is 1 = "ON"
 		}
-		if (!PlayerPrefs.HasKey ("Sound")) {
-			PlayerPrefs.SetInt ("Sound", 1);
+		if (!PlayerPrefs.HasKey ("Sound")) { //Sound Settings
+			PlayerPrefs.SetInt ("Sound", 1); //Default is 1 = "ON"
 		}
 		
-		if (!PlayerPrefs.HasKey ("Volume")) {
-			PlayerPrefs.SetFloat ("Volume", 1.0f);
+		if (!PlayerPrefs.HasKey ("Volume")) { //Volume Settings
+			PlayerPrefs.SetFloat ("Volume", 1.0f);	//Default is 100%
 		}
 
-		if (!PlayerPrefs.HasKey ("Levels Unlocked")) {
-			PlayerPrefs.SetInt ("Levels Unlocked", 1);
+		if (!PlayerPrefs.HasKey ("Levels Unlocked")) { //Number of Levels unlocked
+			PlayerPrefs.SetInt ("Levels Unlocked", 1); //Default is 1 for tutorial, level 1
 		}
 		
 	}
