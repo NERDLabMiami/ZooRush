@@ -59,7 +59,7 @@ public abstract class Button : UserTouchable
 			resume ();
 			break;
 		case 3://Retry
-			BreadCrumbs.nextScene = Application.loadedLevelName;
+			//Assume Breadcrums.nextScene has been assigned
 			retry ();
 			break;
 		case 4://Other
@@ -90,7 +90,6 @@ public abstract class Button : UserTouchable
 
 	private void retry ()
 	{
-		BreadCrumbs.nextScene = Application.loadedLevelName;
 		//TODO Update Scene Name and any other Preparations/data needed before reloading this scene
 		directToScene ();
 	}
