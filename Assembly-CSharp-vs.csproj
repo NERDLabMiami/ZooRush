@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</ProjectGuid>
+	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,10 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AnimalControls.cs" />
      <Compile Include="Assets\GUI\Scripts\BreadCrumbs.cs" />
      <Compile Include="Assets\GUI\Scripts\Button.cs" />
      <Compile Include="Assets\GUI\Scripts\DialogBox.cs" />
-     <Compile Include="Assets\GUI\Scripts\GameState.cs" />
      <Compile Include="Assets\GUI\Scripts\MainMenuClouds.cs" />
      <Compile Include="Assets\GUI\Scripts\NextButton.cs" />
      <Compile Include="Assets\GUI\Scripts\OtherButtonClass.cs" />
@@ -133,6 +133,7 @@
      <Compile Include="Assets\Scripts\DirectToScene.cs" />
      <Compile Include="Assets\Scripts\DistanceMeter.cs" />
      <Compile Include="Assets\Scripts\Doctor.cs" />
+     <Compile Include="Assets\Scripts\Event Handling\GameState.cs" />
      <Compile Include="Assets\Scripts\GUITouchController.cs" />
      <Compile Include="Assets\Scripts\GameOptions.cs" />
      <Compile Include="Assets\Scripts\GameSetup.cs" />
