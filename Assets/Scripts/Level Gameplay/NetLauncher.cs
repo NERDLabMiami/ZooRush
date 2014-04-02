@@ -81,9 +81,9 @@ public class NetLauncher : MonoBehaviour
 
 	public bool enableLaunch ()
 	{
-		switch (GameStateMachine.currentState) {
-		case (int)GameStateMachine.GameState.Play:
-		case (int) GameStateMachine.GameState.Transition:
+		switch (GameState.currentState) {
+		case GameState.States.Play:
+		case GameState.States.Transition:
 			if (sceneManager && sceneManager.currentDistanceDiff < sceneManager.distanceDiffMin) {
 				return true;
 			}

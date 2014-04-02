@@ -26,7 +26,10 @@ public class TouchController : MonoBehaviour
 	private void getObject (bool down)
 	{
 		if (!down && obj != null) {
-			obj.GetComponent<UserTouchable> ().reset ();
+			UserTouchable touchable = obj.GetComponent<UserTouchable> ();
+			if (touchable != null) {
+				touchable.reset ();
+			}
 		}
 		Ray ray = camera.ScreenPointToRay (Input.mousePosition); //create a ray going from the mouse into the z-direction
 		if (Physics2D.GetRayIntersectionNonAlloc (ray, results) > 0) { //if we've hit at least one collider

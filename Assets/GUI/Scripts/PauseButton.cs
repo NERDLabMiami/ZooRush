@@ -17,7 +17,7 @@ public class PauseButton : ButtonOld
 	
 	void Update ()
 	{
-		visible = hideShowButton (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play);
+		visible = hideShowButton (GameState.checkForState (GameState.States.Play));
 	}
 
 	private bool hideShowButton (bool show)

@@ -21,11 +21,11 @@ public abstract class Button : UserTouchable
 	public void disableButton ()
 	{
 		Renderer[] allRenderers = GetComponentsInChildren<Renderer> ();
-		Collider[] allColliders = GetComponentsInChildren<Collider> ();
+		Collider2D[] allColliders = GetComponentsInChildren<Collider2D> ();
 		foreach (Renderer rend in allRenderers) {
 			rend.enabled = false;
 		}
-		foreach (Collider coll in allColliders) {
+		foreach (Collider2D coll in allColliders) {
 			coll.enabled = false;
 		}
 	}
@@ -33,11 +33,11 @@ public abstract class Button : UserTouchable
 	public void enableButton ()
 	{
 		Renderer[] allRenderers = GetComponentsInChildren<Renderer> ();
-		Collider[] allColliders = GetComponentsInChildren<Collider> ();
+		Collider2D[] allColliders = GetComponentsInChildren<Collider2D> ();
 		foreach (Renderer rend in allRenderers) {
 			rend.enabled = true;
 		}
-		foreach (Collider coll in allColliders) {
+		foreach (Collider2D coll in allColliders) {
 			coll.enabled = true;
 		}
 	}
@@ -85,7 +85,9 @@ public abstract class Button : UserTouchable
 
 	private void resume ()
 	{
-
+		//TODO Move to new Gams state machine
+		GameState.requestPlay ();
+		Destroy (transform.parent.gameObject);
 	}
 
 	private void retry ()
