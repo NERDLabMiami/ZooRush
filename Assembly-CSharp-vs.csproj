@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GUI\Scripts\BreadCrumbs.cs" />
      <Compile Include="Assets\GUI\Scripts\Button.cs" />
      <Compile Include="Assets\GUI\Scripts\DialogBox.cs" />
      <Compile Include="Assets\GUI\Scripts\MainMenuClouds.cs" />
@@ -131,6 +130,7 @@
      <Compile Include="Assets\Scripts\DirectToScene.cs" />
      <Compile Include="Assets\Scripts\DistanceMeter.cs" />
      <Compile Include="Assets\Scripts\Doctor.cs" />
+     <Compile Include="Assets\Scripts\Event Handling\BreadCrumbs.cs" />
      <Compile Include="Assets\Scripts\Event Handling\GameState.cs" />
      <Compile Include="Assets\Scripts\GUITouchController.cs" />
      <Compile Include="Assets\Scripts\GameOptions.cs" />
