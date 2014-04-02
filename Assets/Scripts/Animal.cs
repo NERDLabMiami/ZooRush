@@ -19,19 +19,37 @@ public class Animal : MonoBehaviour
 
 	void OnEnable ()
 	{
-		GameStateMachine.Intro += OnIntro;
-		GameStateMachine.Paused += OnPause;
-		GameStateMachine.PauseToPlay += OnPauseToPlay;
-		GameStateMachine.Play += OnPlay;
+		GameState.StateChanged += OnStateChanged;
 	}
-	
 	
 	void OnDisable ()
 	{
-		GameStateMachine.Intro -= OnIntro;
-		GameStateMachine.Paused -= OnPause;
-		GameStateMachine.PauseToPlay -= OnPauseToPlay;
-		GameStateMachine.Play -= OnPlay;
+		GameState.StateChanged -= OnStateChanged;
+	}
+
+	private void OnStateChanged ()
+	{
+		switch (GameState.currentState) {
+		case GameState.States.Pause:
+			OnPause ();
+			break;
+		case GameState.States.Play:
+			OnPauseToPlay ();
+			break;
+		case GameState.States.Dialog:
+			break;
+		case GameState.States.Intro:
+			OnIntro ();
+			break;
+		case GameState.States.Transition:
+			break;
+		case GameState.States.Win:
+			break;
+		case GameState.States.Lose:
+			break;
+		default:
+			break;
+		}
 	}
 
 	private void OnIntro ()
@@ -115,7 +133,7 @@ public class Animal : MonoBehaviour
 	{
 		yield return new WaitForSeconds (time);
 		animalPhysics.velocity = speed;
-		GameStateMachine.requestPlay ();
+		GameState.requestPlay ();
 	}
 
 	public void touched ()

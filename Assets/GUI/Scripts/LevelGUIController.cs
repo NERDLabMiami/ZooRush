@@ -72,12 +72,11 @@ public class LevelGUIController : MonoBehaviour
 	void Update ()
 	{
 		if (InputManager.escape) {
-			if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
+			if (GameState.currentState == GameState.States.Play) {
 				pauseMenu ();
 			}
 		} else {
-			switch (GameStateMachine.currentState) {
-			case (int)GameStateMachine.GameState.EndLevel:
+			if (GameState.currentState == GameState.States.Transition) {
 				if (sceneManager.fainted) {
 					NextSceneHandler.fainted ();
 				}
@@ -86,60 +85,9 @@ public class LevelGUIController : MonoBehaviour
 						StartCoroutine (displayScore ());
 					}
 				}
-				break;
-
 			}
 		}
 	}
-
-//	void FixedUpdate ()
-//	{
-//		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.EndLevel) {
-//			if (timeCountDown) {
-//				if (timeWait) {
-//					StartCoroutine (TimeWait ());
-//				} else {
-//					if (timeCounter < time) {
-//						StartCoroutine (starDisplay (stars));
-//						StartCoroutine (timeCountUpMethod ());
-//					} else {
-//						timeCountDown = false;
-//						if (!starDisplay1) {
-//							if (time - sceneManager.targetTimeVar > 0) {
-//								stars--;
-//							}
-//							if (time - (sceneManager.multiplier1 * sceneManager.targetTimeVar) > 0) {
-//								stars--;
-//							}
-//							if (time - (sceneManager.multiplier2 * sceneManager.targetTimeVar) > 0) {
-//								stars--;
-//							}
-//							if (stars > 0) {
-//								if (scoreKeeper.totalInfectionsTouched () > 0) {
-//									stars--;
-//								}
-//							}
-//
-//							StartCoroutine (starDisplay (stars));
-//						} else {
-//							if (infectionCounter < infections) {
-//								StartCoroutine (infectionCountUp ());
-//							} else {
-//								if (!starDisplay2) {
-//									if (stars > 0) {
-//										if (infections > powerUps) {
-//											stars--;
-//										}
-//									}
-//									StartCoroutine (starDisplay (stars));
-//								}
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
-//	}
 
 	private void dimScreen ()
 	{
@@ -228,7 +176,7 @@ public class LevelGUIController : MonoBehaviour
 	public void pauseMenu ()
 	{
 		if (GameObject.FindGameObjectWithTag ("menu") == null) {
-			GameStateMachine.requestPause ();
+			GameState.requestPause ();
 			GameObject pauseMenu = Instantiate (menuPrefabs [3]) as GameObject;
 			pauseMenu.transform.parent = transform;
 			pauseMenu.transform.localPosition = Vector3.zero;

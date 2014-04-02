@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
+	<ProjectGuid>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -48,15 +48,26 @@
   <ItemGroup>
      <Compile Include="Assets\GUI\Scripts\Button.cs" />
      <Compile Include="Assets\GUI\Scripts\DialogBox.cs" />
+     <Compile Include="Assets\GUI\Scripts\DialogScanner.cs" />
+     <Compile Include="Assets\GUI\Scripts\DialogTrigger.cs" />
+     <Compile Include="Assets\GUI\Scripts\LevelGUIController.cs" />
      <Compile Include="Assets\GUI\Scripts\MainMenuClouds.cs" />
      <Compile Include="Assets\GUI\Scripts\NextButton.cs" />
      <Compile Include="Assets\GUI\Scripts\OtherButtonClass.cs" />
+     <Compile Include="Assets\GUI\Scripts\PauseButton.cs" />
+     <Compile Include="Assets\GUI\Scripts\PlayButton.cs" />
      <Compile Include="Assets\GUI\Scripts\RandomAnimalGenerator.cs" />
      <Compile Include="Assets\GUI\Scripts\RectangleButton.cs" />
+     <Compile Include="Assets\GUI\Scripts\Slider.cs" />
+     <Compile Include="Assets\GUI\Scripts\SortingLayer.cs" />
+     <Compile Include="Assets\GUI\Scripts\SortingLayerController.cs" />
      <Compile Include="Assets\GUI\Scripts\TextAnimator.cs" />
+     <Compile Include="Assets\GUI\Scripts\TextOutline.cs" />
      <Compile Include="Assets\GUI\Scripts\ToggleButton.cs" />
      <Compile Include="Assets\GUI\Scripts\TouchAreaButton.cs" />
      <Compile Include="Assets\GUI\Scripts\TouchController.cs" />
+     <Compile Include="Assets\GUI\Scripts\TouchHandler.cs" />
+     <Compile Include="Assets\GUI\Scripts\TouchInput.cs" />
      <Compile Include="Assets\GUI\Scripts\UserTouchable.cs" />
      <Compile Include="Assets\GameAnalytics\Plugins\Components\GA_Tracker.cs" />
      <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\ComboBox.cs" />
@@ -124,83 +135,67 @@
      <Compile Include="Assets\Scripts\CityScapeRepeater.cs" />
      <Compile Include="Assets\Scripts\CloudGenerator.cs" />
      <Compile Include="Assets\Scripts\CollisionDetect.cs" />
-     <Compile Include="Assets\Scripts\Dialog.cs" />
-     <Compile Include="Assets\Scripts\DialogHandler.cs" />
-     <Compile Include="Assets\Scripts\DialogTrigger.cs" />
      <Compile Include="Assets\Scripts\DirectToScene.cs" />
      <Compile Include="Assets\Scripts\DistanceMeter.cs" />
      <Compile Include="Assets\Scripts\Doctor.cs" />
      <Compile Include="Assets\Scripts\Event Handling\BreadCrumbs.cs" />
      <Compile Include="Assets\Scripts\Event Handling\GameState.cs" />
+     <Compile Include="Assets\Scripts\Event Handling\InputManager.cs" />
      <Compile Include="Assets\Scripts\GUITouchController.cs" />
-     <Compile Include="Assets\Scripts\GameOptions.cs" />
-     <Compile Include="Assets\Scripts\GameSetup.cs" />
      <Compile Include="Assets\Scripts\GameStateMachine.cs" />
      <Compile Include="Assets\Scripts\GroundRepeater.cs" />
-     <Compile Include="Assets\Scripts\ImmovableObject.cs" />
-     <Compile Include="Assets\Scripts\ImmovableObjectWithReaction.cs" />
-     <Compile Include="Assets\Scripts\Infection.cs" />
-     <Compile Include="Assets\Scripts\InputManager.cs" />
-     <Compile Include="Assets\Scripts\InstructionLevel.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\ImmovableObject.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\ImmovableObjectWithReaction.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\Infection.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\MovingObjectSpawner.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\NetHandler.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\NetLauncher.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\ObjectModel.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\ObstacleSpawner.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\PainIndicator.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\PainKiller.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\PlaySound.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\PowerUp.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\ScoreKeeper.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\StopwatchController.cs" />
      <Compile Include="Assets\Scripts\LevelButton.cs" />
      <Compile Include="Assets\Scripts\LevelFailModel.cs" />
-     <Compile Include="Assets\Scripts\LevelGUIController.cs" />
-     <Compile Include="Assets\Scripts\LoadLevel.cs" />
      <Compile Include="Assets\Scripts\MenuMusic.cs" />
      <Compile Include="Assets\Scripts\Menus\Credits.cs" />
+     <Compile Include="Assets\Scripts\Menus\GameOptions.cs" />
+     <Compile Include="Assets\Scripts\Menus\GameSetup.cs" />
+     <Compile Include="Assets\Scripts\Menus\InstructionLevel.cs" />
      <Compile Include="Assets\Scripts\Menus\LevelSelect.cs" />
      <Compile Include="Assets\Scripts\Menus\LevelSelectButtonController.cs" />
      <Compile Include="Assets\Scripts\Menus\LevelSelectCameraControls.cs" />
+     <Compile Include="Assets\Scripts\Menus\LoadLevel.cs" />
+     <Compile Include="Assets\Scripts\Menus\RandomFact.cs" />
+     <Compile Include="Assets\Scripts\Menus\Settings.cs" />
      <Compile Include="Assets\Scripts\Menus\StartMenu.cs" />
      <Compile Include="Assets\Scripts\Movement Controls\AnimalControls.cs" />
      <Compile Include="Assets\Scripts\Movement Controls\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Movement Controls\PlayerControls.cs" />
-     <Compile Include="Assets\Scripts\MovingObjectSpawner.cs" />
-     <Compile Include="Assets\Scripts\NetHandler.cs" />
-     <Compile Include="Assets\Scripts\NetLauncher.cs" />
      <Compile Include="Assets\Scripts\NextSceneHandler.cs" />
-     <Compile Include="Assets\Scripts\ObjectModel.cs" />
-     <Compile Include="Assets\Scripts\ObstacleSpawner.cs" />
-     <Compile Include="Assets\Scripts\PainIndicator.cs" />
-     <Compile Include="Assets\Scripts\PainKiller.cs" />
-     <Compile Include="Assets\Scripts\PauseButton.cs" />
-     <Compile Include="Assets\Scripts\PlayButton.cs" />
-     <Compile Include="Assets\Scripts\PlaySound.cs" />
-     <Compile Include="Assets\Scripts\PowerUp.cs" />
-     <Compile Include="Assets\Scripts\RandomFact.cs" />
      <Compile Include="Assets\Scripts\SceneManager.cs" />
      <Compile Include="Assets\Scripts\SceneRepeater.cs" />
-     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
-     <Compile Include="Assets\Scripts\Settings.cs" />
-     <Compile Include="Assets\Scripts\Slider.cs" />
-     <Compile Include="Assets\Scripts\SortingLayer.cs" />
-     <Compile Include="Assets\Scripts\SortingLayerController.cs" />
      <Compile Include="Assets\Scripts\StartButton.cs" />
-     <Compile Include="Assets\Scripts\StopwatchController.cs" />
      <Compile Include="Assets\Scripts\StoryModeHandler.cs" />
      <Compile Include="Assets\Scripts\StoryModeNonPanel.cs" />
      <Compile Include="Assets\Scripts\StoryModeSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\TextOption.cs" />
      <Compile Include="Assets\Scripts\TextOptionController.cs" />
-     <Compile Include="Assets\Scripts\TextOutline.cs" />
      <Compile Include="Assets\Scripts\ToggleButtonOld.cs" />
-     <Compile Include="Assets\Scripts\TouchHandler.cs" />
-     <Compile Include="Assets\Scripts\TouchInput.cs" />
      <Compile Include="Assets\Scripts\TutorialConditionalDialogController.cs" />
      <Compile Include="Assets\Scripts\Vehicle.cs" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolidOverlay.shader" />
-     <None Include="Assets\GUI\Fonts\SIL Open Font License.txt" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparentOverlay.shader" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolid.shader" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparent.shader" />
-     <None Include="Assets\GUI\Fonts\Freeware License.txt" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
      <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
-     <None Include="Assets\GUI\Fonts\Iconian Fonts License.txt" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\crossdomain.xml" />
      <None Include="Assets\GameAnalytics\Plugins\Android\Android_Readme.txt" />
-     <None Include="Assets\GUI\Fonts\Daniel Midgley.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

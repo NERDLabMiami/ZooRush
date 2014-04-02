@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DialogHandler : MonoBehaviour
+public class DialogScanner : MonoBehaviour
 {
 	private DialogTrigger dialog;
 	
@@ -24,12 +24,7 @@ public class DialogHandler : MonoBehaviour
 			}
 		}
 	}
-
-	public void closeDialog ()
-	{
-		dialog.cleanUp ();
-	}
-
+	
 	public void forceDialog (DialogTrigger dialogReceived)
 	{
 		dialogReceived.openDialog ();

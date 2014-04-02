@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class TutorialConditionalDialogController : MonoBehaviour
@@ -44,38 +44,25 @@ public class TutorialConditionalDialogController : MonoBehaviour
 
 	private bool createDialog (string[] text)
 	{
-		if (GameStateMachine.currentState != (int)GameStateMachine.GameState.Paused) {
-			GameObject DialogTrigger = new GameObject ("Dialog Trigger", typeof(DialogTrigger));
-			DialogTrigger.GetComponent<DialogTrigger> ().textDisplay = text;
-			GameObject.FindObjectOfType<DialogHandler> ().forceDialog (DialogTrigger.GetComponent<DialogTrigger> ());
+		if (GameState.currentState != GameState.States.Dialog && GameState.currentState != GameState.States.Pause) {
+			GameObject.FindObjectOfType<DialogBox> ().dialog = text;
+			GameState.requestDialog ();
 			return true;
 		}
 		return false;
 	}
 
 	private string[] stopwatchText = {
-		"Look out! You just got",
-		"+an infection! Get to",
-		"+the hospital before it",
-		"+gets worse!"
+		"Look out! You just got\nan infection! Get to\nthe hospital before it\ngets worse!"
 	};
 
 	private string[] crisisText = {
-		"You're about to have a",
-		"+crisis! Staying",
-		"+hydrated and taking",
-		"painkillers can help",
-		"+you manage your",
-		"+condition."
+		"You're about to have a\ncrisis!", 
+		"Staying hydrated and\ntaking painkillers can\n help you manage your\ncondition."
 	};
 
 	private string[] animalText = {
-		"When you're close to",
-		"+an animal, you can",
-		"+throw a net by tapping",
-		"+on it. Make sure you",
-		"+position yourself",
-		"+correctly or you might",
-		"+end up missing!"
+		"When you're close to\nan animal, you can\nthrow a net by tapping\non it.",
+		"Make sure you\nposition yourself\ncorrectly or you might\nend up missing!"
 	};
 }

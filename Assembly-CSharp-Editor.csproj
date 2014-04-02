@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{01AE29EA-D11F-E103-1878-41E8A4CD4F77}</ProjectGuid>
+	<ProjectGuid>{287EE936-780C-9612-3D1C-5D2A81DDF2B3}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -69,18 +69,14 @@
      <Compile Include="Assets\GameAnalytics\Editor\GA_UpdateWindow.cs" />
      <Compile Include="Assets\GameAnalytics\Editor\GA_WebInterface.cs" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolidOverlay.shader" />
-     <None Include="Assets\GUI\Fonts\SIL Open Font License.txt" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparentOverlay.shader" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolid.shader" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparent.shader" />
-     <None Include="Assets\GUI\Fonts\Freeware License.txt" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
      <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
-     <None Include="Assets\GUI\Fonts\Iconian Fonts License.txt" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\crossdomain.xml" />
      <None Include="Assets\GameAnalytics\Plugins\Android\Android_Readme.txt" />
-     <None Include="Assets\GUI\Fonts\Daniel Midgley.txt" />
  <Reference Include="\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
@@ -96,7 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{70063E49-5F3B-3855-BBDF-26E535F76079}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
