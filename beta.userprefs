@@ -1,11 +1,29 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/AnimalControls.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MenuMusic.cs">
     <Files>
-      <File FileName="Assets/Scripts/Event Handling/GameState.cs" Line="98" Column="1" />
-      <File FileName="Assets/Scripts/Animal.cs" Line="16" Column="48" />
-      <File FileName="Assets/AnimalControls.cs" Line="16" Column="1" />
+      <File FileName="Assets/Scripts/MenuMusic.cs" Line="49" Column="26" />
+      <File FileName="Assets/Scripts/Settings.cs" Line="64" Column="47" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="GameAnalytics" expanded="True">
+              <Node name="Plugins" expanded="True">
+                <Node name="Framework" expanded="True">
+                  <Node name="Scripts" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+            <Node name="Scripts" expanded="True">
+              <Node name="Menus" expanded="True" />
+              <Node name="MenuMusic.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

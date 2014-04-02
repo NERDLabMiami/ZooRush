@@ -8,11 +8,11 @@ public class StartMenu : MonoBehaviour
 {
 	void Start ()
 	{
-		if (PlayerPrefs.GetInt ("Music") != 0) {
-			audio.mute = false;
-		} else {
-			audio.mute = true;
-		}
+//		if (PlayerPrefs.GetInt ("Music") != 0) {
+//			audio.mute = false;
+//		} else {
+//			audio.mute = true;
+//		}
 
 		BreadCrumbs.previousScene = Application.loadedLevelName;
 

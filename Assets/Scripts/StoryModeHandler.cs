@@ -88,7 +88,6 @@ public class StoryModeHandler : ButtonOld
 		case "End":
 			nextLevel = 11;
 			NextSceneName = "Credits";
-
 			break;
 		default:
 			nextLevel = 11;
@@ -158,12 +157,12 @@ public class StoryModeHandler : ButtonOld
 		"3\n" +
 		"Help! Help! \n" +
 		"All the animals have escaped their pens. \n" +
-		"They’re getting away!\n" +
+		"They're getting away!\n" +
 		"1\n" +
 		"The first day of work is always the hardest.\n";
 
 	private string level2 = "1\n" +
-		"Good job with the tortoise, but there’s no time to rest.\n" +
+		"Good job with the tortoise, but there's no time to rest.\n" +
 		"2\n" +
 		"A crocodile is on the loose inside the zoo.\n" +
 		"We need you to track it down before it hurts anyone!\n" +
@@ -171,17 +170,17 @@ public class StoryModeHandler : ButtonOld
 		"Let's Do It!\n";
 
 	private string level3 = "1\n" +
-		"Good job with the crocodile, but there’s no time to rest.\n" +
+		"Good job with the crocodile, but there's no time to rest.\n" +
 		"1\n" + 
 		"A flamingo was reported in the suburbs, find it fast!\n" + 
 		"1\n" +
 		"Let's Do It!\n";
 
 	private string level4 = "1\n" +
-		"Good job with the flamingo, but there’s not time to rest.\n" +
+		"Good job with the flamingo, but there's not time to rest.\n" +
 		"3\n" +
 		"We got another report of a rhino in the suburbs.\n" +
-		"Let’s get it back to the zoo!\n" +
+		"Let's get it back to the zoo!\n" +
 		"And watch out for lawnmowers.\n" +
 		"1\n" +
 		"Let's Do It!\n";
@@ -190,14 +189,14 @@ public class StoryModeHandler : ButtonOld
 		"What a week!\n" + 
 		"Half the animals are safely back in their pens.\n" +
 		"2\n" +
-		"There’s still a penguin out in the suburbs.\n" +
-		"Let’s get him back to a cooler climate.\n" +
+		"There's still a penguin out in the suburbs.\n" +
+		"Let's get him back to a cooler climate.\n" +
 		"1\n" +
 		"Let's Do It!\n";
 
 	private string level6 = "2\n" +
-		"There’s a gorilla at the beach giving sunbathers grief,\n" +
-		"let’s get over there and catch it before he gets sunburned!\n" +
+		"There's a gorilla at the beach giving sunbathers grief,\n" +
+		"let's get over there and catch it before he gets sunburned!\n" +
 		"1\n" +
 		"Let's Do It!\n";
 
@@ -215,15 +214,15 @@ public class StoryModeHandler : ButtonOld
 		"Let's Do It!\n";
 
 	private string level9 = "2\n" +
-		"We’ve got a report of a cheetah downtown.\n" +
+		"We've got a report of a cheetah downtown.\n" +
 		"You know the drill!\n" +
 		"1\n" +
 		"Let's Do It!\n";
 
 	private string level10 = "3\n" +
 		"Last one!\n" +
-		"It’s a bear of, yeah, it’s a bear!\n" +
-		"Let’s get him!\n" +
+		"It's a bear of, yeah, it's a bear!\n" +
+		"Let's get him!\n" +
 		"1\n" +
 		"Let's Do It!\n";
 
@@ -231,9 +230,9 @@ public class StoryModeHandler : ButtonOld
 		"Congratulations!\n" +
 		"All the animals have been returned to the zoo safe and sound.\n" +
 		"3\n" +
-		"By paying attention to my body’s needs,\n" +
+		"By paying attention to my body's needs,\n" +
 		"I was able to pursue my dreams and succeed.\n" +
-		"I’ll never let sickle-cell keep me down.\n";
+		"I'll never let sickle-cell keep me down.\n";
 
 
 }
