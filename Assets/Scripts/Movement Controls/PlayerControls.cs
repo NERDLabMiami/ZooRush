@@ -15,7 +15,7 @@ public class PlayerControls : MonoBehaviour
 	
 	private Animator animate;
 
-	private NetLauncher netLauncher;
+//	private NetLauncher netLauncher;
 	private Animal animal;
 
 	public string characterName;
@@ -25,17 +25,42 @@ public class PlayerControls : MonoBehaviour
 	void Start ()
 	{
 		animate = GetComponent<Animator> ();
-		netLauncher = FindObjectOfType<NetLauncher> ();
+//		netLauncher = FindObjectOfType<NetLauncher> ();
 		animal = FindObjectOfType<Animal> ();
 		speed = new Vector2 (7f, 0f);
 		maxSpeed = 4f;
 		changeSpeed = false;
 	}
 
+	void OnEnable ()
+	{
+		GameState.StateChanged += OnStateChanged;
+	}
+	
+	void OnDisable ()
+	{
+		GameState.StateChanged -= OnStateChanged;
+	}
+	
+	private void OnStateChanged ()
+	{
+		switch (GameState.currentState) {
+		case GameState.States.Play:
+			StartCoroutine (waitToResume (0.1f));
+			break;
+		case GameState.States.Launch:
+			setSpeed (animal.speed);
+			break;
+		default:
+			rigidbody2D.velocity = Vector2.zero;
+			break;
+		}
+	}
+
 	void FixedUpdate ()
 	{
-		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
-			if (Input.GetMouseButton (0) && Camera.main.pixelRect.Contains (Input.mousePosition)) {
+		if (GameState.checkForState (GameState.States.Play)) {
+			if (Input.GetMouseButtonDown (0) && Camera.main.pixelRect.Contains (Input.mousePosition)) {
 				yMovement = (Input.GetAxis ("Mouse Y") > 0) ? 1 : ((Input.GetAxis ("Mouse Y") < 0) ? -1 : 0);
 			} else {
 				yMovement = Input.GetAxis ("Vertical");
@@ -48,25 +73,11 @@ public class PlayerControls : MonoBehaviour
 
 	void Update ()
 	{
-		switch (GameStateMachine.currentState) {
-		case (int)GameStateMachine.GameState.Play:
-			if (netLauncher != null && netLauncher.launchEnabled) {
-				setSpeed (animal.speed);
-			} else {
-				setSpeed ();
-			}
-			if (rigidbody2D.velocity.x > 0) {
-				currentSpeed = rigidbody2D.velocity;
-			}
-			break;
-		case (int)GameStateMachine.GameState.PauseToPlay:
-			StartCoroutine (waitToResume (0.1f));
-			animate.StopPlayback ();
-			break;
-		default:
-			rigidbody2D.velocity = Vector2.zero;
-			animate.StartPlayback ();
-			break;
+		if (rigidbody2D.velocity.x > 0) {
+			currentSpeed = rigidbody2D.velocity;
+		}
+		if (GameState.checkForState (GameState.States.Play)) {
+			setSpeed ();
 		}
 	}
 

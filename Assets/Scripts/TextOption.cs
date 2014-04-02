@@ -42,7 +42,7 @@ public class TextOption : TouchHandler
 					
 				} else {
 					if (gameObject.name.Contains ("Resume")) {
-						GameStateMachine.requestPlay ();
+						GameState.requestPlay ();
 						Destroy (transform.parent.gameObject);
 					}
 					

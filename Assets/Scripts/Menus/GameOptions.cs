@@ -44,7 +44,7 @@ public class GameOptions : OtherButtonClass
 	
 	void Start ()
 	{
-		GameStateMachine.currentState = (int)GameStateMachine.GameState.Play;
+		GameState.currentState = GameState.States.Play;
 
 		Back = GameObject.Find ("Text - Back");
 		charSelect = GameObject.Find ("Sprite - Character").GetComponent<SpriteRenderer> ();

@@ -10,7 +10,7 @@ public class StartButton : ButtonOld
 
 	public void closeStartScreen ()
 	{
-		GameStateMachine.requestIntro ();
+		GameState.requestIntro ();
 		Destroy (transform.parent.gameObject);
 	}
 }

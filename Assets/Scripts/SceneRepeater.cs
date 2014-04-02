@@ -17,7 +17,7 @@ public class SceneRepeater : MonoBehaviour
 	
 	void Update ()
 	{
-		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
+		if (GameState.checkForState (GameState.States.Play)) {
 			foreach (GameObject element in sceneThings) {
 				if (element != null) {
 					if (element.transform.position.x < Camera.main.transform.position.x - 50f) {

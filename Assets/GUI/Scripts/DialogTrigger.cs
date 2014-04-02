@@ -35,6 +35,7 @@ public class DialogTrigger : MonoBehaviour
 			}
 			GameObject.FindObjectOfType<DialogBox> ().dialog = textDisplay;
 			GameState.requestDialog ();
+			Debug.Log ("Dialog Requested");
 //			GameObject.FindObjectOfType<Dialog> ().activateDialog (textDisplay);
 			opened = true;
 		}

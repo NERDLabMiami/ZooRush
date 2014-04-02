@@ -44,7 +44,7 @@ public class Settings : OtherButtonClass
 
 	void Start ()
 	{
-		GameStateMachine.currentState = (int)GameStateMachine.GameState.Play;
+		GameState.currentState = GameState.States.Play;
 		cameraFollower.cameraFollowEnabled = true;
 		cameraFollower.characterOffset = 2.2f;
 		cameraFollower.cameraSettled = true;

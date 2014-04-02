@@ -21,7 +21,7 @@ public class CameraFollow : MonoBehaviour
 
 	void LateUpdate ()
 	{
-		if (GameStateMachine.currentState != (int)GameStateMachine.GameState.StartLevel) { //we are not in the intro gameplay state and need to move the camera
+		if (!GameState.checkForState (GameState.States.Intro) && !GameState.checkForState (GameState.States.Start)) { //we are not in the intro gameplay state and need to move the camera
 			if (cameraSettled) {
 				transform.position = addXOffsetToCharacter (characterOffset);
 			}

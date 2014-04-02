@@ -31,7 +31,7 @@ public class StoryModeHandler : ButtonOld
 
 	new void Start ()
 	{
-		GameStateMachine.currentState = (int)GameStateMachine.GameState.Play;
+		GameState.currentState = GameState.States.Play;
 		if (PlayerPrefs.GetInt ("Music") != 0) {
 			audio.mute = false;
 		} else {
@@ -124,7 +124,6 @@ public class StoryModeHandler : ButtonOld
 		} else {
 			LoadLevel.levelToLoad = NextSceneName;
 			PlayerPrefs.SetInt (NextSceneName + "Story", 1);
-			GameStateMachine.currentState = (int)GameStateMachine.GameState.Intro;
 			Application.LoadLevel ("Loading");
 		}
 		StartCoroutine (waitToResetTouch ());

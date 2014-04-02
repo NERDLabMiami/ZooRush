@@ -133,7 +133,7 @@ public class Animal : MonoBehaviour
 	{
 		yield return new WaitForSeconds (time);
 		animalPhysics.velocity = speed;
-		GameState.requestPlay ();
+//		GameState.requestPlay ();
 	}
 
 	public void touched ()
