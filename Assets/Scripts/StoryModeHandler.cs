@@ -221,7 +221,7 @@ public class StoryModeHandler : ButtonOld
 
 	private string level10 = "3\n" +
 		"Last one!\n" +
-		"It's a bear of, yeah, it's a bear!\n" +
+		"It's a bear oh, yeah, it's a bear!\n" +
 		"Let's get him!\n" +
 		"1\n" +
 		"Let's Do It!\n";
