@@ -61,11 +61,15 @@ public class Settings : OtherButtonClass
 			break;
 		case "Music Toggle Button":
 			PlayerPrefs.SetInt ("Music", (Music.getToggleValue () ? 1 : 0));
-			if (!Music.getToggleValue ()) {
-				Camera.main.audio.mute = true;
-			} else {
-				Camera.main.audio.mute = false;
+			MenuMusic menumusic = GameObject.FindObjectOfType<MenuMusic> ();
+			if (menumusic != null) {
+				menumusic.menuMusicUpdate ();
 			}
+//			if (!Music.getToggleValue ()) {
+//				Camera.main.audio.mute = true;
+//			} else {
+//				Camera.main.audio.mute = false;
+//			}
 			break;
 		case "Change Character":
 			charIndex = (charIndex + 1) % charMaxIndex;

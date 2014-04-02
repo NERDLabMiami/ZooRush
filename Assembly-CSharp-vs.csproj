@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</ProjectGuid>
+	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -49,7 +49,6 @@
      <Compile Include="Assets\GUI\Scripts\BreadCrumbs.cs" />
      <Compile Include="Assets\GUI\Scripts\Button.cs" />
      <Compile Include="Assets\GUI\Scripts\DialogBox.cs" />
-     <Compile Include="Assets\GUI\Scripts\GameState.cs" />
      <Compile Include="Assets\GUI\Scripts\MainMenuClouds.cs" />
      <Compile Include="Assets\GUI\Scripts\NextButton.cs" />
      <Compile Include="Assets\GUI\Scripts\OtherButtonClass.cs" />
@@ -120,7 +119,6 @@
      <Compile Include="Assets\Scripts\ButtonOld.cs" />
      <Compile Include="Assets\Scripts\Bystander.cs" />
      <Compile Include="Assets\Scripts\CameraAspect.cs" />
-     <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\CharacterSelect.cs" />
      <Compile Include="Assets\Scripts\CharacterSpeech.cs" />
@@ -133,6 +131,7 @@
      <Compile Include="Assets\Scripts\DirectToScene.cs" />
      <Compile Include="Assets\Scripts\DistanceMeter.cs" />
      <Compile Include="Assets\Scripts\Doctor.cs" />
+     <Compile Include="Assets\Scripts\Event Handling\GameState.cs" />
      <Compile Include="Assets\Scripts\GUITouchController.cs" />
      <Compile Include="Assets\Scripts\GameOptions.cs" />
      <Compile Include="Assets\Scripts\GameSetup.cs" />
@@ -146,10 +145,15 @@
      <Compile Include="Assets\Scripts\LevelButton.cs" />
      <Compile Include="Assets\Scripts\LevelFailModel.cs" />
      <Compile Include="Assets\Scripts\LevelGUIController.cs" />
-     <Compile Include="Assets\Scripts\LevelSelect.cs" />
-     <Compile Include="Assets\Scripts\LevelSelectButtonController.cs" />
-     <Compile Include="Assets\Scripts\LevelSelectCameraControls.cs" />
      <Compile Include="Assets\Scripts\LoadLevel.cs" />
+     <Compile Include="Assets\Scripts\MenuMusic.cs" />
+     <Compile Include="Assets\Scripts\Menus\LevelSelect.cs" />
+     <Compile Include="Assets\Scripts\Menus\LevelSelectButtonController.cs" />
+     <Compile Include="Assets\Scripts\Menus\LevelSelectCameraControls.cs" />
+     <Compile Include="Assets\Scripts\Menus\StartMenu.cs" />
+     <Compile Include="Assets\Scripts\Movement Controls\AnimalControls.cs" />
+     <Compile Include="Assets\Scripts\Movement Controls\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Movement Controls\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\MovingObjectSpawner.cs" />
      <Compile Include="Assets\Scripts\NetHandler.cs" />
      <Compile Include="Assets\Scripts\NetLauncher.cs" />
@@ -161,7 +165,6 @@
      <Compile Include="Assets\Scripts\PauseButton.cs" />
      <Compile Include="Assets\Scripts\PlayButton.cs" />
      <Compile Include="Assets\Scripts\PlaySound.cs" />
-     <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\PowerUp.cs" />
      <Compile Include="Assets\Scripts\RandomFact.cs" />
      <Compile Include="Assets\Scripts\SceneManager.cs" />
@@ -172,7 +175,6 @@
      <Compile Include="Assets\Scripts\SortingLayer.cs" />
      <Compile Include="Assets\Scripts\SortingLayerController.cs" />
      <Compile Include="Assets\Scripts\StartButton.cs" />
-     <Compile Include="Assets\Scripts\StartMenu.cs" />
      <Compile Include="Assets\Scripts\StopwatchController.cs" />
      <Compile Include="Assets\Scripts\StoryModeHandler.cs" />
      <Compile Include="Assets\Scripts\StoryModeNonPanel.cs" />

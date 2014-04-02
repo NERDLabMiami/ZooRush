@@ -24,6 +24,8 @@ public static class GameState : System.Object
 	public static event StateChange StateChanged;
 	public static event StateChange dialogCalled;
 	public static event StateChange dialogDismissed;
+	public static event StateChange launchCalled;
+	public static event StateChange launchDismissed;
 
 	private static void callStateChanged ()
 	{
@@ -43,6 +45,20 @@ public static class GameState : System.Object
 	{
 		if (dialogDismissed != null) {
 			dialogDismissed ();
+		}
+	}
+
+	private static void callLaunch ()
+	{
+		if (launchCalled != null) {
+			launchCalled ();
+		}
+	}
+	
+	private static void callLaunchDismissed ()
+	{
+		if (launchDismissed != null) {
+			launchDismissed ();
 		}
 	}
 
@@ -69,20 +85,20 @@ public static class GameState : System.Object
 	{
 		switch (currentState) {
 		case States.Dialog:
+			callDialogDismissed ();
+			break;
 		case States.Intro:
+			break;
 		case States.Launch:
-			if (currentState == States.Dialog) {
-				callDialogDismissed ();
-			}
-			currentState = States.Play;
-			callStateChanged ();
-			return true;
-//			break;
+			callLaunchDismissed ();
+			break;
 		default:
 			Debug.Log ("Incorrect Request in State Flow");
-			break;
+			return false;
 		}
-		return false;
+		currentState = States.Play;
+		callStateChanged ();
+		return true;
 	}
 
 	public static bool requestDialog ()
@@ -102,6 +118,7 @@ public static class GameState : System.Object
 		if (currentState == States.Play) {
 			currentState = States.Launch;
 			callStateChanged ();
+			callLaunch ();
 			return true;
 		} 
 		Debug.Log ("Incorrect Request in State Flow");
