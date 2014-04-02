@@ -147,6 +147,7 @@
      <Compile Include="Assets\Scripts\LevelGUIController.cs" />
      <Compile Include="Assets\Scripts\LoadLevel.cs" />
      <Compile Include="Assets\Scripts\MenuMusic.cs" />
+     <Compile Include="Assets\Scripts\Menus\Credits.cs" />
      <Compile Include="Assets\Scripts\Menus\LevelSelect.cs" />
      <Compile Include="Assets\Scripts\Menus\LevelSelectButtonController.cs" />
      <Compile Include="Assets\Scripts\Menus\LevelSelectCameraControls.cs" />

@@ -196,7 +196,7 @@ public class StoryModeHandler : ButtonOld
 
 	private string level6 = "2\n" +
 		"There's a gorilla at the beach giving sunbathers grief,\n" +
-		"let's get over there and catch it before he gets sunburned!\n" +
+		"let's get over there and catch him before he gets sunburned!\n" +
 		"1\n" +
 		"Let's Do It!\n";
 
