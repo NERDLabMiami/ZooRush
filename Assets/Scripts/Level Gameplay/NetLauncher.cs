@@ -12,18 +12,25 @@ public class NetLauncher : MonoBehaviour
 	public bool launchEnabled; //Indicates if it is possible to launch a net 
 	public Rigidbody2D prefab; //The net prefab that will be instantiated
 	
-	private bool throwAlertDisplayed;
 	private Animal animal;	//Pointer to the animal class
 	private float speed;	//Speed at which the net will be launched on the x-axis
 	private bool firing;	//Indicates if the character is currently firing a net
 	private int throwCount; //number of tries that have been made 
-	
+	private int currentNetIndex;
+	public Rigidbody2D[] nets; //pool of nets to save instatiating while firing
+
 	void Start ()
 	{	
 		speed = 30f;	
 		firing = false;
 		throwCount = 0;
 		animal = GameObject.FindObjectOfType<Animal> ();
+		currentNetIndex = 0;
+		nets = new Rigidbody2D[5];
+		for (int i = 0; i < nets.Length; i++) {
+			Rigidbody2D net = Instantiate (prefab, (Vector2.zero - 8 * Vector2.up), prefab.transform.rotation) as Rigidbody2D;
+			nets [i] = net;
+		}
 	}
 
 	void OnEnable ()
@@ -74,9 +81,12 @@ public class NetLauncher : MonoBehaviour
 	private void fire ()
 	{
 		GameObject.FindObjectOfType<AudioController> ().objectInteraction (clip);
-		Rigidbody2D netInstance = Instantiate (prefab, transform.position, prefab.transform.rotation) as Rigidbody2D;
+		Rigidbody2D netInstance = nets [currentNetIndex];
+		netInstance.transform.position = transform.position;
+		netInstance.isKinematic = false;
 		netInstance.velocity = new Vector2 (speed, 0f);
 		throwCount += 1;
+		currentNetIndex = (currentNetIndex + 1) % nets.Length;
 		StartCoroutine (resetFiringState ());
 	}
 

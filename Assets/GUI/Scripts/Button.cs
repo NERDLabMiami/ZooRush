@@ -83,9 +83,8 @@ public abstract class Button : UserTouchable
 	}
 
 	private void resume ()
-	{
-		GameState.requestPlay ();
-		Destroy (transform.parent.gameObject);
+	{		
+		GameObject.FindObjectOfType<LevelGUIController> ().dismissPauseMenu ();
 	}
 
 	private void retry ()

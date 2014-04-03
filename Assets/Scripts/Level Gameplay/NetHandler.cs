@@ -31,6 +31,7 @@ public class NetHandler : MonoBehaviour
 			GameState.requestTransition ();
 		} else {
 			rigidbody2D.velocity = Vector2.zero;
+			rigidbody2D.isKinematic = true;
 			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("I Missed!");
 		}
 	}
