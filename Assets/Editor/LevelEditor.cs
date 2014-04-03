@@ -45,7 +45,7 @@ public class LevelEditor : EditorWindow
 					EditorGUILayout.LabelField ("Scene Manager Properties for " + Application.loadedLevelName);
 					sceneManager.NextSceneName = EditorGUILayout.TextField ("Next Scene Name:", sceneManager.NextSceneName);
 					sceneManager.isEndless = EditorGUILayout.ToggleLeft ("Endless Mode", sceneManager.isEndless);
-					sceneManager.tutEnabled = EditorGUILayout.ToggleLeft ("Tutorial Mode", sceneManager.tutEnabled);
+//					sceneManager.tutEnabled = EditorGUILayout.ToggleLeft ("Tutorial Mode", sceneManager.tutEnabled);
 					scoreVarFoldout = EditorGUILayout.Foldout (scoreVarFoldout, "Scoring Variables");
 					
 					if (scoreVarFoldout) {	

@@ -1,11 +1,37 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StoryModeNonPanel.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Menus/LevelSelect.cs">
     <Files>
-      <File FileName="Assets/Scripts/StoryModeNonPanel.cs" Line="50" Column="2" />
-      <File FileName="Assets/Scripts/TouchHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/GUI/Scripts/RectangleButton.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Level Gameplay/NetLauncher.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Menus/LevelCompleteMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets/GUI/Scripts/LevelGUIController.cs" Line="1" Column="1" />
+      <File FileName="Assets/GUI/Scripts/Button.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Menus/StartMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Menus/LevelSelectButtonController.cs" Line="16" Column="11" />
+      <File FileName="Assets/Scripts/Menus/LevelSelectCameraControls.cs" Line="103" Column="21" />
+      <File FileName="Assets/Scripts/Menus/LevelSelect.cs" Line="42" Column="25" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="GameAnalytics" expanded="True">
+              <Node name="Plugins" expanded="True" />
+            </Node>
+            <Node name="GUI" expanded="True">
+              <Node name="Scripts" expanded="True" />
+            </Node>
+            <Node name="Scripts" expanded="True">
+              <Node name="Level Gameplay" expanded="True" />
+              <Node name="Menus" expanded="True">
+                <Node name="LevelSelect.cs" selected="True" />
+              </Node>
+              <Node name="Movement Controls" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

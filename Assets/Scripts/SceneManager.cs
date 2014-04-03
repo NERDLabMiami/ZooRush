@@ -12,7 +12,7 @@ public class SceneManager : MonoBehaviour
 	public float currentDistanceDiff; 	//Current distance between character and animal
 
 	private float timeOutDistance; //Distance at which it is almost impossible to catch the animal
-	private bool timedOut;
+	public bool timedOut;
 	public float targetTimeVar;
 	public float multiplier1;
 	public float multiplier2;
@@ -25,7 +25,7 @@ public class SceneManager : MonoBehaviour
 	public bool isEndless;
 	public bool isPlaying;
 	public bool pauseAudio;
-	public bool tutEnabled;
+	private bool tutEnabled;
 	public bool fainted;
 
 
@@ -39,100 +39,106 @@ public class SceneManager : MonoBehaviour
 //		Debug.Log ("TimeOutDistnace is : " + timeOutDistance);
 		cameraFollow = GameObject.FindObjectOfType<CameraFollow> ();
 		timedOut = false; 
-		if (NextSceneName.Contains ("2-Zoo")) {
-			if (PlayerPrefs.GetInt ("TUTORIAL", 0) == 0) {
-				tutEnabled = true;
-			}
-		} else {
-			tutEnabled = false;
-		}
-		GameStateMachine.resetState ();
+		tutEnabled = PlayerPrefs.GetInt ("TUTORIAL", 0) == 0;
+
 		isPlaying = true;
 		pauseAudio = false;
 		fainted = false;
-
 		character = GameObject.FindGameObjectWithTag ("character");
 		animal = GameObject.FindGameObjectWithTag ("animal");
-
-//		for (int i = 0; i < animals.Length; i++) {
-//			if (animals [i].name.Contains (animal.name)) {
-//				if (i == animals.Length - 1) {
-//					nextAnimalIndex = 0;
-//				} else {
-//					nextAnimalIndex = i + 1;
-//				}
-//			}
-//		}
-
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 		distanceDiffMin = 7f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 		if (tutEnabled) {
 			gameObject.AddComponent<TutorialConditionalDialogController> ();
 		}
+		GameState.requestStart ();
 	}
 
-
-	
-	void Update ()
+	void OnEnable ()
 	{
-		if (GameStateMachine.currentState != (int)GameStateMachine.GameState.StartLevel) {
-			currentDistanceDiff = Mathf.Abs (animal.transform.localPosition.x - character.transform.localPosition.x);
-		}
-
-		switch (GameStateMachine.currentState) {
-		case (int)GameStateMachine.GameState.Intro:
-			if (currentDistanceDiff > 25f) {
-				animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
-				GameStateMachine.requestPlay ();
-				if (!tutEnabled) {
-					GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Ok! Let's go!");
-				} else {
-					GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("The first day\nis the hardest.");
-				}
-				cameraFollow.moveCameraToCharacterOffset (5f);
-			}
+		GameState.StateChanged += OnStateChanged;
+	}
+	
+	void OnDisable ()
+	{
+		GameState.StateChanged -= OnStateChanged;
+	}
+	
+	private void OnStateChanged ()
+	{
+		switch (GameState.currentState) {
+		case GameState.States.Intro:
+			StartCoroutine (introSequence ());
 			break;
-		case (int)GameStateMachine.GameState.Play:
-			if (currentDistanceDiff > timeOutDistance) {
-				timedOut = true;
-				GameStateMachine.requestPause ();
-			}
-			break;
-		case (int)GameStateMachine.GameState.Paused:
+		case GameState.States.Transition:
 			if (animalControl.caught) {
-				GameStateMachine.requestTransition ();
+				GameState.requestWin ();
+			}
+			if (fainted) {
+				GameState.requestLose ();
 			}
 			if (timedOut) {
 				if (cameraFollow.cameraSettled) {
 					cameraFollow.moveCameraToCharacterOffset (currentDistanceDiff + 5f);
-					GameStateMachine.requestTransition ();
+					StartCoroutine (timeOutSequence ());
 				}
 			}
 			break;
-		case (int)GameStateMachine.GameState.Transition:
-			if (animalControl.caught) {
-				if (NextSceneName.Contains ("2-Zoo")) {
-					PlayerPrefs.SetInt ("TUTORIAL", 1);
-				}
-				GameObject.FindObjectOfType<PainKiller> ().savePillCount ();
-				GameStateMachine.requestEndLevel ();
-			} else {
-				if (timedOut && cameraFollow.cameraSettled) {
-					if (objInView (animalControl.gameObject.renderer)) {
-						animalControl.setSpeed ();
-					} else {
-						animalControl.speed = Vector2.zero;
-						GameObject.FindObjectOfType<LevelGUIController> ().timeOutMenu ();
-					}
-				}
+		case GameState.States.Win:
+			if (tutEnabled) {
+				PlayerPrefs.SetInt ("TUTORIAL", 1);
 			}
-			break;
-		case (int) GameStateMachine.GameState.EndLevel:
-			
+			GameObject.FindObjectOfType<PainKiller> ().savePillCount ();
+			BreadCrumbs.nextScene = NextSceneName;
 			break;
 		default:
 			break;
+		}
+	}
+
+	private IEnumerator introSequence ()
+	{
+		while (currentDistanceDiff < 25f) {
+			yield return new WaitForFixedUpdate ();
+		}
+		animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
+		GameState.requestPlay ();
+		if (!tutEnabled) {
+			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Ok! Let's go!");
+		} else {
+			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("The first day\nis the hardest.");
+		}
+		cameraFollow.moveCameraToCharacterOffset (5f);
+
+	}
+
+	private IEnumerator timeOutSequence ()
+	{
+		while (!cameraFollow.cameraSettled) {
+			yield return new WaitForFixedUpdate ();
+		}
+		while (objInView (animalControl.gameObject.renderer)) {
+			animalControl.setSpeed ();
+			yield return new WaitForFixedUpdate ();
+		}
+		animalControl.speed = Vector2.zero;
+		GameState.requestLose ();
+	}
+	
+	void Update ()
+	{
+		if (!GameState.checkForState (GameState.States.Start)) {
+			currentDistanceDiff = Mathf.Abs (animal.transform.localPosition.x - character.transform.localPosition.x);
+		}
+		if (GameState.checkForState (GameState.States.Play)) {
+			if (currentDistanceDiff > timeOutDistance) {
+				timedOut = true;
+				GameState.requestTransition ();
+			}
+			if (currentDistanceDiff < distanceDiffMin) {
+				GameState.requestLaunch ();
+			}
 		}
 	}
 
@@ -142,24 +148,12 @@ public class SceneManager : MonoBehaviour
 		return GeometryUtility.TestPlanesAABB (planes, obj.bounds);
 	}
 
-
 	public void updatePillCount (int pillCount)
 	{
 		string theCount = "x" + pillCount;
 		TextMesh pillCountText = GameObject.Find ("Pill Count").GetComponentInChildren<TextMesh> ();
 		pillCountText.text = theCount;
 	}
-	
-//	private void changeAnimal ()
-//	{//TODO Bring this back into effect for Endless mode
-//		Vector3 position = character.transform.position;
-//		position.x -= 15f;
-//		Destroy (animal);
-//		animal = Instantiate (animals [nextAnimalIndex], position, Quaternion.identity) as GameObject;
-//		nextAnimalIndex = (nextAnimalIndex + 1) % animals.Length;
-//		animalControl = GameObject.FindObjectOfType<Animal> ();
-//		animalControl.setSpeed ();
-//	}
 
 }
 

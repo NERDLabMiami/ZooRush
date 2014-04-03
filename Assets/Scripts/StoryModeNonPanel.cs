@@ -18,24 +18,21 @@ public class StoryModeNonPanel : OtherButtonClass
 	
 	void Start ()
 	{
-		GameStateMachine.currentState = (int)GameStateMachine.GameState.PauseToPlay;
+		GameState.currentState = GameState.States.Play;
+		CameraFollow cameraFollower = GameObject.FindObjectOfType<CameraFollow> ();
+		cameraFollower.cameraFollowEnabled = true;
+		cameraFollower.characterOffset = 5f;
+		cameraFollower.cameraSettled = true;
 		character.gameObject.rigidbody2D.velocity = new Vector2 (8f, 0);
 		speechIndex = 0;
 		//assign current scene's dialog
 		currentDialog = dialog1;
+		speech.SpeechBubbleDisplay (currentDialog [speechIndex]);
+		readyForAnimal = true;
 	}
 	
 	void Update ()
 	{
-		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.PauseToPlay) {
-			GameStateMachine.requestPlay ();
-			CameraFollow cameraFollower = GameObject.FindObjectOfType<CameraFollow> ();
-			cameraFollower.characterOffset = 5;
-			cameraFollower.cameraFollowEnabled = true;
-			cameraFollower.cameraSettled = true;
-			speech.SpeechBubbleDisplay (currentDialog [speechIndex]);
-			readyForAnimal = true;
-		}
 		if (animal != null) {
 			if (animal.transform.position.x < Camera.main.transform.position.x && !inView (animal.renderer)) {
 				Destroy (animal);
@@ -114,7 +111,8 @@ public class StoryModeNonPanel : OtherButtonClass
 	private void cueZooKeeper ()
 	{
 		zooKeeper.color = Color.white;
-		GameStateMachine.currentState = (int)GameStateMachine.GameState.Paused;
+		//TODO Change to request Dialog
+		GameState.requestPause ();
 		character.gameObject.rigidbody2D.velocity = Vector2.zero;
 		Destroy (character.gameObject.GetComponent<Animator> ());
 		speechBubble.transform.localScale = new Vector3 (-speechBubble.transform.localScale.x, speechBubble.transform.localScale.y, speechBubble.transform.localScale.z);

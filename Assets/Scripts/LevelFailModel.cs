@@ -8,7 +8,6 @@ public class LevelFailModel : MonoBehaviour
 	public static string levelFailed;
 	public TextMesh title;
 	public TextMesh dialog;
-	public DirectToScene retry;
 
 	private string[] titleOptions = {	
 		"Sickle Cell Crisis", 
@@ -26,6 +25,7 @@ public class LevelFailModel : MonoBehaviour
 
 	void Start ()
 	{
+		BreadCrumbs.nextScene = levelFailed;
 
 		switch (failReason) {
 		case "Fainted":
@@ -48,6 +48,5 @@ public class LevelFailModel : MonoBehaviour
 			break;
 		}
 		LoadLevel.levelToLoad = levelFailed;
-		retry.sceneName = "Loading";
 	}
 }

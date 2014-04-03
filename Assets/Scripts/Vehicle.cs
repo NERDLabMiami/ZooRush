@@ -23,15 +23,26 @@ public class Vehicle : ObjectModel
 
 	void OnEnable ()
 	{
-		GameStateMachine.Paused += OnPause;
-		GameStateMachine.PauseToPlay += OnPauseToPlay;
+		GameState.StateChanged += OnStateChanged;
 	}
-	
 	
 	void OnDisable ()
 	{
-		GameStateMachine.Paused -= OnPause;
-		GameStateMachine.PauseToPlay -= OnPauseToPlay;
+		GameState.StateChanged -= OnStateChanged;
+	}
+	
+	private void OnStateChanged ()
+	{
+		switch (GameState.currentState) {
+		case GameState.States.Pause:
+			OnPause ();
+			break;
+		case GameState.States.Play:
+			OnPauseToPlay ();
+			break;
+		default:
+			break;
+		}
 	}
 
 	void OnPause ()

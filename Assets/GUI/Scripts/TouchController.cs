@@ -4,11 +4,14 @@ using System.Collections;
 public class TouchController : MonoBehaviour
 {
 
-	private GameObject obj;
+	private GameObject obj1, obj2;
+	private bool isMainCamera;
+	private bool down;
 
 	void Start ()
 	{
 		Input.simulateMouseWithTouches = true;
+		isMainCamera = camera == Camera.main;
 	}
 
 	private RaycastHit2D[] results = new RaycastHit2D[1]; //array of objects touched by the ray
@@ -16,38 +19,64 @@ public class TouchController : MonoBehaviour
 	void Update ()
 	{
 		if (Input.GetMouseButtonDown (0)) {
-			getObject (true);
+			down = true;
+			getObject ();
 		}
 		if (Input.GetMouseButtonUp (0)) {
-			getObject (false);
+			down = false;
+			getObject ();
 		}
 	}
 		
-	private void getObject (bool down)
+	private void getObject ()
 	{
-		if (!down && obj != null) {
-			obj.GetComponent<UserTouchable> ().reset ();
+		if (!down) {
+			if (obj1 != null) {
+				UserTouchable touchable = obj1.GetComponent<UserTouchable> ();
+				if (touchable != null) {
+					touchable.reset ();
+				}
+			}
+			if (obj2 != null) {
+				UserTouchable touchable = obj2.GetComponent<UserTouchable> ();
+				if (touchable != null) {
+					touchable.reset ();
+				}
+			}
 		}
-		Ray ray = camera.ScreenPointToRay (Input.mousePosition); //create a ray going from the mouse into the z-direction
+
+		if (!isMainCamera) {
+			cameraRaySearch (camera, ref obj1);
+		}
+		cameraRaySearch (Camera.main, ref obj2);
+
+	}
+
+	private void cameraRaySearch (Camera cam, ref GameObject objectReceived)
+	{
+		Ray ray = cam.ScreenPointToRay (Input.mousePosition);
+
+		Debug.DrawRay (ray.origin, ray.direction * 10, Color.red);
+
 		if (Physics2D.GetRayIntersectionNonAlloc (ray, results) > 0) { //if we've hit at least one collider
 			foreach (RaycastHit2D element in results) { //iterate through the colliders we've touched
-				obj = element.transform.gameObject;
-				if (obj != null) {
-					processObject (obj, down);
+				objectReceived = element.transform.gameObject;
+				if (objectReceived != null) {
+					processObject (objectReceived);
 				}
 			}
 		}
 	}
+
 		
-	private void processObject (GameObject objectTouched, bool pressDown)
+	private void processObject (GameObject objectTouched)
 	{
-		Debug.Log (objectTouched.name + " touched.");
-		UserTouchable touchInterface = objectTouched.GetComponent<UserTouchable> ();
+		UserTouchable touchInterface = objectTouched.GetComponentInChildren<UserTouchable> ();
 		if (touchInterface != null) {
-			if (pressDown) {
-				objectTouched.GetComponent<UserTouchable> ().onPressDown ();
+			if (down) {
+				touchInterface.onPressDown ();
 			} else {
-				objectTouched.GetComponent<UserTouchable> ().onPressUp ();
+				touchInterface.onPressUp ();
 			}
 		}
 	}

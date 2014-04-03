@@ -18,27 +18,33 @@ public abstract class Button : UserTouchable
 	public OtherButtonClass
 		otherButtonClass;
 
+	private Renderer[] allRenderers;
+	private Collider2D[] allColliders;
+
 	public void disableButton ()
 	{
-		Renderer[] allRenderers = GetComponentsInChildren<Renderer> ();
-		Collider[] allColliders = GetComponentsInChildren<Collider> ();
-		foreach (Renderer rend in allRenderers) {
-			rend.enabled = false;
-		}
-		foreach (Collider coll in allColliders) {
-			coll.enabled = false;
-		}
+		setEnabled (false);
 	}
 
 	public void enableButton ()
 	{
-		Renderer[] allRenderers = GetComponentsInChildren<Renderer> ();
-		Collider[] allColliders = GetComponentsInChildren<Collider> ();
-		foreach (Renderer rend in allRenderers) {
-			rend.enabled = true;
+		setEnabled ();
+	}
+
+	private void setEnabled (bool enable = true)
+	{
+		if (allRenderers == null) {
+			allRenderers = GetComponentsInChildren<Renderer> ();
 		}
-		foreach (Collider coll in allColliders) {
-			coll.enabled = true;
+		if (allColliders == null) {
+			allColliders = GetComponentsInChildren<Collider2D> ();
+		}
+
+		foreach (Renderer rend in allRenderers) {
+			rend.enabled = enable;
+		}
+		foreach (Collider2D coll in allColliders) {
+			coll.enabled = enable;
 		}
 	}
 
@@ -53,13 +59,13 @@ public abstract class Button : UserTouchable
 		case 1://Direct To Next Scene
 			//it's assummed that Breadcrumbs.nextScene is assigned in a different script
 			BreadCrumbs.previousScene = Application.loadedLevelName;
-			directToNextScene ();
+			NextSceneHandler.loadGameLevelWithConditions (BreadCrumbs.nextScene);
 			break;
 		case 2://Resume
 			resume ();
 			break;
 		case 3://Retry
-			BreadCrumbs.nextScene = Application.loadedLevelName;
+			//Assume Breadcrums.nextScene has been assigned
 			retry ();
 			break;
 		case 4://Other
@@ -76,22 +82,13 @@ public abstract class Button : UserTouchable
 		Application.LoadLevel (BreadCrumbs.nextScene);
 	}
 
-	private void directToNextScene ()
-	{
-		//TODO Preparations/data needed before loading next scene
-		//TODO Update to appropriate Scene Name
-		directToScene ();
-	}
-
 	private void resume ()
-	{
-
+	{		
+		GameObject.FindObjectOfType<LevelGUIController> ().dismissPauseMenu ();
 	}
 
 	private void retry ()
 	{
-		BreadCrumbs.nextScene = Application.loadedLevelName;
-		//TODO Update Scene Name and any other Preparations/data needed before reloading this scene
 		directToScene ();
 	}
 

@@ -8,10 +8,13 @@ public class Ball : ObjectModel
 	public Transform[] shadows;
 	private Vector3[] distanceDiff;
 	public SpriteRenderer sprite;
+
+	private bool shadowDisplayed;
+
 	new void Start ()
 	{
 		base.Start ();
-
+		shadowDisplayed = true;
 		GetComponentInChildren<CollisionDetect> ().objectModel = this;
 		audioController = GameObject.FindObjectOfType<AudioController> ();
 		distanceDiff = new Vector3[shadows.Length];
@@ -24,14 +27,22 @@ public class Ball : ObjectModel
 
 	void Update ()
 	{
+		if (!rigidbody2D.velocity.Equals (Vector2.zero) && shadowDisplayed) {
+			makeShadowDisappear ();
+		}
 		if (player != null) {
-			for (int i = 0; i < distanceDiff.Length; i++) {
-				shadows [i].position = transform.position + distanceDiff [i];
-			}
 			if (!inView (sprite)) {
 				destroyObstacle ();
 			}
 		}
+	}
+
+	private void makeShadowDisappear ()
+	{
+		foreach (Transform shadow in shadows) {
+			shadow.renderer.enabled = false;
+		}
+		shadowDisplayed = false;
 	}
 
 	private bool inView (SpriteRenderer obj)
@@ -54,6 +65,7 @@ public class Ball : ObjectModel
 		player = character;
 		audioController.objectInteraction (clip);
 		rigidbody2D.AddTorque (10f);
+		makeShadowDisappear ();
 	}
 //
 //	private void stopMoving ()
