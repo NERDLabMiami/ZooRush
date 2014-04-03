@@ -1,21 +1,16 @@
-#import <AdSupport/ASIdentifierManager.h>
-
 extern "C"
 {
     char* GetUserID()
     {
         NSString *uidString = @"";
-        
-        if (!NSClassFromString(@"ASIdentifierManager"))
+
+        if ([[UIDevice currentDevice]respondsToSelector:@selector(identifierForVendor)]) //iOS6+
         {
-            uidString = @"OLD";
+            uidString = [NSString stringWithFormat: @"VENDOR-%@", [UIDevice currentDevice].identifierForVendor.UUIDString];
         }
         else
-        { //iOS6+
-            if([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled])
-            {
-                uidString = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-            }
+        {
+            uidString = @"OLD";
         }
         
         const char* string = [uidString UTF8String];

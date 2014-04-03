@@ -60,12 +60,12 @@ public class PlayerControls : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+		if (Input.GetMouseButton (0)) {
+			yMovement = (Input.GetAxis ("Mouse Y") > 0) ? 1 : ((Input.GetAxis ("Mouse Y") < 0) ? -1 : 0);
+		} else {
+			yMovement = Input.GetAxis ("Vertical");
+		}
 		if (GameState.checkForState (GameState.States.Play) || GameState.checkForState (GameState.States.Launch)) {
-			if (Input.GetMouseButtonDown (0) && Camera.main.pixelRect.Contains (Input.mousePosition)) {
-				yMovement = (Input.GetAxis ("Mouse Y") > 0) ? 1 : ((Input.GetAxis ("Mouse Y") < 0) ? -1 : 0);
-			} else {
-				yMovement = Input.GetAxis ("Vertical");
-			}
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxYSpeed * PlayerPrefs.GetFloat ("Sensitivity", 1));
 		} else {
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, 0f);

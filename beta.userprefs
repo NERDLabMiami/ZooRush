@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Ball.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Movement Controls/PlayerControls.cs">
     <Files>
-      <File FileName="Assets/Scripts/Ball.cs" Line="28" Column="7" />
+      <File FileName="Assets/Scripts/Ball.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Movement Controls/PlayerControls.cs" Line="65" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,8 +22,9 @@
             <Node name="Scripts" expanded="True">
               <Node name="Level Gameplay" expanded="True" />
               <Node name="Menus" expanded="True" />
-              <Node name="Movement Controls" expanded="True" />
-              <Node name="Ball.cs" selected="True" />
+              <Node name="Movement Controls" expanded="True">
+                <Node name="PlayerControls.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
