@@ -39,6 +39,7 @@ public class LevelSelect : MonoBehaviour
 	{
 		cameras = GameObject.FindGameObjectsWithTag ("option");
 		updateStarScores ();
+		updateLevelCameras ();
 	}
 
 	public void goToLevel ()

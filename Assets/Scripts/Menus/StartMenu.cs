@@ -6,6 +6,8 @@ using System.Collections;
  */
 public class StartMenu : MonoBehaviour
 {
+	public Button play;
+
 	void Start ()
 	{
 //		if (PlayerPrefs.GetInt ("Music") != 0) {
@@ -17,12 +19,12 @@ public class StartMenu : MonoBehaviour
 		BreadCrumbs.previousScene = Application.loadedLevelName;
 
 		if (PlayerPrefs.GetInt ("Levels Unlocked", 1) > 1) { //Default value is 1 for level 1
-			BreadCrumbs.nextScene = "LevelSelect";
+			play.SceneName = "LevelSelect";
 		} else {
 			if (PlayerPrefs.GetInt ("Level1-TutorialStory", 0) == 0) {
-				BreadCrumbs.nextScene = "CharacterSelect";
+				play.SceneName = "CharacterSelect";
 			} else {
-				BreadCrumbs.nextScene = "Level1-Tutorial";
+				play.SceneName = "Level1-Tutorial";
 			}
 
 		}
