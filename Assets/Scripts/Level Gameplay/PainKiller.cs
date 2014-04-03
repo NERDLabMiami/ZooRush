@@ -5,7 +5,7 @@ using System.Collections;
  * Touch Handler for Pain Killer Button
  * @author: Ebtissam Wahman
  */ 
-public class PainKiller : TouchHandler
+public class PainKiller : OtherButtonClass
 {
 	private int pillCount; // current count of Pills
 	private PainIndicator painIndicator; //pointer to the Pain Indicator 
@@ -35,18 +35,13 @@ public class PainKiller : TouchHandler
 	 * When the pain killer button is pressed, we want to update the pill count,
 	 * update the pain indicator, and add the pill usage to the score keeper.
 	 */ 
-	public override void objectTouched ()
+	public override void otherButtonAction (Button thisButton)
 	{
 		if (!interacted && Input.GetMouseButtonUp (0)) {
 			interacted = true;
 			decrementPillCount ();
 			StartCoroutine (waitToResetTouch ()); //resets the intereacted tracker after a small period of time
 		}
-	}
-
-	public override void objectUntouched ()
-	{
-
 	}
 
 	public void incrementPillCount ()
@@ -91,9 +86,9 @@ public class PainKiller : TouchHandler
 		PlayerPrefs.SetInt ("PILLS", pillCount); //updates our global value for the pill count
 	}
 
-	protected override IEnumerator waitToResetTouch ()
+	private IEnumerator waitToResetTouch ()
 	{
-		yield return new WaitForSeconds (0.2f);
+		yield return new WaitForSeconds (0.15f);
 		interacted = false;
 	}
 }

@@ -4,9 +4,6 @@ using System;
 
 public class LevelSelect : MonoBehaviour
 {
-	private LevelSelectCameraControls cameraControl;
-	private LevelSelectButtonController buttonControl;
-
 	GameObject[] cameras;
 	Camera currentLevel;
 
@@ -41,9 +38,6 @@ public class LevelSelect : MonoBehaviour
 	void Start ()
 	{
 		cameras = GameObject.FindGameObjectsWithTag ("option");
-		cameraControl = GameObject.FindObjectOfType<LevelSelectCameraControls> ();
-		buttonControl = GameObject.FindObjectOfType<LevelSelectButtonController> ();
-
 		updateStarScores ();
 	}
 

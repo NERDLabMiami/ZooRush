@@ -12,7 +12,7 @@ public class SceneManager : MonoBehaviour
 	public float currentDistanceDiff; 	//Current distance between character and animal
 
 	private float timeOutDistance; //Distance at which it is almost impossible to catch the animal
-	private bool timedOut;
+	public bool timedOut;
 	public float targetTimeVar;
 	public float multiplier1;
 	public float multiplier2;
@@ -25,7 +25,7 @@ public class SceneManager : MonoBehaviour
 	public bool isEndless;
 	public bool isPlaying;
 	public bool pauseAudio;
-	public bool tutEnabled;
+	private bool tutEnabled;
 	public bool fainted;
 
 
@@ -39,37 +39,20 @@ public class SceneManager : MonoBehaviour
 //		Debug.Log ("TimeOutDistnace is : " + timeOutDistance);
 		cameraFollow = GameObject.FindObjectOfType<CameraFollow> ();
 		timedOut = false; 
-		if (NextSceneName.Contains ("2-Zoo")) {
-			if (PlayerPrefs.GetInt ("TUTORIAL", 0) == 0) {
-				tutEnabled = true;
-			}
-		} else {
-			tutEnabled = false;
-		}
-		GameState.requestStart ();
+		tutEnabled = PlayerPrefs.GetInt ("TUTORIAL", 0) == 0;
+
 		isPlaying = true;
 		pauseAudio = false;
 		fainted = false;
-
 		character = GameObject.FindGameObjectWithTag ("character");
 		animal = GameObject.FindGameObjectWithTag ("animal");
-
-//		for (int i = 0; i < animals.Length; i++) {
-//			if (animals [i].name.Contains (animal.name)) {
-//				if (i == animals.Length - 1) {
-//					nextAnimalIndex = 0;
-//				} else {
-//					nextAnimalIndex = i + 1;
-//				}
-//			}
-//		}
-
 		animalControl = GameObject.FindObjectOfType<Animal> ();
 		distanceDiffMin = 7f;
 		currentDistanceDiff = Mathf.Abs (animal.transform.position.x - character.transform.position.x);
 		if (tutEnabled) {
 			gameObject.AddComponent<TutorialConditionalDialogController> ();
 		}
+		GameState.requestStart ();
 	}
 
 	void OnEnable ()
@@ -85,18 +68,15 @@ public class SceneManager : MonoBehaviour
 	private void OnStateChanged ()
 	{
 		switch (GameState.currentState) {
-		case GameState.States.Pause:
-			break;
-		case GameState.States.Play:
-			break;
-		case GameState.States.Dialog:
-			break;
 		case GameState.States.Intro:
 			StartCoroutine (introSequence ());
 			break;
 		case GameState.States.Transition:
 			if (animalControl.caught) {
 				GameState.requestWin ();
+			}
+			if (fainted) {
+				GameState.requestLose ();
 			}
 			if (timedOut) {
 				if (cameraFollow.cameraSettled) {
@@ -106,16 +86,11 @@ public class SceneManager : MonoBehaviour
 			}
 			break;
 		case GameState.States.Win:
-			if (NextSceneName.Contains ("2-Zoo")) {
+			if (tutEnabled) {
 				PlayerPrefs.SetInt ("TUTORIAL", 1);
 			}
 			GameObject.FindObjectOfType<PainKiller> ().savePillCount ();
-			//TODO Add Score Display here
-			break;
-		case GameState.States.Lose:
-			if (timedOut) {
-				GameObject.FindObjectOfType<LevelGUIController> ().timeOutMenu ();
-			}
+			BreadCrumbs.nextScene = NextSceneName;
 			break;
 		default:
 			break;
@@ -125,7 +100,7 @@ public class SceneManager : MonoBehaviour
 	private IEnumerator introSequence ()
 	{
 		while (currentDistanceDiff < 25f) {
-			yield return new WaitForEndOfFrame ();
+			yield return new WaitForFixedUpdate ();
 		}
 		animal.transform.localPosition = new Vector3 (animal.transform.localPosition.x + 25f, animal.transform.localPosition.y, animal.transform.localPosition.z);
 		GameState.requestPlay ();
@@ -135,6 +110,7 @@ public class SceneManager : MonoBehaviour
 			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("The first day\nis the hardest.");
 		}
 		cameraFollow.moveCameraToCharacterOffset (5f);
+
 	}
 
 	private IEnumerator timeOutSequence ()
@@ -159,6 +135,9 @@ public class SceneManager : MonoBehaviour
 			if (currentDistanceDiff > timeOutDistance) {
 				timedOut = true;
 				GameState.requestTransition ();
+			}
+			if (currentDistanceDiff < distanceDiffMin) {
+				GameState.requestLaunch ();
 			}
 		}
 	}

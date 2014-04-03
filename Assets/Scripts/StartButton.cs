@@ -1,16 +1,17 @@
 using UnityEngine;
 using System.Collections;
 
-public class StartButton : ButtonOld
+public class StartButton : OtherButtonClass
 {
-	protected override void action ()
-	{
-		GetComponent<Animator> ().SetTrigger ("Open");
-	}
 
 	public void closeStartScreen ()
 	{
-		GameState.requestIntro ();
 		Destroy (transform.parent.gameObject);
+		GameState.requestIntro ();
+	}
+
+	public override void otherButtonAction (Button thisButton)
+	{
+		GetComponent<Animator> ().SetTrigger ("Open");
 	}
 }

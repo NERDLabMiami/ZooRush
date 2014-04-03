@@ -35,7 +35,7 @@ public class NextButton : Button
 	
 	private IEnumerator animatePress ()
 	{
-		yield return new WaitForSeconds (0.3f);
+		yield return new WaitForSeconds (0.15f);
 		
 		reset ();
 		
@@ -53,7 +53,7 @@ public class NextButton : Button
 	private IEnumerator resetTouch ()
 	{
 		waitForTouchReset = true;
-		yield return new WaitForSeconds (0.3f);
+		yield return new WaitForSeconds (0.15f);
 		waitForTouchReset = false;
 	}
 }

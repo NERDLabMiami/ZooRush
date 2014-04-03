@@ -35,7 +35,6 @@ public class TouchInput : MonoBehaviour
 			if (Physics.Raycast (ray, out hit)) {
 				
 				GameObject recipient = hit.transform.gameObject;
-//				Debug.Log (recipient.name);
 				touchList.Add (recipient);
 				
 				if (Input.GetMouseButtonDown (0)) {

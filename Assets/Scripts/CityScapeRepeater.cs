@@ -48,7 +48,7 @@ public class CityScapeRepeater : MonoBehaviour
 
 	private void speedUpdate ()
 	{
-		if (GameState.checkForState (GameState.States.Play)) {
+		if (GameState.checkForState (GameState.States.Play) || GameState.checkForState (GameState.States.Launch)) {
 			if (rigidbody2D.velocity != moving) {
 				rigidbody2D.velocity = moving;
 			}

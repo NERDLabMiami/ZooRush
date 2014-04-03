@@ -12,6 +12,9 @@ public class DialogScanner : MonoBehaviour
 	void Start ()
 	{
 		cameraFollower = FindObjectOfType<CameraFollow> ();
+		if (GameObject.FindObjectOfType<DialogTrigger> () == null) {
+			Destroy (gameObject);
+		}
 	}
 	
 	void FixedUpdate ()

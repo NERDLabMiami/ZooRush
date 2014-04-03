@@ -89,6 +89,8 @@ public static class GameState : System.Object
 			callDialogDismissed ();
 			break;
 		case States.Intro:
+		case States.Pause:
+			//NOP
 			break;
 		case States.Launch:
 			callLaunchDismissed ();

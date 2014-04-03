@@ -29,20 +29,12 @@ public class StopwatchController : MonoBehaviour
 	{
 		switch (GameState.currentState) {
 		case GameState.States.Pause:
+		case GameState.States.Dialog:
+		case GameState.States.Transition:
 			OnPause ();
 			break;
 		case GameState.States.Play:
 			OnPauseToPlay ();
-			break;
-		case GameState.States.Dialog:
-			break;
-		case GameState.States.Intro:
-			break;
-		case GameState.States.Transition:
-			break;
-		case GameState.States.Win:
-			break;
-		case GameState.States.Lose:
 			break;
 		default:
 			break;

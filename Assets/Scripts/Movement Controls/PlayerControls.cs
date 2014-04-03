@@ -7,13 +7,14 @@ using System.Collections;
 public class PlayerControls : MonoBehaviour
 {
 	private Vector2 speed;
+	private const float xSpeed = 7f;
 	private Vector2 currentSpeed;
-	private float maxSpeed;
+	private float maxYSpeed;
 
 	private bool changeSpeed;
 	private float yMovement;
 	
-	private Animator animate;
+	public Animator animate;
 
 //	private NetLauncher netLauncher;
 	private Animal animal;
@@ -22,13 +23,11 @@ public class PlayerControls : MonoBehaviour
 
 	public Sprite[] faceIcons;
 	
-	void Start ()
+	void Awake ()
 	{
-		animate = GetComponent<Animator> ();
-//		netLauncher = FindObjectOfType<NetLauncher> ();
-		animal = FindObjectOfType<Animal> ();
+		animal = GameObject.FindObjectOfType<Animal> ();
 		speed = new Vector2 (7f, 0f);
-		maxSpeed = 4f;
+		maxYSpeed = 4f;
 		changeSpeed = false;
 	}
 
@@ -49,23 +48,25 @@ public class PlayerControls : MonoBehaviour
 			StartCoroutine (waitToResume (0.1f));
 			break;
 		case GameState.States.Launch:
-			setSpeed (animal.speed);
+			setSpeed (true);
 			break;
 		default:
+			rigidbody2D.Sleep ();
 			rigidbody2D.velocity = Vector2.zero;
+			animate.speed = 0;
 			break;
 		}
 	}
 
 	void FixedUpdate ()
 	{
-		if (GameState.checkForState (GameState.States.Play)) {
+		if (GameState.checkForState (GameState.States.Play) || GameState.checkForState (GameState.States.Launch)) {
 			if (Input.GetMouseButtonDown (0) && Camera.main.pixelRect.Contains (Input.mousePosition)) {
 				yMovement = (Input.GetAxis ("Mouse Y") > 0) ? 1 : ((Input.GetAxis ("Mouse Y") < 0) ? -1 : 0);
 			} else {
 				yMovement = Input.GetAxis ("Vertical");
 			}
-			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxSpeed * PlayerPrefs.GetFloat ("Sensitivity", 1));
+			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yMovement * maxYSpeed * PlayerPrefs.GetFloat ("Sensitivity", 1));
 		} else {
 			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, 0f);
 		}
@@ -73,24 +74,17 @@ public class PlayerControls : MonoBehaviour
 
 	void Update ()
 	{
-		if (rigidbody2D.velocity.x > 0) {
-			currentSpeed = rigidbody2D.velocity;
-		}
 		if (GameState.checkForState (GameState.States.Play)) {
 			setSpeed ();
+		}
+		if (GameState.checkForState (GameState.States.Launch)) {
+			setSpeed (true);
 		}
 	}
 
 	public void flash ()
 	{
 		animate.SetTrigger ("Flash");
-	}
-	
-	public void setSpeed ()
-	{
-		if (!changeSpeed) {
-			rigidbody2D.velocity = speed;
-		}
 	}
 
 	public void pushAway (float speed, bool left)
@@ -119,10 +113,15 @@ public class PlayerControls : MonoBehaviour
 	}
 
 
-	public void setSpeed (Vector2 thespeed)
+	public void setSpeed (bool followAnimal = false)
 	{
 		if (!changeSpeed) {
-			rigidbody2D.velocity = thespeed;
+			if (followAnimal) {
+				rigidbody2D.velocity = animal.speed;
+			} else {
+				rigidbody2D.velocity = speed;
+			}
+			animate.speed = 1;
 		}
 	}
 
@@ -137,7 +136,9 @@ public class PlayerControls : MonoBehaviour
 		changeSpeed = true;
 		animate.SetTrigger ("Flash");
 		yield return new WaitForSeconds (time);
-		rigidbody2D.velocity = currentSpeed;
+		while (!GameState.checkForState(GameState.States.Play) && !GameState.checkForState(GameState.States.Launch)) {
+			yield return new WaitForFixedUpdate ();
+		}
 		changeSpeed = false;
 	}
 }

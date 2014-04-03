@@ -17,24 +17,20 @@ public class ScoreKeeper : MonoBehaviour
 	private int waterBottleCount;
 	private int pillCount;
 
-	private SceneManager sceneManager;
-	private GameObject timeDisplay;
+	public SceneManager sceneManager;
 
 	void Start ()
 	{
-		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
-		timeDisplay = GameObject.Find ("GUI - Time");
 		redInfectionCount = 0;
 		yellowInfectionCount = 0;
 		greenInfectionCount = 0;
-		
 		waterBottleCount = 0;
 		pillCount = 0;
 	}
 
 	void Update ()
 	{
-		if (GameState.checkForState (GameState.States.Play)) {
+		if (GameState.checkForState (GameState.States.Play) || GameState.checkForState (GameState.States.Launch)) {
 			timeElapsed += Time.deltaTime;
 		}
 	}
@@ -80,38 +76,6 @@ public class ScoreKeeper : MonoBehaviour
 		return score;
 	}
 
-	private void displayTime ()
-	{
-		string timeText = "00:00";
-		if (timeElapsed >= 1f) {
-			int minutes = ((int)(timeElapsed)) / 60;
-			int seconds = ((int)(timeElapsed)) % 60;
-
-			if (minutes % 100 <= 9 && minutes <= 99) {
-				timeText = "0" + minutes;
-			} else {
-				if (minutes <= 99) {
-					timeText = "" + minutes;
-				} else {
-					timeText = "99";
-				}
-			}
-
-			timeText += ":";
-
-			if (seconds % 100 <= 9 && minutes <= 100f) {
-				timeText += "0" + seconds;
-			} else {
-				if (minutes <= 100f) {
-					timeText += "" + seconds;
-				} else {
-					timeText += "59+";
-				}
-			}
-		}
-		timeDisplay.GetComponent<TextMesh> ().text = timeText;
-	}
-	
 	private int starsCalc ()
 	{
 		int stars = 3;
@@ -135,10 +99,5 @@ public class ScoreKeeper : MonoBehaviour
 	public int totalInfectionsTouched ()
 	{
 		return redInfectionCount + yellowInfectionCount + greenInfectionCount;
-	}
-
-	public int totalPowerUpsTouched ()
-	{
-		return waterBottleCount + pillCount;
 	}
 }

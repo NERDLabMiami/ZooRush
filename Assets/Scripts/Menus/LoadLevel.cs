@@ -6,7 +6,7 @@ public class LoadLevel : MonoBehaviour
 
 	public static string levelToLoad;
 	public Animator animalAnimator;
-	private bool loadingLevel;
+//	private bool loadingLevel;
 	private int animalValue;
 
 	private enum AnimalValues
@@ -26,7 +26,7 @@ public class LoadLevel : MonoBehaviour
 	
 	void Start ()
 	{
-		loadingLevel = false;
+//		loadingLevel = false;
 		switch (levelToLoad) {
 		case "Level1-Tutorial":
 			animalValue = 9;

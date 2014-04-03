@@ -26,12 +26,11 @@ public class NetHandler : MonoBehaviour
 		//on interaction with another object with a trigger collider
 		if (coll.gameObject.name.Contains ("Animal")) { //if that object is an animal
 			StartCoroutine (interact (coll.gameObject));
-			GameState.requestPause ();
 			coll.gameObject.GetComponentInChildren<Animal> ().caught = true;
 			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Gotcha!");
+			GameState.requestTransition ();
 		} else {
 			rigidbody2D.velocity = Vector2.zero;
-			GameObject.FindObjectOfType<Animal> ().rotate ();
 			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("I Missed!");
 		}
 	}

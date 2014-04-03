@@ -29,15 +29,16 @@ public class DialogTrigger : MonoBehaviour
 
 	public void openDialog ()
 	{
+		if (tutOnly && PlayerPrefs.GetInt ("TUTORIAL", 0) == 1) {
+			opened = true;
+		}
 		if (!opened) {
 			if (showArrow) {
 				arrowSprite.enabled = true;
 			}
 			GameObject.FindObjectOfType<DialogBox> ().dialog = textDisplay;
-			GameState.requestDialog ();
-			Debug.Log ("Dialog Requested");
-//			GameObject.FindObjectOfType<Dialog> ().activateDialog (textDisplay);
 			opened = true;
+			GameState.requestDialog ();
 		}
 	}
 

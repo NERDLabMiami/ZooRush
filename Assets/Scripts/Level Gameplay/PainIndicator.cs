@@ -23,14 +23,14 @@ public class PainIndicator : MonoBehaviour
 		animator = GetComponent<Animator> ();
 		painPoints = 0f;
 		painRate = 3.5f;
-		healthFaces = GameOptions.FindObjectOfType<PlayerControls> ().faceIcons;
+		healthFaces = GameObject.FindObjectOfType<PlayerControls> ().faceIcons;
 		sprite = GetComponent<SpriteRenderer> ();
 		sprite.sprite = healthFaces [0];
 	}
 
 	void FixedUpdate ()
 	{
-		if (GameState.checkForState (GameState.States.Play)) {
+		if (GameState.checkForState (GameState.States.Play) || GameState.checkForState (GameState.States.Launch)) {
 			painPoints += (Time.deltaTime * painRate);
 		}
 	}
@@ -41,7 +41,6 @@ public class PainIndicator : MonoBehaviour
 			painPoints = 100f;
 			sceneManager.fainted = true;
 			GameState.requestTransition ();
-			//TODO Look for Lose/Win Connection
 		}
 		if (painPoints < 0) {
 			painPoints = 0;

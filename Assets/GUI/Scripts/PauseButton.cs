@@ -1,15 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class PauseButton : ButtonOld
+public class PauseButton : OtherButtonClass
 {
 	private SpriteRenderer[] renderers;
 	private LevelGUIController guiControls;
 	private bool visible;
 
-	new void Start ()
+	void Start ()
 	{
-		base.Start ();
 		visible = true;
 		renderers = GetComponentsInChildren<SpriteRenderer> ();
 		guiControls = GameObject.FindObjectOfType<LevelGUIController> ();
@@ -39,11 +38,10 @@ public class PauseButton : ButtonOld
 		}
 	}
 
-	protected override void action ()
+	public override void otherButtonAction (Button thisButton)
 	{
 		if (visible) {
 			guiControls.pauseMenu ();
 		}
-		clicked = false;
 	}
 }

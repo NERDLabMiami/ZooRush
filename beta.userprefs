@@ -1,28 +1,28 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GUI/Scripts/DialogScanner.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Ball.cs">
     <Files>
-      <File FileName="Assets/GUI/Scripts/DialogTrigger.cs" Line="38" Column="35" />
-      <File FileName="Assets/Scripts/Event Handling/GameState.cs" Line="97" Column="1" />
-      <File FileName="Assets/Scripts/StartButton.cs" Line="13" Column="23" />
-      <File FileName="Assets/Scripts/SceneRepeater.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Animal.cs" Line="136" Column="30" />
-      <File FileName="Assets/GUI/Scripts/DialogScanner.cs" Line="22" Column="63" />
+      <File FileName="Assets/Scripts/Ball.cs" Line="28" Column="7" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="GUI" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="DialogScanner.cs" selected="True" />
+            <Node name="GameAnalytics" expanded="True">
+              <Node name="Plugins" expanded="True">
+                <Node name="Examples" expanded="True">
+                  <Node name="Scripts" expanded="True" />
+                </Node>
               </Node>
             </Node>
+            <Node name="GUI" expanded="True">
+              <Node name="Scripts" expanded="True" />
+            </Node>
             <Node name="Scripts" expanded="True">
-              <Node name="Event Handling" expanded="True" />
               <Node name="Level Gameplay" expanded="True" />
               <Node name="Menus" expanded="True" />
               <Node name="Movement Controls" expanded="True" />
+              <Node name="Ball.cs" selected="True" />
             </Node>
           </Node>
         </State>
