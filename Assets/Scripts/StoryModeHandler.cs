@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Collections;
 
-public class StoryModeHandler : ButtonOld
+public class StoryModeHandler : OtherButtonClass
 {
 	public TextMesh[] textMeshes;
 
@@ -29,15 +29,14 @@ public class StoryModeHandler : ButtonOld
 	private string[] slideText;
 	private StringReader fileInput;
 
-	new void Start ()
+	void Start ()
 	{
-		GameStateMachine.currentState = (int)GameStateMachine.GameState.Play;
+		GameState.currentState = GameState.States.Play;
 		if (PlayerPrefs.GetInt ("Music") != 0) {
 			audio.mute = false;
 		} else {
 			audio.mute = true;
 		}
-		base.Start ();
 		slides = new GameObject[][] {
 			introSlides,
 			level2Slides,
@@ -113,7 +112,7 @@ public class StoryModeHandler : ButtonOld
 		readSlideText ();
 	}
 
-	protected override void action ()
+	public override void otherButtonAction (Button thisButton)
 	{
 		if (slideIndex < slides [nextLevel - 1].Length - 1) {
 			readSlideText ();
@@ -124,10 +123,9 @@ public class StoryModeHandler : ButtonOld
 		} else {
 			LoadLevel.levelToLoad = NextSceneName;
 			PlayerPrefs.SetInt (NextSceneName + "Story", 1);
-			GameStateMachine.currentState = (int)GameStateMachine.GameState.Intro;
 			Application.LoadLevel ("Loading");
 		}
-		StartCoroutine (waitToResetTouch ());
+//		StartCoroutine (waitToResetTouch ());
 	}
 
 	private void readSlideText ()

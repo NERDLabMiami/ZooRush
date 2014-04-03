@@ -13,6 +13,7 @@ public static class GameState : System.Object
 		Intro,
 		Play,
 		Dialog,
+		Pause,
 		Launch,
 		Transition,
 		Win,
@@ -88,6 +89,8 @@ public static class GameState : System.Object
 			callDialogDismissed ();
 			break;
 		case States.Intro:
+		case States.Pause:
+			//NOP
 			break;
 		case States.Launch:
 			callLaunchDismissed ();
@@ -98,6 +101,22 @@ public static class GameState : System.Object
 		}
 		currentState = States.Play;
 		callStateChanged ();
+		return true;
+	}
+
+	public static bool requestPause ()
+	{
+		switch (currentState) {
+		case States.Play:
+		case States.Launch:
+			currentState = States.Pause;
+			break;
+		default:
+			Debug.Log ("Incorrect Request in State Flow");
+			return false;
+		}
+		callStateChanged ();
+
 		return true;
 	}
 
@@ -156,6 +175,11 @@ public static class GameState : System.Object
 		} 
 		Debug.Log ("Incorrect Request in State Flow");
 		return false;
+	}
+
+	public static bool checkForState (States state)
+	{
+		return currentState == state;
 	}
 
 }

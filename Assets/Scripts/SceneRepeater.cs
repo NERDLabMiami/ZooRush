@@ -17,7 +17,7 @@ public class SceneRepeater : MonoBehaviour
 	
 	void Update ()
 	{
-		if (GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
+		if (GameState.checkForState (GameState.States.Play) || GameState.checkForState (GameState.States.Launch)) {
 			foreach (GameObject element in sceneThings) {
 				if (element != null) {
 					if (element.transform.position.x < Camera.main.transform.position.x - 50f) {
@@ -68,7 +68,7 @@ public class SceneRepeater : MonoBehaviour
 	
 	private IEnumerator destroyer (GameObject obj)
 	{
-		yield return new WaitForSeconds (0.2f);
+		yield return new WaitForSeconds (0.15f);
 		if (obj.activeSelf) {
 			obj.SetActive (false);
 		}

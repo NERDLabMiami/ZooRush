@@ -51,7 +51,7 @@ public class RectangleButton : Button
 		
 	private IEnumerator animatePress ()
 	{
-		yield return new WaitForSeconds (0.3f);
+		yield return new WaitForSeconds (0.15f);
 				
 		reset ();
 				
@@ -62,7 +62,6 @@ public class RectangleButton : Button
 	{
 		if (!waitForTouchReset) {
 			StartCoroutine (resetTouch ());
-			Debug.Log ("Button Action");
 			buttonAction ();
 		}
 	}
@@ -70,7 +69,7 @@ public class RectangleButton : Button
 	private IEnumerator resetTouch ()
 	{
 		waitForTouchReset = true;
-		yield return new WaitForSeconds (0.3f);
+		yield return new WaitForSeconds (0.15f);
 		waitForTouchReset = false;
 	}
 		

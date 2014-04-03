@@ -69,18 +69,14 @@
      <Compile Include="Assets\GameAnalytics\Editor\GA_UpdateWindow.cs" />
      <Compile Include="Assets\GameAnalytics\Editor\GA_WebInterface.cs" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolidOverlay.shader" />
-     <None Include="Assets\GUI\Fonts\SIL Open Font License.txt" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparentOverlay.shader" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolid.shader" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparent.shader" />
-     <None Include="Assets\GUI\Fonts\Freeware License.txt" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />
      <None Include="Assets\Resources\Dialog\IntroScene.txt" />
      <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
-     <None Include="Assets\GUI\Fonts\Iconian Fonts License.txt" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\crossdomain.xml" />
      <None Include="Assets\GameAnalytics\Plugins\Android\Android_Readme.txt" />
-     <None Include="Assets\GUI\Fonts\Daniel Midgley.txt" />
  <Reference Include="\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>

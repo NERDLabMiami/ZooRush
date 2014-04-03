@@ -7,8 +7,15 @@ public class DialogBox : OtherButtonClass
 	public string[] dialog;
 	public TextAnimator textAnimator;
 	private int index;
-	public Renderer[] dialogBoxSprites;
+	public Button dialogButton;
+	public Renderer[] dialogBoxRenderers;
 	private bool activated;
+
+	void Start ()
+	{
+		index = 0;
+		dismiss ();
+	}
 
 	void OnEnable ()
 	{
@@ -37,13 +44,6 @@ public class DialogBox : OtherButtonClass
 		dismiss ();
 	}
 
-	void Start ()
-	{
-		index = 0;
-		dismiss ();
-//		next ();
-	}
-
 	public void next ()
 	{
 		if (index == 0) {
@@ -55,16 +55,19 @@ public class DialogBox : OtherButtonClass
 
 	public void display ()
 	{
-		foreach (Renderer sprite in dialogBoxSprites) {
-			sprite.material.color = Color.white;
+		foreach (Renderer sprite in dialogBoxRenderers) {
+			sprite.enabled = true;
 		}
+		dialogButton.enableButton ();
+
 	}
 
 	public void dismiss ()
 	{
-		foreach (Renderer sprite in dialogBoxSprites) {
-			sprite.material.color = Color.clear;
+		foreach (Renderer sprite in dialogBoxRenderers) {
+			sprite.enabled = false;
 		}
+		dialogButton.disableButton ();
 		activated = false;
 	}
 

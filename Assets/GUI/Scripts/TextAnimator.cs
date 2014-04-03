@@ -21,7 +21,6 @@ public class TextAnimator : MonoBehaviour
 		} else {
 			fullText = text.text;
 		}
-		Debug.Log (fullText);
 		text.text = "";
 	}
 	
@@ -49,7 +48,7 @@ public class TextAnimator : MonoBehaviour
 	private IEnumerator waitForAnimatingToFinishThenAnimate (string textToDisplay)
 	{
 		while (animating) {
-			yield return new WaitForSeconds (0.2f);
+			yield return new WaitForSeconds (0.15f);
 		}
 		startAnimation (textToDisplay);
 	}

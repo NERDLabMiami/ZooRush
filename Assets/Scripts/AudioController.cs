@@ -16,18 +16,38 @@ public class AudioController : MonoBehaviour
 			audioModel.playMusic (levelMusic);
 		}
 	}
-
 	void OnEnable ()
 	{
-		GameStateMachine.Paused += OnPause;
-		GameStateMachine.Play += OnPlay;
+		GameState.StateChanged += OnStateChanged;
 	}
-	
 	
 	void OnDisable ()
 	{
-		GameStateMachine.Paused -= OnPause;
-		GameStateMachine.Play -= OnPlay;
+		GameState.StateChanged -= OnStateChanged;
+	}
+	
+	private void OnStateChanged ()
+	{
+		switch (GameState.currentState) {
+		case GameState.States.Pause:
+			OnPause ();
+			break;
+		case GameState.States.Play:
+			OnPlay ();
+			break;
+		case GameState.States.Dialog:
+			break;
+		case GameState.States.Intro:
+			break;
+		case GameState.States.Transition:
+			break;
+		case GameState.States.Win:
+			break;
+		case GameState.States.Lose:
+			break;
+		default:
+			break;
+		}
 	}
 
 	void OnPlay ()

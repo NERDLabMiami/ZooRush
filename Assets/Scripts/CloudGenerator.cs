@@ -15,7 +15,7 @@ public class CloudGenerator : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		if (enableCloudGeneration && GameStateMachine.currentState == (int)GameStateMachine.GameState.Play) {
+		if (enableCloudGeneration && (GameState.checkForState (GameState.States.Play) || GameState.checkForState (GameState.States.Launch))) {
 			int randomNum = Random.Range (0, 10001);
 			if (cloudCollection.Count < 20 && randomNum % 37 == 0) { //0.0001% chance per frame;
 				cloudCollection.Add (createCloudObject ());
