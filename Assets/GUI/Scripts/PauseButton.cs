@@ -41,7 +41,7 @@ public class PauseButton : OtherButtonClass
 	public override void otherButtonAction (Button thisButton)
 	{
 		if (visible) {
-			guiControls.pauseMenu ();
+			guiControls.callPauseMenu ();
 		}
 	}
 }

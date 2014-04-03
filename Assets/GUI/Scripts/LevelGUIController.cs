@@ -7,13 +7,15 @@ public class LevelGUIController : MonoBehaviour
 	private SceneManager sceneManager;
 	private ScoreKeeper scoreKeeper;
 
-	private GameObject throwAlert;
+	public GameObject startMenu;
+	public GameObject throwAlert;
+	public GameObject pauseMenu;
+	public GameObject timeOutMenu;
 	private bool throwAlertDisplayed;
 	private GameObject stopwatch;
-	private GameObject startMenu;
 	private StopwatchController stopwatchController;
 
-	public GameObject[] menuPrefabs;
+	public GameObject levelCompleteMenu;
 	public GameObject stopWatchObject;
 	public SpriteRenderer screenDimmer;
 
@@ -24,11 +26,7 @@ public class LevelGUIController : MonoBehaviour
 	{
 		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 		scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
-		//menuPrefabs[0] is the start screen by default
-		startMenu = GameObject.Instantiate (menuPrefabs [0]) as GameObject;
-		startMenu.transform.parent = transform;
 		startMenu.transform.localPosition = new Vector3 (0, 0, 0);
-
 		scoreDisplayed = false;
 	}
 
@@ -54,7 +52,7 @@ public class LevelGUIController : MonoBehaviour
 			return; //skip the rest of the code
 		case GameState.States.Lose:
 			if (sceneManager.timedOut) {
-				GameObject.FindObjectOfType<LevelGUIController> ().timeOutMenu ();
+				GameObject.FindObjectOfType<LevelGUIController> ().callTimeOutMenu ();
 			} 
 			if (sceneManager.fainted) {
 				NextSceneHandler.fainted ();
@@ -78,7 +76,7 @@ public class LevelGUIController : MonoBehaviour
 	{
 		if (Input.GetKey (KeyCode.Escape)) {
 			if (GameState.currentState == GameState.States.Play) {
-				pauseMenu ();
+				callPauseMenu ();
 			}
 		} 
 	}
@@ -137,12 +135,7 @@ public class LevelGUIController : MonoBehaviour
 		if (GameObject.FindObjectOfType<StopwatchController> () != null) {
 			return false;
 		}
-		if (throwAlert == null) {
-			//menuPrefabs[1] is the throw alert dialog box by default
-			throwAlert = Instantiate (menuPrefabs [1]) as GameObject;
-			throwAlert.transform.parent = transform;
-			throwAlert.transform.localPosition = Vector3.zero;
-		}
+		throwAlert.transform.localPosition = Vector3.zero;
 		return true;
 	}
 
@@ -151,30 +144,26 @@ public class LevelGUIController : MonoBehaviour
 	 */ 
 	public bool removeThrowAlert ()
 	{
-		if (throwAlert != null) {
-			Destroy (throwAlert);
-		}
+		throwAlert.transform.localPosition = Vector2.up * 23;
 		return false;
 	}
 
-	public void timeOutMenu ()
+	public void callTimeOutMenu ()
 	{
-		if (GameObject.FindGameObjectWithTag ("menu") == null) {
-			dimScreen ();
-			GameObject timeOutMenu = Instantiate (menuPrefabs [5]) as GameObject;
-			timeOutMenu.transform.parent = transform;
-			timeOutMenu.transform.localPosition = Vector3.zero;
-		}
+		dimScreen ();
+		timeOutMenu.transform.localPosition = Vector3.zero;
 	}
 
-	public void pauseMenu ()
+	public void callPauseMenu ()
 	{
-		if (GameObject.FindGameObjectWithTag ("menu") == null) {
-			GameObject pauseMenu = Instantiate (menuPrefabs [3]) as GameObject;
-			pauseMenu.transform.parent = transform;
-			pauseMenu.transform.localPosition = Vector3.zero;
-			GameState.requestPause ();
-		}
+		pauseMenu.transform.localPosition = Vector3.zero;
+		GameState.requestPause ();
+	}
+
+	public void dismissPauseMenu ()
+	{
+		pauseMenu.transform.localPosition = 23 * Vector3.up;
+		GameState.requestPlay ();
 	}
 
 	private IEnumerator displayScore ()
@@ -189,12 +178,8 @@ public class LevelGUIController : MonoBehaviour
 		}
 		dimScreen ();
 	
-		GameObject menu = GameObject.Find (menuPrefabs [2].name);
-		if (menu == null) {
-			menu = Instantiate (menuPrefabs [2]) as GameObject;
-			menu.transform.parent = transform;
-			menu.transform.localPosition = new Vector3 (0f, 0f, 0f);
-		}
+		levelCompleteMenu.transform.localPosition = new Vector3 (0f, 0f, 0f);
+		levelCompleteMenu.GetComponent<LevelCompleteMenu> ().activate ();
 
 		unlockLevel ();
 	}
