@@ -28,15 +28,11 @@ public class SceneManager : MonoBehaviour
 	private bool tutEnabled;
 	public bool fainted;
 
-
 	private int nextAnimalIndex;
-	
-//	public GameObject[] animals;
-	
+
 	void Start ()
 	{
 		timeOutDistance = GameObject.FindObjectOfType<SceneRepeater> ().getSceneWidth () * 0.90f;
-//		Debug.Log ("TimeOutDistnace is : " + timeOutDistance);
 		cameraFollow = GameObject.FindObjectOfType<CameraFollow> ();
 		timedOut = false; 
 		tutEnabled = PlayerPrefs.GetInt ("TUTORIAL", 0) == 0;
