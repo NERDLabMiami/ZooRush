@@ -1,0 +1,45 @@
+In PostBuildOpenKitIOSScript
+---------------------------
+Perl Version: 5.016002
+Python Version: Python 2.7.5
+Unity version: 4.3.4f1
+Unity 3?: 0
+FacebookAppID: 701328446577054
+Install Path: /Users/ebbyw/Desktop/zoorushios
+Current Dir: /Users/ebbyw/Desktop/beta
+Python Script Path: /Users/ebbyw/Desktop/beta/Assets/Plugins/OpenKit/PostbuildScripts/OpenKitRunner.py
+Starting python script...
+---------------------------
+
+In OpenKitRunner.py
+---------------------------
+Install path: /Users/ebbyw/Desktop/zoorushios
+Facebook app ID: 701328446577054
+OK Vendor Path: /Users/ebbyw/Desktop/beta/Assets/Plugins/iOS/OpenKit_Vendor
+OK Resources Path: /Users/ebbyw/Desktop/beta/Assets/Plugins/iOS/OpenKitResources
+Opened and read contents of Info.plist.
+Wrote modifications to Info.plist.
+Loaded project.pbxproj.
+Added security framework.
+Added security framework.
+Added libsqlite3.0.
+Added QuartzCore framework.
+Added AdSupport framework.
+Added Accounts framework.
+Added Social framework.
+Added MobileCoreServices framework.
+Copied OpenKit_Vendor directory into install path.
+Copied OpenKitResources directory into install path.
+Added OpenKit_Vendor folder to Xcode project.
+Added OpenKitResources folder to Xcode project.
+Saved project.
+---------------------------
+
+Back in PostBuildOpenKitIOSScript
+---------------------------
+Adding OK calls to lifecycle delegate methods in AppController...
+Making sure didFinishLaunchingWithOptions returns YES...
+Done!
+---------------------------
+
+
