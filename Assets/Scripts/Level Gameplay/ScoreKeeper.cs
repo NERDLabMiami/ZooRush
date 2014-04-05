@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using OpenKit;
+using System;
+using Facebook;
 
 /** Keeps track of the current Level's score.
  * @author Ebtissam Wahman
@@ -99,5 +103,18 @@ public class ScoreKeeper : MonoBehaviour
 	public int totalInfectionsTouched ()
 	{
 		return redInfectionCount + yellowInfectionCount + greenInfectionCount;
+	}
+
+	public void scoreStore ()
+	{
+		if ((PlayerPrefs.GetInt (Application.loadedLevelName + "Stars", 0) < starsCalc ())) {
+			PlayerPrefs.SetInt (Application.loadedLevelName + "Stars", starsCalc ());
+			PlayerPrefs.SetInt (Application.loadedLevelName + "RedInfections", redInfectionCount);
+			PlayerPrefs.SetInt (Application.loadedLevelName + "YellowInfections", yellowInfectionCount);
+			PlayerPrefs.SetInt (Application.loadedLevelName + "GreenInfections", greenInfectionCount);
+			PlayerPrefs.SetInt (Application.loadedLevelName + "WaterBottles", waterBottleCount);
+			PlayerPrefs.SetInt (Application.loadedLevelName + "PillBottle", pillCount);
+			PlayerPrefs.SetFloat (Application.loadedLevelName + "Time", timeElapsed);
+		}
 	}
 }

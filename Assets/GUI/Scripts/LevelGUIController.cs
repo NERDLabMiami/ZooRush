@@ -169,7 +169,7 @@ public class LevelGUIController : MonoBehaviour
 	private IEnumerator displayScore ()
 	{
 		scoreDisplayed = true;
-		scoreStore (scoreKeeper.getScore ());
+		scoreKeeper.scoreStore ();
 
 		float timePassed = 0;
 		while (timePassed < 1) {
@@ -184,29 +184,7 @@ public class LevelGUIController : MonoBehaviour
 		unlockLevel ();
 	}
 
-	private void scoreStore (int[] score)
-	{
-		if (PlayerPrefs.HasKey (Application.loadedLevelName + "Stars")) {
-			int currentHigh = PlayerPrefs.GetInt (Application.loadedLevelName + "Stars");
-			if (currentHigh < score [6]) {
-				PlayerPrefs.SetInt (Application.loadedLevelName + "Stars", score [6]);
-				PlayerPrefs.SetInt (Application.loadedLevelName + "RedInfections", score [0]);
-				PlayerPrefs.SetInt (Application.loadedLevelName + "YellowInfections", score [1]);
-				PlayerPrefs.SetInt (Application.loadedLevelName + "GreenInfections", score [2]);
-				PlayerPrefs.SetInt (Application.loadedLevelName + "WaterBottles", score [3]);
-				PlayerPrefs.SetInt (Application.loadedLevelName + "PillBottle", score [4]);
-				PlayerPrefs.SetInt (Application.loadedLevelName + "Time", score [5]);
-			}
-		} else {
-			PlayerPrefs.SetInt (Application.loadedLevelName + "Stars", score [6]);
-			PlayerPrefs.SetInt (Application.loadedLevelName + "RedInfections", score [0]);
-			PlayerPrefs.SetInt (Application.loadedLevelName + "YellowInfections", score [1]);
-			PlayerPrefs.SetInt (Application.loadedLevelName + "GreenInfections", score [2]);
-			PlayerPrefs.SetInt (Application.loadedLevelName + "WaterBottles", score [3]);
-			PlayerPrefs.SetInt (Application.loadedLevelName + "PillBottle", score [4]);
-			PlayerPrefs.SetInt (Application.loadedLevelName + "Time", score [5]);
-		}
-	}
+
 
 	private void unlockLevel ()
 	{
