@@ -1,0 +1,247 @@
+fileFormatVersion: 2
+guid: e239b25bcda51439395279931e6b6024
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 4096
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: Nature_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 3829
+        width: 195
+        height: 138
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_1
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 3938
+        width: 198
+        height: 29
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Nature_2
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 3874
+        width: 269
+        height: 94
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_3
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 3743
+        width: 288
+        height: 74
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Nature_4
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 3601
+        width: 288
+        height: 215
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_5
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 3599
+        width: 316
+        height: 218
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_6
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 3493
+        width: 377
+        height: 93
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Nature_7
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 2972
+        width: 411
+        height: 509
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_8
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 2887
+        width: 474
+        height: 593
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_9
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 2271
+        width: 479
+        height: 600
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_10
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 2251
+        width: 549
+        height: 619
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_11
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1479
+        width: 563
+        height: 758
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_12
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1407
+        width: 758
+        height: 59
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_13
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1335
+        width: 758
+        height: 58
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_14
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1263
+        width: 758
+        height: 59
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_15
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1101
+        width: 795
+        height: 150
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_16
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 818
+        width: 800
+        height: 271
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_17
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 544
+        width: 830
+        height: 262
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_18
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 270
+        width: 830
+        height: 262
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_19
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 8
+        width: 874
+        height: 250
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature_20
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 3834
+        width: 269
+        height: 134
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Nature_21
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 3551
+        width: 405
+        height: 35
+      alignment: 7
+      pivot: {x: .5, y: 0}
+  spritePackingTag: 
+  userData: 
