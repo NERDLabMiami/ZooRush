@@ -50,7 +50,8 @@ public class PowerUp : ObjectModel
 	public override void interactWithCharacter (GameObject character)
 	{
 		if (!interacted) {
-			character.GetComponent<CharacterSpeech> ().SpeechBubbleDisplay ("Refreshing!");
+			character.GetComponentInChildren<PlayerControls> ().speedUp ();
+			character.GetComponentInChildren<CharacterSpeech> ().SpeechBubbleDisplay ("Refreshing!");
 			addToScore ();
 			painIndicator.subtractPoints (painPoints);
 			audioController.objectInteraction (clip);

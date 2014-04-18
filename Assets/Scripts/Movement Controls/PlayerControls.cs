@@ -87,28 +87,36 @@ public class PlayerControls : MonoBehaviour
 		animate.SetTrigger ("Flash");
 	}
 
-	public void pushAway (float speed, bool left)
+	public void pushAway (float addedSpeed, bool left)
 	{
 		changeSpeed = true;
 		rigidbody2D.velocity = Vector2.zero;
 		if (left) {
-			rigidbody2D.AddForce (new Vector2 (-speed, 0));
+			rigidbody2D.AddForce (new Vector2 (-addedSpeed, 0));
 		} else {
-			rigidbody2D.AddForce (new Vector2 (speed * 1.5f, 0));
+			rigidbody2D.AddForce (new Vector2 (addedSpeed * 1.5f, 0));
 		}
 		StartCoroutine (waitToResume (0.5f));
 	}
 
-	public void pushAway (Vector2 speed, bool left)
+	public void pushAway (Vector2 addedSpeed, bool left)
 	{
 		changeSpeed = true;
 		rigidbody2D.velocity = Vector2.zero;
-		Debug.Log ("Push Away Called");
+//		Debug.Log ("Push Away Called");
 		if (left) {
-			rigidbody2D.AddForce (new Vector2 (-speed.x, speed.y));
+			rigidbody2D.AddForce (new Vector2 (-addedSpeed.x, addedSpeed.y));
 		} else {
-			rigidbody2D.AddForce (new Vector2 (speed.x * 1.5f, speed.y));
+			rigidbody2D.AddForce (new Vector2 (addedSpeed.x * 1.5f, addedSpeed.y));
 		}
+		StartCoroutine (waitToResume (0.5f));
+	}
+
+	public void speedUp ()
+	{
+		changeSpeed = true;
+//		Debug.Log ("Speed Up Called");
+		rigidbody2D.AddForce (new Vector2 (750f, 0));
 		StartCoroutine (waitToResume (0.5f));
 	}
 
