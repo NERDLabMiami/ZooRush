@@ -122,7 +122,7 @@ public class StoryModeHandler : OtherButtonClass
 			currentSlide.SetActive (true);
 		} else {
 			LoadLevel.levelToLoad = NextSceneName;
-			PlayerPrefs.SetInt (NextSceneName + "Story", 1);
+//			PlayerPrefs.SetInt (NextSceneName + "Story", 1);
 			Application.LoadLevel ("Loading");
 		}
 //		StartCoroutine (waitToResetTouch ());

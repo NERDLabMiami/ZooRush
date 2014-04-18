@@ -48,8 +48,8 @@ TextureImporter:
     - name: PillBottle_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 67
+        x: 8
+        y: 249
         width: 137
         height: 255
       alignment: 7
@@ -57,10 +57,10 @@ TextureImporter:
     - name: PillBottle_1
       rect:
         serializedVersion: 2
-        x: 4
-        y: 5
+        x: 8
+        y: 178
         width: 148
-        height: 58
+        height: 59
       alignment: 8
       pivot: {x: 1, y: 0}
   spritePackingTag: 
