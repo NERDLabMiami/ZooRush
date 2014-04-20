@@ -22,14 +22,11 @@ public class SceneManager : MonoBehaviour
 	private GameObject animal;
 	private CameraFollow cameraFollow;
 
-	public bool isEndless;
 	public bool isPlaying;
 	public bool pauseAudio;
 	private bool tutEnabled;
 	public bool fainted;
-
-	private int nextAnimalIndex;
-
+	
 	void Start ()
 	{
 		timeOutDistance = GameObject.FindObjectOfType<SceneRepeater> ().getSceneWidth () * 0.90f;

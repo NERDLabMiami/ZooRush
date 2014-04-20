@@ -116,7 +116,7 @@ public class PlayerControls : MonoBehaviour
 	{
 		changeSpeed = true;
 //		Debug.Log ("Speed Up Called");
-		rigidbody2D.AddForce (new Vector2 (750f, 0));
+		rigidbody2D.AddForce (new Vector2 (550f, 0));
 		StartCoroutine (waitToResume (0.5f));
 	}
 
