@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</ProjectGuid>
+	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;Text;-;Change;Character</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;Text;-;Change;Character</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\EndlessSceneManager.cs" />
      <Compile Include="Assets\Examples\OKDemoScene.cs" />
      <Compile Include="Assets\Examples\Scripts\InteractiveConsole.cs" />
      <Compile Include="Assets\Facebook\Scripts\AndroidFacebook.cs" />
@@ -62,21 +63,20 @@
      <Compile Include="Assets\Facebook\Scripts\NativeDialogModes.cs" />
      <Compile Include="Assets\GUI\Scripts\Button.cs" />
      <Compile Include="Assets\GUI\Scripts\CameraAspect.cs" />
-     <Compile Include="Assets\GUI\Scripts\CityScapeRepeater.cs" />
-     <Compile Include="Assets\GUI\Scripts\CloudGenerator.cs" />
      <Compile Include="Assets\GUI\Scripts\DialogBox.cs" />
      <Compile Include="Assets\GUI\Scripts\DialogScanner.cs" />
      <Compile Include="Assets\GUI\Scripts\DialogTrigger.cs" />
+     <Compile Include="Assets\GUI\Scripts\LevelButton.cs" />
      <Compile Include="Assets\GUI\Scripts\LevelGUIController.cs" />
      <Compile Include="Assets\GUI\Scripts\MainMenuClouds.cs" />
      <Compile Include="Assets\GUI\Scripts\NextButton.cs" />
      <Compile Include="Assets\GUI\Scripts\OtherButtonClass.cs" />
      <Compile Include="Assets\GUI\Scripts\PauseButton.cs" />
-     <Compile Include="Assets\GUI\Scripts\RandomAnimalGenerator.cs" />
      <Compile Include="Assets\GUI\Scripts\RectangleButton.cs" />
      <Compile Include="Assets\GUI\Scripts\Slider.cs" />
      <Compile Include="Assets\GUI\Scripts\SortingLayer.cs" />
      <Compile Include="Assets\GUI\Scripts\SortingLayerController.cs" />
+     <Compile Include="Assets\GUI\Scripts\StartButton.cs" />
      <Compile Include="Assets\GUI\Scripts\TextAnimator.cs" />
      <Compile Include="Assets\GUI\Scripts\TextOutline.cs" />
      <Compile Include="Assets\GUI\Scripts\ToggleButton.cs" />
@@ -132,23 +132,37 @@
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendQualityEvent.cs" />
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendUserEvent.cs" />
      <Compile Include="Assets\HighScoresButton.cs" />
-     <Compile Include="Assets\Scripts\AnimalSpriteHandler.cs" />
-     <Compile Include="Assets\Scripts\AudioController.cs" />
-     <Compile Include="Assets\Scripts\AudioModel.cs" />
-     <Compile Include="Assets\Scripts\BackgroundAnimal.cs" />
-     <Compile Include="Assets\Scripts\BackgroundCharacter.cs" />
-     <Compile Include="Assets\Scripts\Character.cs" />
-     <Compile Include="Assets\Scripts\CharacterSelect.cs" />
-     <Compile Include="Assets\Scripts\CharacterSpeech.cs" />
-     <Compile Include="Assets\Scripts\CollisionDetect.cs" />
-     <Compile Include="Assets\Scripts\DistanceMeter.cs" />
-     <Compile Include="Assets\Scripts\Doctor.cs" />
-     <Compile Include="Assets\Scripts\Event Handling\Ball.cs" />
+     <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
+     <Compile Include="Assets\Scripts\Audio\AudioModel.cs" />
+     <Compile Include="Assets\Scripts\Audio\MenuMusic.cs" />
+     <Compile Include="Assets\Scripts\Audio\PlaySound.cs" />
+     <Compile Include="Assets\Scripts\Background Management\CityScapeRepeater.cs" />
+     <Compile Include="Assets\Scripts\Background Management\CloudGenerator.cs" />
+     <Compile Include="Assets\Scripts\Background Management\GenericRepeater.cs" />
+     <Compile Include="Assets\Scripts\Background Management\GroundRepeater.cs" />
+     <Compile Include="Assets\Scripts\Background Management\SceneRepeater.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\Animal.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\AnimalControls.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\AnimalSpriteHandler.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\BackgroundAnimal.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\BackgroundCharacter.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\BackgroundCharacterController.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\Character.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\CharacterSpeech.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\Doctor.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\PlayerControls.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\RandomAnimalGenerator.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\StoryModeSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\Event Handling\BreadCrumbs.cs" />
-     <Compile Include="Assets\Scripts\Event Handling\Building.cs" />
-     <Compile Include="Assets\Scripts\Event Handling\Bystander.cs" />
      <Compile Include="Assets\Scripts\Event Handling\GameState.cs" />
-     <Compile Include="Assets\Scripts\GroundRepeater.cs" />
+     <Compile Include="Assets\Scripts\Event Handling\LevelFailModel.cs" />
+     <Compile Include="Assets\Scripts\Event Handling\NextSceneHandler.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\Ball.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\Building.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\Bystander.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\CollisionDetect.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\DistanceMeter.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\ImmovableObject.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\ImmovableObjectWithReaction.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\Infection.cs" />
@@ -159,38 +173,26 @@
      <Compile Include="Assets\Scripts\Level Gameplay\ObstacleSpawner.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\PainIndicator.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\PainKiller.cs" />
-     <Compile Include="Assets\Scripts\Level Gameplay\PlaySound.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\PowerUp.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\SceneManager.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\ScoreKeeper.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\StopwatchController.cs" />
-     <Compile Include="Assets\Scripts\LevelButton.cs" />
-     <Compile Include="Assets\Scripts\LevelFailModel.cs" />
-     <Compile Include="Assets\Scripts\MenuMusic.cs" />
-     <Compile Include="Assets\Scripts\Menus\Credits.cs" />
-     <Compile Include="Assets\Scripts\Menus\GameSetup.cs" />
-     <Compile Include="Assets\Scripts\Menus\InstructionLevel.cs" />
-     <Compile Include="Assets\Scripts\Menus\LevelCompleteMenu.cs" />
-     <Compile Include="Assets\Scripts\Menus\LevelSelect.cs" />
-     <Compile Include="Assets\Scripts\Menus\LevelSelectButtonController.cs" />
-     <Compile Include="Assets\Scripts\Menus\LevelSelectCameraControls.cs" />
-     <Compile Include="Assets\Scripts\Menus\LoadLevel.cs" />
-     <Compile Include="Assets\Scripts\Menus\RandomFact.cs" />
-     <Compile Include="Assets\Scripts\Menus\Settings.cs" />
-     <Compile Include="Assets\Scripts\Menus\StartMenu.cs" />
-     <Compile Include="Assets\Scripts\Movement Controls\Animal.cs" />
-     <Compile Include="Assets\Scripts\Movement Controls\AnimalControls.cs" />
-     <Compile Include="Assets\Scripts\Movement Controls\BackgroundCharacterController.cs" />
-     <Compile Include="Assets\Scripts\Movement Controls\CameraFollow.cs" />
-     <Compile Include="Assets\Scripts\Movement Controls\PlayerControls.cs" />
-     <Compile Include="Assets\Scripts\NextSceneHandler.cs" />
-     <Compile Include="Assets\Scripts\SceneManager.cs" />
-     <Compile Include="Assets\Scripts\SceneRepeater.cs" />
-     <Compile Include="Assets\Scripts\StartButton.cs" />
-     <Compile Include="Assets\Scripts\StoryModeHandler.cs" />
-     <Compile Include="Assets\Scripts\StoryModeNonPanel.cs" />
-     <Compile Include="Assets\Scripts\StoryModeSpriteHandler.cs" />
-     <Compile Include="Assets\Scripts\TutorialConditionalDialogController.cs" />
-     <Compile Include="Assets\Scripts\Vehicle.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\TutorialConditionalDialogController.cs" />
+     <Compile Include="Assets\Scripts\Level Gameplay\Vehicle.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\CharacterSelect.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\Credits.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\GameSetup.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\InstructionLevel.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\LevelCompleteMenu.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\LevelSelect.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\LevelSelectButtonController.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\LevelSelectCameraControls.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\LoadLevel.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\RandomFact.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\Settings.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\StartMenu.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\StoryModeHandler.cs" />
+     <Compile Include="Assets\Scripts\Menus and Scene Managers\StoryModeNonPanel.cs" />
      <None Include="Assets\Plugins\Android\facebook\res\values\attrs.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_tabbutton_selected.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_activity_circle_row.xml" />
@@ -292,7 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{A9CAB5AD-BA4B-CEC0-86C6-C6CFF7283C5B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{2EC2B42E-54E2-071B-3B68-80E2C8CF13CF}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
