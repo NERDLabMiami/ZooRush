@@ -1,0 +1,130 @@
+fileFormatVersion: 2
+guid: cc80790bd08c44fe89f46d776d8aa56c
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 4096
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: Nature2_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1651
+        width: 1920
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Nature2_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1320
+        width: 1920
+        height: 159
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Nature2_2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1145
+        width: 1920
+        height: 163
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Nature2_3
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 964
+        width: 1920
+        height: 169
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Nature2_4
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 755
+        width: 2560
+        height: 197
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Nature2_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 526
+        width: 2560
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Nature2_6
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 268
+        width: 1920
+        height: 244
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Nature2_7
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 8
+        width: 1920
+        height: 248
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Nature2_8
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1491
+        width: 1920
+        height: 148
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 
