@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\EndlessSceneManager.cs" />
      <Compile Include="Assets\Examples\OKDemoScene.cs" />
      <Compile Include="Assets\Examples\Scripts\InteractiveConsole.cs" />
      <Compile Include="Assets\Facebook\Scripts\AndroidFacebook.cs" />
@@ -131,7 +130,6 @@
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendDesignEvent.cs" />
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendQualityEvent.cs" />
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendUserEvent.cs" />
-     <Compile Include="Assets\HighScoresButton.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioModel.cs" />
      <Compile Include="Assets\Scripts\Audio\MenuMusic.cs" />
@@ -153,10 +151,14 @@
      <Compile Include="Assets\Scripts\Characters and Animals\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\Characters and Animals\RandomAnimalGenerator.cs" />
      <Compile Include="Assets\Scripts\Characters and Animals\StoryModeSpriteHandler.cs" />
+     <Compile Include="Assets\Scripts\Debugging and Testing\EndlessModeChangeAnimalTester.cs" />
+     <Compile Include="Assets\Scripts\EndlessAnimal.cs" />
+     <Compile Include="Assets\Scripts\EndlessSceneManager.cs" />
      <Compile Include="Assets\Scripts\Event Handling\BreadCrumbs.cs" />
      <Compile Include="Assets\Scripts\Event Handling\GameState.cs" />
      <Compile Include="Assets\Scripts\Event Handling\LevelFailModel.cs" />
      <Compile Include="Assets\Scripts\Event Handling\NextSceneHandler.cs" />
+     <Compile Include="Assets\Scripts\HighScoresButton.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\Ball.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\Building.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\Bystander.cs" />
@@ -231,6 +233,7 @@
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_listitem_okscore.xml" />
      <None Include="Assets\Plugins\Android\facebook\build.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\bin\proguard.txt" />
+     <None Include="Assets\Resources\Sprites\Background\Buildings\Nature.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_list_fb_login.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\list_simple_header.xml" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />

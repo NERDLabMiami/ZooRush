@@ -123,7 +123,7 @@ public class PlayerControls : MonoBehaviour
 
 	public void setSpeed (bool followAnimal = false)
 	{
-		if (!changeSpeed) {
+		if (animal && !changeSpeed) {
 			if (followAnimal) {
 				rigidbody2D.velocity = animal.speed;
 			} else {

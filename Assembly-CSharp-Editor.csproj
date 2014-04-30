@@ -130,6 +130,7 @@
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_listitem_okscore.xml" />
      <None Include="Assets\Plugins\Android\facebook\build.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\bin\proguard.txt" />
+     <None Include="Assets\Resources\Sprites\Background\Buildings\Nature.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_list_fb_login.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\list_simple_header.xml" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />
