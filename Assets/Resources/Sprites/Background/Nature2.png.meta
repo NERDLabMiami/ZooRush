@@ -49,82 +49,91 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 8
-        y: 1651
+        y: 1066
         width: 1920
         height: 84
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: 0, y: 0}
     - name: Nature2_1
       rect:
         serializedVersion: 2
-        x: 8
-        y: 1320
+        x: 1940
+        y: 1058
         width: 1920
-        height: 159
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 92
+      alignment: 7
+      pivot: {x: 0, y: 0}
     - name: Nature2_2
       rect:
         serializedVersion: 2
         x: 8
-        y: 1145
+        y: 898
         width: 1920
-        height: 163
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 148
+      alignment: 7
+      pivot: {x: 0, y: 0}
     - name: Nature2_3
       rect:
         serializedVersion: 2
-        x: 8
-        y: 964
+        x: 1940
+        y: 887
         width: 1920
-        height: 169
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 159
+      alignment: 7
+      pivot: {x: 0, y: 0}
     - name: Nature2_4
       rect:
         serializedVersion: 2
         x: 8
-        y: 755
-        width: 2560
-        height: 197
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        y: 712
+        width: 1920
+        height: 163
+      alignment: 7
+      pivot: {x: 0, y: 0}
     - name: Nature2_5
       rect:
         serializedVersion: 2
-        x: 8
-        y: 526
-        width: 2560
-        height: 216
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        x: 1940
+        y: 706
+        width: 1920
+        height: 169
+      alignment: 7
+      pivot: {x: 0, y: 0}
     - name: Nature2_6
       rect:
         serializedVersion: 2
         x: 8
-        y: 268
-        width: 1920
-        height: 244
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        y: 497
+        width: 2560
+        height: 197
+      alignment: 7
+      pivot: {x: 0, y: 0}
     - name: Nature2_7
       rect:
         serializedVersion: 2
         x: 8
-        y: 8
-        width: 1920
-        height: 248
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        y: 268
+        width: 2560
+        height: 216
+      alignment: 7
+      pivot: {x: 0, y: 0}
     - name: Nature2_8
       rect:
         serializedVersion: 2
         x: 8
-        y: 1491
+        y: 10
         width: 1920
-        height: 148
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 244
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Nature2_9
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 8
+        width: 1919
+        height: 248
+      alignment: 7
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

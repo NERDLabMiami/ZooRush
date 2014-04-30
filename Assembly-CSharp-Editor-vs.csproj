@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{287EE936-780C-9612-3D1C-5D2A81DDF2B3}</ProjectGuid>
+	<ProjectGuid>{01AE29EA-D11F-E103-1878-41E8A4CD4F77}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -130,6 +130,7 @@
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_listitem_okscore.xml" />
      <None Include="Assets\Plugins\Android\facebook\build.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\bin\proguard.txt" />
+     <None Include="Assets\Resources\Sprites\Background\Buildings\Nature.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_list_fb_login.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\list_simple_header.xml" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />
@@ -205,9 +206,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{A9CAB5AD-BA4B-CEC0-86C6-C6CFF7283C5B}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{2EC2B42E-54E2-071B-3B68-80E2C8CF13CF}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp-vs.csproj">
-      <Project>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
+      <Project>{70063E49-5F3B-3855-BBDF-26E535F76079}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

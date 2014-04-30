@@ -7,7 +7,22 @@ using System.Collections;
  */ 
 public class Animal : OtherButtonClass
 {
-
+	public enum AnimalValues
+	{
+		Bear = 0,
+		Cheetah,
+		Crocodile,
+		Elephant,
+		Flamingo,
+		Gorilla,
+		Ostrich,
+		Penguin,
+		Rhino,
+		Tortoise,
+		COUNT
+	}
+	;//Animal values set as enums for better readability
+	
 	public bool caught; //Indicator for whehter the Animal has been caught by the player
 	public Vector2 speed; //Current speed of the animal object
 	public Sprite animalIcon; //Icon used in the distance meter
@@ -65,7 +80,6 @@ public class Animal : OtherButtonClass
 
 	private void OnPauseToPlay ()
 	{
-
 		StartCoroutine (waitToResume (0.1f));
 	}
 	

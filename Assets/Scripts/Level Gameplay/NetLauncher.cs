@@ -62,7 +62,7 @@ public class NetLauncher : MonoBehaviour
 				firing = true;
 				fire ();
 			}
-			if (throwCount >= 3 && !animal.caught) { //Pauses character momentarily and resets the netthrow count
+			if (throwCount >= 3 && animal && !animal.caught) { //Pauses character momentarily and resets the netthrow count
 				animal.getAway ();
 				GameState.requestPlay ();
 			}
@@ -80,6 +80,7 @@ public class NetLauncher : MonoBehaviour
 	*/
 	private void fire ()
 	{
+//		Debug.Log ("FIRE CALLED");
 		GameObject.FindObjectOfType<AudioController> ().objectInteraction (clip);
 		Rigidbody2D netInstance = nets [currentNetIndex];
 		netInstance.transform.position = transform.position;

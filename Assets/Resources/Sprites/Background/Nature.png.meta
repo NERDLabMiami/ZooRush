@@ -53,7 +53,7 @@ TextureImporter:
         width: 195
         height: 138
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_1
       rect:
         serializedVersion: 2
@@ -71,7 +71,7 @@ TextureImporter:
         width: 269
         height: 94
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_3
       rect:
         serializedVersion: 2
@@ -89,7 +89,7 @@ TextureImporter:
         width: 288
         height: 215
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_5
       rect:
         serializedVersion: 2
@@ -98,7 +98,7 @@ TextureImporter:
         width: 316
         height: 218
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_6
       rect:
         serializedVersion: 2
@@ -116,7 +116,7 @@ TextureImporter:
         width: 411
         height: 509
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_8
       rect:
         serializedVersion: 2
@@ -125,7 +125,7 @@ TextureImporter:
         width: 474
         height: 593
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_9
       rect:
         serializedVersion: 2
@@ -134,7 +134,7 @@ TextureImporter:
         width: 479
         height: 600
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_10
       rect:
         serializedVersion: 2
@@ -143,7 +143,7 @@ TextureImporter:
         width: 549
         height: 619
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_11
       rect:
         serializedVersion: 2
@@ -152,16 +152,16 @@ TextureImporter:
         width: 563
         height: 758
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_12
       rect:
         serializedVersion: 2
         x: 8
         y: 1407
         width: 758
-        height: 59
+        height: 58
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_13
       rect:
         serializedVersion: 2
@@ -170,7 +170,7 @@ TextureImporter:
         width: 758
         height: 58
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_14
       rect:
         serializedVersion: 2
@@ -179,7 +179,7 @@ TextureImporter:
         width: 758
         height: 59
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_15
       rect:
         serializedVersion: 2
@@ -188,7 +188,7 @@ TextureImporter:
         width: 795
         height: 150
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_16
       rect:
         serializedVersion: 2
@@ -197,7 +197,7 @@ TextureImporter:
         width: 800
         height: 271
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_17
       rect:
         serializedVersion: 2
@@ -206,7 +206,7 @@ TextureImporter:
         width: 830
         height: 262
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_18
       rect:
         serializedVersion: 2
@@ -215,7 +215,7 @@ TextureImporter:
         width: 830
         height: 262
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_19
       rect:
         serializedVersion: 2
@@ -224,7 +224,7 @@ TextureImporter:
         width: 874
         height: 250
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature_20
       rect:
         serializedVersion: 2
