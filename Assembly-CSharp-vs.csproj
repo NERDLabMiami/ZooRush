@@ -152,7 +152,11 @@
      <Compile Include="Assets\Scripts\Characters and Animals\RandomAnimalGenerator.cs" />
      <Compile Include="Assets\Scripts\Characters and Animals\StoryModeSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\Debugging and Testing\EndlessModeChangeAnimalTester.cs" />
+     <Compile Include="Assets\Scripts\Debugging and Testing\EndlessModeGetAway.cs" />
      <Compile Include="Assets\Scripts\EndlessAnimal.cs" />
+     <Compile Include="Assets\Scripts\EndlessModeEndMenu.cs" />
+     <Compile Include="Assets\Scripts\EndlessModePainKiller.cs" />
+     <Compile Include="Assets\Scripts\EndlessPainIndicator.cs" />
      <Compile Include="Assets\Scripts\EndlessSceneManager.cs" />
      <Compile Include="Assets\Scripts\Event Handling\BreadCrumbs.cs" />
      <Compile Include="Assets\Scripts\Event Handling\GameState.cs" />

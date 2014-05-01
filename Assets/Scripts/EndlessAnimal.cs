@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EndlessAnimal : OtherButtonClass
 {
-
+	public EndlessSceneManager sceneManager;
 	public bool caught; //Indicator for whehter the Animal has been caught by the player
 	public Vector2 speed; //Current speed of the animal object
 	public AudioClip audioClip; // Animal audio sound clip
@@ -51,6 +51,7 @@ public class EndlessAnimal : OtherButtonClass
 		//assigns the pointer to the animator component
 		caught = false; //default value for whether the animal has been caught
 		rigidbody2D.velocity = Vector2.zero; //we set the initial velocity to 0
+		StartCoroutine (randomYMovementTimer ());
 	}
 
 	public override void otherButtonAction (Button thisButton)
@@ -63,6 +64,56 @@ public class EndlessAnimal : OtherButtonClass
 	// Update is called once per frame
 	void Update ()
 	{
-	
+		if (caught) {
+			caught = false;
+			sceneManager.introduceAnimal ();
+			sceneManager.addToAnimalsCaught ();
+		}
 	}
+
+	private IEnumerator randomYMovementTimer ()
+	{
+//		Debug.Log ("Timer Called");
+
+		float waitTime = Random.Range (0.5f, 1.5f);
+		float timePassed = 0;
+		while (timePassed < waitTime) {
+			timePassed += Time.deltaTime;
+			yield return new WaitForFixedUpdate ();
+		}
+		randomYVelocityChange ();
+	}
+
+	private void randomYVelocityChange ()
+	{
+		int yVelocity = Random.Range (0, 3);
+		yVelocity *= (Random.Range (0, 2) == 0) ? 1 : -1;
+
+		rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yVelocity);
+//		Debug.Log ("Random Y Change Called for " + yVelocity + " speed.");
+
+		resetSpeed ();
+
+	}
+
+	private void resetSpeed ()
+	{
+		Debug.Log ("Reset Speed Change Called");
+        
+		if (!sceneManager.failed) {
+			StartCoroutine (randomYMovementTimer ());
+		}
+
+		//else we break out of this loop MWAHAHAHA
+	}
+
+	public void getAway ()
+	{
+		Debug.Log ("GET AWAY CALLED");
+		sceneManager.failed = true;
+		rigidbody2D.isKinematic = true;
+		rigidbody2D.velocity = new Vector2 (7, 0);
+		StartCoroutine (sceneManager.callEndMenu ());
+	}
+
 }
