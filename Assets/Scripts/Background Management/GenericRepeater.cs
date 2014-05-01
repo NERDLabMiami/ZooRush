@@ -39,7 +39,7 @@ public class GenericRepeater : MonoBehaviour
 
 	private void moveToEnd (SpriteRenderer obj)
 	{
-		Debug.Log ("MOVE TO END CALLED");
+//		Debug.Log ("MOVE TO END CALLED");
 		float farthestRight = sprites [0].bounds.max.x;
 		farthestRightObj = sprites [0];
 		foreach (SpriteRenderer blk in sprites) {
