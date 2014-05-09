@@ -3,7 +3,6 @@ using System.Collections;
 
 public class EndlessAnimal : OtherButtonClass
 {
-<<<<<<< HEAD
 		public EndlessSceneManager sceneManager;
 		public bool caught; //Indicator for whehter the Animal has been caught by the player
 		public Vector2 speed; //Current speed of the animal object
@@ -16,7 +15,7 @@ public class EndlessAnimal : OtherButtonClass
 		{
 				GameState.StateChanged += OnStateChanged;
 		}
-=======
+
 
 	public bool caught; //Indicator for whehter the Animal has been caught by the player
 	public Vector2 speed; //Current speed of the animal object
@@ -29,8 +28,7 @@ public class EndlessAnimal : OtherButtonClass
 	{
 		GameState.StateChanged += OnStateChanged;
 	}
->>>>>>> master
-	
+
 		void OnDisable ()
 		{
 				GameState.StateChanged -= OnStateChanged;
@@ -63,7 +61,6 @@ public class EndlessAnimal : OtherButtonClass
 						audioSource.clip = audioClip; 
 				}
 		
-<<<<<<< HEAD
 				//assigns the pointer to the animator component
 				caught = false; //default value for whether the animal has been caught
 				rigidbody2D.velocity = Vector2.zero; //we set the initial velocity to 0
@@ -135,7 +132,6 @@ public class EndlessAnimal : OtherButtonClass
 				StartCoroutine (sceneManager.callEndMenu ());
 		}
 
-=======
 		//assigns the pointer to the animator component
 		caught = false; //default value for whether the animal has been caught
 		rigidbody2D.velocity = Vector2.zero; //we set the initial velocity to 0
@@ -153,5 +149,4 @@ public class EndlessAnimal : OtherButtonClass
 	{
 	
 	}
->>>>>>> master
 }
