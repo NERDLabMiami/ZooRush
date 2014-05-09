@@ -46,7 +46,11 @@ public class PainIndicator : MonoBehaviour
 			painPoints = 0;
 		}
 		animator.SetFloat ("PainPoints", painPoints);
-		animator.SetBool ("Playing", sceneManager.isPlaying);
+		if (sceneManager == null) {
+			animator.SetBool ("Playing", true);
+		} else {
+			animator.SetBool ("Playing", sceneManager.isPlaying);
+		}
 
 		//Change face sprite and/or play crisis music
 		if (!waiting) {

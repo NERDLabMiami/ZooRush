@@ -36,6 +36,8 @@ public class GA_Menu : MonoBehaviour
 			go.AddComponent<GA_SpecialEvents>();
 			go.AddComponent<GA_SystemTracker>();
 			Selection.activeObject = go;
+
+			GA_Tracking.SendEvent("Added:GA_SystemTracker");
 		} else {
 			GA.LogWarning ("A GA_SystemTracker already exists in this scene - you should never have more than one per scene!");
 		}
@@ -48,6 +50,8 @@ public class GA_Menu : MonoBehaviour
 		go.AddComponent<GA_HeatMapRenderer>();
 		go.AddComponent<GA_HeatMapDataFilter>();
 		Selection.activeObject = go;
+
+		GA_Tracking.SendEvent("Added:GA_HeatMap");
 	}
 	
 	[MenuItem ("Window/GameAnalytics/Add GA_Tracker to Object", false, 202)]
@@ -56,6 +60,8 @@ public class GA_Menu : MonoBehaviour
 		if (Selection.activeGameObject != null) {
 			if (Selection.activeGameObject.GetComponent<GA_Tracker> () == null) {
 				Selection.activeGameObject.AddComponent<GA_Tracker> ();
+
+				GA_Tracking.SendEvent("Added:GA_Tracker");
 			} else {
 				GA.LogWarning ("That object already contains a GA_Tracker component.");
 			}
@@ -80,50 +86,25 @@ public class GA_Menu : MonoBehaviour
 		string searchText = "#if false";
 		string replaceText = "#if true";
 		
-		string filePath = Application.dataPath + "/GameAnalytics/Plugins/Playmaker/SendBusinessEvent.cs";
-		string filePathJS = Application.dataPath + "/Plugins/GameAnalytics/Playmaker/SendBusinessEvent.cs";
-		try {
-			enabled = ReplaceInFile (filePath, searchText, replaceText);
-		} catch {
-			try {
-				enabled = ReplaceInFile (filePathJS, searchText, replaceText);
-			} catch {
-				fail = true;
-			}
-		}
+		string[] _files = new string[] {
+			"/GameAnalytics/Plugins/Playmaker/SendBusinessEvent.cs",
+			"/GameAnalytics/Plugins/Playmaker/SendDesignEvent.cs",
+			"/GameAnalytics/Plugins/Playmaker/SendErrorEvent.cs",
+			"/GameAnalytics/Plugins/Playmaker/SendUserEvent.cs",
+			"/GameAnalytics/Plugins/Playmaker/Editor/SendUserEventActionEditor.cs",
+			"/GameAnalytics/Plugins/Playmaker/QueueEndSubmit.cs",
+			"/GameAnalytics/Plugins/Playmaker/QueueForceSubmit.cs",
+			"/GameAnalytics/Plugins/Playmaker/ConvertFloatToLowestCurrencyUnit.cs",
+			"/GameAnalytics/Plugins/Playmaker/SetCustomUserID.cs",
+			"/GameAnalytics/Plugins/Playmaker/SetCustomArea.cs"
+		};
 		
-		filePath = Application.dataPath + "/GameAnalytics/Plugins/Playmaker/SendDesignEvent.cs";
-		filePathJS = Application.dataPath + "/Plugins/GameAnalytics/Playmaker/SendDesignEvent.cs";
-		try {
-			enabled = ReplaceInFile (filePath, searchText, replaceText);
-		} catch {
+		foreach(string _file in _files)
+		{
 			try {
-				enabled = ReplaceInFile (filePathJS, searchText, replaceText);
+				enabled = ReplaceInFile (Application.dataPath + _file, searchText, replaceText);
 			} catch {
-				fail = true;
-			}
-		}
-		
-		filePath = Application.dataPath + "/GameAnalytics/Plugins/Playmaker/SendQualityEvent.cs";
-		filePathJS = Application.dataPath + "/Plugins/GameAnalytics/Playmaker/SendQualityEvent.cs";
-		try {
-			enabled = ReplaceInFile (filePath, searchText, replaceText);
-		} catch {
-			try {
-				enabled = ReplaceInFile (filePathJS, searchText, replaceText);
-			} catch {
-				fail = true;
-			}
-		}
-		
-		filePath = Application.dataPath + "/GameAnalytics/Plugins/Playmaker/SendUserEvent.cs";
-		filePathJS = Application.dataPath + "/Plugins/GameAnalytics/Playmaker/SendUserEvent.cs";
-		try {
-			enabled = ReplaceInFile (filePath, searchText, replaceText);
-		} catch {
-			try {
-				enabled = ReplaceInFile (filePathJS, searchText, replaceText);
-			} catch {
+				Debug.Log("Failed to toggle "+_file);
 				fail = true;
 			}
 		}
@@ -131,11 +112,25 @@ public class GA_Menu : MonoBehaviour
 		AssetDatabase.Refresh();
 		
 		if (fail)
+		{
+			PlayMakerPresenceCheck.ResetPrefs();
 			Debug.Log("Failed to toggle PlayMaker Scripts.");
-		else if (enabled)
+		}else if (enabled)
+		{
 			Debug.Log("Enabled PlayMaker Scripts.");
-		else
+		}else
+		{
+			PlayMakerPresenceCheck.ResetPrefs();
 			Debug.Log("Disabled PlayMaker Scripts.");
+		}
+	}
+
+	[MenuItem ("Window/GameAnalytics/PlayMaker/Import Examples", false, 500)]
+	static void ImportPlayMakerDemo ()
+	{
+		AssetDatabase.ImportPackage(PlayMakerPresenceCheck.PlayMakerDemoPackageFile,true);
+		
+		AssetDatabase.Refresh();
 	}
 	
 	public static bool ReplaceInFile (string filePath, string searchText, string replaceText)
@@ -146,7 +141,7 @@ public class GA_Menu : MonoBehaviour
 		string content = reader.ReadToEnd ();
 		reader.Close ();
 		
-		if (content.Contains(searchText))
+		if (content.StartsWith(searchText))
 		{
 			enabled = true;
 			content = Regex.Replace (content, searchText, replaceText);
@@ -156,7 +151,7 @@ public class GA_Menu : MonoBehaviour
 			enabled = false;
 			content = Regex.Replace (content, replaceText, searchText);
 		}
-
+		
 		StreamWriter writer = new StreamWriter (filePath);
 		writer.Write (content);
 		writer.Close ();

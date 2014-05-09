@@ -70,7 +70,7 @@ public class GA_DeleteAssetBundleMenu : EditorWindow {
 				WWWForm form = new WWWForm ();
 	
 				form.AddField ("gamekey", GA.SettingsGA.GameKey);
-				form.AddField ("authorization", GA.API.Submit.CreateMD5Hash(GA.SettingsGA.GameKey + meshNames[i] + ".unity3d" + GA.SettingsGA.SecretKey));
+				form.AddField ("authorization", GA_Submit.CreateMD5Hash(GA.SettingsGA.GameKey + meshNames[i] + ".unity3d" + GA.SettingsGA.SecretKey));
 				form.AddField ("meshname", meshNames[i] + ".unity3d");
 				
 				WWW w = new WWW ("https://go.gameanalytics.com/api/heatmap/mesh/delete", form);
@@ -117,7 +117,7 @@ public class GA_DeleteAssetBundleMenu : EditorWindow {
 		WWWForm form = new WWWForm ();
 
 		form.AddField ("gamekey", GA.SettingsGA.GameKey);
-		form.AddField ("authorization", GA.API.Submit.CreateMD5Hash(GA.SettingsGA.GameKey + GA.SettingsGA.SecretKey));
+		form.AddField ("authorization", GA_Submit.CreateMD5Hash(GA.SettingsGA.GameKey + GA.SettingsGA.SecretKey));
 		
 		WWW w = new WWW ("https://go.gameanalytics.com/api/heatmap/meshes", form);
 

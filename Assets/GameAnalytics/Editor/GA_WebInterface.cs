@@ -94,7 +94,7 @@ public class GA_WebInterface : MonoBehaviour
 		WWWForm form = new WWWForm ();
 		
 		form.AddField ("gamekey", GA.SettingsGA.GameKey);
-		form.AddField ("authorization", GA.API.Submit.CreateMD5Hash(GA.SettingsGA.GameKey + fileName + GA.SettingsGA.SecretKey));
+		form.AddField ("authorization", GA_Submit.CreateMD5Hash(GA.SettingsGA.GameKey + fileName + GA.SettingsGA.SecretKey));
 		form.AddBinaryData ("mesh", meshData, fileName, "application/vnd.unity");
 		
 		WWW w = new WWW ("https://go.gameanalytics.com/api/heatmap/mesh/upload", form);

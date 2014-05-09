@@ -70,7 +70,7 @@ public class GA_SpecialEvents : MonoBehaviour
 	public void OnApplicationQuit ()
 	{
 #if UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
-		if (!GA_Queue.QUITONSUBMIT)
+		if (GA.SettingsGA.DelayQuitToSendData && !GA_Queue.QUITONSUBMIT)
 		{
 			SubmitAverageFPS();
 		}

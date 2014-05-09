@@ -62,7 +62,7 @@ public class GA_UpdateWindow : EditorWindow
 		
 		if (GUILayout.Button(_close, GUILayout.MaxWidth(72)))
 		{
-			EditorPrefs.SetString("ga_skip_version", NewVersion);
+			EditorPrefs.SetString("ga_skip_version"+"-"+Application.dataPath, NewVersion);
 			Close();
 		}
 		

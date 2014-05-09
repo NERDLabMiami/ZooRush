@@ -14,14 +14,13 @@ using UnityEditor;
 [ExecuteInEditMode]
 public class GA_Tracker : MonoBehaviour
 {
-	public enum GAEventType { BreadCrumb, Start, OnDestroy, OnMouseDown, OnLevelWasLoaded, OnTriggerEnter, OnCollisionEnter, OnControllerColliderHit }
+	public enum GAEventType { BreadCrumb, Start, OnDestroy, OnLevelWasLoaded, OnTriggerEnter, OnCollisionEnter, OnControllerColliderHit }
 	
 	public static Dictionary<GAEventType, string> EventTooltips = new Dictionary<GAEventType, string>()
 	{
 		{ GAEventType.BreadCrumb, "Send an event every time interval. Good for generating heatmaps of player position/movement in your levels." },
 		{ GAEventType.Start, "Send an event when the Start method is run. Use this for tracking spawning of the object" },
 		{ GAEventType.OnDestroy, "Send an event when the OnDestroy method is run. Use this for tracking \"death\" of the object." },
-		{ GAEventType.OnMouseDown, "Send an event when the OnMouseDown method is run. Use this for tracking when the player performs a click/touch on the object." },
 		{ GAEventType.OnLevelWasLoaded, "Send an event when the OnLevelWasLoaded method is run. Use this for tracking when a new level is loaded." },
 		{ GAEventType.OnTriggerEnter, "Send an event when the OnTriggerEnter method is run. Use this for tracking when something (f.x. the player) enters a trigger area." },
 		{ GAEventType.OnCollisionEnter, "Send an event when the OnCollisionEnter method is run. Use this for tracking when objects collide." },
@@ -39,7 +38,7 @@ public class GA_Tracker : MonoBehaviour
 	
 	public float BreadCrumbTrackInterval = 1.0f;
 	
-	private static bool _trackTargetAlreadySet;
+	private bool _trackTargetAlreadySet;
 	
 	private float _lastBreadCrumbTrackTime;
 	
@@ -111,17 +110,6 @@ public class GA_Tracker : MonoBehaviour
 		if (TrackedEvents.Contains(GAEventType.OnDestroy))
 		{
 			GA.API.Design.NewEvent("OnDestroy:"+gameObject.name, transform.position);
-		}
-	}
-	
-	void OnMouseDown()
-	{
-		if (!Application.isPlaying)
-			return;
-		
-		if (TrackedEvents.Contains(GAEventType.OnMouseDown))
-		{
-			GA.API.Design.NewEvent("OnMouseDown:"+gameObject.name, transform.position);
 		}
 	}
 	
