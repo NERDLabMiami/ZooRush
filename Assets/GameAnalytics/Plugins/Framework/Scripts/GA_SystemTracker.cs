@@ -97,7 +97,7 @@ public class GA_SystemTracker : MonoBehaviour
 			
 			foreach (Hashtable spec in systemspecs)
 			{
-				GA_Queue.AddItem(spec, GA_Submit.CategoryType.GA_Log, false);
+				GA_Queue.AddItem(spec, GA_Submit.CategoryType.GA_Error, false);
 			}
 		}
 	}

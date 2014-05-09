@@ -6,6 +6,7 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory("GameAnalytics")]
 	[Tooltip("Sends a business event message to the GameAnalytics server")]
+	[HelpUrl("https://hutonggames.fogbugz.com/default.asp?W1163")]
 	public class SendBusinessEvent : FsmStateAction
 	{
 		[RequiredField]
@@ -17,7 +18,7 @@ namespace HutongGames.PlayMaker.Actions
 		public FsmString Currency;
 		
 		[RequiredField]
-		[Tooltip("The value of the transaction in the lowest currency unit. F.x. if currency is USD then amount should be in cent")]
+		[Tooltip("The value of the transaction in the lowest currency unit. F.x. if currency is USD then amount should be in cent. Use action 'ConvertFloatToLowestCurrencyUnit' to convert if required")]
 		public FsmInt Amount;
 		
 		[Tooltip("The location of the event")]

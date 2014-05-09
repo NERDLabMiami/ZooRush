@@ -68,7 +68,7 @@ public class GA_Debug
 			
 				foreach (Hashtable spec in systemspecs)
 				{
-					GA_Queue.AddItem(spec, GA_Submit.CategoryType.GA_Log, false);
+					GA_Queue.AddItem(spec, GA_Submit.CategoryType.GA_Error, false);
 				}
 			}
 		}

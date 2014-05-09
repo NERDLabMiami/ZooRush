@@ -24,7 +24,7 @@ public class GenericRepeater : MonoBehaviour
 		speedUpdate ();
 		if (endlessMode || cameraFollower.cameraSettled) {
 			foreach (SpriteRenderer sprite in sprites) {
-				if (sprite.bounds.max.x < Camera.main.transform.position.x - 10f && !inView (sprite)) { // if the block is not in view and to the left of the camera
+				if (sprite.bounds.max.x < Camera.main.transform.position.x - 50f && !inView (sprite)) { // if the block is not in view and to the left of the camera
 					moveToEnd (sprite);
 				}
 			}
@@ -39,7 +39,7 @@ public class GenericRepeater : MonoBehaviour
 
 	private void moveToEnd (SpriteRenderer obj)
 	{
-		Debug.Log ("MOVE TO END CALLED");
+//		Debug.Log ("MOVE TO END CALLED");
 		float farthestRight = sprites [0].bounds.max.x;
 		farthestRightObj = sprites [0];
 		foreach (SpriteRenderer blk in sprites) {

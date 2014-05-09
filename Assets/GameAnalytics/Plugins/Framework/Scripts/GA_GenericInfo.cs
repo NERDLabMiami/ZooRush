@@ -22,7 +22,7 @@ public  class GA_GenericInfo
 	/// <summary>
 	/// The ID of the user/player. A unique ID will be determined the first time the player plays. If an ID has already been created for a player this ID will be used.
 	/// </summary>
-	public  string UserID
+	public string UserID
 	{
 		get {
 			if ((_userID == null || _userID == string.Empty) && !GA.SettingsGA.CustomUserID)
@@ -36,7 +36,7 @@ public  class GA_GenericInfo
 	/// <summary>
 	/// The ID of the current session. A unique ID will be determined when the game starts. This ID will be used for the remainder of the play session.
 	/// </summary>
-	public  string SessionID
+	public string SessionID
 	{
 		get {
 			if (_sessionID == null)
@@ -78,11 +78,11 @@ public  class GA_GenericInfo
 	/// <returns>
 	/// The message to submit to the GA server is a dictionary of all the relevant parameters (containing user ID, session ID, system information, language information, date/time, build version) <see cref="Dictionary<System.String, System.Object>"/>
 	/// </returns>
-	public  List<Hashtable> GetGenericInfo(string message)
+	public List<Hashtable> GetGenericInfo(string message)
 	{
 		List<Hashtable> systemspecs = new List<Hashtable>();
 		
-		systemspecs.Add(AddSystemSpecs("unity_wrapper", GA_Settings.VERSION, message));
+		systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "unity_sdk " + GA_Settings.VERSION, message));
 		
 		/*
 		 * Apple does not allow tracking of device specific data:
@@ -92,27 +92,27 @@ public  class GA_GenericInfo
 		
 		#if !UNITY_IPHONE
 		
-		systemspecs.Add(AddSystemSpecs("os", SystemInfo.operatingSystem, message));
-		systemspecs.Add(AddSystemSpecs("processor_type", SystemInfo.processorType, message));
-		systemspecs.Add(AddSystemSpecs("gfx_name", SystemInfo.graphicsDeviceName, message));
-		systemspecs.Add(AddSystemSpecs("gfx_version", SystemInfo.graphicsDeviceVersion, message));
+		systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "os:"+SystemInfo.operatingSystem, message));
+		systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "processor_type:"+SystemInfo.processorType, message));
+		systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "gfx_name:"+SystemInfo.graphicsDeviceName, message));
+		systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "gfx_version:"+SystemInfo.graphicsDeviceVersion, message));
 		
 		// Unity provides lots of additional system info which might be worth tracking for some games:
-		//systemspecs.Add(AddSystemSpecs("process_count", SystemInfo.processorCount.ToString(), message));
-		//systemspecs.Add(AddSystemSpecs("sys_mem_size", SystemInfo.systemMemorySize.ToString(), message));
-		//systemspecs.Add(AddSystemSpecs("gfx_mem_size", SystemInfo.graphicsMemorySize.ToString(), message));
-		//systemspecs.Add(AddSystemSpecs("gfx_vendor", SystemInfo.graphicsDeviceVendor, message));
-		//systemspecs.Add(AddSystemSpecs("gfx_id", SystemInfo.graphicsDeviceID.ToString(), message));
-		//systemspecs.Add(AddSystemSpecs("gfx_vendor_id", SystemInfo.graphicsDeviceVendorID.ToString(), message));
-		//systemspecs.Add(AddSystemSpecs("gfx_shader_level", SystemInfo.graphicsShaderLevel.ToString(), message));
-		//systemspecs.Add(AddSystemSpecs("gfx_pixel_fillrate", SystemInfo.graphicsPixelFillrate.ToString(), message));
-		//systemspecs.Add(AddSystemSpecs("sup_shadows", SystemInfo.supportsShadows.ToString(), message));
-		//systemspecs.Add(AddSystemSpecs("sup_render_textures", SystemInfo.supportsRenderTextures.ToString(), message));
-		//systemspecs.Add(AddSystemSpecs("sup_image_effects", SystemInfo.supportsImageEffects.ToString(), message));
-		
+		//systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "process_count:"+SystemInfo.processorCount.ToString(), message));
+		//systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "sys_mem_size:"+SystemInfo.systemMemorySize.ToString(), message));
+		//systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "gfx_mem_size:"+SystemInfo.graphicsMemorySize.ToString(), message));
+		//systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "gfx_vendor:"+SystemInfo.graphicsDeviceVendor, message));
+		//systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "gfx_id:"+SystemInfo.graphicsDeviceID.ToString(), message));
+		//systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "gfx_vendor_id:"+SystemInfo.graphicsDeviceVendorID.ToString(), message));
+		//systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "gfx_shader_level:"+SystemInfo.graphicsShaderLevel.ToString(), message));
+		//systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "gfx_pixel_fillrate:"+SystemInfo.graphicsPixelFillrate.ToString(), message));
+		//systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "sup_shadows:"+SystemInfo.supportsShadows.ToString(), message));
+		//systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "sup_render_textures:"+SystemInfo.supportsRenderTextures.ToString(), message));
+		//systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "sup_image_effects:"+SystemInfo.supportsImageEffects.ToString(), message));
+
 		#else
 		
-		systemspecs.Add(AddSystemSpecs("os", "iOS", message));
+		systemspecs.Add(AddSystemSpecs(GA_Error.SeverityType.info, "os:iOS", message));
 		
 		#endif
 		
@@ -129,7 +129,7 @@ public  class GA_GenericInfo
 	/// <returns>
 	/// The generated UUID <see cref="System.String"/>
 	/// </returns>
-	public  string GetUserUUID()
+	public static string GetUserUUID()
 	{
 		#if UNITY_IPHONE && !UNITY_EDITOR
 		
@@ -190,7 +190,7 @@ public  class GA_GenericInfo
 	/// <returns>
 	/// The generated UUID <see cref="System.String"/>
 	/// </returns>
-	public  string GetSessionUUID()
+	public static string GetSessionUUID()
 	{
 #if !UNITY_FLASH
 		return Guid.NewGuid().ToString();
@@ -203,10 +203,21 @@ public  class GA_GenericInfo
 		return returnValue;
 #endif
 	}
-	
-	public void SetSessionUUID()
+
+	/// <summary>
+	/// Sets the session ID. If newSessionID is null then a random UUID will be generated, otherwise newSessionID will be used as the session ID.
+	/// </summary>
+	/// <param name="newSessionID">New session I.</param>
+	public void SetSessionUUID(string newSessionID)
 	{
-		_sessionID = GetSessionUUID();
+		if (newSessionID == null)
+		{
+			_sessionID = GetSessionUUID();
+		}
+		else
+		{
+			_sessionID = newSessionID;
+		}
 	}
 	
 	/// <summary>
@@ -215,7 +226,7 @@ public  class GA_GenericInfo
 	/// <param name="customID">
 	/// The custom user ID - this should be unique for each user
 	/// </param>
-	public  void SetCustomUserID(string customID)
+	public void SetCustomUserID(string customID)
 	{
 		_userID = customID;
 	}
@@ -230,7 +241,7 @@ public  class GA_GenericInfo
 	/// <param name="parameters">
 	/// The parameters which will be sent to the server <see cref="Dictionary<System.String, System.Object>"/>
 	/// </param>
-	private  Hashtable AddSystemSpecs(string key, string type, string message)
+	private Hashtable AddSystemSpecs(GA_Error.SeverityType severity, string type, string message)
 	{
 		string addmessage = "";
 		if (message != "")
@@ -238,7 +249,7 @@ public  class GA_GenericInfo
 		
 		Hashtable parameters = new Hashtable()
 		{
-			{ GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.EventID], "system:" + key },
+			{ GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Severity], severity.ToString() },
 			{ GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Message], type + addmessage },
 			{ GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Level], GA.SettingsGA.CustomArea.Equals(string.Empty)?Application.loadedLevelName:GA.SettingsGA.CustomArea }
 		};
@@ -252,7 +263,7 @@ public  class GA_GenericInfo
 	/// <returns>
 	/// String determining the system the user is currently running <see cref="System.String"/>
 	/// </returns>
-	public  string GetSystem()
+	public static string GetSystem()
 	{
 		#if UNITY_STANDALONE_OSX
 		return "MAC";

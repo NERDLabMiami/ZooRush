@@ -34,13 +34,13 @@ public static class GA_ContinuationManager
 
     private static void Update()
     {
-        for (int i = jobs.Count-1; i>=0; --i)
+		for (int i = jobs.Count-1; i>=0; --i)
         {
             var jobIt = jobs[i];
 			if(jobIt.Done())
             if (!jobIt.Routine.MoveNext()) //movenext is false if coroutine completed
-            {
-                jobs.RemoveAt(i);
+			{
+				jobs.RemoveAt(i);
             }
         }
         if (!jobs.Any()) EditorApplication.update -= Update;

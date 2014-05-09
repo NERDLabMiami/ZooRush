@@ -16,7 +16,7 @@ public class GA_GameObjectManager : MonoBehaviour {
 	public void OnApplicationQuit ()
 	{
 #if UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
-		if (!GA_Queue.QUITONSUBMIT)
+		if (GA.SettingsGA.DelayQuitToSendData && !GA_Queue.QUITONSUBMIT)
 		{
 			GA_Queue.QUITONSUBMIT = true;
 			GA.API.Design.NewEvent("GA:ExitGame");
@@ -32,7 +32,7 @@ public class GA_GameObjectManager : MonoBehaviour {
 		if (!paused && GA.SettingsGA.NewSessionOnResume)
 		{
 			GA.Log("GA: Generating new session id");
-			GA.API.GenericInfo.SetSessionUUID();
+			GA.API.GenericInfo.SetSessionUUID(null);
 		}
 	}
 #endif
