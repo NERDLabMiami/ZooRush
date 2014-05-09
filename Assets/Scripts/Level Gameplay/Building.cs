@@ -41,10 +41,18 @@ public class Building : MonoBehaviour
 				if (GameObject.FindObjectOfType<StopwatchController> () != null) {
 					GameObject.FindObjectOfType<StopwatchController> ().stopStopwatch ();
 				}
-				GameObject.FindObjectOfType<PainKiller> ().incrementPillCount ();
+				if (GameObject.FindObjectOfType<EndlessSceneManager> () != null) {
+					GameObject.FindObjectOfType<EndlessModePainKiller> ().incrementPillCount ();
+				} else {
+					GameObject.FindObjectOfType<PainKiller> ().incrementPillCount ();
+				}
 				audioController.objectInteraction (clips, 0.5f);
 			}
-			painIndicator.objectInteraction (gameObject);
+			if (GameObject.FindObjectOfType<EndlessSceneManager> () != null) {
+				GameObject.FindObjectOfType<EndlessPainIndicator> ().objectInteraction (gameObject);
+			} else {
+				painIndicator.objectInteraction (gameObject);
+			}
 		}
 	}
 
