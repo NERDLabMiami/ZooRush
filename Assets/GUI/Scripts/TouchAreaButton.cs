@@ -18,4 +18,9 @@ public class TouchAreaButton : Button
 	{
 		//NOP
 	}
+
+	void FixedUpdate ()
+	{
+		transform.position = otherButtonClass.gameObject.transform.position;
+	}
 }

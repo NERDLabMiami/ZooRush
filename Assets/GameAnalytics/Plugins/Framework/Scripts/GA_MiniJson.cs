@@ -209,12 +209,12 @@ public class GA_MiniJSON
 				return ParseObject(json, ref index);
 			case GA_MiniJSON.TOKEN_SQUARED_OPEN:
 				return ParseArray(json, ref index);
-//			case GA_MiniJSON.TOKEN_TRUE:
-//				NextToken(json, ref index);
-//				return Boolean.Parse("TRUE");
-//			case GA_MiniJSON.TOKEN_FALSE:
-//				NextToken(json, ref index);
-//				return Boolean.Parse("FALSE");
+			case GA_MiniJSON.TOKEN_TRUE:
+				NextToken(json, ref index);
+				return Boolean.Parse("TRUE");
+			case GA_MiniJSON.TOKEN_FALSE:
+				NextToken(json, ref index);
+				return Boolean.Parse("FALSE");
 			case GA_MiniJSON.TOKEN_NULL:
 				NextToken(json, ref index);
 				return null;

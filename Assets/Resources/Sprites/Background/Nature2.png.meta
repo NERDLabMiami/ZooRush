@@ -53,7 +53,7 @@ TextureImporter:
         width: 1920
         height: 84
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature2_1
       rect:
         serializedVersion: 2
@@ -62,7 +62,7 @@ TextureImporter:
         width: 1920
         height: 92
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature2_2
       rect:
         serializedVersion: 2
@@ -71,7 +71,7 @@ TextureImporter:
         width: 1920
         height: 148
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature2_3
       rect:
         serializedVersion: 2
@@ -80,7 +80,7 @@ TextureImporter:
         width: 1920
         height: 159
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature2_4
       rect:
         serializedVersion: 2
@@ -89,16 +89,16 @@ TextureImporter:
         width: 1920
         height: 163
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature2_5
       rect:
         serializedVersion: 2
-        x: 1940
+        x: 1942
         y: 706
-        width: 1920
+        width: 1916
         height: 169
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature2_6
       rect:
         serializedVersion: 2
@@ -107,7 +107,7 @@ TextureImporter:
         width: 2560
         height: 197
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature2_7
       rect:
         serializedVersion: 2
@@ -116,7 +116,7 @@ TextureImporter:
         width: 2560
         height: 216
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature2_8
       rect:
         serializedVersion: 2
@@ -125,7 +125,7 @@ TextureImporter:
         width: 1920
         height: 244
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
     - name: Nature2_9
       rect:
         serializedVersion: 2
@@ -134,6 +134,6 @@ TextureImporter:
         width: 1919
         height: 248
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
   spritePackingTag: 
   userData: 
