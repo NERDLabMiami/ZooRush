@@ -20,13 +20,20 @@ public class GA_Submit
 	/// <summary>
 	/// Handlers for success and fail during submit to the GA server
 	/// </summary>
-	public delegate void SubmitSuccessHandler(List<Item> items, bool success);
-	public delegate void SubmitErrorHandler(List<Item> items);
+	public delegate void SubmitSuccessHandler (List<Item> items,bool success);
+	public delegate void SubmitErrorHandler (List<Item> items);
 	
 	/// <summary>
 	/// Types of services on the GA server
 	/// </summary>
-	public enum CategoryType { GA_User, GA_Event, /*GA_Log,*/ GA_Purchase, GA_Error }
+	public enum CategoryType
+	{
+		GA_User,
+		GA_Event,
+		GA_Log,
+		GA_Purchase,
+		GA_Error
+	}
 	
 	/// <summary>
 	/// An item is a message (parameters) and the category (GA service) the message should be sent to
@@ -42,7 +49,7 @@ public class GA_Submit
 	/// <summary>
 	/// All the different types of GA services
 	/// </summary>
-	public static Dictionary<CategoryType, string> Categories = new Dictionary<CategoryType, string>()
+	public static Dictionary<CategoryType, string> Categories = new Dictionary<CategoryType, string> ()
 	{
 		{ CategoryType.GA_User, "user" },
 		{ CategoryType.GA_Event, "design" },
@@ -71,7 +78,7 @@ public class GA_Submit
 	/// <param name="privateKey">
 	/// The private key used to encode messages <see cref="System.String"/>
 	/// </param>
-	public void SetupKeys(string publicKey, string privateKey)
+	public void SetupKeys (string publicKey, string privateKey)
 	{
 		_publicKey = publicKey;
 		_privateKey = privateKey;
@@ -101,25 +108,22 @@ public class GA_Submit
 	/// <param name="errorEvent">
 	/// If an error occurs this will be fired <see cref="SubmitErrorHandler"/>
 	/// </param>
-	public void SubmitQueue(List<Item> queue, SubmitSuccessHandler successEvent, SubmitErrorHandler errorEvent, bool gaTracking, string pubKey, string priKey)
+	public void SubmitQueue (List<Item> queue, SubmitSuccessHandler successEvent, SubmitErrorHandler errorEvent, bool gaTracking, string pubKey, string priKey)
 	{
-		if ((_publicKey.Equals("") || _privateKey.Equals("")) && (pubKey.Equals("") || priKey.Equals("")))
-		{
+		if ((_publicKey.Equals ("") || _privateKey.Equals ("")) && (pubKey.Equals ("") || priKey.Equals (""))) {
 			if (!gaTracking)
-				GA.LogError("Game Key and/or Secret Key not set. Open GA_Settings to set keys.");
+				GA.LogError ("Game Key and/or Secret Key not set. Open GA_Settings to set keys.");
 			
 			return;
 		}
 		
 		//GA_TODO: Optimize by moving dictionary outside this fucntion. Submit is called often
-		Dictionary<CategoryType, List<Item>> categories = new Dictionary<CategoryType, List<Item>>();
+		Dictionary<CategoryType, List<Item>> categories = new Dictionary<CategoryType, List<Item>> ();
 		
 		/* Put all the items in the queue into a list containing only the messages of that category type.
 		 * This way we end up with a list of items for each category type */
-		foreach (Item item in queue)
-		{
-			if (categories.ContainsKey(item.Type))
-			{
+		foreach (Item item in queue) {
+			if (categories.ContainsKey (item.Type)) {
 				
 				/* If we already added another item of this type then remove the UserID, SessionID, and Build values if necessary.
 				 * These values only need to be present in each message once, since they will be the same for all items */
@@ -139,36 +143,34 @@ public class GA_Submit
 				*/
 				
 				/* TODO: remove below when API supports exclusion of data */
-				if (!item.Parameters.ContainsKey(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.UserID]))
-					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.UserID], GA.API.GenericInfo.UserID);
+				if (!item.Parameters.ContainsKey (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.UserID]))
+					item.Parameters.Add (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.UserID], GA.API.GenericInfo.UserID);
 				
-				if (!item.Parameters.ContainsKey(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.SessionID]))
-					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.SessionID], GA.API.GenericInfo.SessionID);
+				if (!item.Parameters.ContainsKey (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.SessionID]))
+					item.Parameters.Add (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.SessionID], GA.API.GenericInfo.SessionID);
 
-				if (!item.Parameters.ContainsKey(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build]))
-					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build], GA.SettingsGA.Build);
+				if (!item.Parameters.ContainsKey (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.Build]))
+					item.Parameters.Add (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.Build], GA.SettingsGA.Build);
 				
-				categories[item.Type].Add(item);
-			}
-			else
-			{
+				categories [item.Type].Add (item);
+			} else {
 				/* If we did not add another item of this type yet, then add the UserID, SessionID, and Build values if necessary.
 				 * These values only need to be present in each message once, since they will be the same for all items */
 				
-				if (!item.Parameters.ContainsKey(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.UserID]))
-					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.UserID], GA.API.GenericInfo.UserID);
+				if (!item.Parameters.ContainsKey (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.UserID]))
+					item.Parameters.Add (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.UserID], GA.API.GenericInfo.UserID);
 				
-				if (!item.Parameters.ContainsKey(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.SessionID]))
-					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.SessionID], GA.API.GenericInfo.SessionID);
+				if (!item.Parameters.ContainsKey (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.SessionID]))
+					item.Parameters.Add (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.SessionID], GA.API.GenericInfo.SessionID);
 				
-				if (!item.Parameters.ContainsKey(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build]))
-					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build], GA.SettingsGA.Build);
+				if (!item.Parameters.ContainsKey (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.Build]))
+					item.Parameters.Add (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.Build], GA.SettingsGA.Build);
 				
-				categories.Add(item.Type, new List<Item> { item });
+				categories.Add (item.Type, new List<Item> { item });
 			}
 		}
 		
-		Submit(categories, successEvent, errorEvent, gaTracking, pubKey, priKey);
+		Submit (categories, successEvent, errorEvent, gaTracking, pubKey, priKey);
 	}
 	
 	/// <summary>
@@ -186,118 +188,104 @@ public class GA_Submit
 	/// <returns>
 	/// A <see cref="IEnumerator"/>
 	/// </returns>
-	public void Submit(Dictionary<CategoryType, List<Item>> categories, SubmitSuccessHandler successEvent, SubmitErrorHandler errorEvent, bool gaTracking, string pubKey, string priKey)
+	public void Submit (Dictionary<CategoryType, List<Item>> categories, SubmitSuccessHandler successEvent, SubmitErrorHandler errorEvent, bool gaTracking, string pubKey, string priKey)
 	{
-		if (pubKey.Equals(""))
+		if (pubKey.Equals (""))
 			pubKey = _publicKey;
 		
-		if (priKey.Equals(""))
+		if (priKey.Equals (""))
 			priKey = _privateKey;
 		
 		//For each existing category, submit a message containing all the items of that category type
-		foreach (KeyValuePair<CategoryType, List<Item>> kvp in categories)
-		{
+		foreach (KeyValuePair<CategoryType, List<Item>> kvp in categories) {
 			List<Item> items = kvp.Value;
 			
-			if (items.Count == 0)
-			{
+			if (items.Count == 0) {
 				continue;
 			}
 			
 			//Since all the items must have the same category (we make sure they do below) we can get the category from the first item
-			CategoryType serviceType = items[0].Type;
-			string url = GetURL(Categories[serviceType], pubKey);
+			CategoryType serviceType = items [0].Type;
+			string url = GetURL (Categories [serviceType], pubKey);
 			
 			//Make sure that all items are of the same category type, and put all the parameter collections into a list
-			List<Hashtable> itemsParameters = new List<Hashtable>();
+			List<Hashtable> itemsParameters = new List<Hashtable> ();
 			
-			for (int i = 0; i < items.Count; i++)
-			{
-				if (serviceType != items[i].Type)
-				{
-					GA.LogWarning("GA Error: All messages in a submit must be of the same service/category type.");
-					if (errorEvent != null)
-					{
-						errorEvent(items);
+			for (int i = 0; i < items.Count; i++) {
+				if (serviceType != items [i].Type) {
+					GA.LogWarning ("GA Error: All messages in a submit must be of the same service/category type.");
+					if (errorEvent != null) {
+						errorEvent (items);
 					}
 				}
 				
 				// if user ID is missing from the item add it now (could f.x. happen if custom user id is enabled,
 				// and the item was added before the custom user id was provided)
-				if (!items[i].Parameters.ContainsKey(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.UserID]))
-					items[i].Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.UserID], GA.API.GenericInfo.UserID);
-				else if (items[i].Parameters[GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.UserID]] == null)
-					items[i].Parameters[GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.UserID]] = GA.API.GenericInfo.UserID;
+				if (!items [i].Parameters.ContainsKey (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.UserID]))
+					items [i].Parameters.Add (GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.UserID], GA.API.GenericInfo.UserID);
+				else if (items [i].Parameters [GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.UserID]] == null)
+					items [i].Parameters [GA_ServerFieldTypes.Fields [GA_ServerFieldTypes.FieldType.UserID]] = GA.API.GenericInfo.UserID;
 				
 				Hashtable parameters;
 				
-				if (items[i].Count > 1)
-				{
+				if (items [i].Count > 1) {
 					/* so far we don't do anything special with stacked messages - we just send a single message
 					 * GA_TODO: stacked messages should be handle correctly.*/
-					parameters = items[i].Parameters;
-				}
-				else
-				{
-					parameters = items[i].Parameters;
+					parameters = items [i].Parameters;
+				} else {
+					parameters = items [i].Parameters;
 				}
 	
-				itemsParameters.Add(parameters);
+				itemsParameters.Add (parameters);
 			}
 			
 			//Make a JSON array string out of the list of parameter collections
-			string json = DictToJson(itemsParameters);
+			string json = DictToJson (itemsParameters);
 			
 			/* If we do not have access to a network connection (or we are roaming (mobile devices) and GA_static_api.Settings.ALLOWROAMING is false),
 			 * and data is set to be archived, then archive the data and pretend the message was sent successfully */
-			if  (GA.SettingsGA.ArchiveData && !gaTracking && !GA.SettingsGA.InternetConnectivity)
-			{
-				if (GA.SettingsGA.DebugMode)
-				{
-					GA.Log("GA: Archiving data (no network connection).");
+			if (GA.SettingsGA.ArchiveData && !gaTracking && !GA.SettingsGA.InternetConnectivity) {
+				if (GA.SettingsGA.DebugMode) {
+					GA.Log ("GA: Archiving data (no network connection).");
 				}
 				
-				GA.API.Archive.ArchiveData(json, serviceType);
-				if (successEvent != null)
-				{
-					successEvent(items, true);
+				GA.API.Archive.ArchiveData (json, serviceType);
+				if (successEvent != null) {
+					successEvent (items, true);
 				}
-			}
-			else if (!GA.SettingsGA.InternetConnectivity)
-			{
+			} else if (!GA.SettingsGA.InternetConnectivity) {
 				if (!gaTracking)
-					GA.LogWarning("GA Error: No network connection.");
+					GA.LogWarning ("GA Error: No network connection.");
 				
-				if (errorEvent != null)
-				{
-					errorEvent(items);
+				if (errorEvent != null) {
+					errorEvent (items);
 				}
 			}
 			
-			string jsonHash = CreateMD5Hash(json + priKey);
+			string jsonHash = CreateMD5Hash (json + priKey);
 
-			WWW www = CreateSubmitWWW(url, json, jsonHash);
+			WWW www = CreateSubmitWWW (url, json, jsonHash);
 
-			GA.RunCoroutine(SendWWW(www, successEvent, errorEvent, gaTracking, json, jsonHash, items));
+			GA.RunCoroutine (SendWWW (www, successEvent, errorEvent, gaTracking, json, jsonHash, items));
 		}
 	}
 
-	public static WWW CreateSubmitWWW(string url, string json, string jsonHash)
+	public static WWW CreateSubmitWWW (string url, string json, string jsonHash)
 	{
 		WWW www = null;
 
 		//Prepare the JSON array string for sending by converting it to a byte array
-		byte[] data = Encoding.UTF8.GetBytes(json);
+		byte[] data = Encoding.UTF8.GetBytes (json);
 		
 		#if !UNITY_WP8 && !UNITY_METRO
 		
 		//Set the authorization header to contain an MD5 hash of the JSON array string + the private key
-		Hashtable headers = new Hashtable();
-		headers.Add("Authorization", jsonHash);
+		Hashtable headers = new Hashtable ();
+		headers.Add ("Authorization", jsonHash);
 		//headers.Add("Content-Length", data.Length);
 		
 		//Try to send the data
-		www = new WWW(url, data, headers);
+		www = new WWW (url, data, headers);
 		
 		#else
 		
@@ -315,7 +303,7 @@ public class GA_Submit
 		return www;
 	}
 	
-	public static IEnumerator SendWWW(WWW www, SubmitSuccessHandler successEvent, SubmitErrorHandler errorEvent, bool gaTracking, string json, string jsonHash, List<Item> items)
+	public static IEnumerator SendWWW (WWW www, SubmitSuccessHandler successEvent, SubmitErrorHandler errorEvent, bool gaTracking, string json, string jsonHash, List<Item> items)
 	{
 		#if !UNITY_FLASH && !UNITY_WP8 && !UNITY_METRO
 		//Set thread priority low
@@ -325,88 +313,68 @@ public class GA_Submit
 		//Wait for response
 		yield return www;
 		
-		if (GA.SettingsGA.DebugMode && !gaTracking)
-		{
-			GA.Log("GA URL: " + www.url);
-			GA.Log("GA Submit: " + json);
-			GA.Log("GA Hash: " + jsonHash);
+		if (GA.SettingsGA.DebugMode && !gaTracking) {
+			GA.Log ("GA URL: " + www.url);
+			GA.Log ("GA Submit: " + json);
+			GA.Log ("GA Hash: " + jsonHash);
 		}
 		
-		try
-		{
-			if (!string.IsNullOrEmpty(www.error) && !CheckServerReply(www))
-			{
-				throw new Exception(www.error);
+		try {
+			if (!string.IsNullOrEmpty (www.error) && !CheckServerReply (www)) {
+				throw new Exception (www.error);
 			}
 			
 			//Get the JSON object from the response
-			Hashtable returnParam = (Hashtable)GA_MiniJSON.JsonDecode(www.text);
+			Hashtable returnParam = (Hashtable)GA_MiniJSON.JsonDecode (www.text);
 			
 			//If the response contains the key "status" with the value "ok" we know that the message was sent and recieved successfully
 			if ((returnParam != null &&
-			    returnParam.ContainsKey("status") && returnParam["status"].ToString().Equals("ok")) ||
-				CheckServerReply(www))
-			{
-				if (GA.SettingsGA.DebugMode && !gaTracking)
-				{
-					GA.Log("GA Result: " + www.text);
+				returnParam.ContainsKey ("status") && returnParam ["status"].ToString ().Equals ("ok")) ||
+				CheckServerReply (www)) {
+				if (GA.SettingsGA.DebugMode && !gaTracking) {
+					GA.Log ("GA Result: " + www.text);
 				}
 				
-				if (successEvent != null)
-				{
-					successEvent(items, true);
+				if (successEvent != null) {
+					successEvent (items, true);
 				}
-			}
-			else
-			{
+			} else {
 				/* The message was not sent and recieved successfully: Stop submitting all together if something
 				 * is completely wrong and we know we will not be able to submit any messages at all..
 				 * Such as missing or invalid public and/or private keys */
 				if (returnParam != null &&
-				    returnParam.ContainsKey("message") && returnParam["message"].ToString().Equals("Game not found") &&
-					returnParam.ContainsKey("code") && returnParam["code"].ToString().Equals("400"))
-				{
+					returnParam.ContainsKey ("message") && returnParam ["message"].ToString ().Equals ("Game not found") &&
+					returnParam.ContainsKey ("code") && returnParam ["code"].ToString ().Equals ("400")) {
 					if (!gaTracking)
-						GA.LogWarning("GA Error: " + www.text + " (NOTE: make sure your Game Key and Secret Key match the keys you recieved from the Game Analytics website. It might take a few minutes before a newly added game will be able to recieve data.)");
+						GA.LogWarning ("GA Error: " + www.text + " (NOTE: make sure your Game Key and Secret Key match the keys you recieved from the Game Analytics website. It might take a few minutes before a newly added game will be able to recieve data.)");
 					
 					//An error event with a null parameter will stop the GA wrapper from submitting messages
-					if (errorEvent != null)
-					{
-						errorEvent(null);
+					if (errorEvent != null) {
+						errorEvent (null);
 					}
-				}
-				else
-				{
+				} else {
 					if (!gaTracking)
-						GA.LogWarning("GA Error: " + www.text);
+						GA.LogWarning ("GA Error: " + www.text);
 					
-					if (errorEvent != null)
-					{
-						errorEvent(items);
+					if (errorEvent != null) {
+						errorEvent (items);
 					}
 				}
 			}
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			if (!gaTracking)
-				GA.LogWarning("GA Error: " + e.Message);
+				GA.LogWarning ("GA Error: " + e.Message);
 			
 			/* If we hit one of these errors we should not attempt to send the message again
 			 * (if necessary we already threw a GA Error which may be tracked) */
-			if (e.Message.Contains("400 Bad Request"))
-			{
+			if (e.Message.Contains ("400 Bad Request")) {
 				//An error event with a null parameter will stop the GA wrapper from submitting messages
-				if (errorEvent != null)
-				{
-					errorEvent(null);
+				if (errorEvent != null) {
+					errorEvent (null);
 				}
-			}
-			else
-			{
-				if (errorEvent != null)
-				{
-					errorEvent(items);
+			} else {
+				if (errorEvent != null) {
+					errorEvent (items);
 				}
 			}
 		}
@@ -421,12 +389,12 @@ public class GA_Submit
 	/// <returns>
 	/// A string representing the base url (+ version if inclVersion is true) <see cref="System.String"/>
 	/// </returns>
-	public static string GetBaseURL(bool inclVersion)
+	public static string GetBaseURL (bool inclVersion)
 	{
 		if (inclVersion)
-			return GetUrlStart() + _baseURL + "/" + _version;
+			return GetUrlStart () + _baseURL + "/" + _version;
 		
-		return GetUrlStart() + _baseURL;
+		return GetUrlStart () + _baseURL;
 	}
 	
 	/// <summary>
@@ -438,14 +406,14 @@ public class GA_Submit
 	/// <returns>
 	/// A string representing the url matching our service choice on the GA server <see cref="System.String"/>
 	/// </returns>
-	public static string GetURL(string category, string pubKey)
+	public static string GetURL (string category, string pubKey)
 	{
-		return GetUrlStart() + _baseURL + "/" + _version + "/" + pubKey + "/" + category;
+		return GetUrlStart () + _baseURL + "/" + _version + "/" + pubKey + "/" + category;
 	}
 	
-	private static string GetUrlStart()
+	private static string GetUrlStart ()
 	{
-		if (Application.absoluteURL.StartsWith("https"))
+		if (Application.absoluteURL.StartsWith ("https"))
 			return "https";
 		else
 			return "http";
@@ -460,18 +428,18 @@ public class GA_Submit
 	/// <returns>
 	/// The MD5 hash encoded result of input <see cref="System.String"/>
 	/// </returns>
-	public static string CreateMD5Hash(string input)
+	public static string CreateMD5Hash (string input)
 	{
 		#if !UNITY_FLASH && !UNITY_WP8 && !UNITY_METRO
 		
 		// Gets the MD5 hash for input
-		MD5 md5 = new MD5CryptoServiceProvider();
-		byte[] data = Encoding.UTF8.GetBytes(input);
-		byte[] hash = md5.ComputeHash(data);
+		MD5 md5 = new MD5CryptoServiceProvider ();
+		byte[] data = Encoding.UTF8.GetBytes (input);
+		byte[] hash = md5.ComputeHash (data);
 		// Transforms as hexa
 		string hexaHash = "";
 		foreach (byte b in hash) {
-			hexaHash += String.Format("{0:x2}", b);
+			hexaHash += String.Format ("{0:x2}", b);
 		}
 		// Returns MD5 hexa hash as string
 		return hexaHash;
@@ -537,17 +505,17 @@ public class GA_Submit
 	/// The sha1 hash encoded result of input <see cref="System.String"/>
 	/// </returns>
 	#if !UNITY_FLASH && !UNITY_WP8 && !UNITY_METRO
-	public string CreateSha1Hash(string input)
+	public string CreateSha1Hash (string input)
 	{
 		// Gets the sha1 hash for input
-		SHA1 sha1 = new SHA1CryptoServiceProvider();
-		byte[] data = Encoding.UTF8.GetBytes(input);
-		byte[] hash = sha1.ComputeHash(data);
+		SHA1 sha1 = new SHA1CryptoServiceProvider ();
+		byte[] data = Encoding.UTF8.GetBytes (input);
+		byte[] hash = sha1.ComputeHash (data);
 		// Returns sha1 hash as string
-		return Convert.ToBase64String(hash);
+		return Convert.ToBase64String (hash);
 	}
 	
-	public string GetPrivateKey()
+	public string GetPrivateKey ()
 	{
 		return _privateKey;
 	}
@@ -567,36 +535,31 @@ public class GA_Submit
 	/// <returns>
 	/// Return true if response code is from 200 to 299. Otherwise returns false.
 	/// </returns>
-	public static bool CheckServerReply(WWW www)
+	public static bool CheckServerReply (WWW www)
 	{
-		try
-		{
-			if (!string.IsNullOrEmpty(www.error))
-			{
-				string errStart = www.error.Substring(0, 3);
-				if (errStart.Equals("201") || errStart.Equals("202") || errStart.Equals("203") || errStart.Equals("204") || errStart.Equals("205") || errStart.Equals("206"))
+		try {
+			if (!string.IsNullOrEmpty (www.error)) {
+				string errStart = www.error.Substring (0, 3);
+				if (errStart.Equals ("201") || errStart.Equals ("202") || errStart.Equals ("203") || errStart.Equals ("204") || errStart.Equals ("205") || errStart.Equals ("206"))
 					return true;
 			}
 			
-			if (!www.responseHeaders.ContainsKey("STATUS"))
+			if (!www.responseHeaders.ContainsKey ("STATUS"))
 				return false;
 			
-			string status = www.responseHeaders["STATUS"];
+			string status = www.responseHeaders ["STATUS"];
 			
-			string[] splitStatus = status.Split(' ');
+			string[] splitStatus = status.Split (' ');
 			
 			int responseCode;
 			
-			if (splitStatus.Length > 1 && int.TryParse(splitStatus[1], out responseCode))
-			{
+			if (splitStatus.Length > 1 && int.TryParse (splitStatus [1], out responseCode)) {
 				if (responseCode >= 200 && responseCode < 300)
 					return true;
 			}
 			
 			return false;
-		}
-		catch
-		{
+		} catch {
 			return false;
 		}
 	}
@@ -612,25 +575,23 @@ public class GA_Submit
 	/// <param name='list'>
 	/// List.
 	/// </param>
-	public static string DictToJson(List<Hashtable> list)
+	public static string DictToJson (List<Hashtable> list)
 	{
 		string b = "[";
 		int d = 0;
 		int c = 0;
-		foreach(var dict in list)
-		{
+		foreach (var dict in list) {
 			b += '{';
 			c = 0;
-			foreach(var key in dict.Keys)
-			{
+			foreach (var key in dict.Keys) {
 				c++;
-				b += "\""+key+"\":\""+dict[key]+"\"";
-				if(c<dict.Keys.Count)
+				b += "\"" + key + "\":\"" + dict [key] + "\"";
+				if (c < dict.Keys.Count)
 					b += ',';
 			}
 			b += '}';
 			d++;
-			if(d<list.Count)
+			if (d < list.Count)
 				b += ',';
 		}
 		b += "]";
