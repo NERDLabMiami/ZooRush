@@ -8,6 +8,7 @@ using System.Collections;
  */ 
 public class EndlessSceneManager : MonoBehaviour
 {
+<<<<<<< HEAD
 		public bool failed;
 		public bool fainted;
 		private bool endCalled;
@@ -35,6 +36,12 @@ public class EndlessSceneManager : MonoBehaviour
 		public int[] animalCaughtCount;
 		public int totalCaughtCount;
 		public static float[] maxTime = {
+=======
+	private Animal.AnimalValues currentAnimal;
+
+	private int[] animalUsageCount = new int[(int)Animal.AnimalValues.COUNT];
+	public static float[] maxTime = {
+>>>>>>> master
 		3, //Bear
 		2, //Cheetah
 		4, //Crocodile
@@ -52,6 +59,7 @@ public class EndlessSceneManager : MonoBehaviour
 		public EndlessAnimal animalController;
 		public Animator animalAnimator;
 
+<<<<<<< HEAD
 		public GameObject endMenu;
 		public TextMesh animalCaughtText;
 
@@ -59,6 +67,12 @@ public class EndlessSceneManager : MonoBehaviour
 		{
 				GameState.StateChanged += OnStateChanged;
 		}
+=======
+	void OnEnable ()
+	{
+		GameState.StateChanged += OnStateChanged;
+	}
+>>>>>>> master
 	
 		void OnDisable ()
 		{
@@ -79,6 +93,7 @@ public class EndlessSceneManager : MonoBehaviour
 				}
 		}
 
+<<<<<<< HEAD
 		void Start ()
 		{
 				animalUsageCount = new int[10];
@@ -217,4 +232,49 @@ public class EndlessSceneManager : MonoBehaviour
 				pillCountText.text = theCount;
 		}
 
+=======
+	void Start ()
+	{
+		changeAnimal ();
+	}
+	
+	void Update ()
+	{
+		if (!GameState.checkForState (GameState.States.Start)) {
+		}
+		if (GameState.checkForState (GameState.States.Play)) {
+
+		}
+	}
+
+	private void changeAnimal ()
+	{
+		int newAnimalValue = Random.Range (0, (int)Animal.AnimalValues.COUNT); //chooses a random animal
+		while (newAnimalValue == (int)currentAnimal) { //makes sure it's not the same as the previous animal
+			newAnimalValue = Random.Range (0, (int)Animal.AnimalValues.COUNT); 
+		}
+		currentAnimal = (Animal.AnimalValues)newAnimalValue;
+		animalUsageCount [(int)currentAnimal]++; //updates the count for this animal type
+		animalAnimator.SetInteger ("Animal", (int)currentAnimal);
+		animalAnimator.SetTrigger ("Change");
+	}
+
+	public void introduceAnimal ()
+	{
+		animalObject.transform.position = new Vector3 (characterObject.transform.position.x,
+		                                              -9.5f,
+		                                              characterObject.transform.position.z);
+		changeAnimal ();
+		StartCoroutine (getAnimalIntoView ());
+	}
+
+	private IEnumerator getAnimalIntoView ()
+	{
+		Vector3 finalPosition = new Vector3 (-0.51f, -3.33f, characterObject.transform.position.z);
+		while (animalObject.transform.position.x < -0.5f) {
+			animalObject.transform.position = Vector3.Lerp (animalObject.transform.position, finalPosition, Time.deltaTime * 2f);
+			yield return new WaitForFixedUpdate ();
+		}
+	}
+>>>>>>> master
 }

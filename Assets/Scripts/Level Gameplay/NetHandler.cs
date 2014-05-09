@@ -13,13 +13,21 @@ public class NetHandler : MonoBehaviour
 				collided = false;
 		}
 
+<<<<<<< HEAD
 		void Update ()
 		{
 				if (transform.position.y < Camera.main.transform.position.y - 10f) { //if completely out of view of the camera
 						rigidbody2D.velocity = Vector2.zero;
 				}
+=======
+	void Update ()
+	{
+		if (transform.position.y < Camera.main.transform.position.y - 10f) { //if completely out of view of the camera
+			Destroy (gameObject); //destroy this net instance
+>>>>>>> master
 		}
 	
+<<<<<<< HEAD
 		void OnCollisionEnter2D (Collision2D coll)
 		{
 				Debug.Log ("COLLISION DETECTED");
@@ -39,6 +47,21 @@ public class NetHandler : MonoBehaviour
 						rigidbody2D.isKinematic = true;
 						GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("I Missed!");
 				}
+=======
+	void OnCollisionEnter2D (Collision2D coll)
+	{
+		collided = true;
+		//on interaction with another object with a trigger collider
+		if (coll.gameObject.name.Contains ("Animal")) { //if that object is an animal
+			StartCoroutine (interact (coll.gameObject));
+			coll.gameObject.GetComponentInChildren<Animal> ().caught = true;
+			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Gotcha!");
+			GameState.requestTransition ();
+		} else {
+			rigidbody2D.velocity = Vector2.zero;
+			rigidbody2D.isKinematic = true;
+			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("I Missed!");
+>>>>>>> master
 		}
 	
 		private IEnumerator interact (GameObject obj)
@@ -54,4 +77,9 @@ public class NetHandler : MonoBehaviour
 				rigidbody2D.velocity = Vector2.zero;
 				renderer.enabled = false;
 		}
+<<<<<<< HEAD
+=======
+		Destroy (gameObject); //destroy the net
+	}
+>>>>>>> master
 }
