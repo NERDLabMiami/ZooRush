@@ -15,8 +15,8 @@ public class GA {
 	
 	public static GA_Settings SettingsGA
 	{
-		get{
-			if( _settings == null)
+		get {
+			if (_settings == null)
 			{
 				InitAPI ();
 			}
@@ -40,7 +40,6 @@ public class GA {
 	
 	public class GA_API
 	{
-		public GA_Quality Quality = new GA_Quality();
 		public GA_Error Error = new GA_Error();
 		public GA_Design Design = new GA_Design();
 		public GA_Business Business = new GA_Business();
@@ -206,9 +205,7 @@ public class GA {
 			
 			if (GA.SettingsGA.Logo == null)
 			{
-				GA.SettingsGA.Logo = (Texture2D)Resources.LoadAssetAtPath("Assets/GameAnalytics/Plugins/Examples/gaLogo.png", typeof(Texture2D));
-				if (GA.SettingsGA.Logo == null)
-					GA.SettingsGA.Logo = (Texture2D)Resources.LoadAssetAtPath("Assets/Plugins/GameAnalytics/Examples/gaLogo.png", typeof(Texture2D));
+				GA.SettingsGA.Logo = (Texture2D)Resources.LoadAssetAtPath("Assets/Gizmos/gaLogo.png", typeof(Texture2D));
 			}
 			
 			Graphics.DrawTexture(new Rect(GUILayoutUtility.GetLastRect().width - selectionRect.height - 5 - addX, selectionRect.y, selectionRect.height, selectionRect.height), GA.SettingsGA.Logo);

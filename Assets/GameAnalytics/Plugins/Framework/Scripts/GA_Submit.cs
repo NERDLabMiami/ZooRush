@@ -26,7 +26,7 @@ public class GA_Submit
 	/// <summary>
 	/// Types of services on the GA server
 	/// </summary>
-	public enum CategoryType { GA_User, GA_Event, GA_Log, GA_Purchase, GA_Error }
+	public enum CategoryType { GA_User, GA_Event, /*GA_Log,*/ GA_Purchase, GA_Error }
 	
 	/// <summary>
 	/// An item is a message (parameters) and the category (GA service) the message should be sent to
@@ -42,17 +42,24 @@ public class GA_Submit
 	/// <summary>
 	/// All the different types of GA services
 	/// </summary>
-	public Dictionary<CategoryType, string> Categories;
+	public static Dictionary<CategoryType, string> Categories = new Dictionary<CategoryType, string>()
+	{
+		{ CategoryType.GA_User, "user" },
+		{ CategoryType.GA_Event, "design" },
+		//{ CategoryType.GA_Log, "quality" },
+		{ CategoryType.GA_Purchase, "business" },
+		{ CategoryType.GA_Error, "error" }
+	};
 	
 	#region private values
 	
 	private string _publicKey;
 	private string _privateKey;
-	private string _baseURL = "://api.gameanalytics.com";
-	private string _version = "1";
+	private static string _baseURL = "://api.gameanalytics.com";
+	private static string _version = "1";
 	
 	#endregion
-	
+
 	#region public methods
 	
 	/// <summary>
@@ -69,7 +76,7 @@ public class GA_Submit
 		_publicKey = publicKey;
 		_privateKey = privateKey;
 
-		if (Categories == null)
+		/*if (Categories == null)
 		{
 			Categories = new Dictionary<CategoryType, string>()
 			{
@@ -79,7 +86,7 @@ public class GA_Submit
 				{ CategoryType.GA_Purchase, "business" },
 				{ CategoryType.GA_Error, "error" }
 			};
-		}
+		}*/
 	}
 	
 	/// <summary>
@@ -161,7 +168,7 @@ public class GA_Submit
 			}
 		}
 		
-		GA.RunCoroutine(Submit(categories, successEvent, errorEvent, gaTracking, pubKey, priKey));
+		Submit(categories, successEvent, errorEvent, gaTracking, pubKey, priKey);
 	}
 	
 	/// <summary>
@@ -179,7 +186,7 @@ public class GA_Submit
 	/// <returns>
 	/// A <see cref="IEnumerator"/>
 	/// </returns>
-	public IEnumerator Submit(Dictionary<CategoryType, List<Item>> categories, SubmitSuccessHandler successEvent, SubmitErrorHandler errorEvent, bool gaTracking, string pubKey, string priKey)
+	public void Submit(Dictionary<CategoryType, List<Item>> categories, SubmitSuccessHandler successEvent, SubmitErrorHandler errorEvent, bool gaTracking, string pubKey, string priKey)
 	{
 		if (pubKey.Equals(""))
 			pubKey = _publicKey;
@@ -194,7 +201,7 @@ public class GA_Submit
 			
 			if (items.Count == 0)
 			{
-				yield break;
+				continue;
 			}
 			
 			//Since all the items must have the same category (we make sure they do below) we can get the category from the first item
@@ -213,7 +220,6 @@ public class GA_Submit
 					{
 						errorEvent(items);
 					}
-					yield break;
 				}
 				
 				// if user ID is missing from the item add it now (could f.x. happen if custom user id is enabled,
@@ -256,7 +262,6 @@ public class GA_Submit
 				{
 					successEvent(items, true);
 				}
-				yield break;
 			}
 			else if (!GA.SettingsGA.InternetConnectivity)
 			{
@@ -267,116 +272,103 @@ public class GA_Submit
 				{
 					errorEvent(items);
 				}
-				yield break;
 			}
 			
-			//Prepare the JSON array string for sending by converting it to a byte array
-			byte[] data = Encoding.UTF8.GetBytes(json);
-			
-			WWW www = null;
-			
-			#if !UNITY_WP8 && !UNITY_METRO
-			
-			//Set the authorization header to contain an MD5 hash of the JSON array string + the private key
-			Hashtable headers = new Hashtable();
-			headers.Add("Authorization", CreateMD5Hash(json + priKey));
-			//headers.Add("Content-Length", data.Length);
-			
-			//Try to send the data
-			www = new WWW(url, data, headers);
-			
-			#else
-			
-			//Set the authorization header to contain an MD5 hash of the JSON array string + the private key
-			
-			Dictionary<string, string> headers = new Dictionary<string, string>();
-			headers.Add("Authorization", CreateMD5Hash(json + priKey));
-			//headers.Add("Content-Length", data.Length.ToString());
-			
-			//Try to send the data
-			www = new WWW(url, data, headers);
-			
-			#endif
-			
-			#if !UNITY_FLASH && !UNITY_WP8 && !UNITY_METRO
-			//Set thread priority low
-			www.threadPriority = ThreadPriority.Low;
-			#endif
-			
-			//Wait for response
-			yield return www;
-			
-			if (GA.SettingsGA.DebugMode && !gaTracking)
+			string jsonHash = CreateMD5Hash(json + priKey);
+
+			WWW www = CreateSubmitWWW(url, json, jsonHash);
+
+			GA.RunCoroutine(SendWWW(www, successEvent, errorEvent, gaTracking, json, jsonHash, items));
+		}
+	}
+
+	public static WWW CreateSubmitWWW(string url, string json, string jsonHash)
+	{
+		WWW www = null;
+
+		//Prepare the JSON array string for sending by converting it to a byte array
+		byte[] data = Encoding.UTF8.GetBytes(json);
+		
+		#if !UNITY_WP8 && !UNITY_METRO
+		
+		//Set the authorization header to contain an MD5 hash of the JSON array string + the private key
+		Hashtable headers = new Hashtable();
+		headers.Add("Authorization", jsonHash);
+		//headers.Add("Content-Length", data.Length);
+		
+		//Try to send the data
+		www = new WWW(url, data, headers);
+		
+		#else
+		
+		//Set the authorization header to contain an MD5 hash of the JSON array string + the private key
+		
+		Dictionary<string, string> headers = new Dictionary<string, string>();
+		headers.Add("Authorization", jsonHash);
+		//headers.Add("Content-Length", data.Length.ToString());
+		
+		//Try to send the data
+		www = new WWW(url, data, headers);
+		
+		#endif
+
+		return www;
+	}
+	
+	public static IEnumerator SendWWW(WWW www, SubmitSuccessHandler successEvent, SubmitErrorHandler errorEvent, bool gaTracking, string json, string jsonHash, List<Item> items)
+	{
+		#if !UNITY_FLASH && !UNITY_WP8 && !UNITY_METRO
+		//Set thread priority low
+		www.threadPriority = ThreadPriority.Low;
+		#endif
+		
+		//Wait for response
+		yield return www;
+		
+		if (GA.SettingsGA.DebugMode && !gaTracking)
+		{
+			GA.Log("GA URL: " + www.url);
+			GA.Log("GA Submit: " + json);
+			GA.Log("GA Hash: " + jsonHash);
+		}
+		
+		try
+		{
+			if (!string.IsNullOrEmpty(www.error) && !CheckServerReply(www))
 			{
-				GA.Log("GA URL: " + url);
-				GA.Log("GA Submit: " + json);
-				GA.Log("GA Hash: " + CreateMD5Hash(json + priKey));
+				throw new Exception(www.error);
 			}
 			
-			try
+			//Get the JSON object from the response
+			Hashtable returnParam = (Hashtable)GA_MiniJSON.JsonDecode(www.text);
+			
+			//If the response contains the key "status" with the value "ok" we know that the message was sent and recieved successfully
+			if ((returnParam != null &&
+			    returnParam.ContainsKey("status") && returnParam["status"].ToString().Equals("ok")) ||
+				CheckServerReply(www))
 			{
-				if (!string.IsNullOrEmpty(www.error) && !CheckServerReply(www))
+				if (GA.SettingsGA.DebugMode && !gaTracking)
 				{
-					throw new Exception(www.error);
+					GA.Log("GA Result: " + www.text);
 				}
 				
-				//Get the JSON object from the response
-				Hashtable returnParam = (Hashtable)GA_MiniJSON.JsonDecode(www.text);
-				
-				//If the response contains the key "status" with the value "ok" we know that the message was sent and recieved successfully
-				if ((returnParam != null &&
-				    returnParam.ContainsKey("status") && returnParam["status"].ToString().Equals("ok")) ||
-					CheckServerReply(www))
+				if (successEvent != null)
 				{
-					if (GA.SettingsGA.DebugMode && !gaTracking)
-					{
-						GA.Log("GA Result: " + www.text);
-					}
+					successEvent(items, true);
+				}
+			}
+			else
+			{
+				/* The message was not sent and recieved successfully: Stop submitting all together if something
+				 * is completely wrong and we know we will not be able to submit any messages at all..
+				 * Such as missing or invalid public and/or private keys */
+				if (returnParam != null &&
+				    returnParam.ContainsKey("message") && returnParam["message"].ToString().Equals("Game not found") &&
+					returnParam.ContainsKey("code") && returnParam["code"].ToString().Equals("400"))
+				{
+					if (!gaTracking)
+						GA.LogWarning("GA Error: " + www.text + " (NOTE: make sure your Game Key and Secret Key match the keys you recieved from the Game Analytics website. It might take a few minutes before a newly added game will be able to recieve data.)");
 					
-					if (successEvent != null)
-					{
-						successEvent(items, true);
-					}
-				}
-				else
-				{
-					/* The message was not sent and recieved successfully: Stop submitting all together if something
-					 * is completely wrong and we know we will not be able to submit any messages at all..
-					 * Such as missing or invalid public and/or private keys */
-					if (returnParam != null &&
-					    returnParam.ContainsKey("message") && returnParam["message"].ToString().Equals("Game not found") &&
-						returnParam.ContainsKey("code") && returnParam["code"].ToString().Equals("400"))
-					{
-						if (!gaTracking)
-							GA.LogWarning("GA Error: " + www.text + " (NOTE: make sure your Game Key and Secret Key match the keys you recieved from the Game Analytics website. It might take a few minutes before a newly added game will be able to recieve data.)");
-						
-						//An error event with a null parameter will stop the GA wrapper from submitting messages
-						if (errorEvent != null)
-						{
-							errorEvent(null);
-						}
-					}
-					else
-					{
-						if (!gaTracking)
-							GA.LogWarning("GA Error: " + www.text);
-						
-						if (errorEvent != null)
-						{
-							errorEvent(items);
-						}
-					}
-				}
-			}
-			catch (Exception e)
-			{
-				if (!gaTracking)
-					GA.LogWarning("GA Error: " + e.Message);
-				
-				/* If we hit one of these errors we should not attempt to send the message again
-				 * (if necessary we already threw a GA Error which may be tracked) */
-				if (e.Message.Contains("400 Bad Request"))
-				{
 					//An error event with a null parameter will stop the GA wrapper from submitting messages
 					if (errorEvent != null)
 					{
@@ -385,10 +377,36 @@ public class GA_Submit
 				}
 				else
 				{
+					if (!gaTracking)
+						GA.LogWarning("GA Error: " + www.text);
+					
 					if (errorEvent != null)
 					{
 						errorEvent(items);
 					}
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			if (!gaTracking)
+				GA.LogWarning("GA Error: " + e.Message);
+			
+			/* If we hit one of these errors we should not attempt to send the message again
+			 * (if necessary we already threw a GA Error which may be tracked) */
+			if (e.Message.Contains("400 Bad Request"))
+			{
+				//An error event with a null parameter will stop the GA wrapper from submitting messages
+				if (errorEvent != null)
+				{
+					errorEvent(null);
+				}
+			}
+			else
+			{
+				if (errorEvent != null)
+				{
+					errorEvent(items);
 				}
 			}
 		}
@@ -403,7 +421,7 @@ public class GA_Submit
 	/// <returns>
 	/// A string representing the base url (+ version if inclVersion is true) <see cref="System.String"/>
 	/// </returns>
-	public string GetBaseURL(bool inclVersion)
+	public static string GetBaseURL(bool inclVersion)
 	{
 		if (inclVersion)
 			return GetUrlStart() + _baseURL + "/" + _version;
@@ -420,12 +438,12 @@ public class GA_Submit
 	/// <returns>
 	/// A string representing the url matching our service choice on the GA server <see cref="System.String"/>
 	/// </returns>
-	public string GetURL(string category, string pubKey)
+	public static string GetURL(string category, string pubKey)
 	{
 		return GetUrlStart() + _baseURL + "/" + _version + "/" + pubKey + "/" + category;
 	}
 	
-	private string GetUrlStart()
+	private static string GetUrlStart()
 	{
 		if (Application.absoluteURL.StartsWith("https"))
 			return "https";
@@ -442,7 +460,7 @@ public class GA_Submit
 	/// <returns>
 	/// The MD5 hash encoded result of input <see cref="System.String"/>
 	/// </returns>
-	public string CreateMD5Hash(string input)
+	public static string CreateMD5Hash(string input)
 	{
 		#if !UNITY_FLASH && !UNITY_WP8 && !UNITY_METRO
 		
@@ -549,7 +567,7 @@ public class GA_Submit
 	/// <returns>
 	/// Return true if response code is from 200 to 299. Otherwise returns false.
 	/// </returns>
-	public bool CheckServerReply(WWW www)
+	public static bool CheckServerReply(WWW www)
 	{
 		try
 		{

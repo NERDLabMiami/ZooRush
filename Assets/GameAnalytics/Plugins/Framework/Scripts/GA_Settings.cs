@@ -5,6 +5,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 /// <summary>
 /// The GA_Settings object contains an array of options which allows you to customize your use of GameAnalytics. Most importantly you will need to fill in your Game Key and Secret Key on the GA_Settings object to use the service.
 /// </summary>
@@ -38,7 +42,7 @@ public class GA_Settings : ScriptableObject
 	/// The version of the GA Unity Wrapper plugin
 	/// </summary>
 	[HideInInspector]
-	public static string VERSION = "0.6.1";
+	public static string VERSION = "0.6.2";
 	
 	#endregion
 	
@@ -71,6 +75,36 @@ public class GA_Settings : ScriptableObject
 	public string ApiKey = "";
 	[SerializeField]
 	public string Build = "0.1";
+
+	public bool SignUpOpen = true;
+	public string FirstName = "";
+	public string LastName = "";
+	public string StudioName = "";
+	public string GameName = "";
+	public string PasswordConfirm = "";
+	public bool EmailOptIn = true;
+	public string EmailGA = "";
+	public string PasswordGA = "";
+	[System.NonSerialized]
+	public string TokenGA = "";
+	[System.NonSerialized]
+	public string ExpireTime = "";
+	[System.NonSerialized]
+	public string LoginStatus = "Not logged in.";
+	[System.NonSerialized]
+	public int SelectedStudio = 0;
+	[System.NonSerialized]
+	public int SelectedGame = 0;
+	[System.NonSerialized]
+	public bool JustSignedUp = false;
+	[System.NonSerialized]
+	public bool HideSignupWarning = false;
+
+	public bool IntroScreen = true;
+
+	[System.NonSerialized]
+	public List<Studio> Studios;
+
 	public bool DebugMode = true;
 	public bool DebugAddEvent = false;
 	public bool SendExampleGameDataToMyGame = false;
@@ -81,6 +115,7 @@ public class GA_Settings : ScriptableObject
 	public bool ArchiveData = true;
 	public bool NewSessionOnResume = true;
 	public bool AutoSubmitUserInfo = true;
+	public bool DelayQuitToSendData = true;
 	public Vector3 HeatmapGridSize = Vector3.one;
 
 	//bytes
@@ -105,7 +140,10 @@ public class GA_Settings : ScriptableObject
 	public GA_AdSupport.GAAdNetwork Trigger_SceneChange_network = GA_AdSupport.GAAdNetwork.Any;
 	
 	public bool IAD_foldout = true;
-	public bool IAD_enabled = true;
+	public static bool IAD_DEFAULT = true;
+	public static bool CB_DEFAULT = false;
+	public bool IAD_enabled = IAD_DEFAULT;
+	public bool CB_enabled = CB_DEFAULT;
 	#if UNITY_IPHONE || UNITY_EDITOR
 	public ADBannerView.Type IAD_type = ADBannerView.Type.Banner;
 	public ADBannerView.Layout IAD_layout = ADBannerView.Layout.Top;
@@ -114,18 +152,19 @@ public class GA_Settings : ScriptableObject
 	public float IAD_Duration = 10;
 
 	public bool CB_foldout = true;
-	public bool CB_enabled = false;
 	public string CB_appID;
 	public string CB_appSig;
 	
 	//These values are used for the GA_Inspector only
-	public enum InspectorStates { Basic, Debugging, Pref, Ads }
+	public enum InspectorStates { Account, Basic, Debugging, Pref, Ads }
 	public InspectorStates CurrentInspectorState;
 	public List<HelpTypes> ClosedHints = new List<HelpTypes>();
 	public bool DisplayHints;
 	public Vector2 DisplayHintsScrollState;
 	public Texture2D Logo;
 	public Texture2D UpdateIcon;
+	[System.NonSerialized]
+	public GUIStyle SignupButton;
 	
 	[SerializeField]
 	public List<GA_CustomAdTrigger> CustomAdTriggers = new List<GA_CustomAdTrigger>();
@@ -202,14 +241,14 @@ public class GA_Settings : ScriptableObject
 		else
 		{
 			//Try to ping the server
-			WWW www = new WWW(GA.API.Submit.GetBaseURL(true) + "/ping");
+			WWW www = new WWW(GA_Submit.GetBaseURL(true) + "/ping");
 				
 			//Wait for response
 			yield return www;
 			
 			try
 			{
-				if (GA.API.Submit.CheckServerReply(www))
+				if (GA_Submit.CheckServerReply(www))
 				{
 					InternetConnectivity = true;
 				}
@@ -255,8 +294,8 @@ public class GA_Settings : ScriptableObject
 				
 				#if UNITY_EDITOR
 				
-				GameObject gaTracking = new GameObject("GA_Tracking");
-				gaTracking.AddComponent<GA_Tracking>();
+				//GameObject gaTracking = new GameObject("GA_Tracking");
+				//gaTracking.AddComponent<GA_Tracking>();
 				
 				#else
 				
@@ -305,7 +344,7 @@ public class GA_Settings : ScriptableObject
 			os = osSplit[0];
 		
 		#endif
-		
+
 		#if UNITY_IPHONE && !UNITY_EDITOR && IOS_ID
 		
 		try
@@ -314,9 +353,9 @@ public class GA_Settings : ScriptableObject
 			if (iOSid != null && iOSid != string.Empty)
 			{
 				if (iOSid.StartsWith("VENDOR-"))
-					GA.API.User.NewUser(GA_User.Gender.Unknown, null, null, null, null, AutoSubmitUserInfo?GA.API.GenericInfo.GetSystem():null, AutoSubmitUserInfo?device:null, AutoSubmitUserInfo?os:null, AutoSubmitUserInfo?SystemInfo.operatingSystem:null, "GA Unity SDK " + VERSION);
+					GA.API.User.NewUser(GA_User.Gender.Unknown, null, null, null, null, AutoSubmitUserInfo?GA_GenericInfo.GetSystem():null, AutoSubmitUserInfo?device:null, AutoSubmitUserInfo?os:null, AutoSubmitUserInfo?SystemInfo.operatingSystem:null, "GA Unity SDK " + VERSION);
 				else
-					GA.API.User.NewUser(GA_User.Gender.Unknown, null, null, iOSid, null, AutoSubmitUserInfo?GA.API.GenericInfo.GetSystem():null, AutoSubmitUserInfo?device:null, AutoSubmitUserInfo?os:null, AutoSubmitUserInfo?SystemInfo.operatingSystem:null, "GA Unity SDK " + VERSION);
+					GA.API.User.NewUser(GA_User.Gender.Unknown, null, null, iOSid, null, AutoSubmitUserInfo?GA_GenericInfo.GetSystem():null, AutoSubmitUserInfo?device:null, AutoSubmitUserInfo?os:null, AutoSubmitUserInfo?SystemInfo.operatingSystem:null, "GA Unity SDK " + VERSION);
 				
 				returnValue = true;
 			}
@@ -331,7 +370,7 @@ public class GA_Settings : ScriptableObject
 			string androidID = GetUniqueIDAndroid();
 			if (androidID != null && androidID != string.Empty)
 			{
-				GA.API.User.NewUser(GA_User.Gender.Unknown, null, null, null, androidID, AutoSubmitUserInfo?GA.API.GenericInfo.GetSystem():null, AutoSubmitUserInfo?device:null, AutoSubmitUserInfo?os:null, AutoSubmitUserInfo?SystemInfo.operatingSystem:null, "GA Unity SDK " + VERSION);
+				GA.API.User.NewUser(GA_User.Gender.Unknown, null, null, null, androidID, AutoSubmitUserInfo?GA_GenericInfo.GetSystem():null, AutoSubmitUserInfo?device:null, AutoSubmitUserInfo?os:null, AutoSubmitUserInfo?SystemInfo.operatingSystem:null, "GA Unity SDK " + VERSION);
 				returnValue = true;
 			}
 		}
@@ -340,12 +379,12 @@ public class GA_Settings : ScriptableObject
 		
 		#elif UNITY_FLASH && !UNITY_EDITOR
 		
-		GA.API.User.NewUser(GA_User.Gender.Unknown, null, null, null, null, AutoSubmitUserInfo?GA.API.GenericInfo.GetSystem():null, "Flash", AutoSubmitUserInfo?os:null, AutoSubmitUserInfo?SystemInfo.operatingSystem:null, "GA Unity SDK " + VERSION);
+		GA.API.User.NewUser(GA_User.Gender.Unknown, null, null, null, null, AutoSubmitUserInfo?GA_GenericInfo.GetSystem():null, "Flash", AutoSubmitUserInfo?os:null, AutoSubmitUserInfo?SystemInfo.operatingSystem:null, "GA Unity SDK " + VERSION);
 		returnValue = true;
 		
 		#elif !UNITY_EDITOR && !UNITY_IPHONE && !UNITY_ANDROID
 		
-		GA.API.User.NewUser(GA_User.Gender.Unknown, null, null, null, null, AutoSubmitUserInfo?GA.API.GenericInfo.GetSystem():null, AutoSubmitUserInfo?device:null, AutoSubmitUserInfo?os:null, AutoSubmitUserInfo?SystemInfo.operatingSystem:null, "GA Unity SDK " + VERSION);
+		GA.API.User.NewUser(GA_User.Gender.Unknown, null, null, null, null, AutoSubmitUserInfo?GA_GenericInfo.GetSystem():null, AutoSubmitUserInfo?device:null, AutoSubmitUserInfo?os:null, AutoSubmitUserInfo?SystemInfo.operatingSystem:null, "GA Unity SDK " + VERSION);
 		returnValue = true;
 		
 		#elif UNITY_IPHONE && UNITY_EDITOR && !IOS_ID
@@ -386,7 +425,7 @@ public class GA_Settings : ScriptableObject
 		{
 			AndroidJavaClass up = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
 			AndroidJavaObject currentActivity = up.GetStatic<AndroidJavaObject> ("currentActivity");
-			AndroidJavaObject contentResolver = currentActivity.Call<AndroidJavaObject> ("getContentResolver");  
+			AndroidJavaObject contentResolver = currentActivity.Call<AndroidJavaObject> ("getContentResolver");
 			AndroidJavaClass secure = new AndroidJavaClass ("android.provider.Settings$Secure");
 			uid = secure.CallStatic<string> ("getString", contentResolver, "android_id");
 		}
@@ -432,6 +471,69 @@ public class GA_Settings : ScriptableObject
 		GameKey = gamekey;
 		SecretKey = secretkey;
 	}
-	
+
 	#endregion
+}
+
+//[System.Serializable]
+public class Studio
+{
+	public string Name { get; private set; }
+	
+	//[SerializeField]
+	public List<string> Games { get; private set; }
+
+	//[SerializeField]
+	public List<string> Tokens { get; private set; }
+
+	//[SerializeField]
+	public List<int> GameIDs { get; private set; }
+
+	public Studio (string name, List<string> games, List<string> tokens, List<int> ids)
+	{
+		Name = name;
+		Games = games;
+		Tokens = tokens;
+		GameIDs = ids;
+	}
+	
+	public static string[] GetStudioNames (List<Studio> studios)
+	{
+		if (studios == null)
+		{
+			return new string[] { "-" };
+		}
+		
+		string[] names = new string[studios.Count + 1];
+		names[0] = "-";
+
+		string spaceAdd = "";
+		for (int i = 0; i < studios.Count; i++)
+		{
+			names[i+1] = studios[i].Name + spaceAdd;
+			spaceAdd += " ";
+		}
+		
+		return names;
+	}
+	
+	public static string[] GetGameNames (int index, List<Studio> studios)
+	{
+		if (studios == null || studios[index].Games == null)
+		{
+			return new string[] { "-" };
+		}
+		
+		string[] names = new string[studios[index].Games.Count + 1];
+		names[0] = "-";
+		
+		string spaceAdd = "";
+		for (int i = 0; i < studios[index].Games.Count; i++)
+		{
+			names[i+1] = studios[index].Games[i] + spaceAdd;
+			spaceAdd += " ";
+		}
+		
+		return names;
+	}
 }

@@ -154,7 +154,7 @@ public class GA_Gui : MonoBehaviour
 				if (GA.SettingsGA.TrackTarget != null)
 					target = GA.SettingsGA.TrackTarget.position;
 				
-				GA.API.Quality.NewEvent("Feedback:"+_topic, _details, target.x, target.y, target.z);
+				GA.API.Error.NewEvent(GA_Error.SeverityType.info, "Feedback [" + _topic + "]: " + _details, target.x, target.y, target.z);
 				
 				_topic = "";
 				_details = "";
@@ -222,10 +222,10 @@ public class GA_Gui : MonoBehaviour
 				
 				if (_popUpError)
 				{
-					GA.API.Quality.NewEvent("Crash Report:"+_topic, _details, target);
+					GA.API.Error.NewEvent(GA_Error.SeverityType.info, "Crash Report [" + _topic + "]: " + _details, target);
 				}
 				else
-					GA.API.Quality.NewEvent("Bug Report:"+_topic, _details, target);
+					GA.API.Error.NewEvent(GA_Error.SeverityType.info, "Bug Report [" + _topic + "]: " + _details, target);
 				
 				_topic = "";
 				_details = "";

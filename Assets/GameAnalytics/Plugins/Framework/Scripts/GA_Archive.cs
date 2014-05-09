@@ -90,7 +90,7 @@ public  class GA_Archive
 					bool saveData = false;
 					GA_Submit.CategoryType category = GA_Submit.CategoryType.GA_User;
 					
-					foreach (KeyValuePair<GA_Submit.CategoryType, string> kvp in GA.API.Submit.Categories)
+					foreach (KeyValuePair<GA_Submit.CategoryType, string> kvp in GA_Submit.Categories)
 					{
 						if (kvp.Key.ToString().Equals(categoryString))
 						{

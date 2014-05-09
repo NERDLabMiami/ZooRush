@@ -92,25 +92,25 @@ public static class GA_Queue
 		
 		if (_submittingData)
 		{
-			if (stack && type == GA_Submit.CategoryType.GA_Log)
+			/*if (stack && type == GA_Submit.CategoryType.GA_Log)
 			{
 				StackQueue(_tempQueue, item);
 			}
 			else
-			{
+			{*/
 				_tempQueue.Add(item);
-			} 
+			//}
 		}
 		else
 		{
-			if (stack && type == GA_Submit.CategoryType.GA_Log)
+			/*if (stack && type == GA_Submit.CategoryType.GA_Log)
 			{
 				StackQueue(_queue, item);
 			}
 			else
-			{
+			{*/
 				_queue.Add(item);
-			}
+			//}
 		}
 	}
 	
@@ -137,25 +137,6 @@ public static class GA_Queue
 				yield return new WaitForSeconds(0.5f);
 			}
 			
-			//If we have internet connection then add any archived data to the submit queue
-			if (GA.SettingsGA.ArchiveData && GA.SettingsGA.InternetConnectivity)
-			{
-				List<GA_Submit.Item> archivedItems = GA.API.Archive.GetArchivedData();
-				
-				if (archivedItems != null && archivedItems.Count > 0)
-				{
-					foreach (GA_Submit.Item item in archivedItems)
-					{
-						GA_Queue.AddItem(item.Parameters, item.Type, false);
-					}
-				
-					if (GA.SettingsGA.DebugMode)
-					{
-						GA.Log("GA: Network connection detected. Adding archived data to next submit queue.");
-					}
-				}
-			}
-			
 			ForceSubmit();
 			
 			//Wait for the next timer interval before we try to submit again
@@ -170,6 +151,25 @@ public static class GA_Queue
 	{
 		GA_SpecialEvents.SubmitAverageFPS();
 		
+		//If we have internet connection then add any archived data to the submit queue
+		if (GA.SettingsGA.ArchiveData && GA.SettingsGA.InternetConnectivity)
+		{
+			List<GA_Submit.Item> archivedItems = GA.API.Archive.GetArchivedData();
+			
+			if (archivedItems != null && archivedItems.Count > 0)
+			{
+				foreach (GA_Submit.Item item in archivedItems)
+				{
+					GA_Queue.AddItem(item.Parameters, item.Type, false);
+				}
+				
+				if (GA.SettingsGA.DebugMode)
+				{
+					GA.Log("GA: Network connection detected. Adding archived data to next submit queue.");
+				}
+			}
+		}
+		
 		//If we have something to submit and we have not stopped submitting completely then we start submitting data
 		if (_queue.Count > 0 && !_submittingData && !_endsubmit)
 		{
@@ -182,13 +182,28 @@ public static class GA_Queue
 	}
 	
 	/// <summary>
-	/// No more data will be sent after this timer interval
+	/// No more data will be sent
 	/// </summary>
 	public static void EndSubmit()
 	{
-		GA.Log("GA: Ending all data submission after this timer interval");
+		GA.Log("GA: Ending all data submission");
 		
 		_endsubmit = true;
+	}
+
+	/// <summary>
+	/// Call this after EndSubmit if you want to start sending data again
+	/// </summary>
+	public static void RestartSubmit()
+	{
+		if (_endsubmit)
+		{
+			GA.Log("GA: Restarting data submission");
+			
+			_endsubmit = false;
+
+			GA.RunCoroutine(GA_Queue.SubmitQueue());
+		}
 	}
 	
 	#endregion
@@ -204,7 +219,7 @@ public static class GA_Queue
 	/// <param name='item'>
 	/// Item.
 	/// </param>
-	private static void StackQueue(List<GA_Submit.Item> queue, GA_Submit.Item item)
+	/*private static void StackQueue(List<GA_Submit.Item> queue, GA_Submit.Item item)
 	{
 		bool stacked = false;
 		for (int i = 0; i < queue.Count; i++)
@@ -225,7 +240,7 @@ public static class GA_Queue
 		{
 			queue.Add(item);
 		}
-	}
+	}*/
 	
 	/// <summary>
 	/// This is called once for every successful message submitted. We count the number of messages submitted and when
@@ -240,7 +255,11 @@ public static class GA_Queue
 		{
 			if (OnSuccess != null)
 				OnSuccess();
-			
+
+			#if UNITY_EDITOR
+			GA_Tracking.EventSuccess(items);
+			#endif
+
 			GA.SettingsGA.TotalMessagesSubmitted += items.Count;
 			
 			foreach (GA_Submit.Item it in items)
@@ -250,9 +269,9 @@ public static class GA_Queue
 				case GA_Submit.CategoryType.GA_Event:
 					GA.SettingsGA.DesignMessagesSubmitted++;
 					break;
-				case GA_Submit.CategoryType.GA_Log:
+				/*case GA_Submit.CategoryType.GA_Log:
 					GA.SettingsGA.QualityMessagesSubmitted++;
-					break;
+					break;*/
 				case GA_Submit.CategoryType.GA_Error:
 					GA.SettingsGA.ErrorMessagesSubmitted++;
 					break;
@@ -327,9 +346,9 @@ public static class GA_Queue
 				case GA_Submit.CategoryType.GA_Event:
 					GA.SettingsGA.DesignMessagesFailed++;
 					break;
-				case GA_Submit.CategoryType.GA_Log:
+				/*case GA_Submit.CategoryType.GA_Log:
 					GA.SettingsGA.QualityMessagesFailed++;
-					break;
+					break;*/
 				case GA_Submit.CategoryType.GA_Error:
 					GA.SettingsGA.ErrorMessagesFailed++;
 					break;
