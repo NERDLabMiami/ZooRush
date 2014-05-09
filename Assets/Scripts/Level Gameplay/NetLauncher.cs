@@ -18,8 +18,6 @@ public class NetLauncher : MonoBehaviour
 	private int throwCount; //number of tries that have been made 
 	private int currentNetIndex;
 	public Rigidbody2D[] nets; //pool of nets to save instatiating while firing
-	private Rigidbody2D netInstance;
-	private bool endlessMode;
 
 	void Start ()
 	{	
@@ -27,9 +25,6 @@ public class NetLauncher : MonoBehaviour
 		firing = false;
 		throwCount = 0;
 		animal = GameObject.FindObjectOfType<Animal> ();
-		if (GameObject.FindObjectOfType<EndlessSceneManager> () != null) {
-			endlessMode = true;
-		}
 		currentNetIndex = 0;
 		nets = new Rigidbody2D[5];
 		for (int i = 0; i < nets.Length; i++) {
@@ -52,7 +47,7 @@ public class NetLauncher : MonoBehaviour
 	{
 		switch (GameState.currentState) {
 		case GameState.States.Launch:
-			resetThrowCount ();
+			throwCount = 0;
 			break;
 		default:
 			//NOP;
@@ -67,25 +62,10 @@ public class NetLauncher : MonoBehaviour
 				firing = true;
 				fire ();
 			}
-			if (throwCount >= 3) { //Pauses character momentarily and resets the netthrow count
-				StartCoroutine (waitForNetToSettle ());
+			if (throwCount >= 3 && animal && !animal.caught) { //Pauses character momentarily and resets the netthrow count
+				animal.getAway ();
+				GameState.requestPlay ();
 			}
-		}
-	}
-
-	private IEnumerator waitForNetToSettle ()
-	{
-		while (!Mathf.Approximately(netInstance.velocity.x, 0)) {
-			Debug.Log ("IN THE WAITING FOR NET LOOP");
-			yield return new WaitForFixedUpdate ();
-		}
-
-		if (endlessMode) {
-			GameObject.FindObjectOfType<EndlessAnimal> ().getAway ();
-		}
-		if (animal && !animal.caught) {
-			animal.getAway ();
-			GameState.requestPlay ();
 		}
 	}
 
@@ -95,11 +75,6 @@ public class NetLauncher : MonoBehaviour
 		firing = false;
 	}
 
-	public void resetThrowCount ()
-	{
-		throwCount = 0;
-	}
-
 	/** 
 	*	Instatiates a new net object and applies a velocity in the +x-direction
 	*/
@@ -107,7 +82,7 @@ public class NetLauncher : MonoBehaviour
 	{
 //		Debug.Log ("FIRE CALLED");
 		GameObject.FindObjectOfType<AudioController> ().objectInteraction (clip);
-		netInstance = nets [currentNetIndex];
+		Rigidbody2D netInstance = nets [currentNetIndex];
 		netInstance.transform.position = transform.position;
 		netInstance.isKinematic = false;
 		netInstance.velocity = new Vector2 (speed, 0f);

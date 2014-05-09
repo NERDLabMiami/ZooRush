@@ -16,24 +16,19 @@ public class NetHandler : MonoBehaviour
 	void Update ()
 	{
 		if (transform.position.y < Camera.main.transform.position.y - 10f) { //if completely out of view of the camera
-			rigidbody2D.velocity = Vector2.zero;
+			Destroy (gameObject); //destroy this net instance
 		}
 	}
 	
 	void OnCollisionEnter2D (Collision2D coll)
 	{
-		Debug.Log ("COLLISION DETECTED");
 		collided = true;
 		//on interaction with another object with a trigger collider
 		if (coll.gameObject.name.Contains ("Animal")) { //if that object is an animal
 			StartCoroutine (interact (coll.gameObject));
-			if (GameObject.FindObjectOfType<EndlessSceneManager> () != null) {
-				coll.gameObject.GetComponentInChildren<EndlessAnimal> ().caught = true;
-			} else {
-				coll.gameObject.GetComponentInChildren<Animal> ().caught = true;
-				GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Gotcha!");
-				GameState.requestTransition ();
-			}
+			coll.gameObject.GetComponentInChildren<Animal> ().caught = true;
+			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Gotcha!");
+			GameState.requestTransition ();
 		} else {
 			rigidbody2D.velocity = Vector2.zero;
 			rigidbody2D.isKinematic = true;
@@ -51,7 +46,6 @@ public class NetHandler : MonoBehaviour
 				sprite.enabled = true;
 			}
 		}
-		rigidbody2D.velocity = Vector2.zero;
-		renderer.enabled = false;
+		Destroy (gameObject); //destroy the net
 	}
 }

@@ -1,27 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EndlessSceneManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Background Management/GenericRepeater.cs">
     <Files>
-      <File FileName="Assets/Scripts/EndlessSceneManager.cs" Line="80" Column="3" />
-      <File FileName="Assets/Scripts/EndlessAnimal.cs" Line="67" Column="16" />
-      <File FileName="Assets/Scripts/EndlessModeEndMenu.cs" Line="131" Column="1" />
-      <File FileName="Assets/Scripts/Level Gameplay/NetHandler.cs" Line="25" Column="1" />
+      <File FileName="Assets/Scripts/EndlessAnimal.cs" Line="59" Column="3" />
+      <File FileName="Assets/Scripts/EndlessSceneManager.cs" Line="32" Column="1" />
+      <File FileName="Assets/Scripts/Characters and Animals/Animal.cs" Line="149" Column="42" />
+      <File FileName="Assets/Scripts/Level Gameplay/SceneManager.cs" Line="12" Column="34" />
+      <File FileName="Assets/Scripts/Debugging and Testing/EndlessModeChangeAnimalTester.cs" Line="23" Column="35" />
+      <File FileName="Assets/Scripts/Level Gameplay/NetLauncher.cs" Line="83" Column="27" />
+      <File FileName="Assets/Scripts/Characters and Animals/PlayerControls.cs" Line="132" Column="22" />
+      <File FileName="Assets/Scripts/Audio/AudioController.cs" Line="82" Column="1" />
+      <File FileName="Assets/Scripts/Background Management/GenericRepeater.cs" Line="19" Column="22" />
+      <File FileName="Assets/Scripts/Level Gameplay/CameraFollow.cs" Line="28" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="GUI" expanded="True">
-              <Node name="Scripts" expanded="True" />
-            </Node>
-            <Node name="Scripts" expanded="True">
-              <Node name="Characters and Animals" expanded="True" />
-              <Node name="Debugging and Testing" expanded="True" />
-              <Node name="Level Gameplay" expanded="True" />
-              <Node name="EndlessSceneManager.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
