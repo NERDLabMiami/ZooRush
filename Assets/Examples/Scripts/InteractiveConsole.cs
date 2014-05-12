@@ -39,13 +39,8 @@ public sealed class InteractiveConsole : MonoBehaviour
     {
         if (result.Error != null)
             lastResponse = "Error Response:\n" + result.Error;
-        else if (!FB.IsLoggedIn)
-        {
+        else if (!FB.IsLoggedIn) {
             lastResponse = "Login cancelled by Player";
-        }
-        else
-        {
-            lastResponse = "Login was successful!";
         }
     }
 
@@ -98,14 +93,13 @@ public sealed class InteractiveConsole : MonoBehaviour
         string[] excludeIds = (FriendSelectorExcludeIds == "") ? null : FriendSelectorExcludeIds.Split(',');
 
         FB.AppRequest(
-            FriendSelectorMessage,
-            null,
-            FriendSelectorFilters,
-            excludeIds,
-            maxRecipients,
-            FriendSelectorData,
-            FriendSelectorTitle,
-            Callback
+            message: FriendSelectorMessage,
+            filters: FriendSelectorFilters,
+            excludeIds: excludeIds,
+            maxRecipients: maxRecipients,
+            data: FriendSelectorData,
+            title: FriendSelectorTitle,
+            callback: Callback
         );
     }
     #endregion
@@ -123,14 +117,10 @@ public sealed class InteractiveConsole : MonoBehaviour
             throw new ArgumentException("\"To Comma Ids\" must be specificed", "to");
         }
         FB.AppRequest(
-            DirectRequestMessage,
-            DirectRequestTo.Split(','),
-            "",
-            null,
-            null,
-            "",
-            DirectRequestTitle,
-            Callback
+            message: DirectRequestMessage,
+            to: DirectRequestTo.Split(','),
+            title: DirectRequestTitle,
+            callback: Callback
         );
     }
 
@@ -281,7 +271,7 @@ public sealed class InteractiveConsole : MonoBehaviour
     private Texture2D lastResponseTexture;
 
     private Vector2 scrollPosition = Vector2.zero;
-#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
+#if UNITY_IOS || UNITY_ANDROID
     int buttonHeight = 60;
     int mainWindowWidth = Screen.width - 30;
     int mainWindowFullWidth = Screen.width;
@@ -295,7 +285,7 @@ public sealed class InteractiveConsole : MonoBehaviour
     {
         get
         {
-#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
+#if UNITY_IOS || UNITY_ANDROID
             return IsHorizontalLayout() ? Screen.height : 85;
 #else
         return Screen.height;
@@ -325,7 +315,7 @@ public sealed class InteractiveConsole : MonoBehaviour
         GUILayout.Space(5);
         GUILayout.Box("Status: " + status, GUILayout.MinWidth(mainWindowWidth));
 
-#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
+#if UNITY_IOS || UNITY_ANDROID
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             scrollPosition.y += Input.GetTouch(0).deltaPosition.y;
@@ -350,7 +340,7 @@ public sealed class InteractiveConsole : MonoBehaviour
             status = "Login called";
         }
 
-#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
+#if UNITY_IOS || UNITY_ANDROID
         GUI.enabled = FB.IsLoggedIn;
         if (Button("Logout"))
         {
@@ -506,13 +496,12 @@ public sealed class InteractiveConsole : MonoBehaviour
         GUI.TextArea(
             textAreaSize,
             string.Format(
-                " AppId: {0} \n Facebook Dll: {1} \n UserId: {2}\n IsLoggedIn: {3}\n AccessToken: {4}\n AccessTokenExpiresAt: {5}\n {6}",
+                " AppId: {0} \n Facebook Dll: {1} \n UserId: {2}\n IsLoggedIn: {3}\n AccessToken: {4}\n\n {5}",
                 FB.AppId,
                 (isInit) ? "Loaded Successfully" : "Not Loaded",
                 FB.UserId,
                 FB.IsLoggedIn,
                 FB.AccessToken,
-                FB.AccessTokenExpiresAt,
                 lastResponse
             ), textStyle);
 
@@ -535,8 +524,7 @@ public sealed class InteractiveConsole : MonoBehaviour
     void Callback(FBResult result)
     {
         lastResponseTexture = null;
-        // Some platforms return the empty string instead of null.
-        if (!String.IsNullOrEmpty(result.Error))
+        if (result.Error != null)
             lastResponse = "Error Response:\n" + result.Error;
         else if (!ApiQuery.Contains("/picture"))
             lastResponse = "Success Response:\n" + result.Text;
@@ -585,7 +573,7 @@ public sealed class InteractiveConsole : MonoBehaviour
 
     private bool IsHorizontalLayout()
     {
-#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
+#if UNITY_IOS || UNITY_ANDROID
         return Screen.orientation == ScreenOrientation.Landscape;
 #else
         return true;

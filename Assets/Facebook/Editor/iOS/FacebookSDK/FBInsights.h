@@ -15,12 +15,11 @@
  */
 
 #import <Foundation/Foundation.h>
-
 #import "FBSession.h"
 
 /*!
  @typedef FBInsightsFlushBehavior enum
-
+ 
  @abstract This enum has been deprecated in favor of FBAppEventsFlushBehavior.
  */
 __attribute__ ((deprecated("use FBAppEventsFlushBehavior instead")))
@@ -33,7 +32,7 @@ extern NSString *const FBInsightsLoggingResultNotification __attribute__((deprec
 
 /*!
  @class FBInsights
-
+ 
  @abstract This class has been deprecated in favor of FBAppEvents.
  */
 __attribute__ ((deprecated("Use the FBAppEvents class instead")))

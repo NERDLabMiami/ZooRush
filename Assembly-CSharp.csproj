@@ -52,7 +52,6 @@
      <Compile Include="Assets\Facebook\Scripts\AndroidFacebookLoader.cs" />
      <Compile Include="Assets\Facebook\Scripts\CanvasFacebookLoader.cs" />
      <Compile Include="Assets\Facebook\Scripts\EditorFacebook.cs" />
-     <Compile Include="Assets\Facebook\Scripts\EditorFacebookAccessToken.cs" />
      <Compile Include="Assets\Facebook\Scripts\EditorFacebookLoader.cs" />
      <Compile Include="Assets\Facebook\Scripts\FB.cs" />
      <Compile Include="Assets\Facebook\Scripts\FBScreen.cs" />
@@ -136,7 +135,6 @@
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendUserEvent.cs" />
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SetCustomArea.cs" />
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SetCustomUserID.cs" />
-     <Compile Include="Assets\LeaderboardCaller.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioModel.cs" />
      <Compile Include="Assets\Scripts\Audio\MenuMusic.cs" />
@@ -259,9 +257,9 @@
      <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_list_selector.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_tab_selected.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_facebook_button.xml" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_search_bar_layout.xml" />
      <None Include="Assets\Plugins\Android\facebook\bin\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_userprofile.xml" />
      <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />

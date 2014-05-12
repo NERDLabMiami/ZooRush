@@ -36,8 +36,8 @@ namespace UnityEditor.FacebookEditor
 
                 PlistMod.UpdatePlist(path, FBSettings.AppId);
                 FixupFiles.FixSimulator(path);
+
                 FixupFiles.AddVersionDefine(path);
-                FixupFiles.FixColdStart(path);
             }
 
             if (target == BuildTarget.Android)
@@ -50,12 +50,6 @@ namespace UnityEditor.FacebookEditor
                 if (!FacebookAndroidUtil.IsSetupProperly())
                 {
                     Debug.LogError("Your Android setup is not correct. See Settings in Facebook menu.");
-                }
-
-                if (!ManifestMod.CheckManifest())
-                {
-                    // If something is wrong with the Android Manifest, try to regenerate it to fix it for the next build.
-                    ManifestMod.GenerateManifest();
                 }
             }
         }

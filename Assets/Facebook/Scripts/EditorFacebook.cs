@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,8 +6,7 @@ namespace Facebook
 {
     class EditorFacebook : AbstractFacebook, IFacebook
     {
-        private AbstractFacebook fb;
-        private FacebookDelegate loginCallback;
+        private IFacebook fb;
 
         public override int DialogMode
         {
@@ -68,6 +66,10 @@ namespace Facebook
                 yield return null;
             }
             fb.Init(onInitComplete, appId, cookie, logging, status, xfbml, channelUrl, authResponse, frictionlessRequests, hideUnityDelegate);
+            if (status || cookie)
+            {
+                isLoggedIn = true;
+            }
             if (onInitComplete != null)
             {
                 onInitComplete();
@@ -76,29 +78,29 @@ namespace Facebook
 
         private void OnDllLoaded(IFacebook fb)
         {
-            this.fb = (AbstractFacebook) fb;
+            this.fb = fb;
         }
         #endregion
 
         public override void Login(string scope = "", FacebookDelegate callback = null)
         {
-            AddAuthDelegate(callback);
-            FBComponentFactory.GetComponent<EditorFacebookAccessToken>();
+            if (isLoggedIn)
+            {
+                FbDebug.Warn("User is already logged in.  You don't need to call this again.");
+            }
+
+            userId = "0";
+            accessToken = "abcdefghijklmnopqrstuvwxyz";
+            isLoggedIn = true;
         }
 
         public override void Logout()
         {
             isLoggedIn = false;
-            userId = "";
-            accessToken = "";
-            fb.UserId = "";
-            fb.AccessToken = "";
         }
 
         public override void AppRequest(
             string message,
-            OGActionType actionType,
-            string objectId,
             string[] to = null,
             string filters = "",
             string[] excludeIds = null,
@@ -107,7 +109,7 @@ namespace Facebook
             string title = "",
             FacebookDelegate callback = null)
         {
-            fb.AppRequest(message, actionType, objectId, to, filters, excludeIds, maxRecipients, data, title, callback);
+            fb.AppRequest(message, to, filters, excludeIds, maxRecipients, data, title, callback);
         }
 
         public override void FeedRequest(
@@ -141,6 +143,24 @@ namespace Facebook
             FbDebug.Info("Pay method only works with Facebook Canvas.  Does nothing in the Unity Editor, iOS or Android");
         }
 
+        public override void API(
+            string query,
+            HttpMethod method,
+            Dictionary<string, string> formData = null,
+            FacebookDelegate callback = null)
+        {
+            if (query.StartsWith("me"))
+            {
+                FbDebug.Warn("graph.facebook.com/me does not work within the Unity Editor");
+            }
+
+            if (!query.Contains("access_token=") && (formData == null || !formData.ContainsKey("access_token")))
+            {
+                FbDebug.Warn("Without an access_token param explicitly passed in formData, some API graph calls will 404 error in the Unity Editor.");
+            }
+            fb.API(query, method, formData, callback);
+        }
+
         public override void GetAuthResponse(FacebookDelegate callback = null)
         {
             fb.GetAuthResponse(callback);
@@ -172,77 +192,5 @@ namespace Facebook
         {
             FbDebug.Log("Pew! Pretending to send this off.  Doesn't actually work in the editor");
         }
-
-        #region Editor Mock Login
-
-        public void MockLoginCallback(FBResult result)
-        {
-            Destroy(FBComponentFactory.GetComponent<EditorFacebookAccessToken>());
-            if (result.Error != null)
-            {
-                BadAccessToken(result.Error);
-                return;
-            }
-
-            try
-            {
-                var json = (List<object>) MiniJSON.Json.Deserialize(result.Text);
-                var responses = new List<string>();
-                foreach (object obj in json)
-                {
-                    if (!(obj is Dictionary<string, object>))
-                    {
-                        continue;
-                    }
-
-                    var response = (Dictionary<string, object>) obj;
-
-                    if (!response.ContainsKey("body"))
-                    {
-                        continue;
-                    }
-
-                    responses.Add((string) response["body"]);
-                }
-
-                var userData = (Dictionary<string, object>) MiniJSON.Json.Deserialize(responses[0]);
-                var appData = (Dictionary<string, object>) MiniJSON.Json.Deserialize(responses[1]);
-
-                if (FB.AppId != (string) appData["id"])
-                {
-                    BadAccessToken("Access token is not for current app id: " + FB.AppId);
-                    return;
-                }
-
-                userId = (string)userData["id"];
-                fb.UserId = userId;
-                fb.AccessToken = accessToken;
-                isLoggedIn = true;
-
-                OnAuthResponse(new FBResult(""));
-
-            }
-            catch (Exception e)
-            {
-                BadAccessToken("Could not get data from access token: " + e.Message);
-            }
-        }
-
-        public void MockCancelledLoginCallback()
-        {
-            OnAuthResponse(new FBResult(""));
-        }
-
-        private void BadAccessToken(string error)
-        {
-            FbDebug.Error(error);
-            userId = "";
-            fb.UserId = "";
-            accessToken = "";
-            fb.AccessToken = "";
-            FBComponentFactory.GetComponent<EditorFacebookAccessToken>();
-        }
-
-        #endregion
     }
 }

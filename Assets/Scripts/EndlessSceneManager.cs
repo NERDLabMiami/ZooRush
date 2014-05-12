@@ -145,7 +145,7 @@ public class EndlessSceneManager : MonoBehaviour
 				if (totalCaughtCount % 3 == 0) {
 						GameObject.FindObjectOfType<EndlessModePainKiller> ().incrementPillCount ();
 				}
-				animalCaughtText.text = "Animals Rescued x" + totalCaughtCount;
+				animalCaughtText.text = "" + totalCaughtCount;
 		}
 
 		private IEnumerator timeOut ()

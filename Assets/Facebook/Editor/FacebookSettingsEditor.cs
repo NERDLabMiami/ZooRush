@@ -164,29 +164,19 @@ public class FacebookSettingsEditor : Editor
             }
             EditorGUILayout.HelpBox("Copy and Paste these into your \"Native Android App\" Settings on developers.facebook.com/apps", MessageType.None);
             SelectableLabelField(packageNameLabel, PlayerSettings.bundleIdentifier);
-            SelectableLabelField(classNameLabel, ManifestMod.DeepLinkingActivityName);
+            SelectableLabelField(classNameLabel, ManifestMod.ActivityName);
             SelectableLabelField(debugAndroidKeyLabel, FacebookAndroidUtil.DebugKeyHash);
-            if (GUILayout.Button("Regenerate Android Manifest"))
-            {
-                ManifestMod.GenerateManifest();
-            }
+
         }
         EditorGUILayout.Space();
     }
 
     private void AboutGUI()
     {
-        var versionInfo = FBBuildVersionAttribute.GetVersionAttributeOfType(typeof(IFacebook));
-        if (versionInfo == null)
-        {
-            EditorGUILayout.HelpBox("Cannot find version info on the Facebook SDK!", MessageType.Warning);
-        }
-        else
-        {
-            EditorGUILayout.HelpBox("About the Facebook SDK", MessageType.None);
-            SelectableLabelField(sdkVersion, versionInfo.SdkVersion);
-            SelectableLabelField(buildVersion, versionInfo.BuildVersion);
-        }
+        var versionAttribute = FBBuildVersionAttribute.GetVersionAttributeOfType(typeof(IFacebook));
+        EditorGUILayout.HelpBox("About the Facebook SDK", MessageType.None);
+        SelectableLabelField(sdkVersion, versionAttribute.Version);
+        SelectableLabelField(buildVersion, versionAttribute.ToString());
         EditorGUILayout.Space();
     }
 
