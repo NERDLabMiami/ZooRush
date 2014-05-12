@@ -15,35 +15,41 @@
  */
 
 // core
-#import "FBAccessTokenData.h"
-#import "FBAppCall.h"
-#import "FBAppEvents.h"
-#import "FBCacheDescriptor.h"
-#import "FBDialogs.h"
+#import "FBSession.h"
+#import "FBRequest.h"
 #import "FBError.h"
+#import "NSError+FBError.h"
+#import "FBSettings.h"
+#import "FBAppEvents.h"
+#import "FBAppCall.h"
 #import "FBErrorUtility.h"
-#import "FBFrictionlessRecipientCache.h"
-#import "FBFriendPickerViewController.h"
+#import "FBSessionTokenCachingStrategy.h"
+#import "FBAccessTokenData.h"
+
+// graph
+#import "FBGraphUser.h"
+#import "FBGraphPlace.h"
 #import "FBGraphLocation.h"
 #import "FBGraphObject.h"           // + design summary for graph component-group
-#import "FBGraphPlace.h"
-#import "FBGraphUser.h"
-#import "FBInsights.h"
-#import "FBLoginView.h"
-#import "FBNativeDialogs.h"         // deprecated, use FBDialogs.h
 #import "FBOpenGraphAction.h"
-#import "FBOpenGraphActionShareDialogParams.h"
 #import "FBOpenGraphObject.h"
-#import "FBPlacePickerViewController.h"
+
+// ux
+#import "FBLoginView.h"
 #import "FBProfilePictureView.h"
-#import "FBRequest.h"
-#import "FBSession.h"
-#import "FBSessionTokenCachingStrategy.h"
-#import "FBSettings.h"
-#import "FBShareDialogParams.h"
 #import "FBUserSettingsViewController.h"
+#import "FBPlacePickerViewController.h"
+#import "FBFriendPickerViewController.h"
+#import "FBCacheDescriptor.h"
+#import "FBNativeDialogs.h"         // deprecated, use FBDialogs.h
+#import "FBDialogs.h"
+#import "FBShareDialogParams.h"
+#import "FBOpenGraphActionShareDialogParams.h"
 #import "FBWebDialogs.h"
-#import "NSError+FBError.h"
+#import "FBFrictionlessRecipientCache.h"
+
+// deprecated
+#import "FBInsights.h"
 
 /*!
  @header
@@ -135,5 +141,6 @@
 
  */
 
-#define FB_IOS_SDK_VERSION_STRING @"3.11.0/Unity.5.1.0"
+#define FB_IOS_SDK_VERSION_STRING @"3.8.0/Unity.4.3.6"
+
 

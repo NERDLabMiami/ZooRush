@@ -1,14 +1,16 @@
 package com.facebook.unity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.os.Build;
+import android.net.Uri;
 import android.text.TextUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -21,87 +23,111 @@ import com.facebook.*;
 import com.facebook.Session.Builder;
 import com.facebook.Session.OpenRequest;
 import com.facebook.Session.StatusCallback;
-import com.facebook.internal.Utility;
 import com.facebook.model.*;
 import com.facebook.widget.WebDialog;
 import com.facebook.widget.WebDialog.OnCompleteListener;
 import com.unity3d.player.UnityPlayer;
 
 public class FB {
-	static final String TAG = "FBUnitySDK";
+	private static final String TAG = "FBUnitySDK";
 	// i.e. the game object that receives this message
-	static final String FB_UNITY_OBJECT = "UnityFacebookSDKPlugin";
-	private static Intent intent;
+	private static final String FB_UNITY_OBJECT = "UnityFacebookSDKPlugin";
+	private static Session session;
+    private static Intent intent;
     private static AppEventsLogger appEventsLogger;
 
-    private static String appID;
-
-    private static Boolean frictionlessRequests = false;
+	// if we have a session it has been opened.
+	private static void setSession(Session session) {
+		FB.session = session;
+	}
 
     private static AppEventsLogger getAppEventsLogger() {
         if (appEventsLogger == null) {
-            appEventsLogger = AppEventsLogger.newLogger(getUnityActivity().getApplicationContext());
+            appEventsLogger = AppEventsLogger.newLogger(getActivity().getApplicationContext());
         }
         return appEventsLogger;
     }
+
+	public static class UnityMessage {
+		private String methodName;
+		private Map<String, Serializable> params = new HashMap<String, Serializable>();
+
+		public UnityMessage(String methodName) {
+			this.methodName = methodName;
+		}
+
+		public UnityMessage put(String name, Serializable value) {
+			params.put(name, value);
+			return this;
+		}
+
+		public UnityMessage putCancelled() {
+			put("cancelled", true);
+			return this;
+		}
+
+		public UnityMessage putID(String id) {
+			put("id", id);
+			return this;
+		}
+
+		public void sendNotLoggedInError() {
+			sendError("not logged in");
+		}
+
+		public void sendError(String errorMsg) {
+			this.put("error", errorMsg);
+			send();
+		}
+
+		public void send() {
+			assert methodName != null : "no method specified";
+			String message = new JSONObject(this.params).toString();
+			Log.v(TAG,"sending to Unity "+this.methodName+"("+message+")");
+			UnityPlayer.UnitySendMessage(FB_UNITY_OBJECT, this.methodName, message);
+		}
+	}
 
 	private static boolean isLoggedIn() {
 		return Session.getActiveSession() != null && Session.getActiveSession().isOpened();
 	}
 
-
-	static Activity getUnityActivity() {
+	private static Activity getActivity() {
 		return UnityPlayer.currentActivity;
 	}
 
-	private static void initAndLogin(String params, final boolean show_login_dialog, final Activity activity) {
-        String[] parts = null;
-        UnityParams unity_params = UnityParams.parse(params, "couldn't parse login params: " + params);
+	private static void initAndLogin(String params, final boolean show_login_dialog) {
 
-        if (unity_params.hasString("appId")) {
-            // override the app id from the android manifest from FB.Init() if it's there
-            appID = unity_params.getString("appId");
-        } else if (appID == null || appID.length() == 0) {
-            // default: use the app id from the metadata
-            appID = Utility.getMetadataApplicationId(activity);
-        } // else there's an appID provided
-
-        Session session;
-        if (FB.isLoggedIn()) {
-            session = Session.getActiveSession();
-
-            // this shouldn't be an issue for most people: the app id in the session not matching the one provided
-            // instead it can probably happen if a developer wants to switch app ids at run time.
-            if (appID != session.getApplicationId()) {
-                Log.w(TAG, "App Id in active session ("+ session.getApplicationId() +") doesn't match App Id passed in: " + appID);
-                session = new Builder(activity).setApplicationId(appID).build();
-            }
-        } else {
-            session = new Builder(activity).setApplicationId(appID).build();
-        }
-
+        Session session = (FB.isLoggedIn()) ? Session.getActiveSession() : new Builder(getActivity()).build();
         final UnityMessage unityMessage = new UnityMessage((show_login_dialog) ? "OnLoginComplete" : "OnInitComplete");
 
         // add the key hash to the JSON dictionary
+        // unityMessage.put("key_hash", "test_key_and");
         unityMessage.put("key_hash", getKeyHash());
 
-        // if we are init-ing, we can just return here if there is no active session
+        // if we have a session and are init-ing, we can just return here.
         if (!SessionState.CREATED_TOKEN_LOADED.equals(session.getState()) && !show_login_dialog) {
             unityMessage.send();
             return;
         }
 
 		// parse and separate the permissions into read and publish permissions
-        if (unity_params.hasString("scope")) {
-            parts = unity_params.getString("scope").split(",");
+        String[] parts = null;
+        final JSONObject unity_params;
+        try {
+            unity_params = new JSONObject(params);
+
+            if (!unity_params.isNull("scope") && !unity_params.getString("scope").equals("")) {
+                parts = unity_params.getString("scope").split(",");
+            }
+        } catch (JSONException e) {
+            Log.d(TAG, "couldn't parse params: "+params);
+            return;
         }
         List<String> publishPermissions = new ArrayList<String>();
         List<String> readPermissions = new ArrayList<String>();
         if(parts != null && parts.length > 0) {
             for(String s:parts) {
-                if(s.length() == 0) {
-                    continue;
-                }
                 if(Session.isPublishPermission(s)) {
                     publishPermissions.add(s);
                 } else {
@@ -124,18 +150,21 @@ public class FB {
         // first just show the read permissions, then call initAndLogin() with just the publish permissions
         if (showMixedPermissionsFlow) {
             String publish_permissions = TextUtils.join(",", publishPermissions.toArray());
-            unity_params.put("scope", publish_permissions);
+            try {
+                unity_params.put("scope", publish_permissions);
+            } catch (JSONException e) {
+                // should never happen
+                Log.d(TAG, "couldn't add back the publish permissions " + publish_permissions);
+                return;
+            }
             final String only_publish_params = unity_params.toString();
 
             Session.StatusCallback afterReadPermissionCallback = new Session.StatusCallback() {
                 // callback when session changes state
                 @Override
                 public void call(Session session, SessionState state, Exception exception) {
-                    if (session.getState().equals(SessionState.OPENING)){
-                        return;
-                    }
+
                     if (!session.isOpened() && state != SessionState.CLOSED_LOGIN_FAILED) {
-                        unityMessage.sendError("Unknown error while opening session. Check logcat for details.");
                         return;
                     }
                     session.removeCallback(this); // without this, the callback will loop infinitely
@@ -146,18 +175,17 @@ public class FB {
                     if (session.getAccessToken() == null || session.getAccessToken().equals("")) {
                         unityMessage.putCancelled();
                         unityMessage.send();
-                        activity.finish();
                         return;
                     }
 
-                    initAndLogin(only_publish_params, show_login_dialog, activity);
+                    initAndLogin(only_publish_params, show_login_dialog);
                 }
             };
 
             if (session.isOpened()) {
-                session.requestNewReadPermissions(getNewPermissionsRequest(session, afterReadPermissionCallback, readPermissions, activity));
+                session.requestNewReadPermissions(getNewPermissionsRequest(session, afterReadPermissionCallback, readPermissions));
             } else {
-                session.openForRead(getOpenRequest(afterReadPermissionCallback, readPermissions, activity));
+                session.openForRead(getOpenRequest(afterReadPermissionCallback, readPermissions));
             }
 
             return;
@@ -167,16 +195,8 @@ public class FB {
             // callback when session changes state
             @Override
             public void call(Session session, SessionState state, Exception exception) {
-                if (session.getState().equals(SessionState.OPENING)){
-                    return;
-                }
-            	//if we are logging in, we opened login activity to handle callbacks, we need to close it after we are done
-                if (show_login_dialog) {
-            	    activity.finish();
-                }
 
                 if (!session.isOpened() && state != SessionState.CLOSED_LOGIN_FAILED) {
-                    unityMessage.sendError("Unknown error while opening session. Check logcat for details.");
                     return;
                 }
                 session.removeCallback(this);
@@ -195,23 +215,9 @@ public class FB {
                 // there's a chance a subset of the permissions were allowed even if the login was cancelled
                 // if the access token is there, try to get it anyways
 
-                // add a callback to update the access token when it changes
-                session.addCallback(new StatusCallback() {
-                    @Override
-                    public void call(Session session,
-                                     SessionState state, Exception exception) {
-                        if (session == null || session.getAccessToken() == null) {
-                            return;
-                        }
-                        final UnityMessage unityMessage = new UnityMessage("OnAccessTokenUpdate");
-                        unityMessage.put("access_token", session.getAccessToken());
-                        unityMessage.put("expiration_timestamp", "" + session.getExpirationDate().getTime() / 1000);
-                        unityMessage.send();
-                    }
-                });
+                FB.setSession(session);
                 unityMessage.put("access_token", session.getAccessToken());
-                unityMessage.put("expiration_timestamp", "" + session.getExpirationDate().getTime() / 1000);
-                Request.newMeRequest(session, new Request.GraphUserCallback() {
+                Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
                     @Override
                     public void onCompleted(GraphUser user, Response response) {
                         if (user != null) {
@@ -219,19 +225,19 @@ public class FB {
                         }
                         unityMessage.send();
                     }
-                }).executeAsync();
+                });
             }
         };
 
         if (session.isOpened()) {
-            Session.NewPermissionsRequest req = getNewPermissionsRequest(session, finalCallback, (hasPublishPermissions) ? publishPermissions : readPermissions, activity);
+            Session.NewPermissionsRequest req = getNewPermissionsRequest(session, finalCallback, (hasPublishPermissions) ? publishPermissions : readPermissions);
             if (hasPublishPermissions) {
                 session.requestNewPublishPermissions(req);
             } else {
                 session.requestNewReadPermissions(req);
             }
         } else {
-            OpenRequest req = getOpenRequest(finalCallback, (hasPublishPermissions) ? publishPermissions : readPermissions, activity);
+            OpenRequest req = getOpenRequest(finalCallback, (hasPublishPermissions) ? publishPermissions : readPermissions);
             if (hasPublishPermissions) {
                 session.openForPublish(req);
             } else {
@@ -240,8 +246,8 @@ public class FB {
         }
 	}
 
-    private static OpenRequest getOpenRequest(StatusCallback callback, List<String> permissions, Activity activity) {
-        OpenRequest req = new OpenRequest(activity);
+    private static OpenRequest getOpenRequest(StatusCallback callback, List<String> permissions) {
+        OpenRequest req = new OpenRequest(getActivity());
         req.setCallback(callback);
         req.setPermissions(permissions);
         req.setDefaultAudience(SessionDefaultAudience.FRIENDS);
@@ -249,8 +255,8 @@ public class FB {
         return req;
     }
 
-    private static Session.NewPermissionsRequest getNewPermissionsRequest(Session session, StatusCallback callback, List<String> permissions, Activity activity) {
-        Session.NewPermissionsRequest req = new Session.NewPermissionsRequest(activity, permissions);
+    private static Session.NewPermissionsRequest getNewPermissionsRequest(Session session, StatusCallback callback, List<String> permissions) {
+        Session.NewPermissionsRequest req = new Session.NewPermissionsRequest(getActivity(), permissions);
         req.setCallback(callback);
         // This should really be "req.setCallback(callback);"
         // Unfortunately the current underlying SDK won't add the callback when you do it that way
@@ -263,26 +269,14 @@ public class FB {
 
 	@UnityCallable
 	public static void Init(String params) {
-	    UnityParams unity_params = UnityParams.parse(params, "couldn't parse init params: "+params);
-	    if (unity_params.hasString("frictionlessRequests")) {
-	        frictionlessRequests = Boolean.valueOf(unity_params.getString("frictionlessRequests"));
-	    }
-	    // tries to log the user in if they've already TOS'd the app
-		initAndLogin(params, /*show_login_dialog=*/false, getUnityActivity());
-	}
-
-	/*
-	 * Start login process using custom activity for process. Activity is closed after login is completed
-	 */
-	static void LoginUsingActivity(String params, Activity activity) {
-		initAndLogin(params, /*show_login_dialog=*/true, activity);
+        FB.intent = getActivity().getIntent();
+		// tries to log the user in if they've already TOS'd the app
+		initAndLogin(params, /*show_login_dialog=*/false);
 	}
 
 	@UnityCallable
 	public static void Login(String params) {
-		Intent intent = new Intent(getUnityActivity(), FBUnityLoginActivity.class);
-	    intent.putExtra(FBUnityLoginActivity.LOGIN_PARAMS, params);
-	    getUnityActivity().startActivity(intent);
+		initAndLogin(params, /*show_login_dialog=*/true);
 	}
 
 	@UnityCallable
@@ -294,6 +288,7 @@ public class FB {
 	@UnityCallable
     public static void AppRequest(String params_str) {
         Log.v(TAG, "sendRequestDialog(" + params_str + ")");
+        final Bundle params = new Bundle();
         final UnityMessage response = new UnityMessage("OnAppRequestsComplete");
 
         if (!isLoggedIn()) {
@@ -301,26 +296,40 @@ public class FB {
             return;
         }
 
-        UnityParams unity_params = UnityParams.parse(params_str);
-        if (unity_params.hasString("callback_id")) {
-            response.put("callback_id", unity_params.getString("callback_id"));
+        final JSONObject unity_params;
+        try {
+            unity_params = new JSONObject(params_str);
+            if (!unity_params.isNull("callback_id")) {
+                response.put("callback_id", unity_params.getString("callback_id"));
+            }
+        } catch (JSONException e) {
+            response.sendError("couldn't parse params: "+params_str);
+            return;
         }
 
-        final Bundle params = unity_params.getStringParams();
-        if (params.containsKey("callback_id")) {
-            params.remove("callback_id");
+        Iterator<?> keys = unity_params.keys();
+        while(keys.hasNext()) {
+            String key = (String)keys.next();
+            try {
+                if (key.equals("callback_id")) {
+                    continue;
+                }
+                String value = unity_params.getString(key);
+                if (value != null) {
+                    params.putString(key, value);
+                }
+            } catch (JSONException e) {
+                response.sendError("error getting value for key "+key+": "+e.toString());
+                return;
+            }
         }
 
-        if (frictionlessRequests) {
-            params.putString("frictionless", "true");
-        }
-
-        getUnityActivity().runOnUiThread(new Runnable() {
+        getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 // TODO Auto-generated method stub
                 WebDialog requestsDialog = (
-                        new WebDialog.RequestsDialogBuilder(getUnityActivity(),
+                        new WebDialog.RequestsDialogBuilder(getActivity(),
                                 Session.getActiveSession(),
                                 params))
                                 .setOnCompleteListener(new OnCompleteListener() {
@@ -364,10 +373,12 @@ public class FB {
 	public static void FeedRequest(String params_str) {
 		Log.v(TAG, "FeedRequest(" + params_str + ")");
 		final UnityMessage response = new UnityMessage("OnFeedRequestComplete");
-
-		UnityParams unity_params = UnityParams.parse(params_str);
-		if (unity_params.hasString("callback_id")){
-            response.put("callback_id", unity_params.getString("callback_id"));
+		final JSONObject unity_params;
+		try {
+			unity_params = new JSONObject(params_str);
+		} catch (JSONException e) {
+			response.sendError("couldn't parse params: "+params_str);
+			return;
 		}
 
 		if (!isLoggedIn()) {
@@ -375,17 +386,27 @@ public class FB {
 			return;
 		}
 
-		final Bundle params = unity_params.getStringParams();
-        if (params.containsKey("callback_id")) {
-            params.remove("callback_id");
-        }
-
-		getUnityActivity().runOnUiThread(new Runnable() {
+		getActivity().runOnUiThread(new Runnable() {
 
             @Override
             public void run() {
+                Bundle params = new Bundle();
+                Iterator<?> keys = unity_params.keys();
+                while (keys.hasNext()) {
+                    String key = (String) keys.next();
+                    try {
+                        String value = unity_params.getString(key);
+                        if (value != null) {
+                            params.putString(key, value);
+                        }
+                    } catch (JSONException e) {
+                        response.sendError("error getting value for key " + key + ": " + e.toString());
+                        return;
+                    }
+                }
+
                 WebDialog feedDialog = (
-                        new WebDialog.FeedDialogBuilder(getUnityActivity(),
+                        new WebDialog.FeedDialogBuilder(getActivity(),
                                 Session.getActiveSession(),
                                 params))
                         .setOnCompleteListener(new OnCompleteListener() {
@@ -423,19 +444,37 @@ public class FB {
 	@UnityCallable
 	public static void PublishInstall(String params_str) {
 		final UnityMessage unityMessage = new UnityMessage("OnPublishInstallComplete");
-		final UnityParams unity_params = UnityParams.parse(params_str);
-		if (unity_params.hasString("callback_id")) {
-			unityMessage.put("callback_id", unity_params.getString("callback_id"));
+		final JSONObject unity_params;
+		try {
+			unity_params = new JSONObject(params_str);
+			if (!unity_params.isNull("callback_id")) {
+				unityMessage.put("callback_id", unity_params.getString("callback_id"));
+			}
+			Settings.publishInstallAsync(getActivity().getApplicationContext(), unity_params.getString("app_id"), new Request.Callback() {
+
+				@Override
+				public void onCompleted(Response response) {
+					if(response.getError() != null) {
+						unityMessage.sendError(response.getError().toString());
+					} else {
+						unityMessage.send();
+					}
+
+				}
+			});
+		} catch (JSONException e) {
+			unityMessage.sendError("couldn't parse params: " + params_str);
+			return;
 		}
-        AppEventsLogger.activateApp(getUnityActivity().getApplicationContext());
-        unityMessage.send();
 	}
 
     @UnityCallable
     public static void GetDeepLink(String params_str) {
         final UnityMessage unityMessage = new UnityMessage("OnGetDeepLinkComplete");
-        if (intent != null && intent.getData() != null) {
-            unityMessage.put("deep_link", intent.getData().toString());
+
+        Uri targetUri = intent.getData();
+        if (targetUri != null) {
+            unityMessage.put("deep_link", targetUri.toString());
         } else {
             unityMessage.put("deep_link", "");
         }
@@ -448,57 +487,55 @@ public class FB {
     }
 
     public static void SetLimitEventUsage(String params) {
-        Settings.setLimitEventAndDataUsage(getUnityActivity().getApplicationContext(), Boolean.valueOf(params));
+        AppEventsLogger.setLimitEventUsage(getActivity().getApplicationContext(), Boolean.valueOf(params));
     }
 
     @UnityCallable
-    public static void AppEvents(String params) {
-        Log.v(TAG, "AppEvents(" + params + ")");
-        UnityParams unity_params = UnityParams.parse(params);
+    public static void AppEvent(String params) {
+        Log.v(TAG, "AppEvent(" + params + ")");
+        JSONObject unity_params;
+        try {
+            unity_params = new JSONObject(params);
 
-        Bundle parameters = new Bundle();
-        if (unity_params.has("parameters")) {
-            UnityParams unity_params_parameter = unity_params.getParamsObject("parameters");
-            parameters = unity_params_parameter.getStringParams();
+            Bundle parameters = new Bundle();
+            if (!unity_params.isNull("parameters")) {
+                JSONObject unity_params_parameter = unity_params.getJSONObject("parameters");
+                for (Iterator<?> keys = unity_params_parameter.keys(); keys.hasNext();) {
+                    String key = (String) keys.next();
+                    parameters.putString(key,unity_params_parameter.getString(key));
+                }
+            }
+
+            if (!unity_params.isNull("logPurchase")) {
+                FB.getAppEventsLogger().logPurchase(
+                        new BigDecimal(unity_params.getDouble("logPurchase")),
+                        Currency.getInstance(unity_params.getString("currency")),
+                        parameters
+                );
+            } else if (!unity_params.isNull("logEvent")) {
+                FB.getAppEventsLogger().logEvent(
+                        unity_params.getString("logEvent"),
+                        unity_params.optDouble("valueToSum"),
+                        parameters
+                );
+            } else {
+                Log.e(TAG, "couldn't logPurchase or logEvent params: "+params);
+            }
+        } catch (JSONException e) {
+            Log.e(TAG, "couldn't parse params: "+params);
+            return;
         }
 
-        if (unity_params.has("logPurchase")) {
-            FB.getAppEventsLogger().logPurchase(
-                    new BigDecimal(unity_params.getDouble("logPurchase")),
-                    Currency.getInstance(unity_params.getString("currency")),
-                    parameters
-            );
-        } else if (unity_params.hasString("logEvent")) {
-            FB.getAppEventsLogger().logEvent(
-                    unity_params.getString("logEvent"),
-                    unity_params.getDouble("valueToSum"),
-                    parameters
-            );
-        } else {
-            Log.e(TAG, "couldn't logPurchase or logEvent params: "+params);
-        }
-    }
-
-    /**
-     * This is to be called from Unity Login activity to call session callback after login activity completes
-     * @param activity
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    public static void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-        Session.getActiveSession().onActivityResult(activity, requestCode, resultCode, data);
     }
 
     /**
      * Provides the key hash to solve the openSSL issue with Amazon
      * @return key hash
      */
-    @TargetApi(Build.VERSION_CODES.FROYO)
     private static String getKeyHash() {
         try {
-            PackageInfo info = getUnityActivity().getPackageManager().getPackageInfo(
-                getUnityActivity().getPackageName(), PackageManager.GET_SIGNATURES);
+            PackageInfo info = getActivity().getPackageManager().getPackageInfo(
+                getActivity().getPackageName(), PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures){
                 MessageDigest md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());

@@ -64,9 +64,7 @@ public class FBScreen {
 
     public static void SetUnityPlayerEmbedCSS(string key, string value)
     {
-#if UNITY_WEBPLAYER
         Application.ExternalEval(string.Format("$(\"#unityPlayerEmbed\").css(\"{0}\",\"{1}\")", key, value));
-#endif
     }
 
     #region Layout Params
@@ -101,7 +99,6 @@ public class FBScreen {
 
     private static void SetLayout(IEnumerable<Layout> parameters)
     {
-#if UNITY_WEBPLAYER
         foreach (Layout parameter in parameters)
         {
             var layoutLeft = parameter as Layout.OptionLeft;
@@ -141,7 +138,7 @@ public class FBScreen {
                     function fbCenterWebPlayerHorizontally(){
                         $(""#unityPlayerEmbed"").css(
                             ""margin-left"", 
-                            ($(window).innerWidth()/2 - $(""#unityPlayerEmbed"").children(""object, embed"").width()/2) + ""px"")
+                            ($(window).innerWidth()/2 - $(""#unityPlayerEmbed"").children(""embed"").width()/2) + ""px"")
                     }; 
                     fbCenterWebPlayerHorizontally(); 
                     $(window).resize(fbCenterWebPlayerHorizontally)
@@ -156,7 +153,7 @@ public class FBScreen {
                     function fbCenterWebPlayerVertically(){
                         $(""#unityPlayerEmbed"").css(
                             ""margin-top"", 
-                            ($(window).innerHeight()/2 - $(""#unityPlayerEmbed"").children(""object, embed"").height()/2) + ""px"")
+                            ($(window).innerHeight()/2 - $(""#unityPlayerEmbed"").children(""embed"").height()/2) + ""px"")
                     }; 
                     fbCenterWebPlayerVertically(); 
                     $(window).resize(fbCenterWebPlayerVertically)
@@ -166,7 +163,6 @@ public class FBScreen {
 
             FbDebug.Error("Unknown Layout type: " + parameter.GetType());
         }
-#endif
     }
 
     public class Layout

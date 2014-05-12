@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEditor;
 using System.IO;
 using System.Xml;
+using System.Text;
 
 namespace UnityEditor.FacebookEditor
 {
@@ -8,12 +10,12 @@ namespace UnityEditor.FacebookEditor
     {
         private static XmlNode FindPlistDictNode(XmlDocument doc)
         {
-            var curr = doc.FirstChild;
+            XmlNode curr = doc.FirstChild;
             while(curr != null)
             {
                 if(curr.Name.Equals("plist") && curr.ChildNodes.Count == 1)
                 {
-                    var dict = curr.FirstChild;
+                    XmlNode dict = curr.FirstChild;
                     if(dict.Name.Equals("dict"))
                         return dict;
                 }
@@ -24,41 +26,35 @@ namespace UnityEditor.FacebookEditor
         
         private static XmlElement AddChildElement(XmlDocument doc, XmlNode parent, string elementName, string innerText=null)
         {
-            var newElement = doc.CreateElement(elementName);
-            if(!string.IsNullOrEmpty(innerText))
+            XmlElement newElement = doc.CreateElement(elementName);
+            if(innerText != null && innerText.Length > 0)
                 newElement.InnerText = innerText;
             
             parent.AppendChild(newElement);
             return newElement;
         }
-
-        private static bool HasKey(XmlNode dict, string keyName)
-        {
-            var curr = dict.FirstChild;
-            while(curr != null)
-            {
-                if(curr.Name.Equals("key") && curr.InnerText.Equals(keyName))
-                    return true;
-                curr = curr.NextSibling;
-            }
-            return false;
-        }
         
         public static void UpdatePlist(string path, string appId)
         {
-            const string fileName = "Info.plist";
+            string fileName = "Info.plist";
             string fullPath = Path.Combine(path, fileName);
             
-            if(string.IsNullOrEmpty(appId) || appId.Equals("0"))
+            if(appId == null || appId.Length <= 0 || appId.Equals("0"))
             {
                 Debug.LogError("You didn't specify a Facebook app ID.  Please add one using the Facebook menu in the main Unity editor.");
                 return;
             }
             
-            var doc = new XmlDocument();
+            XmlDocument doc = new XmlDocument();
             doc.Load(fullPath);
-
-            var dict = FindPlistDictNode(doc);
+            
+            if(doc == null)
+            {
+                Debug.LogError("Couldn't load " + fullPath);
+                return;
+            }
+            
+            XmlNode dict = FindPlistDictNode(doc);
             if(dict == null)
             {
                 Debug.LogError("Error parsing " + fullPath);
@@ -71,11 +67,9 @@ namespace UnityEditor.FacebookEditor
             <key>FacebookAppID</key>
             <string>YOUR_APP_ID</string>
              */
-            if(!HasKey(dict, "FacebookAppID"))
-            {
-                AddChildElement(doc, dict, "key", "FacebookAppID");
-                AddChildElement(doc, dict, "string", appId);
-            }
+            AddChildElement(doc, dict, "key", "FacebookAppID");
+            AddChildElement(doc, dict, "string", appId);
+            
             
             //here's how the custom url scheme should end up looking
             /*
@@ -89,18 +83,16 @@ namespace UnityEditor.FacebookEditor
                  </dict>
              </array>
             */
-            if(!HasKey(dict, "CFBundleURLTypes"))
+            /*XmlElement urlSchemeKey = */AddChildElement(doc, dict, "key", "CFBundleURLTypes");
+            XmlElement urlSchemeTop = AddChildElement(doc, dict, "array");
             {
-                AddChildElement(doc, dict, "key", "CFBundleURLTypes");
-                var urlSchemeTop = AddChildElement(doc, dict, "array");
+                XmlElement urlSchemeDict = AddChildElement(doc, urlSchemeTop, "dict");
                 {
-                    var urlSchemeDict = AddChildElement(doc, urlSchemeTop, "dict");
+                    /*XmlElement schemeKey = */AddChildElement(doc, urlSchemeDict, "key", "CFBundleURLSchemes");
+                    
+                    XmlElement innerArray = AddChildElement(doc, urlSchemeDict, "array");
                     {
-                        AddChildElement(doc, urlSchemeDict, "key", "CFBundleURLSchemes");
-                        var innerArray = AddChildElement(doc, urlSchemeDict, "array");
-                        {
-                            AddChildElement(doc, innerArray, "string", "fb" + appId);
-                        }
+                        /*XmlElement finallyTheSValue = */AddChildElement(doc, innerArray, "string", "fb" + appId);
                     }
                 }
             }
@@ -110,11 +102,11 @@ namespace UnityEditor.FacebookEditor
             
             //the xml writer barfs writing out part of the plist header.
             //so we replace the part that it wrote incorrectly here
-            var reader = new StreamReader(fullPath);
+            System.IO.StreamReader reader = new System.IO.StreamReader(fullPath);
             string textPlist = reader.ReadToEnd();
             reader.Close();
             
-            int fixupStart = textPlist.IndexOf("<!DOCTYPE plist PUBLIC", System.StringComparison.Ordinal);
+            int fixupStart = textPlist.IndexOf("<!DOCTYPE plist PUBLIC");
             if(fixupStart <= 0)
                 return;
             int fixupEnd = textPlist.IndexOf('>', fixupStart);
@@ -125,7 +117,7 @@ namespace UnityEditor.FacebookEditor
             fixedPlist += "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">";
             fixedPlist += textPlist.Substring(fixupEnd+1);
             
-            var writer = new StreamWriter(fullPath, false);
+            System.IO.StreamWriter writer = new System.IO.StreamWriter(fullPath, false);
             writer.Write(fixedPlist);
             writer.Close();
         }
