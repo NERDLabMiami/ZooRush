@@ -1,20 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HighScoresButton.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Menus and Scene Managers/LevelSelect.cs">
     <Files>
-      <File FileName="Assets/Scripts/HighScoresButton.cs" Line="52" Column="66" />
+      <File FileName="Assets/Scripts/Menus and Scene Managers/LevelSelect.cs" Line="45" Column="35" />
+      <File FileName="Assets/EndlessLevelSelect.cs" Line="29" Column="33" />
+      <File FileName="Assets/Scripts/Menus and Scene Managers/LevelSelectCameraControls.cs" Line="117" Column="1" />
+      <File FileName="Assets/Scripts/Menus and Scene Managers/LevelSelectButtonController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Event Handling/NextSceneHandler.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="Level Gameplay" expanded="True" />
-              <Node name="HighScoresButton.cs" selected="True" />
+              <Node name="Event Handling" expanded="True" />
+              <Node name="Menus and Scene Managers" expanded="True">
+                <Node name="LevelSelect.cs" selected="True" />
+              </Node>
             </Node>
-          </Node>
-          <Node name="Assembly-CSharp-Editor" expanded="True">
-            <Node name="Editor" expanded="True" />
           </Node>
         </State>
       </Pad>

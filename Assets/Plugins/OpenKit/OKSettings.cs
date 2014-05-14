@@ -13,23 +13,23 @@ public static class OKSettings
 		private const string persistentFilename = "OKSettings";
 
 		public static string AppKey {
-				get { return appKey; }
+				get { return "G2kmmYY8mIxpXlxUUHFj"; }
 #if UNITY_EDITOR
-				set { appKey = "G2kmmYY8mIxpXlxUUHFj"; }
+				set { appKey = value; }
 #endif
 		}
 	
 		public static string AppSecretKey {
-				get { return appSecretKey; }
+				get { return "jmGp3gXgsMJV99YLaOCIKTubGJ1PbzRQYK9DumUs"; }
 #if UNITY_EDITOR
-				set { appSecretKey = "jmGp3gXgsMJV99YLaOCIKTubGJ1PbzRQYK9DumUs"; }
+				set { appSecretKey = value; }
 #endif
 		}
 	
 		public static string FacebookAppId {
-				get { return facebookAppId; }
+				get { return "701328446577054"; }
 #if UNITY_EDITOR
-				set { facebookAppId = "701328446577054"; }
+				set { facebookAppId = value; }
 #endif
 		}
 
