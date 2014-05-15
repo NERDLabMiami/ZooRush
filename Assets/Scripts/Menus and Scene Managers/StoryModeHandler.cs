@@ -143,94 +143,97 @@ public class StoryModeHandler : OtherButtonClass
 
 	private string introScene = "2\n" +
 		"Today is a big day.\n" +
-		"I get to start my dream job working in a zoo!\n" +
-		"3\n" +
-		"I may have struggled all my life with sickle-cell anemia,\n" +
-		"but by paying attention to my body,\n" +
-		"I have learned to live with it...\n" +
-		"1\n" +
-		"And I certainly won't let it slow me down today!\n" +
-		"1\n" +
-		"(gasp!)\n" +
-		"3\n" +
-		"Help! Help! \n" +
-		"All the animals have escaped their pens. \n" +
-		"They're getting away!\n" +
-		"1\n" +
-		"The first day of work is always the hardest.\n";
-
+			"I get to start my dream job working in a zoo!\n" +
+			"3\n" +
+			"I may have struggled all my life with sickle-cell anemia,\n" +
+			"but by paying attention to my body,\n" +
+			"I have learned to live with it...\n" +
+			"1\n" +
+			"And I certainly won't let it slow me down today!\n" +
+			"1\n" +
+			"(gasp!)\n" +
+			"3\n" +
+			"Help! Help! \n" +
+			"All the animals have escaped their pens. \n" +
+			"They're getting away!\n" +
+			"1\n" +
+			"The first day of work is always the hardest.\n";
+	
 	private string level2 = "1\n" +
 		"Good job with the tortoise, but there's no time to rest.\n" +
-		"2\n" +
-		"A crocodile is on the loose inside the zoo.\n" +
-		"We need you to track it down before it hurts anyone!\n" +
-		"1\n" +
-		"Let's Do It!\n";
-
-	private string level3 = "1\n" +
-		"Good job with the crocodile, but there's no time to rest.\n" +
-		"1\n" + 
-		"A flamingo was reported in the suburbs, find it fast!\n" + 
-		"1\n" +
-		"Let's Do It!\n";
-
+			"3\n" +
+			"A crocodile is on the loose inside the zoo.\n" +
+			"We need you to track it down before it hurts anyone!\n" +
+			"And stay hydrated, chasing these animals can be exhausting!\n" +
+			"1\n" +
+			"Let's Do It!\n";
+	
+	private string level3 = "2\n" +
+		"Good job with the crocodile, he's not going to hurt anybody.\n" +
+			"Speaking of pain, make sure you check in with the doctor.\n" +
+			"2\n" +
+			"You can collect up to 3 painkillers to help manage your pain.\n" +
+			"Now let's get to the suburbs and find us a flamingo!\n" + 
+			"1\n" +
+			"Let's Do It!\n";
+	
 	private string level4 = "1\n" +
-		"Good job with the flamingo, but there's not time to rest.\n" +
-		"3\n" +
-		"We got another report of a rhino in the suburbs.\n" +
-		"Let's get it back to the zoo!\n" +
-		"And watch out for lawnmowers.\n" +
-		"1\n" +
-		"Let's Do It!\n";
-
-	private string level5 = "2\n" +
+		"Good job with the flamingo, but we've got more problems.\n" +
+			"3\n" +
+			"There is a report of a rhino in the suburbs.\n" +
+			"Let's get it back to the zoo!\n" +
+			"And watch out for lawnmowers...\n" +
+			"1\n" +
+			"Let's Do It!\n";
+	
+	private string level5 = "3\n" +
 		"What a week!\n" + 
-		"Half the animals are safely back in their pens.\n" +
-		"2\n" +
-		"There's still a penguin out in the suburbs.\n" +
-		"Let's get him back to a cooler climate.\n" +
-		"1\n" +
-		"Let's Do It!\n";
-
-	private string level6 = "2\n" +
+			"Half the animals are safely back in their pens.\n" +
+			"You seem to be managing your pain quite well!\n" +
+			"2\n" +
+			"There's still a penguin out in the suburbs.\n" +
+			"Let's get him back to a cooler climate.\n" +
+			"1\n" +
+			"Let's Do It!\n";
+	
+	private string level6 = "3\n" +
 		"There's a gorilla at the beach giving sunbathers grief,\n" +
-		"let's get over there and catch him before he gets sunburned!\n" +
-		"1\n" +
-		"Let's Do It!\n";
-
+			"let's get over there and catch him before he gets sunburned!\n" +
+			"1\n" +
+			"Let's Do It!\n";
+	
 	private string level7 = "2\n" +
 		"Looks like one of our ostriches likes running on the beach.\n" +
-		"You know what to do!\n" +
-		"1\n" +
-		"Let's Do It!\n";
-
+			"And steer clear of infections, they can put you in the hospital!\n" +
+			"1\n" +
+			"Let's Do It!\n";
+	
 	private string level8 = "3\n" +
 		"An elephant has been spotted downtown.\n" +
-		"Track it down before it causes too much havoc.\n" +
-		"And watch out for cars!\n" +
-		"1\n" +
-		"Let's Do It!\n";
-
+			"Track it down before it causes too much havoc.\n" +
+			"And watch out for cars!\n" +
+			"1\n" +
+			"Let's Do It!\n";
+	
 	private string level9 = "2\n" +
 		"We've got a report of a cheetah downtown.\n" +
-		"You know the drill!\n" +
-		"1\n" +
-		"Let's Do It!\n";
-
+			"Let's catch that big cat before he hurts himself!\n" +
+			"1\n" +
+			"Let's Do It!\n";
+	
 	private string level10 = "3\n" +
-		"Last one!\n" +
-		"It's a bear oh, yeah, it's a bear!\n" +
-		"Let's get him!\n" +
-		"1\n" +
-		"Let's Do It!\n";
-
+		"You're really good at this! There's just one more...\n" +
+			"It's a bear of a... oh, yeah, it's a bear!\n" +
+			"Let's get him!\n" +
+			"1\n" +
+			"Let's Do It!\n";
+	
 	private string end = "2\n" +
 		"Congratulations!\n" +
-		"All the animals have been returned to the zoo safe and sound.\n" +
-		"3\n" +
-		"By paying attention to my body's needs,\n" +
-		"I was able to pursue my dreams and succeed.\n" +
-		"I'll never let sickle-cell keep me down.\n";
-
+			"All the animals have been returned to the zoo safe and sound.\n" +
+			"3\n" +
+			"By paying attention to my body's needs,\n" +
+			"I was able to pursue my dreams and succeed.\n" +
+			"I'll never let sickle-cell keep me down.\n";
 
 }
