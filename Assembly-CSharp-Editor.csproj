@@ -49,6 +49,7 @@
      <Compile Include="Assets\Editor\ButtonEditor.cs" />
      <Compile Include="Assets\Editor\DialogTriggerEditor.cs" />
      <Compile Include="Assets\Editor\LevelEditor.cs" />
+     <Compile Include="Assets\Editor\OpenKitInternal\OpenKitBuildMenu.cs" />
      <Compile Include="Assets\Editor\OpenKitPostprocessBuildPlayer.cs" />
      <Compile Include="Assets\Editor\OpenKitSettingsWindow.cs" />
      <Compile Include="Assets\Editor\RendererEditor.cs" />
@@ -147,9 +148,9 @@
      <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_list_selector.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_tab_selected.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_facebook_button.xml" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_search_bar_layout.xml" />
      <None Include="Assets\Plugins\Android\facebook\bin\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_userprofile.xml" />
      <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />

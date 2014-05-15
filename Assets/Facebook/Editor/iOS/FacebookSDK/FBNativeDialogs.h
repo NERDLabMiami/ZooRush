@@ -6,7 +6,7 @@
  * You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-#import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
-
+#import <CoreLocation/CoreLocation.h>
 #import "FBAppCall.h"
-#import "FBOpenGraphActionShareDialogParams.h"
 #import "FBShareDialogParams.h"
+#import "FBOpenGraphActionShareDialogParams.h"
 
 @class FBSession;
 @protocol FBOpenGraphAction;
@@ -28,7 +27,7 @@
 
 /*!
  @typedef FBNativeDialogResult enum
-
+ 
  @abstract
  Please note that this enum and its related methods have been deprecated, please migrate your
  code to use `FBOSIntegratedShareDialogResult` and its related methods.
@@ -45,7 +44,7 @@ __attribute__((deprecated));
 
 /*!
  @typedef
-
+ 
  @abstract
  Please note that `FBShareDialogHandler` and its related methods have been deprecated, please migrate your
  code to use `FBOSIntegratedShareDialogHandler` and its related methods.
@@ -55,7 +54,7 @@ __attribute__((deprecated));
 
 /*!
  @class FBNativeDialogs
-
+ 
  @abstract
  Please note that `FBNativeDialogs` has been deprecated, please migrate your
  code to use `FBDialogs`.

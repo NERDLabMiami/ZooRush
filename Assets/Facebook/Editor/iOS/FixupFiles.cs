@@ -36,7 +36,7 @@ namespace UnityEditor.FacebookEditor
             data = Regex.Replace(data, "typedef int gboolean;", "typedef int gboolean;\n\tvoid mono_dl_register_symbol (const char* name, void *addr);");
 
             data = Regex.Replace(data, @"#endif\s+//\s*!\s*\(\s*TARGET_IPHONE_SIMULATOR\s*\)\s*}\s*void RegisterAllStrippedInternalCalls\s*\(\s*\)", "}\n\nvoid RegisterAllStrippedInternalCalls()");
-            data = Regex.Replace(data, @"mono_aot_register_module\(mono_aot_module_mscorlib_info\);",
+            data = Regex.Replace(data, @"mono_aot_register_module\(mono_aot_module_mscorlib_info\);", 
                                  "mono_aot_register_module(mono_aot_module_mscorlib_info);\n#endif // !(TARGET_IPHONE_SIMULATOR)");
 
             Save (fullPath, data);
@@ -82,22 +82,6 @@ namespace UnityEditor.FacebookEditor
             }
 
             return ((majorVersion * 100) + (minorVersion * 10));
-        }
-
-        public static void FixColdStart(string path)
-        {
-            string fullPath = Path.Combine(path, Path.Combine("Classes", "UnityAppController.mm"));
-            string data = Load(fullPath);
-
-            data = Regex.Replace(data,
-                @"(?x)                                  # Verbose mode
-                  (didFinishLaunchingWithOptions.+      # Find this function...
-                    (?:.*\n)+?                          # Match as few lines as possible until...
-                    \s*return\ )NO(\;\n                 #   return NO;
-                  \})                                   # }",
-                "$1YES$2");
-
-            Save(fullPath, data);
         }
     }
 }

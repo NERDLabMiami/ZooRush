@@ -8,7 +8,7 @@ namespace OpenKit
 {
 	public class OKManager
 	{
-		public const string OPENKIT_SDK_VERSION = "1.1";
+		public const string OPENKIT_SDK_VERSION = "1.1.1";
 		private const string DEFAULT_ENDPOINT = "http://api.openkit.io";
 
 		private string _LeaderboardListTag = null;
@@ -157,6 +157,11 @@ namespace OpenKit
 		public static void LogoutCurrentUserFromOpenKit()
 		{
 			OKManager.Instance._LogoutCurrentUserFromOpenKit();
+		}
+
+		public static void LogoutNativeFacebook()
+		{
+			OKManager.Instance._LogoutNativeFacebook();
 		}
 		
 		public static bool IsPlayerAuthenticatedWithGameCenter()
@@ -325,6 +330,11 @@ namespace OpenKit
 		public void _LogoutCurrentUserFromOpenKit()
 		{
 			nativeBridge.LogoutCurrentUserFromOpenKit();
+		}
+
+		public void _LogoutNativeFacebook()
+		{
+			nativeBridge.LogoutNativeFacebook();
 		}
 
 		public bool _IsEnabled()

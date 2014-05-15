@@ -28,7 +28,7 @@
 
 +(FbUnityInterface *)sharedInstance;
 -(id)init;
--(id)initWithCookie:(bool)cookie logging:(bool)_logging status:(bool)_status frictionlessRequests:(bool)_frictionlessRequests urlSuffix:(const char *)urlSuffix;
+-(id)initWithCookie:(bool)cookie logging:(bool)_logging status:(bool)_status frictionlessRequests:(bool)_frictionlessRequests;
 -(void)login:(const char *)scope;
 -(void)logout;
 
