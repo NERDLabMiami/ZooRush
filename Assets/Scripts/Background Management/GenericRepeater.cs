@@ -24,7 +24,7 @@ public class GenericRepeater : MonoBehaviour
 		speedUpdate ();
 		if (endlessMode || cameraFollower.cameraSettled) {
 			foreach (SpriteRenderer sprite in sprites) {
-				if (sprite.bounds.max.x < Camera.main.transform.position.x - 50f && !inView (sprite)) { // if the block is not in view and to the left of the camera
+				if (sprite.bounds.max.x < Camera.main.transform.position.x - 20f && !inView (sprite)) { // if the block is not in view and to the left of the camera
 					moveToEnd (sprite);
 				}
 			}
