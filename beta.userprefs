@@ -1,22 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Menus and Scene Managers/LevelSelect.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EndlessModeEndMenu.cs">
     <Files>
-      <File FileName="Assets/Scripts/Menus and Scene Managers/LevelSelect.cs" Line="45" Column="35" />
-      <File FileName="Assets/EndlessLevelSelect.cs" Line="29" Column="33" />
-      <File FileName="Assets/Scripts/Menus and Scene Managers/LevelSelectCameraControls.cs" Line="117" Column="1" />
-      <File FileName="Assets/Scripts/Menus and Scene Managers/LevelSelectButtonController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Event Handling/NextSceneHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameScoresManager.cs" Line="19" Column="1" />
+      <File FileName="Assets/Scripts/HighScoresButton.cs" Line="1" Column="1" />
+      <File FileName="Assets/Examples/OKDemoScene.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EndlessModeEndMenu.cs" Line="78" Column="8" />
+      <File FileName="Assets/Scripts/EndlessSceneManager.cs" Line="179" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Examples" expanded="True" />
             <Node name="Scripts" expanded="True">
               <Node name="Event Handling" expanded="True" />
-              <Node name="Menus and Scene Managers" expanded="True">
-                <Node name="LevelSelect.cs" selected="True" />
-              </Node>
+              <Node name="Level Gameplay" expanded="True" />
+              <Node name="Menus and Scene Managers" expanded="True" />
+              <Node name="EndlessModeEndMenu.cs" selected="True" />
             </Node>
           </Node>
         </State>

@@ -4,8 +4,8 @@ Perl Version: 5.016002
 Python Version: Python 2.7.5
 Unity version: 4.3.4f1
 Unity 3?: 0
-FacebookAppID: 450333868362300
-Install Path: /Users/ebbyw/Desktop/ZooRushHighScores2
+FacebookAppID: 701328446577054
+Install Path: /Users/ebbyw/Desktop/ZooRushHighScoresTester
 Current Dir: /Users/ebbyw/Desktop/beta
 Python Script Path: /Users/ebbyw/Desktop/beta/Assets/Plugins/OpenKit/PostbuildScripts/OpenKitRunner.py
 Starting python script...
@@ -13,8 +13,8 @@ Starting python script...
 
 In OpenKitRunner.py
 ---------------------------
-Install path: /Users/ebbyw/Desktop/ZooRushHighScores2
-Facebook app ID: 450333868362300
+Install path: /Users/ebbyw/Desktop/ZooRushHighScoresTester
+Facebook app ID: 701328446577054
 OK Vendor Path: /Users/ebbyw/Desktop/beta/Assets/Plugins/iOS/OpenKit_Vendor
 OK Resources Path: /Users/ebbyw/Desktop/beta/Assets/Plugins/iOS/OpenKitResources
 Opened and read contents of Info.plist.

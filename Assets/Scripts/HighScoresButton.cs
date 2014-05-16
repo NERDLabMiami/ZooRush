@@ -39,28 +39,6 @@ public class HighScoresButton : OtherButtonClass
 		{
 				Debug.Log ("CLUCK");
 				OKManager.ShowLeaderboards ();
-		}
-
-		// Get the list of leaderboards in C# (native unity)
-		void GetLeaderboards ()
-		{
-				OKLeaderboard.GetLeaderboards ((List<OKLeaderboard> leaderboards, OKException exception) => {
-			
-						if (leaderboards != null) {
-								OKLog.Info ("Received " + leaderboards.Count + " leaderboards ");
-				
-								OKLeaderboard leaderboard = (OKLeaderboard)leaderboards [0];
-				
-								OKLog.Info ("Getting scores for leaderboard ID: " + leaderboard.LeaderboardID + " named: " + leaderboard.Name);
-								leaderboard.GetGlobalScores (1, (List<OKScore> scores, OKException exception2) => {
-										if (exception2 == null) {
-												OKLog.Info ("Got global scores in the callback");
-										}
-								});
-						} else {
-								OKLog.Info ("Error getting leaderboards");
-						}
-				});
-		}
+		}		
 
 }
