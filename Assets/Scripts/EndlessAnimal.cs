@@ -67,6 +67,7 @@ public class EndlessAnimal : OtherButtonClass
 				if (caught) {
 						Debug.Log ("CHANGING FROM CAUGHT TO UNCAUGHT");
 						GameObject.FindObjectOfType<NetLauncher> ().resetNets ();
+						//TODO: Add Animationg that changes animal into badge and adds it to the count
 						sceneManager.addToAnimalsCaught ();
 						sceneManager.introduceAnimal ();
 						caught = false;
