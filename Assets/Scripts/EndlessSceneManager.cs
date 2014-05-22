@@ -97,6 +97,7 @@ public class EndlessSceneManager : MonoBehaviour
 		void FixedUpdate ()
 		{
 				if (!GameState.checkForState (GameState.States.Lose) && failed) {
+						GameState.currentState = GameState.States.Transition;
 						GameState.requestLose ();
 				}
 		}

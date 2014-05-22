@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{EB4FF443-60D5-AAD3-F403-302FFFD97D7D}</ProjectGuid>
+	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\EndlessLevelSelect.cs" />
      <Compile Include="Assets\Examples\OKDemoScene.cs" />
      <Compile Include="Assets\Examples\Scripts\InteractiveConsole.cs" />
      <Compile Include="Assets\Facebook\Scripts\AndroidFacebook.cs" />
@@ -167,6 +168,7 @@
      <Compile Include="Assets\Scripts\Event Handling\GameState.cs" />
      <Compile Include="Assets\Scripts\Event Handling\LevelFailModel.cs" />
      <Compile Include="Assets\Scripts\Event Handling\NextSceneHandler.cs" />
+     <Compile Include="Assets\Scripts\GameScoresManager.cs" />
      <Compile Include="Assets\Scripts\HighScoresButton.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\Ball.cs" />
      <Compile Include="Assets\Scripts\Level Gameplay\Building.cs" />
@@ -306,7 +308,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{58625F4E-533A-530D-F354-AD8A92620E6B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{2EC2B42E-54E2-071B-3B68-80E2C8CF13CF}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

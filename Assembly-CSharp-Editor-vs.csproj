@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{843B7DBC-E1F8-AA56-E5C2-F731161B1ABE}</ProjectGuid>
+	<ProjectGuid>{01AE29EA-D11F-E103-1878-41E8A4CD4F77}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -209,9 +209,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{58625F4E-533A-530D-F354-AD8A92620E6B}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{2EC2B42E-54E2-071B-3B68-80E2C8CF13CF}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp-vs.csproj">
-      <Project>{EB4FF443-60D5-AAD3-F403-302FFFD97D7D}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
+      <Project>{70063E49-5F3B-3855-BBDF-26E535F76079}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
