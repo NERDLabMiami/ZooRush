@@ -117,11 +117,14 @@ public class EndlessSceneManager : MonoBehaviour
 		public void introduceAnimal ()
 		{
 				Debug.Log ("INTRODUCE ANIMAL CALLED");
+				
+				animalObject.transform.localScale = new Vector3 (1.25f, 1.25f, 1);
 				animalObject.rigidbody2D.isKinematic = true;
 				animalObject.transform.position = new Vector3 (characterObject.transform.position.x,
 		                                              -10f,
 		                                              characterObject.transform.position.z);
 				changeAnimal ();
+				animalController.reset ();
 				StartCoroutine (getAnimalIntoView ());
 		}
 
@@ -130,11 +133,14 @@ public class EndlessSceneManager : MonoBehaviour
 				Debug.Log ("GET ANIMAL INTO VIEW CALLED");
 
 				Vector3 finalPosition = new Vector3 (-0.5f, -3.33f, characterObject.transform.position.z);
+				Vector3 velocity = Vector3.zero;
 				while (animalObject.transform.position.x < -0.51f) {
-						animalObject.transform.position = Vector3.Lerp (animalObject.transform.position, finalPosition, Time.deltaTime * 2f);
+						Debug.Log ("Getting Animal into View");
+						animalObject.transform.position = Vector3.SmoothDamp (animalObject.transform.position, finalPosition, ref velocity, 1f);
 						yield return new WaitForFixedUpdate ();
 				}
 				animalObject.rigidbody2D.isKinematic = false;
+				animalController.randomYVelocityChange ();
 				StartCoroutine (timeOut ());
 
 		}
@@ -155,12 +161,16 @@ public class EndlessSceneManager : MonoBehaviour
 				float currentTimePassed = 0;
 				GameObject.FindObjectOfType<NetLauncher> ().resetThrowCount ();
 				
-				while (!failed && !animalController.caught && currentTimePassed < maxTime [(int)currentAnimal]) {
+				while (!failed && !animalController.stopAllCoroutines && (currentTimePassed < maxTime [(int)currentAnimal])) {
 						Debug.Log ("WAITING");
+						if (animalController.stopAllCoroutines) {
+								Debug.Log ("OH NO ANIMAL WAS CAUGHT");
+								break;
+						}
 						currentTimePassed += Time.deltaTime;
 						yield return new WaitForFixedUpdate ();
 				}
-				if (!animalController.caught) {
+				if (!animalController.stopAllCoroutines) {
 						StartCoroutine (getAwayAndThenReset ());
 				} else {
 						Debug.Log ("ANIMAL WAS CAUGHT");
