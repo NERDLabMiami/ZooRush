@@ -1,13 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EndlessModeEndMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EndlessAnimal.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameScoresManager.cs" Line="15" Column="31" />
-      <File FileName="Assets/Scripts/HighScoresButton.cs" Line="1" Column="1" />
-      <File FileName="Assets/Examples/OKDemoScene.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/EndlessModeEndMenu.cs" Line="78" Column="8" />
-      <File FileName="Assets/Scripts/EndlessSceneManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/EndlessAnimal.cs" Line="17" Column="4" />
+      <File FileName="Assets/Scripts/GameScoresManager.cs" Line="16" Column="74" />
+      <File FileName="Assets/Scripts/EndlessSceneManager.cs" Line="143" Column="44" />
+      <File FileName="Assets/Scripts/EndlessAnimal.cs" Line="132" Column="37" />
+      <File FileName="Assets/Scripts/EndlessModeEndMenu.cs" Line="71" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,7 +16,12 @@
               <Node name="Event Handling" expanded="True" />
               <Node name="Level Gameplay" expanded="True" />
               <Node name="Menus and Scene Managers" expanded="True" />
-              <Node name="EndlessModeEndMenu.cs" selected="True" />
+              <Node name="EndlessAnimal.cs" selected="True" />
+            </Node>
+          </Node>
+          <Node name="Assembly-CSharp-firstpass" expanded="True">
+            <Node name="Plugins" expanded="True">
+              <Node name="OpenKit" expanded="True" />
             </Node>
           </Node>
         </State>

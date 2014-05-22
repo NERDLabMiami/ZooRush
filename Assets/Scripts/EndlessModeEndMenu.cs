@@ -68,11 +68,8 @@ public class EndlessModeEndMenu : MonoBehaviour
 				Debug.Log ("Launch Stat Called");
 				
 				if (currentAnimal == 0) {
-						if (GameScoresManager.instance.submitEndlessLevelScore (sceneManager.totalCaughtCount, Application.loadedLevelName)) {
-								Debug.Log ("Score submission successful");
-						} else {
-								Debug.Log ("Score submission unsuccessful");
-						}
+						GameScoresManager.instance.submitEndlessLevelScore (sceneManager.totalCaughtCount, Application.loadedLevelName);
+						
 						if (sceneManager.totalCaughtCount > currentHighScore) {
 								PlayerPrefs.SetInt (Application.loadedLevelName + "Score", sceneManager.totalCaughtCount);
 						}

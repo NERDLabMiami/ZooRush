@@ -12,6 +12,9 @@ public class GameScoresManager : MonoBehaviour
 		
 		public static GameScoresManager instance {
 				get {
+						if (!GameObject.FindObjectOfType<GameScoresManager> ()) {
+								new GameObject ("Game Score Manager", typeof(GameScoresManager));
+						}
 						if (_instance == null) {
 								_instance = GameObject.FindObjectOfType<GameScoresManager> ();
 				
@@ -29,6 +32,7 @@ public class GameScoresManager : MonoBehaviour
 						//If I am the first instance, make me the Singleton
 						_instance = this;
 						DontDestroyOnLoad (this);
+						Setup ();
 				} else {
 						//If a Singleton already exists and you find
 						//another reference in scene, destroy it!
@@ -37,15 +41,9 @@ public class GameScoresManager : MonoBehaviour
 				}
 		}
 
-
-		
-		void Start ()
-		{
-				Setup ();
-		}
-
 		public void Setup ()
 		{
+				Debug.Log ("Setup for GameScoresManager Called");
 				// Authenticate the local player with GameCenter (iOS only).
 				OKManager.authenticateGameCenterLocalPlayer ();
 				if (OKManager.IsCurrentUserAuthenticated ()) {
@@ -87,6 +85,12 @@ public class GameScoresManager : MonoBehaviour
 
 		public bool submitEndlessLevelScore (int levelScore, string levelName)
 		{
+				if (OKUser.GetCurrentUser () == null) {
+						Debug.Log ("Player is not logged in.");
+				} else {
+						Debug.Log ("Player is logged in.");
+				}
+
 				Debug.Log ("ENDLESS MODE SCORE SUBMITTAL BEGAN");
 				int leaderBoardID = 0;
 				string gameCenterCategory = "";
