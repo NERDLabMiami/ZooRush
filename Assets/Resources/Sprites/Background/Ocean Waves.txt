@@ -1,0 +1,52 @@
+{"frames": {
+
+"1.png":
+{
+	"frame": {"x":4,"y":4,"w":1928,"h":334},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1928,"h":334},
+	"sourceSize": {"w":1928,"h":334}
+},
+"2.png":
+{
+	"frame": {"x":4,"y":342,"w":1928,"h":334},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1928,"h":334},
+	"sourceSize": {"w":1928,"h":334}
+},
+"3.png":
+{
+	"frame": {"x":4,"y":680,"w":1928,"h":334},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1928,"h":334},
+	"sourceSize": {"w":1928,"h":334}
+},
+"4.png":
+{
+	"frame": {"x":4,"y":1018,"w":1928,"h":334},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1928,"h":334},
+	"sourceSize": {"w":1928,"h":334}
+},
+"5.png":
+{
+	"frame": {"x":4,"y":1356,"w":1928,"h":334},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1928,"h":334},
+	"sourceSize": {"w":1928,"h":334}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "Ocean Waves.png",
+	"format": "RGBA8888",
+	"size": {"w":1936,"h":1694},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:99095c284a509aea7b4758744c2791bf:0258bd9e7da527f2cf49c49ba730dabe:e29d5a3122592797b20a88d53c8fe612$"
+}
+}

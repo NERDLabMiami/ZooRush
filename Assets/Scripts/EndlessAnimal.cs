@@ -137,7 +137,7 @@ public class EndlessAnimal : OtherButtonClass
 		{
 //		Debug.Log ("Timer Called");
 
-				float waitTime = Random.Range (0f, 0.5f);
+				float waitTime = Random.Range (0f, 0.25f);
 				float timePassed = 0;
 				while (timePassed < waitTime) {
 						timePassed += Time.deltaTime;
@@ -148,7 +148,7 @@ public class EndlessAnimal : OtherButtonClass
 
 		public void randomYVelocityChange ()
 		{
-				int yVelocity = Random.Range (0, 3);
+				int yVelocity = Random.Range (0, 5);
 				yVelocity *= (Random.Range (0, 2) == 0) ? 1 : -1;
 
 				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yVelocity);
@@ -173,7 +173,7 @@ public class EndlessAnimal : OtherButtonClass
 		{
 				//		Debug.Log ("Timer Called");
 		
-				float waitTime = Random.Range (0f, 0.5f);
+				float waitTime = Random.Range (0f, 0.25f);
 				float timePassed = 0;
 				while (timePassed < waitTime) {
 						timePassed += Time.deltaTime;
@@ -185,7 +185,7 @@ public class EndlessAnimal : OtherButtonClass
 		public void randomXVelocityChange ()
 		{
 				if (sceneManager && !sceneManager.failed) {
-						float xVelocity = Random.Range (0, 1.1f);
+						float xVelocity = Random.Range (0, 0.9f);
 		
 						rigidbody2D.velocity = new Vector2 (xVelocity, rigidbody2D.velocity.y);
 						//		Debug.Log ("Random Y Change Called for " + yVelocity + " speed.");

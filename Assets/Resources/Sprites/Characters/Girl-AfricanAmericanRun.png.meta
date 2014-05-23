@@ -1,0 +1,103 @@
+fileFormatVersion: 2
+guid: b2505aeb6c2bf4af3a6d380e0452e9b5
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: Girl-AfricanAmericanRun_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 700
+        width: 512
+        height: 700
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Girl-AfricanAmericanRun_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 700
+        width: 512
+        height: 700
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Girl-AfricanAmericanRun_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 700
+        width: 512
+        height: 700
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Girl-AfricanAmericanRun_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 700
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Girl-AfricanAmericanRun_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 700
+      alignment: 7
+      pivot: {x: 0, y: 0}
+    - name: Girl-AfricanAmericanRun_5
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 700
+      alignment: 7
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 

@@ -142,7 +142,7 @@ public class EndlessSceneManager : MonoBehaviour
 				Vector3 finalPosition = new Vector3 (animalObject.transform.position.x + 6.5f, animalObject.transform.position.y + 5.25f, characterObject.transform.position.z);
 				Vector3 velocity = Vector3.zero;
 				while (Mathf.Abs(animalObject.transform.position.x - finalPosition.x) > 0.1f) {
-						Debug.Log ("Getting Animal into View");
+//						Debug.Log ("Getting Animal into View");
 						animalObject.transform.position = Vector3.SmoothDamp (animalObject.transform.position, finalPosition, ref velocity, 0.2f);
 						yield return new WaitForFixedUpdate ();
 				}
@@ -170,7 +170,7 @@ public class EndlessSceneManager : MonoBehaviour
 				GameObject.FindObjectOfType<NetLauncher> ().resetThrowCount ();
 				
 				while (!failed && !animalController.stopAllCoroutines && (currentTimePassed < maxTime [(int)currentAnimal])) {
-						Debug.Log ("WAITING");
+//						Debug.Log ("WAITING");
 						if (animalController.stopAllCoroutines) {
 								Debug.Log ("OH NO ANIMAL WAS CAUGHT");
 								break;
@@ -194,7 +194,7 @@ public class EndlessSceneManager : MonoBehaviour
 
 		public IEnumerator callEndMenu (bool fainted = false)
 		{
-				Debug.Log ("END MENU CALLED");
+//				Debug.Log ("END MENU CALLED");
 				if (!endCalled) {
 						Debug.Log ("END MENU ACTIVATING");
 						endCalled = true;
@@ -235,5 +235,5 @@ public class EndlessSceneManager : MonoBehaviour
 				TextMesh pillCountText = GameObject.Find ("Pill Count").GetComponentInChildren<TextMesh> ();
 				pillCountText.text = theCount;
 		}
-
+		
 }

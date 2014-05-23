@@ -182,6 +182,7 @@
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values\styles.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values-es\strings.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_check.xml" />
+     <None Include="Assets\Resources\Sprites\Background\Ocean Waves.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\bin\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_row.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_tab_default.xml" />
