@@ -137,7 +137,7 @@ public class EndlessAnimal : OtherButtonClass
 		{
 //		Debug.Log ("Timer Called");
 
-				float waitTime = Random.Range (0.5f, 1.5f);
+				float waitTime = Random.Range (0f, 0.5f);
 				float timePassed = 0;
 				while (timePassed < waitTime) {
 						timePassed += Time.deltaTime;
@@ -154,16 +154,52 @@ public class EndlessAnimal : OtherButtonClass
 				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, yVelocity);
 //		Debug.Log ("Random Y Change Called for " + yVelocity + " speed.");
 
-				resetSpeed ();
+				resetSpeedY ();
 
 		}
 
-		private void resetSpeed ()
+		private void resetSpeedY ()
 		{
 				if (!caught && !stopAllCoroutines) {
 //						Debug.Log ("Reset Speed Change Called");
 						if (sceneManager && !sceneManager.failed) {
 								StartCoroutine (randomYMovementTimer ());
+						}
+				}
+				//else we break out of this loop MWAHAHAHA
+		}
+
+		private IEnumerator randomXMovementTimer ()
+		{
+				//		Debug.Log ("Timer Called");
+		
+				float waitTime = Random.Range (0f, 0.5f);
+				float timePassed = 0;
+				while (timePassed < waitTime) {
+						timePassed += Time.deltaTime;
+						yield return new WaitForFixedUpdate ();
+				}
+				randomXVelocityChange ();
+		}
+	
+		public void randomXVelocityChange ()
+		{
+				if (sceneManager && !sceneManager.failed) {
+						float xVelocity = Random.Range (0, 1.1f);
+		
+						rigidbody2D.velocity = new Vector2 (xVelocity, rigidbody2D.velocity.y);
+						//		Debug.Log ("Random Y Change Called for " + yVelocity + " speed.");
+		
+						resetSpeedX ();
+				}
+		}
+	
+		private void resetSpeedX ()
+		{
+				if (!caught && !stopAllCoroutines) {
+						//						Debug.Log ("Reset Speed Change Called");
+						if (sceneManager && !sceneManager.failed) {
+								StartCoroutine (randomXMovementTimer ());
 						}
 				}
 				//else we break out of this loop MWAHAHAHA

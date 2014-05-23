@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 /**
  * Scene Manager for Endless Mode Levels. Unlike regular levels, endless mode 
  * allows thw player to catch multiple animals within a limited amounnt of time.
@@ -11,7 +10,7 @@ public class EndlessSceneManager : MonoBehaviour
 		public bool failed;
 		public bool fainted;
 		private bool endCalled;
-
+		private Transform[] startingPositions;
 
 		public enum AnimalValues
 		{
@@ -81,6 +80,11 @@ public class EndlessSceneManager : MonoBehaviour
 
 		void Start ()
 		{
+				GameObject[] objects = GameObject.FindGameObjectsWithTag ("marker");
+				startingPositions = new Transform[objects.Length];
+				for (int i = 0; i < startingPositions.Length; i++) {
+						startingPositions [i] = objects [i].transform;
+				}
 				animalUsageCount = new int[10];
 				animalCaughtCount = new int[10];
 				for (int i = 0; i < 10; i++) {
@@ -96,7 +100,7 @@ public class EndlessSceneManager : MonoBehaviour
 	
 		void FixedUpdate ()
 		{
-				if (!GameState.checkForState (GameState.States.Lose) && failed) {
+				if (endCalled && !GameState.checkForState (GameState.States.Lose)) {
 						GameState.currentState = GameState.States.Transition;
 						GameState.requestLose ();
 				}
@@ -119,12 +123,15 @@ public class EndlessSceneManager : MonoBehaviour
 				Debug.Log ("INTRODUCE ANIMAL CALLED");
 				
 				animalObject.transform.localScale = new Vector3 (1.25f, 1.25f, 1);
-				animalObject.rigidbody2D.isKinematic = true;
-				animalObject.transform.position = new Vector3 (characterObject.transform.position.x,
-		                                              -10f,
-		                                              characterObject.transform.position.z);
+				
+				animalObject.transform.position = startingPositions [Random.Range (0, startingPositions.Length)].position;
+//				animalObject.transform.position = new Vector3 (characterObject.transform.position.x,
+//		                                              -10f,
+//		                                              characterObject.transform.position.z);
+				
 				changeAnimal ();
 				animalController.reset ();
+				animalObject.rigidbody2D.isKinematic = true;
 				StartCoroutine (getAnimalIntoView ());
 		}
 
@@ -132,15 +139,16 @@ public class EndlessSceneManager : MonoBehaviour
 		{
 				Debug.Log ("GET ANIMAL INTO VIEW CALLED");
 
-				Vector3 finalPosition = new Vector3 (-0.5f, -3.33f, characterObject.transform.position.z);
+				Vector3 finalPosition = new Vector3 (animalObject.transform.position.x + 6.5f, animalObject.transform.position.y + 5.25f, characterObject.transform.position.z);
 				Vector3 velocity = Vector3.zero;
-				while (animalObject.transform.position.x < -0.51f) {
+				while (Mathf.Abs(animalObject.transform.position.x - finalPosition.x) > 0.1f) {
 						Debug.Log ("Getting Animal into View");
-						animalObject.transform.position = Vector3.SmoothDamp (animalObject.transform.position, finalPosition, ref velocity, 1f);
+						animalObject.transform.position = Vector3.SmoothDamp (animalObject.transform.position, finalPosition, ref velocity, 0.2f);
 						yield return new WaitForFixedUpdate ();
 				}
 				animalObject.rigidbody2D.isKinematic = false;
 				animalController.randomYVelocityChange ();
+				animalController.randomXVelocityChange ();
 				StartCoroutine (timeOut ());
 
 		}
