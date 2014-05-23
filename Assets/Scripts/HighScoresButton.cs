@@ -5,9 +5,9 @@ using OpenKit;
 using System;
 using Facebook;
 
-public class HighScoresButton : OtherButtonClass
+public class HighScoresButton : MonoBehaviour, OtherButtonClass
 {
-		public override void otherButtonAction (Button thisButton = null)
+		public void otherButtonAction (Button thisButton = null)
 		{
 				Debug.Log ("CLUCK");
 				OKManager.ShowLeaderboards ();
