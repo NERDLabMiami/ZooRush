@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EndlessAnimal : Animal, OtherButtonClass
+public class EndlessAnimal : OtherButtonClass
 {
 		public EndlessSceneManager sceneManager;
+		public bool caught; //Indicator for whehter the Animal has been caught by the player
 		public bool stopAllCoroutines;
+		public Vector2 speed; //Current speed of the animal object
+		public AudioClip audioClip; // Animal audio sound clip
+		public Button touchZone;
+		public Animator animator; //Animator for the animal's running sprites
+		private AudioSource audioSource; //Audio Source that plays sound clip
 		public Sprite[] animalBadges;
 		public SpriteRenderer currentAnimalBadge;
 		public Transform counterLocation;
@@ -53,7 +59,7 @@ public class EndlessAnimal : Animal, OtherButtonClass
 				rigidbody2D.velocity = Vector2.zero; //we set the initial velocity to 0
 		}
 
-		public void otherButtonAction (Button thisButton)
+		public override void otherButtonAction (Button thisButton)
 		{
 				GameState.currentState = GameState.States.Launch;
 
@@ -199,7 +205,7 @@ public class EndlessAnimal : Animal, OtherButtonClass
 				//else we break out of this loop MWAHAHAHA
 		}
 
-		public override void getAway ()
+		public void getAway ()
 		{
 				Debug.Log ("GET AWAY CALLED");
 				sceneManager.failed = true;

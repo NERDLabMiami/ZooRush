@@ -12,13 +12,12 @@ public class PowerUp : ObjectModel
 		public bool isFountain; 
 		private bool interacted;
 		private int pillCount;
-		private bool endlessMode;
 
 		new void Start ()
 		{
 				base.Start ();
 				interacted = false;
-				if (GameState.checkForEndlessMode ()) {
+				if (GameObject.FindObjectOfType<EndlessSceneManager> ()) {
 						painIndicator = GameObject.FindObjectOfType<EndlessPainIndicator> ();
 				} else {
 						painIndicator = GameObject.FindObjectOfType<PainIndicator> ();

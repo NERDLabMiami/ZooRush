@@ -1,23 +1,23 @@
 using UnityEngine;
 using System.Collections;
 
-public class EndlessModeGetAway : MonoBehaviour, OtherButtonClass
+public class EndlessModeGetAway : OtherButtonClass
 {
-		public EndlessAnimal animal;
-		// Use this for initialization
-		void Start ()
-		{
+	public EndlessAnimal animal;
+	// Use this for initialization
+	void Start ()
+	{
 	
-		}
+	}
 	
-		// Update is called once per frame
-		void Update ()
-		{
+	// Update is called once per frame
+	void Update ()
+	{
 	
-		}
+	}
 
-		public void otherButtonAction (Button thisButton)
-		{
-				animal.getAway ();
-		}
+	public override void otherButtonAction (Button thisButton)
+	{
+		animal.getAway ();
+	}
 }

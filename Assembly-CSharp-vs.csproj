@@ -147,6 +147,7 @@
      <Compile Include="Assets\Scripts\Background Management\GroundRepeater.cs" />
      <Compile Include="Assets\Scripts\Background Management\SceneRepeater.cs" />
      <Compile Include="Assets\Scripts\Characters and Animals\Animal.cs" />
+     <Compile Include="Assets\Scripts\Characters and Animals\AnimalControls.cs" />
      <Compile Include="Assets\Scripts\Characters and Animals\AnimalSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\Characters and Animals\BackgroundAnimal.cs" />
      <Compile Include="Assets\Scripts\Characters and Animals\BackgroundCharacter.cs" />
@@ -156,7 +157,6 @@
      <Compile Include="Assets\Scripts\Characters and Animals\Doctor.cs" />
      <Compile Include="Assets\Scripts\Characters and Animals\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\Characters and Animals\RandomAnimalGenerator.cs" />
-     <Compile Include="Assets\Scripts\Characters and Animals\StoryAnimal.cs" />
      <Compile Include="Assets\Scripts\Characters and Animals\StoryModeSpriteHandler.cs" />
      <Compile Include="Assets\Scripts\Debugging and Testing\EndlessModeChangeAnimalTester.cs" />
      <Compile Include="Assets\Scripts\Debugging and Testing\EndlessModeGetAway.cs" />

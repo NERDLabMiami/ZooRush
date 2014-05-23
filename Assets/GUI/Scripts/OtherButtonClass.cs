@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public interface OtherButtonClass: MonoBehaviour
+public abstract class OtherButtonClass : MonoBehaviour
 {
-		void otherButtonAction (Button thisButton = null);
+	public abstract void otherButtonAction (Button thisButton = null);
 }
