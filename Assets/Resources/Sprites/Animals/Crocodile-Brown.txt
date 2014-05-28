@@ -1,0 +1,44 @@
+{"frames": {
+
+"Crocodile1-2.png":
+{
+	"frame": {"x":0,"y":0,"w":472,"h":106},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":472,"h":106},
+	"sourceSize": {"w":472,"h":106}
+},
+"Crocodile2-2.png":
+{
+	"frame": {"x":472,"y":0,"w":472,"h":106},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":472,"h":106},
+	"sourceSize": {"w":472,"h":106}
+},
+"Crocodile3-2.png":
+{
+	"frame": {"x":944,"y":0,"w":472,"h":106},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":472,"h":106},
+	"sourceSize": {"w":472,"h":106}
+},
+"Crocodile4-2.png":
+{
+	"frame": {"x":1416,"y":0,"w":472,"h":106},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":472,"h":106},
+	"sourceSize": {"w":472,"h":106}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "Crocodile-Brown.png",
+	"format": "RGBA8888",
+	"size": {"w":1888,"h":106},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:56a7c27e3b31938787a62046a41a1581:13800985eee7b4c97f14c0d530ad920e:9e208a1b891d64f8bc2053520427231f$"
+}
+}
