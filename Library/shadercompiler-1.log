@@ -3,29 +3,9 @@ Pipe name: \\.\pipe\UnityShaderCompiler-1--1606479448
 Cmd: getPlatforms
 Cmd: preprocess
   insize=2924 outsize=830 ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=2398 outsize=1231 kw= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=2398 outsize=1148 kw= ok=1
 Cmd: preprocess
   insize=4794 outsize=980 ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=2211 outsize=1330 kw= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=2211 outsize=989 kw= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=2213 outsize=1303 kw= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=2213 outsize=989 kw= ok=1
 Cmd: preprocess
   insize=2927 outsize=833 ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=2398 outsize=1231 kw= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=2398 outsize=1148 kw= ok=1
 Cmd: preprocess
   insize=2648 outsize=736 ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=2215 outsize=1330 kw= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=2215 outsize=989 kw= ok=1
