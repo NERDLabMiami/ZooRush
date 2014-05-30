@@ -1,16 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GUI/Scripts/Button.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Level Gameplay/SceneManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Animal.cs" Line="36" Column="18" />
-      <File FileName="Assets/Scripts/EndlessAnimal.cs" Line="207" Column="41" />
-      <File FileName="Assets/Scripts/Characters and Animals/AnimalStory.cs" Line="96" Column="55" />
-      <File FileName="Assets/GUI/Scripts/TouchAreaButton.cs" Line="25" Column="5" />
-      <File FileName="Assets/Scripts/Menus and Scene Managers/StoryModeNonPanel.cs" Line="4" Column="50" />
-      <File FileName="Assets/Editor/ButtonEditor.cs" Line="53" Column="64" />
-      <File FileName="Assets/GUI/Scripts/Button.cs" Line="19" Column="17" />
-      <File FileName="Assets/GUI/Scripts/OtherButtonClass.cs" Line="4" Column="34" />
-      <File FileName="Assets/GUI/Scripts/DialogBox.cs" Line="8" Column="36" />
+      <File FileName="Assets/Scripts/EndlessAnimal.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EndlessSceneManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Menus and Scene Managers/LevelSelectButtonController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Menus and Scene Managers/LevelSelectCameraControls.cs" Line="1" Column="1" />
+      <File FileName="Assets/EndlessLevelSelect.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Level Gameplay/SceneManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

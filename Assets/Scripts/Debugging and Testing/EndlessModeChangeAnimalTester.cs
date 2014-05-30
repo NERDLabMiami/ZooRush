@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EndlessModeChangeAnimalTester : MonoBehaviour, OtherButtonClass
+public class EndlessModeChangeAnimalTester : OtherButtonClass
 {
 
-		public EndlessSceneManager sceneManager;
+	public EndlessSceneManager sceneManager;
 
-		// Use this for initialization
-		void Start ()
-		{
+	// Use this for initialization
+	void Start ()
+	{
 	
-		}
+	}
 	
-		// Update is called once per frame
-		void Update ()
-		{
+	// Update is called once per frame
+	void Update ()
+	{
 	
-		}
+	}
 
-		public void otherButtonAction (Button thisButton)
-		{
-				sceneManager.introduceAnimal ();
-		}
+	public override void otherButtonAction (Button thisButton)
+	{
+		sceneManager.introduceAnimal ();
+	}
 }
