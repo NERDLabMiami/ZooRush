@@ -69,7 +69,10 @@ public class StoryModeNonPanel : OtherButtonClass
 			continueButton.disableButton ();
 			readyForAnimal = false;
 			animal = Instantiate (animalPrefab, new Vector3 (transform.position.x + 20f, transform.position.y - 2.5f, transform.position.z), Quaternion.identity) as GameObject;
-			animal.rigidbody2D.velocity = new Vector2 (-6, 0);
+			Animator animalAnim = animal.GetComponent<Animator>();
+			animalAnim.SetInteger("Animal", 0);
+			animalAnim.SetTrigger("Change");
+			animal.rigidbody2D.velocity = new Vector2(-6,0);
 		}
 		if (readyToFadeOut) {
 			speech.hide ();
