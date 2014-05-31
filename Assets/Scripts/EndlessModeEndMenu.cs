@@ -42,11 +42,11 @@ public class EndlessModeEndMenu : MonoBehaviour
 				totalCountText.text = "0";
 				newHighScore.renderer.enabled = false;
 
-				if (PlayerPrefs.HasKey (Application.loadedLevelName)) {
-						currentHighScore = PlayerPrefs.GetInt (Application.loadedLevelName);
+				if (PlayerPrefs.HasKey (Application.loadedLevelName + "Score")) {
+						currentHighScore = PlayerPrefs.GetInt (Application.loadedLevelName + "Score");
 				} else {
 						currentHighScore = 0;
-						PlayerPrefs.SetInt (Application.loadedLevelName, currentHighScore);
+						PlayerPrefs.SetInt (Application.loadedLevelName + "Score", currentHighScore);
 				}
 		}
 	
@@ -66,14 +66,19 @@ public class EndlessModeEndMenu : MonoBehaviour
 		public void launchStat ()
 		{
 				Debug.Log ("Launch Stat Called");
-				if (!sceneManager.fainted && currentAnimal == 0) { 
-						endTitleText.text = string.Format ("The {0} got away!", AnimalNames [(int)sceneManager.currentAnimal]);
+				
+				if (currentAnimal == 0) {
+						GameScoresManager.instance.submitEndlessLevelScore (sceneManager.totalCaughtCount, Application.loadedLevelName);
+						
 						if (sceneManager.totalCaughtCount > currentHighScore) {
-								PlayerPrefs.SetInt (Application.loadedLevelName, sceneManager.totalCaughtCount);
+								PlayerPrefs.SetInt (Application.loadedLevelName + "Score", sceneManager.totalCaughtCount);
+						}
+						if (!sceneManager.fainted) { 
+								endTitleText.text = string.Format ("The {0} got away!", AnimalNames [(int)sceneManager.currentAnimal]);
 						}
 				}
 
-				if (sceneManager.animalCaughtCount [currentAnimal] > 0) {
+				if (sceneManager.animalCaughtCount [currentAnimal] >= 0) {
 						StartCoroutine (moveAnimalIconToWaitPosition (animalIcons [currentAnimal]));
 						countText.text = "+" + sceneManager.animalCaughtCount [currentAnimal];
 						countTextObject.transform.localPosition = countTextStartPosition;

@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EndlessPainIndicator : MonoBehaviour
+public class EndlessPainIndicator : PainIndicator
 {
 
-		public AudioClip clip;
-		public float painRate;
-		public float painPoints;
+//		public AudioClip clip;
+//		public float painRate;
+//		public float painPoints;
 	
 		private Sprite[] healthFaces;
 		private SpriteRenderer sprite;
@@ -39,7 +39,7 @@ public class EndlessPainIndicator : MonoBehaviour
 		void Update ()
 		{
 				if (painPoints >= 100f) {
-						Debug.Log ("OWWWWWWWW!!!!");
+//						Debug.Log ("OWWWWWWWW!!!!");
 						painPoints = 100f;
 						sceneManager.fainted = true;
 						StartCoroutine (sceneManager.callEndMenu (true));

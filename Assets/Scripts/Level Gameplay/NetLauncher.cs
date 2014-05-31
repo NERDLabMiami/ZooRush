@@ -34,6 +34,9 @@ public class NetLauncher : MonoBehaviour
 				nets = new Rigidbody2D[5];
 				for (int i = 0; i < nets.Length; i++) {
 						Rigidbody2D net = Instantiate (prefab, (Vector2.zero - 10 * Vector2.up), prefab.transform.rotation) as Rigidbody2D;
+						if (endlessMode) {
+								net.GetComponent<CircleCollider2D> ().radius = 0.15f;
+						}
 						nets [i] = net;
 				}
 		}
@@ -41,7 +44,7 @@ public class NetLauncher : MonoBehaviour
 		public void resetNets ()
 		{
 				foreach (Rigidbody2D net in nets) {
-						net.transform.position = Vector2.zero - 10 * Vector2.up;
+						net.transform.position = Vector2.zero - 10 * Vector2.up - 10 * Vector2.right;
 						net.transform.rotation = prefab.transform.rotation;
 						net.renderer.enabled = true;
 				}

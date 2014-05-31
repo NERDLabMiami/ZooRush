@@ -1,20 +1,31 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HighScoresButton.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EndlessPainIndicator.cs">
     <Files>
-      <File FileName="Assets/Scripts/HighScoresButton.cs" Line="52" Column="66" />
+      <File FileName="Assets/EndlessObjectSpawner.cs" Line="36" Column="13" />
+      <File FileName="Assets/Scripts/EndlessSceneManager.cs" Line="59" Column="14" />
+      <File FileName="Assets/Scripts/EndlessPainIndicator.cs" Line="9" Column="29" />
+      <File FileName="Assets/Scripts/EndlessAnimal.cs" Line="38" Column="10" />
+      <File FileName="Assets/Scripts/Level Gameplay/PowerUp.cs" Line="60" Column="1" />
+      <File FileName="Assets/Scripts/Level Gameplay/ObjectModel.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Examples" expanded="True" />
             <Node name="Scripts" expanded="True">
+              <Node name="Characters and Animals" expanded="True" />
+              <Node name="Event Handling" expanded="True" />
               <Node name="Level Gameplay" expanded="True" />
-              <Node name="HighScoresButton.cs" selected="True" />
+              <Node name="Menus and Scene Managers" expanded="True" />
+              <Node name="EndlessPainIndicator.cs" selected="True" />
             </Node>
           </Node>
-          <Node name="Assembly-CSharp-Editor" expanded="True">
-            <Node name="Editor" expanded="True" />
+          <Node name="Assembly-CSharp-firstpass" expanded="True">
+            <Node name="Plugins" expanded="True">
+              <Node name="OpenKit" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
