@@ -5,10 +5,9 @@ using System.Collections;
  * Scene Manager for Endless Mode Levels. Unlike regular levels, endless mode 
  * allows thw player to catch multiple animals within a limited amounnt of time.
  */ 
-public class EndlessSceneManager : MonoBehaviour
+public class EndlessSceneManager : SceneManager
 {
 		public bool failed;
-		public bool fainted;
 		private bool endCalled;
 		private Transform[] startingPositions;
 
@@ -46,9 +45,6 @@ public class EndlessSceneManager : MonoBehaviour
 		4 //Tortoise
 	}; //maximum amount of time tha player has to catch each animal in seconds
 
-		public GameObject animalObject;
-		public GameObject characterObject;
-		public EndlessAnimal animalController;
 		public Animator animalAnimator;
 
 		public GameObject endMenu;
@@ -130,7 +126,7 @@ public class EndlessSceneManager : MonoBehaviour
 //		                                              characterObject.transform.position.z);
 				
 				changeAnimal ();
-				animalController.reset ();
+				((EndlessAnimal)animalController).reset ();
 				animalObject.rigidbody2D.isKinematic = true;
 				StartCoroutine (getAnimalIntoView ());
 		}
@@ -147,8 +143,8 @@ public class EndlessSceneManager : MonoBehaviour
 						yield return new WaitForFixedUpdate ();
 				}
 				animalObject.rigidbody2D.isKinematic = false;
-				animalController.randomYVelocityChange ();
-				animalController.randomXVelocityChange ();
+				((EndlessAnimal)animalController).randomYVelocityChange ();
+				((EndlessAnimal)animalController).randomXVelocityChange ();
 				StartCoroutine (timeOut ());
 
 		}
@@ -169,16 +165,16 @@ public class EndlessSceneManager : MonoBehaviour
 				float currentTimePassed = 0;
 				GameObject.FindObjectOfType<NetLauncher> ().resetThrowCount ();
 				
-				while (!failed && !animalController.stopAllCoroutines && (currentTimePassed < maxTime [(int)currentAnimal])) {
+				while (!failed && !((EndlessAnimal)animalController).stopAllCoroutines && (currentTimePassed < maxTime [(int)currentAnimal])) {
 //						Debug.Log ("WAITING");
-						if (animalController.stopAllCoroutines) {
+						if (((EndlessAnimal)animalController).stopAllCoroutines) {
 								Debug.Log ("OH NO ANIMAL WAS CAUGHT");
 								break;
 						}
 						currentTimePassed += Time.deltaTime;
 						yield return new WaitForFixedUpdate ();
 				}
-				if (!animalController.stopAllCoroutines) {
+				if (!((EndlessAnimal)animalController).stopAllCoroutines) {
 						StartCoroutine (getAwayAndThenReset ());
 				} else {
 						Debug.Log ("ANIMAL WAS CAUGHT");
@@ -229,11 +225,6 @@ public class EndlessSceneManager : MonoBehaviour
 				return GeometryUtility.TestPlanesAABB (planes, obj.bounds);
 		}
 
-		public void updatePillCount (int pillCount)
-		{
-				string theCount = "x" + pillCount;
-				TextMesh pillCountText = GameObject.Find ("Pill Count").GetComponentInChildren<TextMesh> ();
-				pillCountText.text = theCount;
-		}
+		
 		
 }

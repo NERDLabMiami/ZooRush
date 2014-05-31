@@ -3,18 +3,6 @@ using System.Collections;
 
 public class EndlessPainIndicator : PainIndicator
 {
-
-//		public AudioClip clip;
-//		public float painRate;
-//		public float painPoints;
-	
-		private Sprite[] healthFaces;
-		private SpriteRenderer sprite;
-		private AudioController audioController;
-		private EndlessSceneManager sceneManager;
-		private Animator animator;
-	
-		private bool waiting;
 	
 		void Start ()
 		{
@@ -42,7 +30,7 @@ public class EndlessPainIndicator : PainIndicator
 //						Debug.Log ("OWWWWWWWW!!!!");
 						painPoints = 100f;
 						sceneManager.fainted = true;
-						StartCoroutine (sceneManager.callEndMenu (true));
+						StartCoroutine (((EndlessSceneManager)sceneManager).callEndMenu (true));
 				}
 				if (painPoints < 0) {
 						painPoints = 0;
@@ -66,24 +54,19 @@ public class EndlessPainIndicator : PainIndicator
 				}
 		}
 	
-		public void subtractPoints (int points)
+		public override void subtractPoints (int points)
 		{
 				painPoints -= points;
 				temporarySpriteChange (0);
 		}
 	
-		public void setPoints (int points)
-		{
-				painPoints = points;
-		}
-	
-		public void addPoints (int points)
+		public override void addPoints (int points)
 		{
 				painPoints += points;
 				temporarySpriteChange (2);
 		}
 	
-		public void objectInteraction (GameObject obj)
+		public override void objectInteraction (GameObject obj)
 		{
 				if (obj.name.Contains ("Doctor") || obj.name.Contains ("First Aid")) {
 						painPoints = 0f;
