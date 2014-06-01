@@ -34,7 +34,7 @@ public class SceneManagerStory : SceneManager
 		}
 	
 
-		private void OnStateChanged ()
+		protected override void OnStateChanged ()
 		{
 				switch (GameState.currentState) {
 				case GameState.States.Intro:
@@ -69,6 +69,7 @@ public class SceneManagerStory : SceneManager
 		private IEnumerator introSequence ()
 		{
 				while (currentDistanceDiff < 25f) {
+//						Debug.Log ("Waiting for distance between character and animal to be larger");
 						yield return new WaitForFixedUpdate ();
 				}
 				animalObject.transform.localPosition = new Vector3 (animalObject.transform.localPosition.x + 25f, animalObject.transform.localPosition.y, animalObject.transform.localPosition.z);

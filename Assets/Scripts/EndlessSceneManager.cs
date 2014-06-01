@@ -50,17 +50,8 @@ public class EndlessSceneManager : SceneManager
 		public GameObject endMenu;
 		public TextMesh animalCaughtText;
 
-		void OnEnable ()
-		{
-				GameState.StateChanged += OnStateChanged;
-		}
-	
-		void OnDisable ()
-		{
-				GameState.StateChanged -= OnStateChanged;
-		}
-
-		private void OnStateChanged ()
+		
+		protected override void OnStateChanged ()
 		{
 				switch (GameState.currentState) {
 				case GameState.States.Intro:

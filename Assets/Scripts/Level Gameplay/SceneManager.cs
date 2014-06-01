@@ -21,6 +21,19 @@ public abstract class SceneManager : MonoBehaviour
 		protected bool tutEnabled;
 		public bool fainted;
 
+		void OnEnable ()
+		{
+				GameState.StateChanged += OnStateChanged;
+		}
+	
+		void OnDisable ()
+		{
+				GameState.StateChanged -= OnStateChanged;
+		}
+
+		protected abstract void OnStateChanged ();
+
+
 		public void updatePillCount (int pillCount)
 		{
 				string theCount = "x" + pillCount;

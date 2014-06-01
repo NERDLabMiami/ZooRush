@@ -7,34 +7,45 @@ using System.Collections;
 public class Character : MonoBehaviour
 {
 	
-	public Sprite[] baseSprites;
-	public Sprite[] davidFaceSprites;
-	public Sprite[] lisaFaceSprites;
-	public Sprite[] christinaFaceSprites;
-	public Sprite[] zaneFaceSprites;
+		public Animator faceSpriteAnimator;
+		public Animator spriteAnimator;
 
-	private int currentCharacter;
-	private string[] characters = {"David", "Lisa", "Christina","Zane"};
-	private PlayerControls playerControls;
-	public RuntimeAnimatorController[] animatorControllers;
-	
-	void Awake ()
-	{
-		changeCharacter ();
-	}
-
-	public void changeCharacter ()
-	{
-		currentCharacter = PlayerPrefs.GetInt ("Character Selected", 0);
-
-		Sprite[][] characterFaceIcons = {davidFaceSprites,lisaFaceSprites,christinaFaceSprites,zaneFaceSprites};
-		
-		gameObject.GetComponent<SpriteRenderer> ().sprite = baseSprites [currentCharacter];
-		GetComponent<Animator> ().runtimeAnimatorController = animatorControllers [currentCharacter];
-		playerControls = GetComponent<PlayerControls> ();
-		if (playerControls != null) {
-			playerControls.characterName = characters [currentCharacter];
-			playerControls.faceIcons = characterFaceIcons [currentCharacter];
+		private int currentCharacter;
+		private static string[] characterNames = {"David", "Lisa", "Christina","Zane"};
+		public string characterName {
+				get { 
+						currentCharacter = PlayerPrefs.GetInt ("Character Selected", 0);
+						return characterNames [currentCharacter];
+				}
+				set {
+						for (int i = 0; i < characterNames.Length; i++) {
+								if (characterNames [i].Equals (value)) {
+										currentCharacter = i;
+										PlayerPrefs.SetInt ("Character Selected", currentCharacter);
+										changeCharacter ();
+								}
+						}
+				}
 		}
-	}
+
+		void Awake ()
+		{
+				changeCharacter ();
+		}
+
+		public void changeCharacter ()
+		{
+				currentCharacter = PlayerPrefs.GetInt ("Character Selected", 0);
+
+				if (faceSpriteAnimator) {
+						faceSpriteAnimator.SetInteger ("Character Value", currentCharacter);
+						faceSpriteAnimator.SetTrigger ("Change");
+				}
+
+				if (spriteAnimator) {
+						spriteAnimator.SetInteger ("Character Value", currentCharacter);
+						spriteAnimator.SetTrigger ("Change");
+				}
+				
+		}
 }

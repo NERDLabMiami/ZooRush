@@ -3,15 +3,22 @@ using System.Collections;
 
 public class StartButton : OtherButtonClass
 {
+		public Animator animator;
+		private Vector3 originalPosition;
 
-	public void closeStartScreen ()
-	{
-		Destroy (transform.parent.gameObject);
-		GameState.requestIntro ();
-	}
+		void Awake ()
+		{
+				originalPosition = transform.parent.position;
+		}
 
-	public override void otherButtonAction (Button thisButton)
-	{
-		GetComponent<Animator> ().SetTrigger ("Open");
-	}
+		public void closeStartScreen ()
+		{
+				GameState.requestIntro ();
+				transform.parent.transform.position = originalPosition;
+		}
+
+		public override void otherButtonAction (Button thisButton)
+		{
+				animator.SetTrigger ("Open");
+		}
 }

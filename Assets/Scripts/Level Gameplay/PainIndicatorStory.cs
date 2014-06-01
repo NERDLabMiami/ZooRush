@@ -12,9 +12,9 @@ public class PainIndicatorStory : PainIndicator
 				animator = GetComponent<Animator> ();
 				painPoints = 0f;
 				painRate = 3.5f;
-				healthFaces = GameObject.FindObjectOfType<PlayerControls> ().faceIcons;
+				//healthFaces = GameObject.FindObjectOfType<PlayerControls> ().faceIcons;
 				sprite = GetComponent<SpriteRenderer> ();
-				sprite.sprite = healthFaces [0];
+//				sprite.sprite = healthFaces [0];
 		}
 
 		void FixedUpdate ()
@@ -34,28 +34,28 @@ public class PainIndicatorStory : PainIndicator
 				if (painPoints < 0) {
 						painPoints = 0;
 				}
-				animator.SetFloat ("PainPoints", painPoints);
-				if (sceneManager == null) {
-						animator.SetBool ("Playing", true);
-				} else {
-						animator.SetBool ("Playing", sceneManager.isPlaying);
-				}
+				animator.SetFloat ("Pain", painPoints);
+//				if (sceneManager == null) {
+//						animator.SetBool ("Playing", true);
+//				} else {
+//						animator.SetBool ("Playing", sceneManager.isPlaying);
+//				}
 
 				//Change face sprite and/or play crisis music
-				if (!waiting) {
-						if (painPoints < 33f) { // Change to normal face
-								changeSprite (0);
-						}
-						if (painPoints > 33f && painPoints < 75f) { // Change to discomfort face
-								changeSprite (1);
-						}
-						if (painPoints > 75f) { // Change to pain face
-								changeSprite (2);
-								if (sceneManager.isPlaying) {
-										audioController.objectInteraction (clip);
-								}
-						}
-				}
+//				if (!waiting) {
+//						if (painPoints < 33f) { // Change to normal face
+//								changeSprite (0);
+//						}
+//						if (painPoints > 33f && painPoints < 75f) { // Change to discomfort face
+//								changeSprite (1);
+//						}
+//						if (painPoints > 75f) { // Change to pain face
+//								changeSprite (2);
+//								if (sceneManager.isPlaying) {
+//										audioController.objectInteraction (clip);
+//								}
+//						}
+//				}
 		}
 
 		public override void subtractPoints (int points)
@@ -81,7 +81,7 @@ public class PainIndicatorStory : PainIndicator
 		private void temporarySpriteChange (int index)
 		{
 				waiting = true;
-				changeSprite (index);
+//				changeSprite (index);
 				StartCoroutine (waitToStopWaiting ());
 		}
 
@@ -91,20 +91,20 @@ public class PainIndicatorStory : PainIndicator
 				waiting = false;
 		}
 
-		private void changeSprite (int index)
-		{
-				if (!sprite.sprite.Equals (healthFaces [index])) {
-						sprite.sprite = healthFaces [index];
-						switch (index) {
-						case 1: //discomfort
-								GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Got Water?");
-								break;
-						case 2: //pain
-								GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("So thirsty!");
-								break;
-						default:
-								break;
-						}
-				}
-		}
+//		private void changeSprite (int index)
+//		{
+//				if (!sprite.sprite.Equals (healthFaces [index])) {
+//						sprite.sprite = healthFaces [index];
+//						switch (index) {
+//						case 1: //discomfort
+//								GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("Got Water?");
+//								break;
+//						case 2: //pain
+//								GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("So thirsty!");
+//								break;
+//						default:
+//								break;
+//						}
+//				}
+//		}
 }

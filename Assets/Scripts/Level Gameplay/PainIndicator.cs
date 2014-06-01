@@ -7,7 +7,7 @@ public abstract class PainIndicator : MonoBehaviour
 		public float painRate;
 		public float painPoints;
 
-		protected Sprite[] healthFaces;
+//		protected Sprite[] healthFaces;
 		protected SpriteRenderer sprite;
 		protected AudioController audioController;
 		protected SceneManager sceneManager;

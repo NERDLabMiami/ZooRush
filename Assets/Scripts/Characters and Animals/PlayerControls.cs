@@ -19,9 +19,9 @@ public class PlayerControls : MonoBehaviour
 //	private NetLauncher netLauncher;
 		private Animal animal;
 
-		public string characterName;
+		//public string characterName;
 
-		public Sprite[] faceIcons;
+		//public Sprite[] faceIcons;
 	
 		void Awake ()
 		{
