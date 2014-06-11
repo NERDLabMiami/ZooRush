@@ -148,7 +148,18 @@ public  class GA_GenericInfo
 		}
 		
 		#endif
+
+		#if UNITY_ANDROID && !UNITY_EDITOR
 		
+		string uid = GA.SettingsGA.GetAdvertisingIDAndroid();
+
+		if (!string.IsNullOrEmpty(uid))
+		{
+			return uid;
+		}
+		
+		#endif
+
 		#if UNITY_WEBPLAYER || UNITY_NACL || UNITY_WP8 || UNITY_METRO || UNITY_PS3
 		
 		return SystemInfo.deviceUniqueIdentifier;

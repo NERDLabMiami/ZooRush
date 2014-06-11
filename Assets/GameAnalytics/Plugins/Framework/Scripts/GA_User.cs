@@ -14,17 +14,17 @@ public class GA_User
 	
 	public void NewUser(Gender gender, int? birth_year, int? friend_count)
 	{
-		CreateNewUser(gender, birth_year, friend_count, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+		CreateNewUser(gender, birth_year, friend_count, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 	}
 	
-	public void NewUser(Gender gender, int? birth_year, int? friend_count, string ios_id, string android_id, string platform, string device, string os, string osVersion, string sdk)
+	public void NewUser(Gender gender, int? birth_year, int? friend_count, string ios_id, string android_id, string platform, string device, string os, string osVersion, string sdk, string android_adID)
 	{
-		CreateNewUser(gender, birth_year, friend_count, ios_id, android_id, platform, device, os, osVersion, sdk, null, null, null, null, null, null, null);
+		CreateNewUser(gender, birth_year, friend_count, ios_id, android_id, platform, device, os, osVersion, sdk, null, null, null, null, null, null, null, android_adID);
 	}
 	
-	public void NewUser(Gender gender, int? birth_year, int? friend_count, string ios_id, string android_id, string platform, string device, string os, string osVersion, string sdk, string installPublisher, string installSite, string installCampaign, string installAdgroup, string installAd, string installKeyword, string facebookID)
+	public void NewUser(Gender gender, int? birth_year, int? friend_count, string ios_id, string android_id, string platform, string device, string os, string osVersion, string sdk, string installPublisher, string installSite, string installCampaign, string installAdgroup, string installAd, string installKeyword, string facebookID, string android_adID)
 	{
-		CreateNewUser(gender, birth_year, friend_count, ios_id, android_id, platform, device, os, osVersion, sdk, installPublisher, installSite, installCampaign, installAdgroup, installAd, installKeyword, facebookID);
+		CreateNewUser(gender, birth_year, friend_count, ios_id, android_id, platform, device, os, osVersion, sdk, installPublisher, installSite, installCampaign, installAdgroup, installAd, installKeyword, facebookID, android_adID);
 	}
 	
 	#endregion
@@ -49,7 +49,7 @@ public class GA_User
 	/// /// <param name="friend_count">
 	/// The number of friends in the user's network. Set to "null" if unknown.
 	/// </param>
-	private void CreateNewUser(Gender gender, int? birth_year, int? friend_count, string ios_id, string android_id, string platform, string device, string os, string osVersion, string sdk, string installPublisher, string installSite, string installCampaign, string installAdgroup, string installAd, string installKeyword, string facebookID)
+	private void CreateNewUser(Gender gender, int? birth_year, int? friend_count, string ios_id, string android_id, string platform, string device, string os, string osVersion, string sdk, string installPublisher, string installSite, string installCampaign, string installAdgroup, string installAd, string installKeyword, string facebookID, string android_adID)
 	{
 		Hashtable parameters = new Hashtable();
 		
@@ -140,6 +140,11 @@ public class GA_User
 		if (facebookID != null)
 		{
 			parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.FacebookID], facebookID);
+		}
+
+		if (android_adID != null)
+		{
+			parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.AndroidAdID], android_adID);
 		}
 
 		if (parameters.Count == 0)

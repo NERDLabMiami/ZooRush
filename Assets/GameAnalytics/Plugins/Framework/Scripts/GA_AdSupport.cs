@@ -81,16 +81,14 @@ public class GA_AdSupport : MonoBehaviour
 			GameObject go = new GameObject("ChartboostManager");
 			go.AddComponent<CBManager>();
 
-			#if UNITY_ANDROID
-			CBBinding.init();
-			#elif UNITY_IPHONE
+			#if UNITY_ANDROID || UNITY_IPHONE
 			CBBinding.init( GA.SettingsGA.CB_appID, GA.SettingsGA.CB_appSig );
-			#endif
 
 			CBManager.didDismissInterstitialEvent += OnDismissInterstitialEvent;
 			CBManager.didCloseInterstitialEvent += OnCloseInterstitialEvent;
 			CBManager.didClickInterstitialEvent += OnClickInterstitialEvent;
 			CBManager.didShowInterstitialEvent += OnShowInterstitialEvent;
+			#endif
 		}
 		#endif
 	}
@@ -108,6 +106,9 @@ public class GA_AdSupport : MonoBehaviour
 		}
 
 		#if UNITY_ANDROID && CB_ON
+		// Uncomment the following code if you are not handling the Android back button.
+		// Note: This will cause the Android back button to quit your application.
+		/*
 		if (GA.SettingsGA.CB_enabled)
 		{
 			// Handle the Android back button
@@ -122,6 +123,7 @@ public class GA_AdSupport : MonoBehaviour
 				}
 			}
 		}
+		*/
 		#endif
 	}
 
