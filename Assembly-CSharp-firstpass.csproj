@@ -6,7 +6,11 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<ProjectGuid>{2EC2B42E-54E2-071B-3B68-80E2C8CF13CF}</ProjectGuid>
+=======
+	<ProjectGuid>{A9CAB5AD-BA4B-CEC0-86C6-C6CFF7283C5B}</ProjectGuid>
+>>>>>>> FETCH_HEAD
 =======
 	<ProjectGuid>{A9CAB5AD-BA4B-CEC0-86C6-C6CFF7283C5B}</ProjectGuid>
 >>>>>>> FETCH_HEAD
@@ -96,6 +100,10 @@
      <None Include="Assets\Plugins\Android\facebook\res\values\colors.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_friendpickerfragment.xml" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+     <None Include="Assets\Resources\Sprites\Characters\characterFailed.txt" />
+>>>>>>> FETCH_HEAD
 =======
      <None Include="Assets\Resources\Sprites\Characters\characterFailed.txt" />
 >>>>>>> FETCH_HEAD
@@ -159,6 +167,10 @@
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\crossdomain.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment_list_row.xml" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+     <None Include="Assets\Resources\randomFacts.txt" />
+>>>>>>> FETCH_HEAD
 =======
      <None Include="Assets\Resources\randomFacts.txt" />
 >>>>>>> FETCH_HEAD
@@ -189,15 +201,21 @@
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_leaderboards.xml" />
  <Reference Include="IFacebook">
 <<<<<<< HEAD
+<<<<<<< HEAD
  <HintPath>/Users/ebbyw/Desktop/beta/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
  </Reference>
  <Reference Include="RestSharp">
  <HintPath>/Users/ebbyw/Desktop/beta/Assets/Plugins/RestSharp.dll</HintPath>
 =======
+=======
+>>>>>>> FETCH_HEAD
  <HintPath>/Users/ebbichan/Desktop/ZooRush-beta/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
  </Reference>
  <Reference Include="RestSharp">
  <HintPath>/Users/ebbichan/Desktop/ZooRush-beta/Assets/Plugins/RestSharp.dll</HintPath>
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
  </Reference>
   </ItemGroup>

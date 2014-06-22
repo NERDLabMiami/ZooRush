@@ -6,7 +6,11 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<ProjectGuid>{01AE29EA-D11F-E103-1878-41E8A4CD4F77}</ProjectGuid>
+=======
+	<ProjectGuid>{287EE936-780C-9612-3D1C-5D2A81DDF2B3}</ProjectGuid>
+>>>>>>> FETCH_HEAD
 =======
 	<ProjectGuid>{287EE936-780C-9612-3D1C-5D2A81DDF2B3}</ProjectGuid>
 >>>>>>> FETCH_HEAD
@@ -112,6 +116,10 @@
      <None Include="Assets\Plugins\Android\facebook\res\values\colors.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_friendpickerfragment.xml" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+     <None Include="Assets\Resources\Sprites\Characters\characterFailed.txt" />
+>>>>>>> FETCH_HEAD
 =======
      <None Include="Assets\Resources\Sprites\Characters\characterFailed.txt" />
 >>>>>>> FETCH_HEAD
@@ -175,6 +183,10 @@
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\crossdomain.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment_list_row.xml" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+     <None Include="Assets\Resources\randomFacts.txt" />
+>>>>>>> FETCH_HEAD
 =======
      <None Include="Assets\Resources\randomFacts.txt" />
 >>>>>>> FETCH_HEAD
@@ -205,15 +217,21 @@
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_leaderboards.xml" />
  <Reference Include="IFacebook">
 <<<<<<< HEAD
+<<<<<<< HEAD
  <HintPath>/Users/ebbyw/Desktop/beta/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
  </Reference>
  <Reference Include="RestSharp">
  <HintPath>/Users/ebbyw/Desktop/beta/Assets/Plugins/RestSharp.dll</HintPath>
 =======
+=======
+>>>>>>> FETCH_HEAD
  <HintPath>/Users/ebbichan/Desktop/ZooRush-beta/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
  </Reference>
  <Reference Include="RestSharp">
  <HintPath>/Users/ebbichan/Desktop/ZooRush-beta/Assets/Plugins/RestSharp.dll</HintPath>
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
  </Reference>
  <Reference Include="UnityEditor.Graphs">
@@ -223,9 +241,15 @@
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Project>{2EC2B42E-54E2-071B-3B68-80E2C8CF13CF}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{70063E49-5F3B-3855-BBDF-26E535F76079}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+=======
+      <Project>{A9CAB5AD-BA4B-CEC0-86C6-C6CFF7283C5B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+>>>>>>> FETCH_HEAD
 =======
       <Project>{A9CAB5AD-BA4B-CEC0-86C6-C6CFF7283C5B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
