@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{2EC2B42E-54E2-071B-3B68-80E2C8CF13CF}</ProjectGuid>
+	<ProjectGuid>{A9CAB5AD-BA4B-CEC0-86C6-C6CFF7283C5B}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -91,6 +91,7 @@
      <None Include="Assets\Plugins\Android\facebook\res\values-ldpi\dimens.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values\colors.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_friendpickerfragment.xml" />
+     <None Include="Assets\Resources\Sprites\Characters\characterFailed.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\facebook\bin\proguard.txt" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolid.shader" />
@@ -150,6 +151,7 @@
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment.xml" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\crossdomain.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment_list_row.xml" />
+     <None Include="Assets\Resources\randomFacts.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\menu\io_openkit_menu_activity_scores.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_updatenick.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values\drawables.xml" />
@@ -176,10 +178,10 @@
      <None Include="Assets\Plugins\Android\facebook\res\values-xhdpi\dimens.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_leaderboards.xml" />
  <Reference Include="IFacebook">
- <HintPath>/Users/ebbyw/Desktop/beta/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
+ <HintPath>/Users/ebbichan/Desktop/ZooRush-beta/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
  </Reference>
  <Reference Include="RestSharp">
- <HintPath>/Users/ebbyw/Desktop/beta/Assets/Plugins/RestSharp.dll</HintPath>
+ <HintPath>/Users/ebbichan/Desktop/ZooRush-beta/Assets/Plugins/RestSharp.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
