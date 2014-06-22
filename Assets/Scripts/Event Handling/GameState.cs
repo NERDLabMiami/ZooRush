@@ -173,7 +173,9 @@ public static class GameState : System.Object
 						currentState = States.Lose;
 						callStateChanged ();
 						return true;
-				} 
+				} else {
+						currentState = States.Transition;
+				}
 				Debug.Log ("Incorrect Request in State Flow");
 				return false;
 		}

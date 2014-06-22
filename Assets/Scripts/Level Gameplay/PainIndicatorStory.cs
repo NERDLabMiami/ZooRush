@@ -26,7 +26,7 @@ public class PainIndicatorStory : PainIndicator
 	
 		void Update ()
 		{
-				if (painPoints >= 100f) {
+				if (painPoints >= 100f && !sceneManager.fainted) {
 						painPoints = 100f;
 						sceneManager.fainted = true;
 						GameState.requestTransition ();
