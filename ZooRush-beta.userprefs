@@ -1,11 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TextTransitionAutomatic.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GUI/Scripts/LevelGUIController.cs">
     <Files>
-      <File FileName="Assets/GUI/Scripts/LevelGUIController.cs" Line="64" Column="1" />
-      <File FileName="Assets/Scripts/Event Handling/NextSceneHandler.cs" Line="10" Column="4" />
-      <File FileName="Assets/GUILevelFailedMenuController.cs" Line="33" Column="6" />
-      <File FileName="Assets/TextTransitionAutomatic.cs" Line="39" Column="100" />
+      <File FileName="Assets/GUILevelFailedMenuController.cs" Line="4" Column="42" />
+      <File FileName="Assets/Scripts/Audio/AudioModel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Event Handling/GameState.cs" Line="178" Column="27" />
+      <File FileName="Assets/Scripts/Level Gameplay/StopwatchController.cs" Line="107" Column="28" />
+      <File FileName="Assets/GUI/Scripts/LevelGUIController.cs" Line="65" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

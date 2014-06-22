@@ -33,6 +33,10 @@ public class GUILevelFailedMenuController : MonoBehaviour
 				}
 				textTransitioner.activate ();
 				BreadCrumbs.nextScene = Application.loadedLevelName;
+				if (AudioModel.sound) {
+						Debug.Log ("Playing Audio");
+						audio.Play ();
+				}
 		}
 
 }

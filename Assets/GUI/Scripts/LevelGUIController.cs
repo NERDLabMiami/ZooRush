@@ -4,13 +4,12 @@ using System.Collections;
 
 public class LevelGUIController : MonoBehaviour
 {
-		private SceneManager sceneManager;
-		private ScoreKeeper scoreKeeper;
+		public SceneManager sceneManager;
+		public ScoreKeeper scoreKeeper;
 
 		public GameObject startMenu;
 		public GameObject throwAlert;
 		public GameObject pauseMenu;
-		public GameObject timeOutMenu;
 		private bool throwAlertDisplayed;
 		private GameObject stopwatch;
 		private StopwatchController stopwatchController;
@@ -18,15 +17,15 @@ public class LevelGUIController : MonoBehaviour
 		public GUILevelCompleteMenuController levelCompleteMenu;
 		public GameObject stopWatchObject;
 		public SpriteRenderer screenDimmer;
+		
+		
 
 		private bool scoreDisplayed;
 
 
 		void Start ()
 		{
-				sceneManager = GameObject.FindObjectOfType<SceneManager> ();
-				scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
-				startMenu.transform.localPosition = new Vector3 (0, 0, 0);
+				startMenu.transform.localPosition = Vector3.zero;
 				scoreDisplayed = false;
 		}
 
@@ -61,12 +60,13 @@ public class LevelGUIController : MonoBehaviour
 
 								}
 						}
+						clearGUI ();
 						levelFailedMenu.transform.localPosition = Vector3.zero;
 						levelFailedMenu.activate ();
-
 						break;
 				case GameState.States.Win:
 						if (!scoreDisplayed) {
+								clearGUI ();
 								StartCoroutine (displayScore ());
 						}
 						break;
@@ -155,12 +155,6 @@ public class LevelGUIController : MonoBehaviour
 				return false;
 		}
 
-		public void callTimeOutMenu ()
-		{
-				dimScreen ();
-				timeOutMenu.transform.localPosition = Vector3.zero;
-		}
-
 		public void callPauseMenu ()
 		{
 				pauseMenu.transform.localPosition = Vector3.zero;
@@ -203,5 +197,12 @@ public class LevelGUIController : MonoBehaviour
 				} else {
 						PlayerPrefs.SetInt ("Levels Unlocked", 2);	 
 				}
+		}
+
+		private void clearGUI ()
+		{
+				dismissPauseMenu ();
+				removeThrowAlert ();
+				removeStopwatch ();
 		}
 }

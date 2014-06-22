@@ -175,6 +175,7 @@ public static class GameState : System.Object
 						return true;
 				} else {
 						currentState = States.Transition;
+						callStateChanged ();
 				}
 				Debug.Log ("Incorrect Request in State Flow");
 				return false;
