@@ -4,8 +4,7 @@ using System.Collections;
 public class EndlessModeEndMenu : MonoBehaviour
 {
 		public EndlessSceneManager sceneManager;
-		private bool[] animalCountDisplayed = new bool[(int)EndlessSceneManager.AnimalValues.COUNT];
-		public GameObject[] animalIcons; //Animal Icons must be entered in the order of EndlessSceneManager.AnimalValues
+
 		public GameObject countTextObject;
 		public TextMesh countText;
 		public TextMesh totalCountText;
@@ -13,12 +12,6 @@ public class EndlessModeEndMenu : MonoBehaviour
 		private int currentHighScore;
 		public TextMesh endTitleText;
 		public TextMesh newHighScore;
-		private Vector2 countTextStartPosition = new Vector2 (-8.84565f, -4.840044f);
-		private Vector2 localIconWaitPosition = new Vector2 (-4, -4);
-		private Vector2 localIconDisappearPosition = new Vector2 (11, -4);
-		private Vector2 localCountWaitPosition = new Vector2 (-2.529923f, -4.840044f);
-		private Vector2 localCountAddPosition = new Vector2 (3.5f, -3);
-		private Vector2 localCountDisappearPosition = new Vector2 (10, -4.840044f);
 		private int currentAnimal;
 
 		public string[] AnimalNames =
@@ -37,6 +30,7 @@ public class EndlessModeEndMenu : MonoBehaviour
 
 		void Start ()
 		{
+				//Set Starting Values
 				currentAnimal = 0;
 				currentTotalCount = 0;
 				totalCountText.text = "0";
@@ -80,6 +74,7 @@ public class EndlessModeEndMenu : MonoBehaviour
 
 				if (sceneManager.animalCaughtCount [currentAnimal] >= 0) {
 						StartCoroutine (moveAnimalIconToWaitPosition (animalIcons [currentAnimal]));
+
 						countText.text = "+" + sceneManager.animalCaughtCount [currentAnimal];
 						countTextObject.transform.localPosition = countTextStartPosition;
 						StartCoroutine (moveCountTextToWaitPosition ());
@@ -139,9 +134,7 @@ public class EndlessModeEndMenu : MonoBehaviour
 						yield return new WaitForFixedUpdate ();
 				}
 				currentTotalCount += sceneManager.animalCaughtCount [currentAnimal];
-				totalCountText.text = string.Format ("{0:N0}", currentTotalCount);
-				StartCoroutine (moveAnimalIconToDisappearPosition (animalIcons [currentAnimal]));
-				StartCoroutine (moveCountTextToDisappearPosition ());
+				totalCountText.text = string.Format ("{0:N0} Animals Counts", currentTotalCount);
 
 		}
 }
