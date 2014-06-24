@@ -103,6 +103,8 @@ public class StopwatchController : MonoBehaviour
 
 		public void timeEnded ()
 		{
-				NextSceneHandler.infected ();
+				while (!GameState.checkForState(GameState.States.Lose)) {
+						GameState.requestLose ();
+				}
 		}
 }

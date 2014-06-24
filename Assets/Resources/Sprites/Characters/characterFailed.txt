@@ -1,0 +1,44 @@
+{"frames": {
+
+"character 1.png":
+{
+	"frame": {"x":4,"y":4,"w":261,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":261,"h":181},
+	"sourceSize": {"w":261,"h":181}
+},
+"character 2.png":
+{
+	"frame": {"x":269,"y":4,"w":261,"h":189},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":261,"h":189},
+	"sourceSize": {"w":261,"h":189}
+},
+"character 3.png":
+{
+	"frame": {"x":534,"y":4,"w":261,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":261,"h":194},
+	"sourceSize": {"w":261,"h":194}
+},
+"character 4.png":
+{
+	"frame": {"x":799,"y":4,"w":261,"h":183},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":261,"h":183},
+	"sourceSize": {"w":261,"h":183}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "characterFailed.png",
+	"format": "RGBA8888",
+	"size": {"w":1064,"h":202},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:21047b9a2939d89287de00b92d9bedf9:4ac8a31e4582464026a1c4cf00da2966:83c98f6d1de6da98769d7e2ff988b868$"
+}
+}

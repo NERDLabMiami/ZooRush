@@ -44,7 +44,7 @@ public class TextOutline : MonoBehaviour
 						}
 				}
 
-				Debug.Log ("CURRENT PARENT CAMERA IS AT " + parentCamera.name);
+//				Debug.Log ("CURRENT PARENT CAMERA IS AT " + parentCamera.name);
 		}
 	
 		void LateUpdate ()

@@ -29,7 +29,7 @@ public class GA_Submit
 		public enum CategoryType
 		{
 				GA_User,
-				GA_Event,
+				GA_Event, 
 				GA_Log,
 				GA_Purchase,
 				GA_Error
@@ -83,8 +83,9 @@ public class GA_Submit
 				_publicKey = publicKey;
 				_privateKey = privateKey;
 
-				if (Categories == null) {
-						Categories = new Dictionary<CategoryType, string> ()
+				/*if (Categories == null)
+		{
+			Categories = new Dictionary<CategoryType, string>()
 			{
 				{ CategoryType.GA_User, "user" },
 				{ CategoryType.GA_Event, "design" },
@@ -92,7 +93,7 @@ public class GA_Submit
 				{ CategoryType.GA_Purchase, "business" },
 				{ CategoryType.GA_Error, "error" }
 			};
-				}
+		}*/
 		}
 	
 		/// <summary>
@@ -276,26 +277,25 @@ public class GA_Submit
 				//Prepare the JSON array string for sending by converting it to a byte array
 				byte[] data = Encoding.UTF8.GetBytes (json);
 		
-				#if !UNITY_WP8 && !UNITY_METRO
-		
-				//Set the authorization header to contain an MD5 hash of the JSON array string + the private key
-				Hashtable headers = new Hashtable ();
-				headers.Add ("Authorization", jsonHash);
-				//headers.Add("Content-Length", data.Length);
-		
-				//Try to send the data
-				www = new WWW (url, data, headers);
-		
-				#else
+				#if UNITY_FLASH
 		
 		//Set the authorization header to contain an MD5 hash of the JSON array string + the private key
-		
-		Dictionary<string, string> headers = new Dictionary<string, string>();
+		Hashtable headers = new Hashtable();
 		headers.Add("Authorization", jsonHash);
-		//headers.Add("Content-Length", data.Length.ToString());
+		//headers.Add("Content-Length", data.Length);
 		
 		//Try to send the data
 		www = new WWW(url, data, headers);
+		
+				#else
+		
+				//Set the authorization header to contain an MD5 hash of the JSON array string + the private key
+				Dictionary<string, string> headers = new Dictionary<string, string> ();
+				headers.Add ("Authorization", jsonHash);
+				//headers.Add("Content-Length", data.Length.ToString());
+		
+				//Try to send the data
+				www = new WWW (url, data, headers);
 		
 				#endif
 

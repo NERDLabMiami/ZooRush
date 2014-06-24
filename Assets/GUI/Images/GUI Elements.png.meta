@@ -1,0 +1,270 @@
+fileFormatVersion: 2
+guid: 55c430f7ad7eb4e4fa8442f5afdf0e6d
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -2
+    compressionQuality: 100
+  spriteSheet:
+    sprites:
+    - name: GUI Elements_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 1539
+        width: 507
+        height: 503
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_1
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 1956
+        width: 305
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_2
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 1956
+        width: 305
+        height: 86
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_3
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 2001
+        width: 46
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_4
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 1999
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_5
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 1127
+        width: 839
+        height: 395
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_6
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 1059
+        width: 485
+        height: 468
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_7
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 1061
+        width: 489
+        height: 466
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_8
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 892
+        width: 829
+        height: 158
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_9
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 739
+        width: 188
+        height: 315
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_10
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 624
+        width: 827
+        height: 426
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_11
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 128
+        width: 347
+        height: 442
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_12
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 451
+        width: 343
+        height: 119
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_13
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 515
+        width: 25
+        height: 55
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_14
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 536
+        width: 132
+        height: 34
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_15
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 43
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_16
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 331
+        width: 183
+        height: 239
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_17
+      rect:
+        serializedVersion: 2
+        x: 1074
+        y: 428
+        width: 148
+        height: 142
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_18
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 491
+        width: 90
+        height: 83
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_19
+      rect:
+        serializedVersion: 2
+        x: 1327
+        y: 419
+        width: 295
+        height: 151
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_20
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 419
+        width: 299
+        height: 151
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GUI Elements_21
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 467
+        width: 103
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

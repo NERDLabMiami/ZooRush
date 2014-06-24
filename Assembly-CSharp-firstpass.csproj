@@ -91,6 +91,7 @@
      <None Include="Assets\Plugins\Android\facebook\res\values-ldpi\dimens.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values\colors.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_friendpickerfragment.xml" />
+     <None Include="Assets\Resources\Sprites\Characters\characterFailed.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\facebook\bin\proguard.txt" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolid.shader" />
@@ -116,6 +117,7 @@
      <None Include="Assets\Plugins\Android\facebook\res\values-hdpi\dimens.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_listitem_okscore.xml" />
      <None Include="Assets\Plugins\Android\facebook\build.xml" />
+     <None Include="Assets\GUI\Fonts\big_bottom_cartoon\Artist Contact Info.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\bin\proguard.txt" />
      <None Include="Assets\Resources\Sprites\Background\Buildings\Nature.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_list_fb_login.xml" />
@@ -139,6 +141,7 @@
      <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values\strings.xml" />
+     <None Include="Assets\GUI\Fonts\big_bottom_cartoon\License.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\menu\io_openkit_leaderboards.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values-mdpi\dimens.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_dismiss_button.xml" />
@@ -148,6 +151,7 @@
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment.xml" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\crossdomain.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment_list_row.xml" />
+     <None Include="Assets\Resources\randomFacts.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\menu\io_openkit_menu_activity_scores.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_updatenick.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values\drawables.xml" />

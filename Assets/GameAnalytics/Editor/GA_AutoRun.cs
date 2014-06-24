@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-[InitializeOnLoad]
-public class GA_Autorun
+public class GA_Autorun : AssetPostprocessor
 {
-	#if UNITY_EDITOR
-	static GA_Autorun()
+	static void OnPostprocessAllAssets ( string[] importedAssets,string[] deletedAssets,string[] movedAssets,string[] movedFromAssetPaths)
 	{
-		GA_Inspector.CheckForUpdates();
-		
-		GA_Tracking.Setup();
+		string[] splitPath = Application.dataPath.Split('/');
+
+		if (!splitPath[splitPath.Length - 2].Equals("ga_unity_wrapper copy"))
+		{
+			GA_Inspector.CheckForUpdates();
+			
+			GA_Tracking.Setup();
+		}
 	}
-	#endif
 }
