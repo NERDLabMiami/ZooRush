@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 
 /**
@@ -10,7 +10,7 @@ public class EndlessSceneManager : SceneManager
 		public bool failed;
 		private bool endCalled;
 		private Transform[] startingPositions;
-
+		public EndlessModeEndMenu endMenu;
 		public enum AnimalValues
 		{
 				Bear = 0,
@@ -47,9 +47,7 @@ public class EndlessSceneManager : SceneManager
 
 		public Animator animalAnimator;
 
-		public GameObject endMenu;
 		public TextMesh animalCaughtText;
-
 		
 		protected override void OnStateChanged ()
 		{
@@ -196,17 +194,11 @@ public class EndlessSceneManager : SceneManager
 								totalCaughtCount += num;
 						}
 
-						if (fainted) {
-								Debug.Log ("FAINTED CALLED");
-								endMenu.GetComponent<EndlessModeEndMenu> ().endTitleText.text = "Thwarted by a crisis!";
-						}
-
 						endMenu.transform.localPosition = Vector3.zero;
-						endMenu.GetComponent<Animator> ().SetTrigger ("Open");
-
+						endMenu.activate ();
+						
 						yield return new WaitForSeconds (0.3f);
 
-						GameObject.FindObjectOfType<EndlessModeEndMenu> ().launchStat ();
 				}
 		}
 
