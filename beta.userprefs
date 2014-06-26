@@ -1,37 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GUITimeObject.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GUILevelCompleteMenuController.cs">
     <Files>
-      <File FileName="Assets/GUILevelCompleteMenuController.cs" Line="6" Column="35" />
-      <File FileName="Assets/GUIInfectionCount.cs" Line="45" Column="3" />
-      <File FileName="Assets/GUIStarDisplay.cs" Line="6" Column="34" />
-      <File FileName="Assets/GUITimeObject.cs" Line="51" Column="1" />
+      <File FileName="Assets/EndlessAnimalCountIndicator.cs" Line="51" Column="63" />
+      <File FileName="Assets/Scripts/EndlessModeEndMenu.cs" Line="12" Column="100" />
+      <File FileName="Assets/Scripts/EndlessSceneManager.cs" Line="197" Column="40" />
+      <File FileName="Assets/GUILevelCompleteMenuController.cs" Line="26" Column="41" />
+      <File FileName="Assets/GUILevelFailedMenuController.cs" Line="36" Column="5" />
+      <File FileName="Assets/GUI/Scripts/LevelGUIController.cs" Line="173" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="GameAnalytics" expanded="True">
-              <Node name="Plugins" expanded="True">
-                <Node name="Framework" expanded="True">
-                  <Node name="Scripts" expanded="True" />
-                </Node>
-              </Node>
-            </Node>
             <Node name="GUI" expanded="True">
               <Node name="Scripts" expanded="True" />
             </Node>
-            <Node name="Scripts" expanded="True">
-              <Node name="Audio" expanded="True" />
-              <Node name="Characters and Animals" expanded="True" />
-            </Node>
-            <Node name="GUITimeObject.cs" selected="True" />
-          </Node>
-          <Node name="Assembly-CSharp-firstpass" expanded="True">
-            <Node name="Plugins" expanded="True">
-              <Node name="OpenKit" expanded="True" />
-            </Node>
-            <Node name="Resources" expanded="True" />
+            <Node name="Scripts" expanded="True" />
+            <Node name="GUILevelCompleteMenuController.cs" selected="True" />
           </Node>
         </State>
       </Pad>
