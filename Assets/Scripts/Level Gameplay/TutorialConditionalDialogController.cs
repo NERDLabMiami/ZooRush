@@ -7,11 +7,34 @@ public class TutorialConditionalDialogController : MonoBehaviour
 	private bool crisisExplained;
 	private bool animalExplained;
 
-	NetLauncher netLauncher;
+//	NetLauncher netLauncher;
+
+	void OnEnable ()
+	{
+		GameState.StateChanged += OnStateChanged;
+	}
 	
+	void OnDisable ()
+	{
+		GameState.StateChanged -= OnStateChanged;
+	}
+
+	private void OnStateChanged ()
+	{
+		switch (GameState.currentState) {
+		case GameState.States.Launch:
+			if (!animalExplained) {
+				animalExplained = createDialog (animalText);
+			}
+			return; //skip the rest of the function, any code after this line won't be executed
+		default:
+			break;
+		}
+	}
+
 	void Start ()
 	{
-		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
+//		netLauncher = GameObject.FindObjectOfType<NetLauncher> ();
 		if (Application.loadedLevelName.Contains ("Tutorial")) {
 			stopWatchExplained = false;
 			crisisExplained = false;
@@ -32,11 +55,6 @@ public class TutorialConditionalDialogController : MonoBehaviour
 		if (!crisisExplained) {
 			if (GameObject.FindObjectOfType<PainIndicator> ().painPoints >= 75f) {
 				crisisExplained = createDialog (crisisText);
-			}
-		}
-		if (!animalExplained) {
-			if (netLauncher.launchEnabled) {
-				animalExplained = createDialog (animalText);
 			}
 		}
 
