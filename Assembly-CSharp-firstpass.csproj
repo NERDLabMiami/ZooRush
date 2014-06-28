@@ -119,7 +119,6 @@
      <None Include="Assets\Plugins\Android\facebook\build.xml" />
      <None Include="Assets\GUI\Fonts\big_bottom_cartoon\Artist Contact Info.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\bin\proguard.txt" />
-     <None Include="Assets\Resources\Sprites\Background\Buildings\Nature.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_list_fb_login.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\list_simple_header.xml" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />
@@ -170,7 +169,6 @@
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values\styles.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values-es\strings.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_check.xml" />
-     <None Include="Assets\Resources\Sprites\Background\Ocean Waves.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\bin\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_row.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_tab_default.xml" />
