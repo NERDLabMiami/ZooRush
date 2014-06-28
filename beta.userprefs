@@ -1,31 +1,35 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Audio/AudioController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GUI/Scripts/LevelGUIController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Level Gameplay/TutorialConditionalDialogController.cs" Line="37" Column="48" />
+      <File FileName="Assets/Scripts/Level Gameplay/TutorialConditionalDialogController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Level Gameplay/SceneManagerStory.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Level Gameplay/SceneManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Characters and Animals/AnimalStory.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Event Handling/GameState.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Level Gameplay/NetHandler.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/EndlessAnimal.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Audio/AudioModel.cs" Line="166" Column="4" />
-      <File FileName="Assets/Scripts/Audio/AudioController.cs" Line="17" Column="39" />
+      <File FileName="Assets/Scripts/Audio/AudioModel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Audio/AudioController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Menus and Scene Managers/LoadLevel.cs" Line="62" Column="20" />
+      <File FileName="Assets/Scripts/Characters and Animals/Animal.cs" Line="1" Column="1" />
+      <File FileName="Assets/GUI/Scripts/LevelGUIController.cs" Line="69" Column="24" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="GUI" expanded="True">
-              <Node name="Scripts" expanded="True" />
+              <Node name="Scripts" expanded="True">
+                <Node name="LevelGUIController.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Scripts" expanded="True">
-              <Node name="Audio" expanded="True">
-                <Node name="AudioController.cs" selected="True" />
-              </Node>
+              <Node name="Audio" expanded="True" />
               <Node name="Characters and Animals" expanded="True" />
               <Node name="Event Handling" expanded="True" />
               <Node name="Level Gameplay" expanded="True" />
+              <Node name="Menus and Scene Managers" expanded="True" />
             </Node>
           </Node>
         </State>
