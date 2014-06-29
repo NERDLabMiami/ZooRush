@@ -6,7 +6,6 @@ public class LoadLevel : MonoBehaviour
 
 	public static string levelToLoad;
 	public Animator animalAnimator;
-//	private bool loadingLevel;
 	private int animalValue;
 
 	private enum AnimalValues
@@ -26,7 +25,6 @@ public class LoadLevel : MonoBehaviour
 	
 	void Start ()
 	{
-//		loadingLevel = false;
 		switch (levelToLoad) {
 		case "Level1-Tutorial":
 			animalValue = 9;
@@ -66,12 +64,13 @@ public class LoadLevel : MonoBehaviour
 		animalAnimator.SetInteger ("Animal", animalValue);
 		animalAnimator.SetTrigger ("Change");
 		animalAnimator.rigidbody2D.velocity = new Vector2 (6f, 0);
-//		StartCoroutine (loadLevel ());
+		StartCoroutine (loadLevel ());
 	}
 
 
 	private IEnumerator loadLevel ()
 	{
+		yield return new WaitForSeconds (1.5f);
 		AsyncOperation async = Application.LoadLevelAsync (levelToLoad);
 		yield return async;
 		Debug.Log ("Loading complete");
