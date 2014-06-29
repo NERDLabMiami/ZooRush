@@ -127,6 +127,7 @@
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_row_okachievement.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values-v14\styles.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_fbsigninbutton.xml" />
+     <None Include="Assets\Resources\Dialog\Level10Story.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_okscores.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_top_background.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values-hdpi\dimens.xml" />
@@ -138,6 +139,7 @@
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\list_simple_header.xml" />
      <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_blue.xml" />
+     <None Include="Assets\Resources\Dialog\Level6Story.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_tabbutton.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_oksocialleaderboard.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\build.xml" />
@@ -151,11 +153,14 @@
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_search_bar_layout.xml" />
      <None Include="Assets\Plugins\Android\facebook\bin\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Resources\Dialog\Level5Story.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_userprofile.xml" />
      <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values\strings.xml" />
      <None Include="Assets\GUI\Fonts\big_bottom_cartoon\License.txt" />
+     <None Include="Assets\Resources\Dialog\Level2Story.txt" />
+     <None Include="Assets\Resources\Dialog\Level8Story.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\menu\io_openkit_leaderboards.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values-mdpi\dimens.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_dismiss_button.xml" />
@@ -168,6 +173,7 @@
      <None Include="Assets\Resources\randomFacts.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\menu\io_openkit_menu_activity_scores.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_updatenick.xml" />
+     <None Include="Assets\Resources\Dialog\GameEndStory.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\values\drawables.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values\colors.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_twitter_button.xml" />
@@ -179,10 +185,14 @@
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_guest_button.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\menu\io_openkit_menu_leaderboards_no_achievements.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values-v11\styles.xml" />
+     <None Include="Assets\Resources\Dialog\Level3Story.txt" />
+     <None Include="Assets\Resources\Dialog\Level9Story.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\values-he\strings.xml" />
+     <None Include="Assets\Resources\Dialog\Level7Story.txt" />
      <None Include="Assets\Plugins\Android\facebook\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values\styles.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values-es\strings.xml" />
+     <None Include="Assets\Resources\Dialog\Level4Story.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_check.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\bin\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_row.xml" />
