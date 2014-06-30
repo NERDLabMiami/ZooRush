@@ -157,12 +157,8 @@
      <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values\strings.xml" />
-<<<<<<< HEAD
-=======
-     <None Include="Assets\GUI\Fonts\big_bottom_cartoon\License.txt" />
      <None Include="Assets\Resources\Dialog\Level2Story.txt" />
      <None Include="Assets\Resources\Dialog\Level8Story.txt" />
->>>>>>> Ebby
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\menu\io_openkit_leaderboards.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values-mdpi\dimens.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\drawable\io_openkit_dismiss_button.xml" />
