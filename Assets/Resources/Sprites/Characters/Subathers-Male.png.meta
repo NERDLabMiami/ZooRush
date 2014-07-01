@@ -21,7 +21,7 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 2048
   textureSettings:
     filterMode: -1
     aniso: 1
@@ -35,6 +35,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
@@ -48,56 +49,62 @@ TextureImporter:
     - name: Subathers-Male_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 738
-        width: 643
-        height: 737
+        x: 126
+        y: 756
+        width: 409
+        height: 741
       alignment: 2
-      pivot: {x: .5, y: 1}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Subathers-Male_1
       rect:
         serializedVersion: 2
-        x: 643
-        y: 738
-        width: 643
-        height: 737
+        x: 779
+        y: 756
+        width: 408
+        height: 741
       alignment: 2
-      pivot: {x: .5, y: 1}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Subathers-Male_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 643
-        height: 736
+        x: 1435
+        y: 756
+        width: 407
+        height: 741
       alignment: 2
-      pivot: {x: .5, y: 1}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Subathers-Male_3
       rect:
         serializedVersion: 2
-        x: 643
-        y: 0
-        width: 643
-        height: 736
+        x: 7
+        y: 7
+        width: 644
+        height: 741
       alignment: 2
-      pivot: {x: .5, y: 1}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Subathers-Male_4
       rect:
         serializedVersion: 2
-        x: 1286
-        y: 738
-        width: 642
-        height: 737
+        x: 660
+        y: 7
+        width: 646
+        height: 741
       alignment: 2
-      pivot: {x: .5, y: 1}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Subathers-Male_5
       rect:
         serializedVersion: 2
-        x: 1286
-        y: 0
-        width: 642
-        height: 736
+        x: 1316
+        y: 7
+        width: 645
+        height: 741
       alignment: 2
-      pivot: {x: .5, y: 1}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

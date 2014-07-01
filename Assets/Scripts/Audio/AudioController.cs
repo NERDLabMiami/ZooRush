@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class AudioController : MonoBehaviour
 {
-	public AudioClip levelMusic;
+	public AudioClip[] levelMusic;
 	public bool audioPaused;
 	private AudioModel audioModel;
 
@@ -13,7 +13,11 @@ public class AudioController : MonoBehaviour
 	{
 		audioModel = FindObjectOfType<AudioModel> ();
 		if (levelMusic != null) {
-			audioModel.playMusic (levelMusic);
+			if (levelMusic.Length > 1) {
+				audioModel.playMusic (levelMusic);
+			} else {
+				audioModel.playMusic (levelMusic [0]);
+			}
 		}
 	}
 	void OnEnable ()
