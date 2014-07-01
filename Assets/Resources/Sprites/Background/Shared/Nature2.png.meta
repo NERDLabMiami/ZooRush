@@ -35,6 +35,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
@@ -54,6 +55,7 @@ TextureImporter:
         height: 84
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Nature2_1
       rect:
         serializedVersion: 2
@@ -63,6 +65,7 @@ TextureImporter:
         height: 92
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Nature2_2
       rect:
         serializedVersion: 2
@@ -72,6 +75,7 @@ TextureImporter:
         height: 148
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Nature2_3
       rect:
         serializedVersion: 2
@@ -81,6 +85,7 @@ TextureImporter:
         height: 159
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Nature2_4
       rect:
         serializedVersion: 2
@@ -90,6 +95,7 @@ TextureImporter:
         height: 163
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Nature2_5
       rect:
         serializedVersion: 2
@@ -99,6 +105,7 @@ TextureImporter:
         height: 169
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Nature2_6
       rect:
         serializedVersion: 2
@@ -108,6 +115,7 @@ TextureImporter:
         height: 197
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Nature2_7
       rect:
         serializedVersion: 2
@@ -117,6 +125,7 @@ TextureImporter:
         height: 216
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Nature2_8
       rect:
         serializedVersion: 2
@@ -126,6 +135,7 @@ TextureImporter:
         height: 244
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Nature2_9
       rect:
         serializedVersion: 2
@@ -135,5 +145,6 @@ TextureImporter:
         height: 248
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
