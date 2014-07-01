@@ -45,12 +45,12 @@ TextureImporter:
     - name: Downtown BG Objects_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 1102
-        width: 1081
-        height: 276
+        x: 12
+        y: 1103
+        width: 1068
+        height: 275
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Downtown BG Objects_1
       rect:
@@ -60,7 +60,7 @@ TextureImporter:
         width: 451
         height: 96
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Downtown BG Objects_2
       rect:
@@ -70,7 +70,7 @@ TextureImporter:
         width: 1537
         height: 566
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Downtown BG Objects_3
       rect:
@@ -80,7 +80,7 @@ TextureImporter:
         width: 500
         height: 501
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

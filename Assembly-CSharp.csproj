@@ -141,6 +141,13 @@
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendUserEvent.cs" />
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SetCustomArea.cs" />
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SetCustomUserID.cs" />
+     <Compile Include="Assets\HelpButton.cs" />
+     <Compile Include="Assets\HelpMenu.cs" />
+     <Compile Include="Assets\HelpMenuAnimalSet.cs" />
+     <Compile Include="Assets\HelpMenuDoctorSet.cs" />
+     <Compile Include="Assets\HelpMenuInfectionSet.cs" />
+     <Compile Include="Assets\HelpMenuSet.cs" />
+     <Compile Include="Assets\HelpMenuWaterSet.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioModel.cs" />
      <Compile Include="Assets\Scripts\Audio\MenuMusic.cs" />
@@ -260,7 +267,6 @@
      <None Include="Assets\Plugins\Android\facebook\res\values-hdpi\dimens.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_listitem_okscore.xml" />
      <None Include="Assets\Plugins\Android\facebook\build.xml" />
-     <None Include="Assets\GUI\Fonts\big_bottom_cartoon\Artist Contact Info.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\bin\proguard.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_list_fb_login.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\list_simple_header.xml" />
@@ -285,7 +291,6 @@
      <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values\strings.xml" />
-     <None Include="Assets\GUI\Fonts\big_bottom_cartoon\License.txt" />
      <None Include="Assets\Resources\Dialog\Level2Story.txt" />
      <None Include="Assets\Resources\Dialog\Level8Story.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\menu\io_openkit_leaderboards.xml" />

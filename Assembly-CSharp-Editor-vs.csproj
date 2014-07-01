@@ -133,7 +133,6 @@
      <None Include="Assets\Plugins\Android\facebook\res\values-hdpi\dimens.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_listitem_okscore.xml" />
      <None Include="Assets\Plugins\Android\facebook\build.xml" />
-     <None Include="Assets\GUI\Fonts\big_bottom_cartoon\Artist Contact Info.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\bin\proguard.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_list_fb_login.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\list_simple_header.xml" />
@@ -158,7 +157,6 @@
      <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values\strings.xml" />
-     <None Include="Assets\GUI\Fonts\big_bottom_cartoon\License.txt" />
      <None Include="Assets\Resources\Dialog\Level2Story.txt" />
      <None Include="Assets\Resources\Dialog\Level8Story.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\menu\io_openkit_leaderboards.xml" />
