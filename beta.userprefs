@@ -1,25 +1,25 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Level Gameplay/Building.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/HelpButton.cs">
     <Files>
-      <File FileName="Assets/StoryModePanel.cs" Line="28" Column="24" />
-      <File FileName="Assets/Scripts/Menus and Scene Managers/StoryModeHandler.cs" Line="23" Column="1" />
-      <File FileName="Assets/Scripts/Background Management/CloudGenerator.cs" Line="32" Column="25" />
-      <File FileName="Assets/Scripts/Menus and Scene Managers/RandomFact.cs" Line="19" Column="4" />
-      <File FileName="Assets/Scripts/Menus and Scene Managers/LoadLevel.cs" Line="28" Column="1" />
-      <File FileName="Assets/Scripts/Level Gameplay/Building.cs" Line="21" Column="16" />
+      <File FileName="Assets/HelpMenu.cs" Line="27" Column="12" />
+      <File FileName="Assets/HelpButton.cs" Line="17" Column="13" />
+      <File FileName="Assets/HelpMenuSet.cs" Line="5" Column="2" />
+      <File FileName="Assets/HelpMenuInfectionSet.cs" Line="16" Column="42" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="GUI" expanded="True">
+              <Node name="Scripts" expanded="True" />
+            </Node>
             <Node name="Scripts" expanded="True">
               <Node name="Background Management" expanded="True" />
-              <Node name="Level Gameplay" expanded="True">
-                <Node name="Building.cs" selected="True" />
-              </Node>
+              <Node name="Level Gameplay" expanded="True" />
               <Node name="Menus and Scene Managers" expanded="True" />
             </Node>
+            <Node name="HelpButton.cs" selected="True" />
           </Node>
         </State>
       </Pad>
