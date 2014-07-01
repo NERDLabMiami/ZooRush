@@ -143,8 +143,11 @@
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SetCustomUserID.cs" />
      <Compile Include="Assets\HelpButton.cs" />
      <Compile Include="Assets\HelpMenu.cs" />
+     <Compile Include="Assets\HelpMenuAnimalSet.cs" />
+     <Compile Include="Assets\HelpMenuDoctorSet.cs" />
      <Compile Include="Assets\HelpMenuInfectionSet.cs" />
      <Compile Include="Assets\HelpMenuSet.cs" />
+     <Compile Include="Assets\HelpMenuWaterSet.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioModel.cs" />
      <Compile Include="Assets\Scripts\Audio\MenuMusic.cs" />
