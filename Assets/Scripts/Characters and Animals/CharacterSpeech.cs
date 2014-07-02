@@ -14,14 +14,16 @@ public class CharacterSpeech : MonoBehaviour
 		hide ();
 	}
 
-	public void SpeechBubbleDisplay (string text)
+	public void SpeechBubbleDisplay (string text, bool stay = false)
 	{
 		show ();
 		speechBubbleText.text = text;
 		if (animator != null) {
 			animator.SetTrigger ("Hide");
 		}
-		StartCoroutine (waitForDisappear ());
+		if (!stay) {
+			StartCoroutine (waitForDisappear ());
+		}
 	}
 
 	private  IEnumerator waitForDisappear ()

@@ -28,7 +28,9 @@ public class PainKiller : OtherButtonClass
 		characterSpeech = GameObject.FindObjectOfType<CharacterSpeech> ();
 		animator = GetComponent<Animator> ();
 		pillCount = PlayerPrefs.GetInt ("PILLS"); //at the start of the level we get our current pill count
-		sceneManager.updatePillCount (pillCount);
+		if (sceneManager) {
+			sceneManager.updatePillCount (pillCount);
+		}
 	}
 
 	/**

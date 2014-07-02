@@ -3,14 +3,26 @@ using System.Collections;
 
 public class HelpMenu : MonoBehaviour
 {
+	public CameraFollow camFollower;
 	public Character character;
 
 	public HelpMenuSet[] menuSets;
 
 	private HelpMenuSet currentMenu;
 
+	void Start ()
+	{
+		GameState.requestIntro ();
+		camFollower.moveCameraToCharacterOffset (transform.position.x - character.transform.position.x);
+		GameState.requestPlay ();
+	}
+
 	public void receiveTrigger (HelpButton.HelpButtons helpValue)
 	{
+		if (helpValue == HelpButton.HelpButtons.main_menu) {
+			Application.LoadLevel ("Main Menu");
+			return;
+		}
 		if (currentMenu != null) {
 			currentMenu.dismiss ();
 			currentMenu.reset ();
@@ -20,39 +32,5 @@ public class HelpMenu : MonoBehaviour
 			currentMenu = menuSets [(int)helpValue];
 			currentMenu.activate ();
 		}
-
-//		switch (helpValue) {
-//		case HelpButton.HelpButtons.moving:
-//			Debug.Log ("MOVING");
-//			break;
-//		case HelpButton.HelpButtons.catching:
-//			Debug.Log ("CATCHING");
-//			
-//			break;
-//		case HelpButton.HelpButtons.infections:
-//			Debug.Log ("INFECTIONS");
-//			
-//			break;
-//		case HelpButton.HelpButtons.physician:
-//			Debug.Log ("PHYSICIAN");
-//			
-//			break;
-//		case HelpButton.HelpButtons.water:
-//			Debug.Log ("WATER");
-//			
-//			break;
-//		case HelpButton.HelpButtons.painkillers:
-//			Debug.Log ("PAINKILLERS");
-//			
-//			break;
-//		case HelpButton.HelpButtons.credits:
-//			Debug.Log ("CREDITS");
-//			
-//			break;
-//		case HelpButton.HelpButtons.main_menu:
-//		default:
-//			Debug.Log ("MAIN MENU");
-//			break;
-//		}
 	}
 }

@@ -15,11 +15,15 @@ public class HelpMenuWaterSet : HelpMenuSet
 	
 	public override void activate ()
 	{
+		transform.parent = Camera.main.transform;
+		GameState.requestPause ();
 		transform.localPosition = Vector3.zero;
+		transform.parent = null;
 	}
 	
 	public override void dismiss ()
 	{
+		transform.parent = null;
 		transform.position = originalPosition;
 	}
 	
