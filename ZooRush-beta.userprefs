@@ -1,24 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/HelpMenuWaterSet.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/HelpMenuInfectionSet.cs">
     <Files>
-      <File FileName="Assets/HelpMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Characters and Animals/CharacterSpeech.cs" Line="46" Column="6" />
-      <File FileName="Assets/HelpMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets/HelpMenuWaterSet.cs" Line="13" Column="29" />
-      <File FileName="Assets/HelpMenuSetPainKiller.cs" Line="1" Column="1" />
-      <File FileName="Assets/HelpMenuInfectionSet.cs" Line="1" Column="1" />
-      <File FileName="Assets/HelpMenuAnimalSet.cs" Line="36" Column="53" />
-      <File FileName="Assets/HelpMenuCreditsSet.cs" Line="19" Column="12" />
-      <File FileName="Assets/HelpMenuMovingSet.cs" Line="19" Column="24" />
-      <File FileName="Assets/Scripts/Level Gameplay/PowerUp.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Event Handling/GameState.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Level Gameplay/CameraFollow.cs" Line="27" Column="5" />
-      <File FileName="Assets/Scripts/Characters and Animals/AnimalStory.cs" Line="108" Column="6" />
-      <File FileName="Assets/Scripts/Characters and Animals/PlayerControls.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Characters and Animals/Character.cs" Line="13" Column="29" />
-      <File FileName="Assets/Scripts/Level Gameplay/NetLauncher.cs" Line="123" Column="1" />
-      <File FileName="Assets/Scripts/Audio/AudioController.cs" Line="19" Column="1" />
+      <File FileName="Assets/HelpMenu.cs" Line="19" Column="5" />
+      <File FileName="Assets/Scripts/Characters and Animals/CharacterSpeech.cs" Line="30" Column="41" />
+      <File FileName="Assets/Scripts/Menus and Scene Managers/StoryModeNonPanel.cs" Line="68" Column="43" />
+      <File FileName="Assets/Scripts/Level Gameplay/NetHandler.cs" Line="34" Column="75" />
+      <File FileName="Assets/HelpMenuAnimalSet.cs" Line="13" Column="4" />
+      <File FileName="Assets/Scripts/Characters and Animals/AnimalStory.cs" Line="128" Column="32" />
+      <File FileName="Assets/HelpMenuInfectionSet.cs" Line="35" Column="1" />
+      <File FileName="Assets/HelpMenuWaterSet.cs" Line="28" Column="3" />
+      <File FileName="Assets/Scripts/Level Gameplay/Infection.cs" Line="78" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

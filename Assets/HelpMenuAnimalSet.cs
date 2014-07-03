@@ -4,6 +4,8 @@ using System.Collections;
 public class HelpMenuAnimalSet : HelpMenuSet
 {
 		public AnimalStory animal;
+		public SpriteRenderer netRenderer;
+		private bool callledDismiss;
 
 		void OnEnable ()
 		{
@@ -12,6 +14,7 @@ public class HelpMenuAnimalSet : HelpMenuSet
 
 		public override void activate ()
 		{
+				callledDismiss = false;
 				transform.parent = Camera.main.transform;
 				transform.localPosition = Vector3.zero;
 				animal.setSpeed ();
@@ -23,17 +26,28 @@ public class HelpMenuAnimalSet : HelpMenuSet
 		public override void dismiss ()
 		{
 				transform.position = originalPosition;
+				GameState.currentState = GameState.States.Pause;
+				GameState.requestPlay ();
+				GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("What would you\nlike help with?", true);
 		}
 	
 		public override void reset ()
 		{
-
+				animal.caught = false;
+				netRenderer.enabled = false;
 		}
 
 		void Update ()
 		{
-				if (animal.caught) {
-						Debug.Log ("ANIMAL CAUGHT, START DISSMISSAL");
+				if (!callledDismiss && animal.caught) {
+						callledDismiss = true;
+						StartCoroutine ("startDismissal");
 				}
+		}
+
+		private IEnumerator startDismissal ()
+		{
+				yield return new WaitForSeconds (1.5f);
+				dismiss ();
 		}
 }

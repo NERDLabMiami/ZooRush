@@ -19,43 +19,24 @@ public class CharacterSpeech : MonoBehaviour
 				if (speechBubbleRenderer == null) {
 						speechBubble.GetComponent<SpriteRenderer> ();
 				}
-				hide ();
 		}
 
 		public void SpeechBubbleDisplay (string text, bool stay = false)
 		{
-				show ();
+				animator.SetTrigger ("Show");
 				speechBubbleText.text = text;
 				if (!stay) {
 						if (animator != null) {
-								animator.SetTrigger ("Hide");
+								StartCoroutine ("fadeOutDelay");
 						}
 				
-						StartCoroutine (waitForDisappear ());
 				}
 		}
 
-		private  IEnumerator waitForDisappear ()
+		private IEnumerator fadeOutDelay ()
 		{
-				while (speechBubbleRenderer.color.a > 0.05f) {
-						yield return new WaitForSeconds (0.1f);
-				}
-				hide ();
-				if (animator != null) {
-						animator.SetTrigger ("Reset");
-				}
-		}
-
-		public void hide ()
-		{
-				Debug.Log ("HIDE CALLED");
-				changeAlpha (0);
-		}
-
-		public void show ()
-		{
-				Debug.Log ("SHOW CALLED");
-				changeAlpha (1);
+				yield return new WaitForSeconds (1.5f);
+				animator.SetTrigger ("FadeOut");
 		}
 
 		private void changeAlpha (int alpha)

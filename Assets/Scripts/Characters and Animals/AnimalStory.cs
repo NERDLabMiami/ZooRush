@@ -79,7 +79,7 @@ public class AnimalStory : Animal
 
 		void Start ()
 		{
-				if (PlayerPrefs.GetInt ("Sound") != 0) { // sound is enabled, we will add a sound source for the animal
+				if (PlayerPrefs.GetInt ("Sound", 0) != 0) { // sound is enabled, we will add a sound source for the animal
 						audioSource = gameObject.AddComponent<AudioSource> (); //adding the sound source
 						audioSource.playOnAwake = false; //disable playing on instatiation
 						audioSource.clip = audioClip; 
