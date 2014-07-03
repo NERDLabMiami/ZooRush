@@ -4,6 +4,7 @@ using System.Collections;
 public class CharacterSpeech : MonoBehaviour
 {
 		public  GameObject speechBubble;
+		public SpriteRenderer speechBubbleRenderer;
 		public  TextMesh speechBubbleText;
 		public Animator animator;
 
@@ -14,6 +15,9 @@ public class CharacterSpeech : MonoBehaviour
 				}
 				if (animator == null) {
 						animator = speechBubble.GetComponent<Animator> ();
+				}
+				if (speechBubbleRenderer == null) {
+						speechBubble.GetComponent<SpriteRenderer> ();
 				}
 				hide ();
 		}
@@ -33,8 +37,7 @@ public class CharacterSpeech : MonoBehaviour
 
 		private  IEnumerator waitForDisappear ()
 		{
-				SpriteRenderer thisRenderer = speechBubble.GetComponent<SpriteRenderer> ();
-				while (thisRenderer.color.a > 0.05f) {
+				while (speechBubbleRenderer.color.a > 0.05f) {
 						yield return new WaitForSeconds (0.1f);
 				}
 				hide ();
@@ -45,24 +48,25 @@ public class CharacterSpeech : MonoBehaviour
 
 		public void hide ()
 		{
+				Debug.Log ("HIDE CALLED");
 				changeAlpha (0);
 		}
 
 		public void show ()
 		{
+				Debug.Log ("SHOW CALLED");
 				changeAlpha (1);
 		}
 
 		private void changeAlpha (int alpha)
 		{
-				Color color;
+				if (alpha == 1) {
+						speechBubbleRenderer.color = Color.white;
+				} else {
+						speechBubbleRenderer.color = Color.clear;
+				}
 
-				SpriteRenderer spriteRend = speechBubble.GetComponentInChildren<SpriteRenderer> ();
-				color = spriteRend.color;
-				color.a = alpha;
-				spriteRend.color = color;
-
-				color = speechBubbleText.color;
+				Color color = speechBubbleText.color;
 				color.a = alpha;
 				speechBubbleText.color = color;
 		}
