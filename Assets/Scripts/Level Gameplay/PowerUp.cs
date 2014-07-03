@@ -61,8 +61,12 @@ public class PowerUp : ObjectModel
 						}
 						character.GetComponentInChildren<CharacterSpeech> ().SpeechBubbleDisplay ("Refreshing!");
 						addToScore ();
-						painIndicator.subtractPoints (painPoints);
-						audioController.objectInteraction (clip);
+						if (painIndicator) {
+								painIndicator.subtractPoints (painPoints);
+						}
+						if (audioController) {
+								audioController.objectInteraction (clip);
+						}
 						interacted = true;
 				}
 		}

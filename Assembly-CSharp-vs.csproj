@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{70063E49-5F3B-3855-BBDF-26E535F76079}</ProjectGuid>
+	<ProjectGuid>{CD2CD03F-B8A6-3D23-B1B8-72D94D28CFE1}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -144,8 +144,10 @@
      <Compile Include="Assets\HelpButton.cs" />
      <Compile Include="Assets\HelpMenu.cs" />
      <Compile Include="Assets\HelpMenuAnimalSet.cs" />
+     <Compile Include="Assets\HelpMenuCreditsSet.cs" />
      <Compile Include="Assets\HelpMenuDoctorSet.cs" />
      <Compile Include="Assets\HelpMenuInfectionSet.cs" />
+     <Compile Include="Assets\HelpMenuMovingSet.cs" />
      <Compile Include="Assets\HelpMenuSet.cs" />
      <Compile Include="Assets\HelpMenuSetPainKiller.cs" />
      <Compile Include="Assets\HelpMenuWaterSet.cs" />
@@ -341,15 +343,15 @@
      <None Include="Assets\Plugins\Android\facebook\res\values-xhdpi\dimens.xml" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\layout\io_openkit_fragment_leaderboards.xml" />
  <Reference Include="IFacebook">
- <HintPath>/Users/ebbyw/Desktop/beta/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
+ <HintPath>/Users/ebbichan/Desktop/ZooRush-beta/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
  </Reference>
  <Reference Include="RestSharp">
- <HintPath>/Users/ebbyw/Desktop/beta/Assets/Plugins/RestSharp.dll</HintPath>
+ <HintPath>/Users/ebbichan/Desktop/ZooRush-beta/Assets/Plugins/RestSharp.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{2EC2B42E-54E2-071B-3B68-80E2C8CF13CF}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{A9CAB5AD-BA4B-CEC0-86C6-C6CFF7283C5B}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,16 +7,16 @@ public class HelpMenuSetPainKiller : HelpMenuSet
 
 		public override void activate ()
 		{
-				throw new System.NotImplementedException ();
+				transform.localPosition = Vector3.zero;
 		}
-
+	
 		public override void dismiss ()
 		{
-				throw new System.NotImplementedException ();
+				transform.position = originalPosition;
 		}
 
 		public override void reset ()
 		{
-				throw new System.NotImplementedException ();
+//				throw new System.NotImplementedException ();
 		}
 }

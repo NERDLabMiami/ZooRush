@@ -1,9 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Characters and Animals/AnimalStory.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/HelpMenuWaterSet.cs">
     <Files>
-      <File FileName="Assets/HelpMenuSetPainKiller.cs" Line="23" Column="1" />
-      <File FileName="Assets/Scripts/Characters and Animals/AnimalStory.cs" Line="22" Column="4" />
+      <File FileName="Assets/Scripts/Characters and Animals/CharacterSpeech.cs" Line="25" Column="17" />
+      <File FileName="Assets/HelpMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets/HelpMenuWaterSet.cs" Line="14" Column="39" />
+      <File FileName="Assets/HelpMenuSetPainKiller.cs" Line="20" Column="36" />
+      <File FileName="Assets/HelpMenuInfectionSet.cs" Line="1" Column="1" />
+      <File FileName="Assets/HelpMenuDoctorSet.cs" Line="1" Column="1" />
+      <File FileName="Assets/HelpMenuAnimalSet.cs" Line="1" Column="1" />
+      <File FileName="Assets/HelpMenuSet.cs" Line="7" Column="38" />
+      <File FileName="Assets/HelpMenuCreditsSet.cs" Line="19" Column="12" />
+      <File FileName="Assets/HelpMenuMovingSet.cs" Line="19" Column="24" />
+      <File FileName="Assets/Scripts/Level Gameplay/PowerUp.cs" Line="16" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
