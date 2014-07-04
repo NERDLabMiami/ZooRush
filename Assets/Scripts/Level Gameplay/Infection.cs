@@ -11,8 +11,6 @@ public class Infection : ObjectModel
 		private bool stopWatchActive;
 		private bool interacted;
 
-
-
 		new void Start ()
 		{
 				base.Start (); 
@@ -58,6 +56,7 @@ public class Infection : ObjectModel
 				GetComponent<Animator> ().SetTrigger ("Flash");
 
 		}
+
 		public override void interactWithCharacter (GameObject character)
 		{
 				if (!interacted) {
@@ -85,4 +84,8 @@ public class Infection : ObjectModel
 				GetComponent<Animator> ().SetTrigger ("StopDelay");
 		}
 
+		public bool touched ()
+		{
+				return interacted;
+		}
 }

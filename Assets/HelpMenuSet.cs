@@ -6,7 +6,7 @@ public abstract class HelpMenuSet : MonoBehaviour
 		public TextAsset textSource;
 		protected Vector3 originalPosition;
 		public string[] displayText;
-//		public bool activated;
+		public bool activated;
 
 		public abstract void activate ();
 		public abstract void dismiss ();

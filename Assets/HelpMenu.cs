@@ -25,8 +25,11 @@ public class HelpMenu : MonoBehaviour
 						Application.LoadLevel ("Main Menu");
 						return;
 				}
+
 				if (currentMenu != null) {
-						currentMenu.dismiss ();
+						if (currentMenu.activated) {
+								currentMenu.dismiss ();
+						}
 						currentMenu.reset ();
 				}
 

@@ -14,6 +14,7 @@ public class HelpMenuAnimalSet : HelpMenuSet
 
 		public override void activate ()
 		{
+				activated = true;
 				callledDismiss = false;
 				transform.parent = Camera.main.transform;
 				transform.localPosition = Vector3.zero;
@@ -25,6 +26,7 @@ public class HelpMenuAnimalSet : HelpMenuSet
 	
 		public override void dismiss ()
 		{
+				activated = false;
 				transform.position = originalPosition;
 				GameState.currentState = GameState.States.Pause;
 				GameState.requestPlay ();
