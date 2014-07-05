@@ -7,45 +7,45 @@ using System.Collections;
  */ 
 public abstract class ObjectModel : MonoBehaviour
 {	
-		private static SceneRepeater sceneRepeater;
-		protected AudioController audioController;
-		protected CollisionDetect collisionDetect;
+	private static SceneRepeater sceneRepeater;
+	protected AudioController audioController;
+	protected CollisionDetect collisionDetect;
 
-		public abstract void collisionDetected ();
+	public abstract void collisionDetected ();
 
-		protected void Awake ()
-		{
-				sceneRepeater = GameObject.FindObjectOfType<SceneRepeater> ();
+	protected void Awake ()
+	{
+		sceneRepeater = GameObject.FindObjectOfType<SceneRepeater> ();
+	}
+
+	protected void Start ()
+	{
+		audioController = GameObject.FindObjectOfType<AudioController> ();
+		collisionDetect = GetComponentInChildren<CollisionDetect> ();
+		if (collisionDetect) {
+			collisionDetect.objectModel = this;
 		}
+	}
 
-		protected void Start ()
-		{
-				audioController = GameObject.FindObjectOfType<AudioController> ();
-				collisionDetect = GetComponentInChildren<CollisionDetect> ();
-				if (collisionDetect) {
-						collisionDetect.objectModel = this;
-				}
+	public void resetState ()
+	{
+		resetOtherValues ();
+		if (!gameObject.activeSelf) {
+			gameObject.SetActive (true);
 		}
+	}
 
-		public void resetState ()
-		{
-				resetOtherValues ();
-				if (!gameObject.activeSelf) {
-						gameObject.SetActive (true);
-				}
+	protected abstract void resetOtherValues ();
+
+	protected void destroyObstacle ()
+	{
+		if (sceneRepeater) {
+			sceneRepeater.DestroyObstacle (gameObject);
+		} else {
+			Destroy (gameObject);
 		}
+	}
 
-		protected abstract void resetOtherValues ();
-
-		protected void destroyObstacle ()
-		{
-				if (sceneRepeater) {
-						sceneRepeater.DestroyObstacle (gameObject);
-				} else {
-						Destroy (gameObject);
-				}
-		}
-
-		public abstract void interactWithCharacter (GameObject character);
+	public abstract void interactWithCharacter (GameObject character);
 
 }

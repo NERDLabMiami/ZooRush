@@ -6,12 +6,12 @@ using System.Collections;
  */ 
 public class SortingLayerController : MonoBehaviour
 {
-	private SpriteRenderer spriteRenderer;
+	private Renderer spriteRenderer;
 	public int offset;
 
 	void Awake ()
 	{
-		spriteRenderer = GetComponent<SpriteRenderer> ();
+		spriteRenderer = GetComponent<Renderer> ();
 	}
 	
 	void FixedUpdate ()

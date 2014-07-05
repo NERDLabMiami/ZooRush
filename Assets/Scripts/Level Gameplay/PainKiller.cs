@@ -58,8 +58,12 @@ public class PainKiller : OtherButtonClass
 
 	private void increment ()
 	{
-		sceneManager.updatePillCount (pillCount);
-		animator.SetTrigger ("Reset");
+		if (sceneManager) {
+			sceneManager.updatePillCount (pillCount);
+		}
+		if (animator) {
+			animator.SetTrigger ("Reset");
+		}
 	}
 
 	private void decrementPillCount ()
