@@ -1,0 +1,1 @@
+Tapping an animal will throw a net.

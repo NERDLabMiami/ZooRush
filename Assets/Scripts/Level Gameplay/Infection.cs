@@ -11,8 +11,6 @@ public class Infection : ObjectModel
 	private bool stopWatchActive;
 	private bool interacted;
 
-
-
 	new void Start ()
 	{
 		base.Start (); 
@@ -47,27 +45,38 @@ public class Infection : ObjectModel
 
 	public void addToScore ()
 	{
-		GameObject.FindObjectOfType<ScoreKeeper> ().addToCount (infectionType);
+		ScoreKeeper scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper> ();
+		if (scoreKeeper) {
+			scoreKeeper.addToCount (infectionType);
+		}
 	}
+
 	public override void collisionDetected ()
 	{
 		GetComponent<Animator> ().SetTrigger ("Flash");
 
 	}
+
 	public override void interactWithCharacter (GameObject character)
 	{
 		if (!interacted) {
 			GameObject.FindObjectOfType<AudioController> ().objectInteraction (clip);
 			GameObject.FindObjectOfType<CharacterSpeech> ().SpeechBubbleDisplay ("I hate infections!");
 			addToScore ();
-			painIndicator.addPoints (painPoints);
+			if (painIndicator) {
+				painIndicator.addPoints (painPoints);
+			}
 			if (character.transform.position.y < -2.5f) {
 				character.rigidbody2D.AddForce (new Vector2 (-350f, 50f));
 			} else {
 				character.rigidbody2D.AddForce (new Vector2 (-350f, -50f));
 			}
 			character.GetComponent<PlayerControls> ().resetSpeed ();
-			GameObject.FindObjectOfType<LevelGUIController> ().displayStopwatch (infectionType);
+
+			LevelGUIController levelGUI = GameObject.FindObjectOfType<LevelGUIController> ();
+			if (levelGUI) {
+				levelGUI.displayStopwatch (infectionType);
+			}
 		}
 	}
 
@@ -76,4 +85,8 @@ public class Infection : ObjectModel
 		GetComponent<Animator> ().SetTrigger ("StopDelay");
 	}
 
+	public bool touched ()
+	{
+		return interacted;
+	}
 }

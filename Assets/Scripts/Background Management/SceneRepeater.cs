@@ -68,7 +68,7 @@ public class SceneRepeater : MonoBehaviour
 	
 	private IEnumerator destroyer (GameObject obj)
 	{
-		yield return new WaitForSeconds (0.15f);
+		yield return new WaitForSeconds (0.1f);
 		if (obj.activeSelf) {
 			obj.SetActive (false);
 		}
