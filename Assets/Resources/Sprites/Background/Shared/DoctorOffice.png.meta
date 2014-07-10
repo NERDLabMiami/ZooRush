@@ -46,33 +46,23 @@ TextureImporter:
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: DoctorOffice_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 4
-        width: 726
-        height: 525
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
     - name: DoctorOffice_1
       rect:
         serializedVersion: 2
-        x: 727
-        y: 4
-        width: 724
-        height: 522
+        x: 7
+        y: 9
+        width: 623
+        height: 501
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DoctorOffice_2
+    - name: DoctorOffice_0
       rect:
         serializedVersion: 2
-        x: 482
-        y: 337
-        width: 82
-        height: 79
+        x: 640
+        y: 9
+        width: 623
+        height: 501
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

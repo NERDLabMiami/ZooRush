@@ -43,7 +43,7 @@ public class SceneRepeater : MonoBehaviour
 
 	public void calculate ()
 	{
-
+		sceneObjects = GameObject.FindObjectsOfType<SpriteRenderer> ();
 		sceneThings = GameObject.FindGameObjectsWithTag ("repeatable");
 		SpriteRenderer rightmostObject = sceneObjects [0];
 		SpriteRenderer leftmostObject = sceneObjects [0];
