@@ -37,8 +37,9 @@ public class AudioModel : MonoBehaviour
 		sound = (PlayerPrefs.GetInt ("Sound") == 1);
 
 		musicTrack.audio.ignoreListenerPause = true;
-		ambientTrack.audio.ignoreListenerPause = true;
-
+		if (ambientTrack != null) {
+			ambientTrack.audio.ignoreListenerPause = true;
+		}
 		if (!music) {
 			turnOffMusic ();
 		}

@@ -42,7 +42,7 @@ public class GA_Settings : ScriptableObject
 	/// The version of the GA Unity Wrapper plugin
 	/// </summary>
 	[HideInInspector]
-	public static string VERSION = "0.6.3";
+	public static string VERSION = "0.6.4";
 	
 	#endregion
 	
@@ -84,6 +84,7 @@ public class GA_Settings : ScriptableObject
 	public string PasswordConfirm = "";
 	public bool EmailOptIn = true;
 	public string EmailGA = "";
+	[System.NonSerialized]
 	public string PasswordGA = "";
 	[System.NonSerialized]
 	public string TokenGA = "";
@@ -281,24 +282,25 @@ public class GA_Settings : ScriptableObject
 		if (startQueue)
 		{
 			if (InternetConnectivity)
-				GA.Log("GA has confirmed internet connection..");
+				GA.Log("GA has confirmed connection to the server..");
 			else
-				GA.Log("GA detects no internet connection..");
+				GA.Log("GA has no connection to the server..");
 			
 			//Try to add additional IDs
 			if (AddUniqueIDs())
 			{
+				#if UNITY_EDITOR
+
 				//Start the submit queue for sending messages to the server
 				GA.RunCoroutine(GA_Queue.SubmitQueue());
 				GA.Log("GameAnalytics: Submission queue started.");
-				
-				#if UNITY_EDITOR
-				
+
 				//GameObject gaTracking = new GameObject("GA_Tracking");
 				//gaTracking.AddComponent<GA_Tracking>();
 				
 				#else
 				
+				GA_Queue.ForceSubmit();
 				GameObject fbGameObject = new GameObject("GA_FacebookSDK");
 				fbGameObject.AddComponent<GA_FacebookSDK>();
 				
