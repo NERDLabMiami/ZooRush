@@ -58,7 +58,9 @@ public static class GA_Queue
 	/// set to true when the game cannot be found, to prevent us from sending messages constantly with no hope of success
 	/// </summary>
 	private static bool _endsubmit = false;
-	
+
+	private static bool _userEventSuccess = false;
+
 	#endregion
 	
 	#region public methods
@@ -89,6 +91,14 @@ public static class GA_Queue
 			Parameters = parameters,
 			AddTime = Time.time
 		};
+
+		#if !UNITY_EDITOR
+		if (!_userEventSuccess && type != GA_Submit.CategoryType.GA_User)
+		{
+			_tempQueue.Add(item);
+			return;
+		}
+		#endif
 		
 		if (_submittingData)
 		{
@@ -149,23 +159,35 @@ public static class GA_Queue
 	/// </summary>
 	public static void ForceSubmit()
 	{
-		GA_SpecialEvents.SubmitAverageFPS();
-		
-		//If we have internet connection then add any archived data to the submit queue
-		if (GA.SettingsGA.ArchiveData && GA.SettingsGA.InternetConnectivity)
+		bool adEvents = true;
+
+		#if !UNITY_EDITOR
+		if (!_userEventSuccess)
 		{
-			List<GA_Submit.Item> archivedItems = GA.API.Archive.GetArchivedData();
-			
-			if (archivedItems != null && archivedItems.Count > 0)
+			adEvents = false;
+		}
+		#endif
+
+		if (adEvents)
+		{
+			GA_SpecialEvents.SubmitAverageFPS();
+
+			//If we have internet connection then add any archived data to the submit queue
+			if (GA.SettingsGA.ArchiveData && GA.SettingsGA.InternetConnectivity)
 			{
-				foreach (GA_Submit.Item item in archivedItems)
-				{
-					GA_Queue.AddItem(item.Parameters, item.Type, false);
-				}
+				List<GA_Submit.Item> archivedItems = GA.API.Archive.GetArchivedData();
 				
-				if (GA.SettingsGA.DebugMode)
+				if (archivedItems != null && archivedItems.Count > 0)
 				{
-					GA.Log("GA: Network connection detected. Adding archived data to next submit queue.");
+					foreach (GA_Submit.Item item in archivedItems)
+					{
+						GA_Queue.AddItem(item.Parameters, item.Type, false);
+					}
+					
+					if (GA.SettingsGA.DebugMode)
+					{
+						GA.Log("GA: Network connection detected. Adding archived data to next submit queue.");
+					}
 				}
 			}
 		}
@@ -175,7 +197,7 @@ public static class GA_Queue
 		{
 			_submittingData = true;
 			
-			GA.Log("GameAnalytics: Queue submit started");
+			GA.Log("GameAnalytics: Submit started");
 			
 			GA.API.Submit.SubmitQueue(_queue, Submitted, SubmitError, false, string.Empty, string.Empty);
 		}
@@ -282,6 +304,17 @@ public static class GA_Queue
 					GA.SettingsGA.UserMessagesSubmitted++;
 					break;
 				}
+			}
+
+			if (!_userEventSuccess)
+			{
+				_userEventSuccess = true;
+
+				#if !UNITY_EDITOR
+				// User event has gone through; start the queue
+				GA.RunCoroutine(GA_Queue.SubmitQueue());
+				GA.Log("GameAnalytics: Submission queue started.");
+				#endif
 			}
 		}
 		

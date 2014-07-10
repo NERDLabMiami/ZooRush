@@ -16,7 +16,9 @@ public class AudioController : MonoBehaviour
 			if (levelMusic.Length > 1) {
 				audioModel.playMusic (levelMusic);
 			} else {
-				audioModel.playMusic (levelMusic [0]);
+				if (levelMusic.Length != 0) {
+					audioModel.playMusic (levelMusic [0]);
+				}
 			}
 		}
 	}

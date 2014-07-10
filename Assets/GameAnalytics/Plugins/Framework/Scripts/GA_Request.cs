@@ -80,7 +80,11 @@ public class GA_Request
 		#else
 		
 		//Set the authorization header to contain an MD5 hash of the JSON array string + the private key
+		#if UNITY_4_3 || UNITY_4_2 || UNITY_4_1 || UNITY_4_0_1 || UNITY_4_0
+		Hashtable headers = new Hashtable();
+		#else
 		Dictionary<string, string> headers = new Dictionary<string, string>();
+		#endif
 		headers.Add("Authorization", GA_Submit.CreateMD5Hash(requestInfo + GA.SettingsGA.ApiKey));
 		
 		//Try to send the data
@@ -145,7 +149,11 @@ public class GA_Request
 		#else
 		
 		//Set the authorization header to contain an MD5 hash of the JSON array string + the private key
+		#if UNITY_4_3 || UNITY_4_2 || UNITY_4_1 || UNITY_4_0_1 || UNITY_4_0
+		Hashtable headers = new Hashtable();
+		#else
 		Dictionary<string, string> headers = new Dictionary<string, string>();
+		#endif
 		headers.Add("Authorization", GA_Submit.CreateMD5Hash(requestInfo + GA.SettingsGA.ApiKey));
 		
 		//Try to send the data

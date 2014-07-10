@@ -1,11 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" ActiveRuntime="Mono 3.2.6" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/OpenKitSettingsWindow.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" ActiveRuntime="Mono 3.2.6" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GUI/Scripts/LevelGUIController.cs">
     <Files>
+      <File FileName="Assets/Scripts/Menus and Scene Managers/StoryModeNonPanel.cs" Line="9" Column="34" />
+      <File FileName="Assets/Scripts/Audio/AudioModel.cs" Line="42" Column="4" />
       <File FileName="Assets/Editor/OpenKitSettingsWindow.cs" Line="4" Column="19" />
-      <File FileName="Assets/HelpMenuSetPainKiller.cs" Line="44" Column="1" />
-      <File FileName="Assets/HelpMenuInfectionSet.cs" Line="7" Column="9" />
-      <File FileName="Assets/HelpMenuPainKiller.cs" Line="7" Column="8" />
+      <File FileName="Assets/GUI/Scripts/GUILevelCompleteMenuController.cs" Line="18" Column="35" />
+      <File FileName="Assets/Scripts/Level Gameplay/PainIndicatorStory.cs" Line="14" Column="21" />
+      <File FileName="Assets/GUI/Scripts/LevelGUIController.cs" Line="54" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,9 +21,12 @@
               </Node>
             </Node>
             <Node name="GUI" expanded="True">
-              <Node name="Scripts" expanded="True" />
+              <Node name="Scripts" expanded="True">
+                <Node name="LevelGUIController.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Scripts" expanded="True">
+              <Node name="Audio" expanded="True" />
               <Node name="Background Management" expanded="True" />
               <Node name="Characters and Animals" expanded="True" />
               <Node name="Event Handling" expanded="True" />
@@ -32,7 +37,6 @@
           <Node name="Assembly-CSharp-Editor" expanded="True">
             <Node name="Editor" expanded="True">
               <Node name="OpenKitInternal" expanded="True" />
-              <Node name="OpenKitSettingsWindow.cs" selected="True" />
             </Node>
             <Node name="Facebook" expanded="True" />
             <Node name="GameAnalytics" expanded="True">
