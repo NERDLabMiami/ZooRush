@@ -89,9 +89,9 @@ TextureImporter:
     - name: Nature2_4
       rect:
         serializedVersion: 2
-        x: 8
+        x: 9
         y: 712
-        width: 1920
+        width: 1918
         height: 163
       alignment: 7
       pivot: {x: .5, y: 0}
@@ -119,9 +119,9 @@ TextureImporter:
     - name: Nature2_7
       rect:
         serializedVersion: 2
-        x: 8
+        x: 9
         y: 268
-        width: 2560
+        width: 2558
         height: 216
       alignment: 7
       pivot: {x: .5, y: 0}

@@ -21,7 +21,7 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 2048
   textureSettings:
     filterMode: -1
     aniso: 1
@@ -35,6 +35,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
@@ -48,47 +49,72 @@ TextureImporter:
     - name: Ocean Waves_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 1515
-        width: 1922
-        height: 172
+        x: 0
+        y: 1843
+        width: 1929
+        height: 177
       alignment: 2
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ocean Waves_1
       rect:
         serializedVersion: 2
         x: 7
-        y: 1101
+        y: 1588
         width: 1922
-        height: 248
+        height: 247
       alignment: 2
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ocean Waves_2
       rect:
         serializedVersion: 2
         x: 7
-        y: 683
+        y: 1326
         width: 1922
-        height: 328
+        height: 248
       alignment: 2
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ocean Waves_3
       rect:
         serializedVersion: 2
         x: 7
-        y: 345
+        y: 987
         width: 1922
-        height: 329
+        height: 327
       alignment: 2
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ocean Waves_4
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 661
+        width: 1922
+        height: 315
+      alignment: 2
+      pivot: {x: .5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Ocean Waves_5
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 334
+        width: 1922
+        height: 315
+      alignment: 2
+      pivot: {x: .5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Ocean Waves_6
       rect:
         serializedVersion: 2
         x: 7
         y: 7
         width: 1922
-        height: 329
+        height: 315
       alignment: 2
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
