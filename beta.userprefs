@@ -1,14 +1,27 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" ActiveRuntime="Mono 3.2.6" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" ActiveRuntime="Mono 3.2.6" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/OpenKitSettingsWindow.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Menus and Scene Managers/GameSetup.cs" Line="9" Column="74" />
+      <File FileName="Assets/Scripts/Menus and Scene Managers/Settings.cs" Line="16" Column="2" />
+      <File FileName="Assets/Editor/OpenKitSettingsWindow.cs" Line="4" Column="19" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Scripts" expanded="True">
+              <Node name="Menus and Scene Managers" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Assembly-CSharp-Editor" expanded="True">
+            <Node name="Editor" expanded="True">
+              <Node name="OpenKitSettingsWindow.cs" selected="True" />
+            </Node>
+          </Node>
           <Node name="Assembly-CSharp-firstpass" expanded="True">
             <Node name="Resources" expanded="True">
-              <Node name="Dialog" expanded="True">
-                <Node name="GameEndStory.txt" selected="True" />
-              </Node>
+              <Node name="Dialog" expanded="True" />
             </Node>
           </Node>
         </State>

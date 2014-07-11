@@ -24,6 +24,8 @@ public class Settings : OtherButtonClass
 		//Set Characters as available in player prefs
 		PlayerPrefs.SetInt (characterNames [0], 1); 
 		PlayerPrefs.SetInt (characterNames [1], 1);
+		PlayerPrefs.SetInt (characterNames [2], 1); 
+		PlayerPrefs.SetInt (characterNames [3], 1);
 		//Set the limit based on which characters are unlocked
 		for (int i = 2; i < characterNames.Length; i++) {
 			if (PlayerPrefs.HasKey (characterNames [i])) {

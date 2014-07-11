@@ -6,6 +6,7 @@ using System.Collections;
  */
 public class GameSetup : MonoBehaviour
 {
+	private string[] characterNames = {"David", "Lisa", "Christina","Zane"};
 
 	void Awake ()
 	{
@@ -36,6 +37,12 @@ public class GameSetup : MonoBehaviour
 		if (!PlayerPrefs.HasKey ("Levels Unlocked")) { //Number of Levels unlocked
 			PlayerPrefs.SetInt ("Levels Unlocked", 1); //Default is 1 for tutorial, level 1
 		}
+
+		//SET CHARACTER UNLOCKS
+		PlayerPrefs.SetInt (characterNames [0], 1); 
+		PlayerPrefs.SetInt (characterNames [1], 1);
+		PlayerPrefs.SetInt (characterNames [2], 1); 
+		PlayerPrefs.SetInt (characterNames [3], 1);
 		
 	}
 
