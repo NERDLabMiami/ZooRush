@@ -49,9 +49,9 @@ TextureImporter:
     - name: Ocean Waves_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 9
         y: 1843
-        width: 1929
+        width: 1918
         height: 177
       alignment: 2
       pivot: {x: .5, y: 1}
@@ -59,9 +59,9 @@ TextureImporter:
     - name: Ocean Waves_1
       rect:
         serializedVersion: 2
-        x: 7
+        x: 9
         y: 1588
-        width: 1922
+        width: 1918
         height: 247
       alignment: 2
       pivot: {x: .5, y: 1}
@@ -69,9 +69,9 @@ TextureImporter:
     - name: Ocean Waves_2
       rect:
         serializedVersion: 2
-        x: 7
+        x: 9
         y: 1326
-        width: 1922
+        width: 1918
         height: 248
       alignment: 2
       pivot: {x: .5, y: 1}
@@ -79,9 +79,9 @@ TextureImporter:
     - name: Ocean Waves_3
       rect:
         serializedVersion: 2
-        x: 7
+        x: 9
         y: 987
-        width: 1922
+        width: 1918
         height: 327
       alignment: 2
       pivot: {x: .5, y: 1}
@@ -89,9 +89,9 @@ TextureImporter:
     - name: Ocean Waves_4
       rect:
         serializedVersion: 2
-        x: 7
+        x: 9
         y: 661
-        width: 1922
+        width: 1918
         height: 315
       alignment: 2
       pivot: {x: .5, y: 1}
@@ -99,9 +99,9 @@ TextureImporter:
     - name: Ocean Waves_5
       rect:
         serializedVersion: 2
-        x: 7
+        x: 9
         y: 334
-        width: 1922
+        width: 1918
         height: 315
       alignment: 2
       pivot: {x: .5, y: 1}
@@ -109,9 +109,9 @@ TextureImporter:
     - name: Ocean Waves_6
       rect:
         serializedVersion: 2
-        x: 7
+        x: 9
         y: 7
-        width: 1922
+        width: 1918
         height: 315
       alignment: 2
       pivot: {x: .5, y: 1}

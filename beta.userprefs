@@ -1,13 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" ActiveRuntime="Mono 3.2.6" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Menus and Scene Managers/LevelSelectCameraControls.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" ActiveRuntime="Mono 3.2.6" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Level Gameplay/ScoreKeeper.cs">
     <Files>
-      <File FileName="Assets/Scripts/Menus and Scene Managers/LevelSelectCameraControls.cs" Line="58" Column="19" />
-      <File FileName="Assets/Editor/OpenKitSettingsWindow.cs" Line="4" Column="19" />
+      <File FileName="Assets/Scripts/Menus and Scene Managers/LevelSelectCameraControls.cs" Line="1" Column="1" />
+      <File FileName="Assets/Editor/OpenKitSettingsWindow.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Level Gameplay/ScoreKeeper.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Scripts" expanded="True">
+              <Node name="Level Gameplay" expanded="True">
+                <Node name="ScoreKeeper.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
