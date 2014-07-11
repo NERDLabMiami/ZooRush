@@ -140,10 +140,10 @@
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendUserEvent.cs" />
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SetCustomArea.cs" />
      <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SetCustomUserID.cs" />
+     <Compile Include="Assets\Recycle Bin\PlaySound.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioModel.cs" />
      <Compile Include="Assets\Scripts\Audio\MenuMusic.cs" />
-     <Compile Include="Assets\Scripts\Audio\PlaySound.cs" />
      <Compile Include="Assets\Scripts\Background Management\CityScapeRepeater.cs" />
      <Compile Include="Assets\Scripts\Background Management\CloudGenerator.cs" />
      <Compile Include="Assets\Scripts\Background Management\GenericRepeater.cs" />
@@ -258,7 +258,6 @@
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_checkbox.xml" />
      <None Include="Assets\Plugins\Android\facebook\bin\R.txt" />
      <None Include="Assets\Plugins\Android\OpenKitSDK\res\values\attrs.xml" />
-     <None Include="Assets\Resources\Sprites\Background\Beach\Ocean Waves.txt" />
      <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparent.shader" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_title_bar_stub.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values\strings.xml" />
