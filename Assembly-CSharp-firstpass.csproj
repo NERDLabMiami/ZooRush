@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{A9CAB5AD-BA4B-CEC0-86C6-C6CFF7283C5B}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_0;UNITY_4_5;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Plugins\OpenKit\JSONObject.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\JSONObjectExt.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\Native\IOKNativeBridge.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\Native\OKFacebookUtilities.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\Native\OKLoginRequest.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\Native\OKNativeAsyncCall.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\Native\OpenKitAndroid.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\Native\OpenKitDummyObject.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\Native\OpenKitIOS.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKAchievementScore.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKBaseInitializer.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKCloud.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKCloudAsyncRequest.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKCloudException.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKCtx.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKException.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKFormPair.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKGhostScoresRequest.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKIOResponse.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKInitializer.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKInteractiveCli.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKLeaderboard.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKLog.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKManager.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKMetadataRequest.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKNativeEvent.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKScore.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKScoreSubmitComponent.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKServiceRequest.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKSettings.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKUploadBuffer.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OKUser.cs" />
+     <Compile Include="Assets\Plugins\OpenKit\OpenKitManifestMod.cs" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolidOverlay.shader" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparentOverlay.shader" />
+     <None Include="Assets\Resources\Dialog\HelpTextPainkiller.txt" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolid.shader" />
+     <None Include="Assets\Resources\OKSettings.txt" />
+     <None Include="Assets\Resources\Dialog\HelpTextDoctor.txt" />
+     <None Include="Assets\Resources\Dialog\HelpTextAnimal.txt" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparent.shader" />
+     <None Include="Assets\Resources\Dialog\Level10Story.txt" />
+     <None Include="Assets\Resources\Dialog\HelpTextInfection.txt" />
+     <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />
+     <None Include="Assets\Resources\Dialog\Level6Story.txt" />
+     <None Include="Assets\Resources\Dialog\IntroScene.txt" />
+     <None Include="Assets\Resources\Dialog\HelpTextCredits.txt" />
+     <None Include="Assets\Resources\Dialog\Level5Story.txt" />
+     <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
+     <None Include="Assets\Resources\Dialog\HelpTextMove.txt" />
+     <None Include="Assets\Resources\Dialog\Level2Story.txt" />
+     <None Include="Assets\Resources\Dialog\Level8Story.txt" />
+     <None Include="Assets\GameAnalytics\Plugins\WebPlayer\crossdomain.xml" />
+     <None Include="Assets\Resources\randomFacts.txt" />
+     <None Include="Assets\Resources\Dialog\GameEndStory.txt" />
+     <None Include="Assets\GameAnalytics\Plugins\Android\Android_Readme.txt" />
+     <None Include="Assets\Resources\Dialog\Level3Story.txt" />
+     <None Include="Assets\Resources\Dialog\Level9Story.txt" />
+     <None Include="Assets\Resources\Dialog\Level7Story.txt" />
+     <None Include="Assets\Resources\Dialog\Level4Story.txt" />
+     <None Include="Assets\Resources\Dialog\HelpTextWater.txt" />
+ <Reference Include="IFacebook">
+ <HintPath>/Users/ebbichan/Desktop/ZooRush-beta/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
+ </Reference>
+ <Reference Include="RestSharp">
+ <HintPath>/Users/ebbichan/Desktop/ZooRush-beta/Assets/Plugins/RestSharp.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
