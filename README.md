@@ -3,6 +3,6 @@ Zoo Rush is a running adventure mobile game that seeks to raise awareness, desti
 
 [Available on Google Play](https://play.google.com/store/apps/details?id=edu.miami.zoorush)
 
-![Top Rated EdApp by Balefire Labs](https://games.nerdlab.miami/zoorush/images/balefirelabs.png "Top Rated EdApp 2015")
-![AEJMC Best of Web Competition](https://games.nerdlab.miami/zoorush/images/aejmc-firstplace.png "1st Place AEJMC Best of Web Competition")
-![Serious Play Award](https://games.nerdlab.miami/zoorush/images/seriousplay.png "2014 Silver Medal Serious Play Award")
+<img src="https://games.nerdlab.miami/zoorush/images/aejmc-firstplace.png" height="300" alt="1st Place AEJMC Best of Web Competition">
+<img src="https://games.nerdlab.miami/zoorush/images/seriousplay.png" height="300" alt="2014 Silver Medal Serious Play Award">
+<img src="https://games.nerdlab.miami/zoorush/images/balefirelabs.png" height="300" alt="Top Rated EdApp 2015">
